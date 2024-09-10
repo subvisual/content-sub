@@ -19,6 +19,9 @@ import { Posts } from "./collections/Posts";
 import { Projects } from "./collections/Projects";
 import { Contributors } from "./collections/Contributors";
 import Users from "./collections/Users";
+import { PodcastEpisodes } from "./collections/PodcastEpisodes";
+import {BlogPosts} from "./collections/BlogPost";
+
 import BeforeDashboard from "./components/BeforeDashboard";
 import BeforeLogin from "./components/BeforeLogin";
 import { seed } from "./endpoints/seed";
@@ -66,7 +69,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Pages, Posts, Projects, Media, Categories, Users, Contributors, Comments],
+  collections: [Pages, Posts, Projects, Media, Categories, Users, Contributors, Comments, PodcastEpisodes, BlogPosts],
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
