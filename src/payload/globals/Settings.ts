@@ -24,5 +24,11 @@ export const Settings: GlobalConfig = {
       relationTo: 'pages',
       label: 'Projects page',
     },
+    {
+      name: "podcastEpisodesPage",
+      type: 'relationship',
+      relationTo: 'pages',
+      label: 'Podcast episodes page',
+    }
   ],
 }

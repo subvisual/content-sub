@@ -765,6 +765,7 @@ export interface Settings {
   id: string;
   postsPage?: (string | null) | Page;
   projectsPage?: (string | null) | Page;
+  podcastEpisodesPage?: (string | null) | Page;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

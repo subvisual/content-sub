@@ -4,6 +4,8 @@ import { admins } from "../access/admins";
 import { adminsOrPublished } from "../access/adminsOrPublished";
 
 import { slugField } from "../fields/slug";
+import { populatePublishedAt } from "../hooks/populatePublishedAt";
+import { populateArchiveBlock } from "../hooks/populateArchiveBlock";
 
 
 // TODO: Add hooks;
@@ -14,6 +16,10 @@ export const PodcastEpisodes: CollectionConfig = {
   admin: {
     useAsTitle: "title",
     defaultColumns: ["title", "slug", "updatedAt"],
+  },
+  hooks: {
+    beforeChange: [populatePublishedAt],
+
   },
   versions: { drafts: true },
   access: {
