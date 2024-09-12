@@ -4,7 +4,22 @@ export const PODCAST_EPISODES = `
   query PodcastEpisodes {
     PodcastEpisodes(limit: 300) {
       docs {
+        id
+        title
         slug
+        episodeSummary
+        episodeNotes
+        category {
+          title
+        }
+        contributors {
+          name
+          role
+        }
+        publishedAt
+        createdAt
+        updatedAt
+
       }
     }
   }
@@ -17,10 +32,17 @@ export const PODCAST_EPISODE = `
         id
         title
         slug
+        episodeSummary
+        episodeNotes
         category {
           title
         }
         contributors {
+          name
+          role
+        }
+        populatedContributors {
+          id
           name
           role
         }

@@ -1,10 +1,12 @@
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { GRAPHQL_API_URL } from "@/app/_api/shared";
 import { PODCAST_EPISODES } from "@/app/_graphql/podcastepisodes";
+import { Config } from "@/payload/payload-types";
 
-export async function fetchPodcastEpisodes(
-  // draft?: boolean
-) {
+export async function fetchPodcastEpisodes(collection: keyof Config["collections"]) {
+
+  if (!collection) throw new Error("Collection not found");
+
   let token: RequestCookie | undefined;
 
   // if (draft) {

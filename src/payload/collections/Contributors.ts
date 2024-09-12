@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload/types";
 import { slugField } from "../fields/slug";
+import { anyone } from "../access/anyone";
 
 export const Contributors: CollectionConfig = {
   slug: "contributors",
@@ -16,7 +17,7 @@ export const Contributors: CollectionConfig = {
       required: true,
       admin: {
         position: "sidebar",
-      }
+      },
     },
     {
       name: "name",
@@ -98,4 +99,4 @@ export const Contributors: CollectionConfig = {
     },
     slugField(),
   ],
-}
+};

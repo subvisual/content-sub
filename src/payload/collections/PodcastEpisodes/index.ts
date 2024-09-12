@@ -1,14 +1,11 @@
 import { CollectionConfig } from "payload/types";
 
-import { admins } from "../access/admins";
-import { adminsOrPublished } from "../access/adminsOrPublished";
+import { admins } from "../../access/admins";
+import { adminsOrPublished } from "../../access/adminsOrPublished";
+import { slugField } from "../../fields/slug";
+import { populatePublishedAt } from "../../hooks/populatePublishedAt";
+import { populateContributors } from "./hooks/populateContributors";
 
-import { slugField } from "../fields/slug";
-import { populatePublishedAt } from "../hooks/populatePublishedAt";
-import { populateArchiveBlock } from "../hooks/populateArchiveBlock";
-
-
-// TODO: Add hooks;
 // TODO: Add preview;
 
 export const PodcastEpisodes: CollectionConfig = {
@@ -19,7 +16,7 @@ export const PodcastEpisodes: CollectionConfig = {
   },
   hooks: {
     beforeChange: [populatePublishedAt],
-
+    afterRead: [populateContributors],
   },
   versions: { drafts: true },
   access: {
@@ -95,6 +92,31 @@ export const PodcastEpisodes: CollectionConfig = {
       type: "relationship",
       relationTo: "contributors",
       hasMany: true,
+    },
+    {
+      name: "populatedContributors",
+      type: "array",
+      admin: {
+        readOnly: true,
+        disabled: true,
+      },
+      access: {
+        update: () => false,
+      },
+      fields: [
+        {
+          name: "id",
+          type: "text",
+        },
+        {
+          name: "name",
+          type: "text",
+        },
+        {
+          name: "role",
+          type: "text",
+        },
+      ],
     },
     {
       name: "category",
