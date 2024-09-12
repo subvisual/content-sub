@@ -14,7 +14,6 @@ export const Contributors: CollectionConfig = {
   access: {
     read: anyone,
   },
-
   fields: [
     {
       name: "featuredImage",

@@ -43,11 +43,6 @@ export const PODCAST_EPISODE = `
           name
           role
         }
-        populatedContributors {
-          id
-          name
-          role
-        }
         featuredImage {
           ${MEDIA_FIELDS}
         }
