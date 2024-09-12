@@ -1,30 +1,20 @@
 import React from "react";
 
 import { notFound } from "next/navigation";
-
-
 import { fetchPodcastEpisode } from "@/app/_api/fetchPodcastEpisode";
-import { fetchPodcastEpisodes } from "@/app/_api/fetchPodcastEpisodes";
-import { typeOf } from "uri-js/dist/esnext/util";
-
-import type { AfterReadHook } from "payload/dist/collections/config/types";
-
+import { formatDateTime } from "@/app/_utilities/formatDateTime";
+import { EpisodeHead } from "@/app/_components/EpisodeHead";
 
 export default async function PodcastEpisodesPage({ params: { slug } }) {
 
-  let podcast = null;
-  try {
-    podcast = await fetchPodcastEpisodes("podcast-episodes");
-  } catch (err) {
-    console.error(err);
-  }
-
   let episode = null;
-  let msg = "";
+
   try {
-    episode = await fetchPodcastEpisode(slug);
+    episode = await fetchPodcastEpisode({
+      collection: "podcast-episodes",
+      slug,
+    });
   } catch (err) {
-    msg = "missed";
     console.error(err);
   }
 
@@ -37,65 +27,116 @@ export default async function PodcastEpisodesPage({ params: { slug } }) {
     title,
     episodeSummary,
     episodeNotes,
+    contributors,
+    category,
     populatedContributors,
-  } = episode
+    episodeFile,
+    publishedAt,
+    featuredImage,
+    relatedEpisodes,
+    spotify,
+    apple,
+  } = episode;
 
+  const featuredImageSource = `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${featuredImage.filename}`;
+  const audioFileSource = `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${episodeFile.filename}`
   return (
 
     <div>
-      <div style={{ backgroundColor: "" }}>
-        <h1>Here is the full list of published ones:</h1>
-        <h3>Here they are:</h3>
-        {/*<pre>{JSON.stringify(podcast, null, 2)}</pre>*/}
-        <span></span>
-        <h3>On a linked list format:</h3>
-        <ul>
-          {podcast.map((docs, i) => (
-            <li key={i}>
-              <ul>
-                <li>The content-type pill: Podcasts</li>
-                <li>The slug: <a href={docs.slug}>{docs.slug}</a></li>
-                <li>Podcast name: placeholder</li>
-                <li>The episode title: {docs.title}</li>
-                <li>Published date: {docs.publishedAt}</li>
-                <pre>Contributors: {typeof docs.contributors}</pre>
-              </ul>
-            </li>
-          ))}
-        </ul>
-
-      </div>
-      {/* IGNORE
-
-      <pre>{JSON.stringify(podcast, null, 2)}</pre>
-      Podcast Episodes Page
-
-      */}
-      <div style={{ backgroundColor: "#403F4C" }}>
-
-        <h1>Here is the one corresponding to the slug</h1>
-        <h3>Below the content:</h3>
-        <pre>{JSON.stringify(episode, null, 2)}</pre>
-
-      </div>
-
       <div>
+        <EpisodeHead episode={episode} />
+        <div style={{ backgroundColor: "#773BFF" }}>
+          <h1>EpisodeHead block goes here</h1>
+          <div>
+            <div>
+              <h3> BackButton Component linking to home filtering for the same contenttype</h3>
+              <h6>Podcasts</h6>
+              <h2>{title}</h2>
+              <h6>episode.podcastName property -> To be added</h6>
+            </div>
+            <div>
+              <h6>Date: {formatDateTime(publishedAt)} | DurationIcon </h6>
+            </div>
+            <div>
+              <h2>PlayerComponent</h2>
+            </div>
+          </div>
+          <div>
+            <h3>ImageBlock Component</h3>
+            <img style={{ height: 294, width: 294 }} src={featuredImageSource} alt="Image description" />
+          </div>
+        </div>
 
-        <h1>Let's try to pull content here!</h1>
-        <h3>Episode summary:</h3>
-        <p>{episodeSummary}</p>
-        <h3>Episode notes:</h3>
-        <p>{episodeNotes}</p>
-        <h3>Authors:</h3>
-        <ul>
-          {populatedContributors.map((contributor, i) => (
-            <li key={i}>{contributor.name}, {contributor.role}</li>
-          ))}
-        </ul>
 
+        <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
+          {/* ListenOn Column */}
+          <div style={{ backgroundColor: "white", color: "#403F4C", flex: "1" }}>
+            <div style={{ backgroundColor: "white" }}>
+              <div>
+                <h1>ListenOn goes here</h1>
+                <span>Listen on:</span>
+                <p>SpotifyIcon linking to <a href={spotify} target="_blank" rel="noopener noreferrer">Spotify</a></p>
+                <p>AppleIcon linking to <a href={apple} target="_blank" rel="noopener noreferrer">Apple Podcasts</a></p>
+              </div>
+            </div>
+          </div>
+
+          {/* EpisodeContent Column */}
+          <div style={{ backgroundColor: "white", color: "#403F4C", flex: "2" }}>
+            <h1>EpisodeContent block goes here</h1>
+            <h3>Episode Summary</h3>
+            <span>{episodeSummary}</span>
+            <h3>Episode Notes</h3>
+            <span>{episodeNotes}</span>
+          </div>
+
+          {/* Share/Category Column */}
+          <div style={{ backgroundColor: "#F6F6F6", color: "#403F4C", flex: "1" }}>
+            <div>
+              <h1>Share block goes here</h1>
+              <p>SocialMedia block with links</p>
+            </div>
+            <div>
+              <h1>Category block</h1>
+              <p>A CategoryPill per category: {category.map(cat => cat.title).join(" | ")}</p>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ backgroundColor: "#F6F6F6", color: "#403F4C", marginTop: "20px" }}>
+          <h1>RecomendedBlock goes here</h1>
+          <h3>Other ContentTypes you might like</h3>
+          <p>One block per relatedEpisodes</p>
+          <ul>
+            {relatedEpisodes.map((episode, i) => (
+              <li key={i}><a href={episode.slug}>{episode.title}</a></li>
+            ))}
+          </ul>
+        </div>
+
+
+        <div style={{ backgroundColor: "#F6F6F6", color: "#403F4C", marginTop: "20px" }}>
+          <h1>RecomendedBlock goes here</h1>
+          <h3>Other ContentTypes you might like</h3>
+          <p>One block per relatedEpisodes</p>
+          <ul>
+            {relatedEpisodes.map((episode, i) => (
+              <li key={i}><a href={episode.slug}>{episode.title}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div style={{ backgroundColor: "white", color: "#403F4C" }}>
+          <div style={{ backgroundColor: "#EFE5FF" }}>
+            <h1>SubscribeBlock goes here</h1>
+            <h3>Subscribe to Subvisual Inspo</h3>
+            <input placeholder={"Your email"}></input>
+            <button>Subscribe</button>
+          </div>
+        </div>
 
       </div>
-
+    <pre>{JSON.stringify(episode, null, 2)}</pre>
     </div>
 
   );

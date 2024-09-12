@@ -1,3 +1,5 @@
+import { MEDIA, MEDIA_FIELDS } from "./media";
+
 // TODO: Figure out refering to contributors and media files.
 
 export const PODCAST_EPISODES = `
@@ -46,9 +48,22 @@ export const PODCAST_EPISODE = `
           name
           role
         }
+        featuredImage {
+          ${MEDIA_FIELDS}
+        }
+        episodeFile {
+          ${MEDIA_FIELDS}
+        }
+        relatedEpisodes {
+          id
+          slug
+          title
+        }
         publishedAt
         createdAt
         updatedAt
+        spotify
+        apple
       }
     }
   }

@@ -70,7 +70,6 @@ export const PodcastEpisodes: CollectionConfig = {
           name: "spotify",
           label: "Spotify Link",
           type: "text",
-          maxLength: 30,
           admin: {
             width: "50%",
           },
@@ -79,7 +78,6 @@ export const PodcastEpisodes: CollectionConfig = {
           name: "apple",
           label: "Apple Podcasts Link",
           type: "text",
-          maxLength: 30,
           admin: {
             width: "50%",
           },
