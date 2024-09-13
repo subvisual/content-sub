@@ -1,10 +1,9 @@
 import { CollectionConfig } from "payload/types";
 
-import { admins } from "../../access/admins";
-import { adminsOrPublished } from "../../access/adminsOrPublished";
-import { slugField } from "../../fields/slug";
-import { populatePublishedAt } from "../../hooks/populatePublishedAt";
-import { populateContributors } from "./hooks/populateContributors";
+import { admins } from "../access/admins";
+import { adminsOrPublished } from "../access/adminsOrPublished";
+import { slugField } from "../fields/slug";
+import { populatePublishedAt } from "../hooks/populatePublishedAt";
 
 // TODO: Add preview;
 
