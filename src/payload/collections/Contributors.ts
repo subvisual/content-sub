@@ -8,6 +8,12 @@ export const Contributors: CollectionConfig = {
     useAsTitle: "name",
     defaultColumns: ["name", "bio"],
   },
+
+  // this is to be changed if we decide to unpublish contributors
+  // down the road
+  access: {
+    read: anyone,
+  },
   fields: [
     {
       name: "featuredImage",
