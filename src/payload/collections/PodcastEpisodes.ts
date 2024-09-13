@@ -2,11 +2,9 @@ import { CollectionConfig } from "payload/types";
 
 import { admins } from "../access/admins";
 import { adminsOrPublished } from "../access/adminsOrPublished";
-
 import { slugField } from "../fields/slug";
+import { populatePublishedAt } from "../hooks/populatePublishedAt";
 
-
-// TODO: Add hooks;
 // TODO: Add preview;
 
 export const PodcastEpisodes: CollectionConfig = {
@@ -14,6 +12,9 @@ export const PodcastEpisodes: CollectionConfig = {
   admin: {
     useAsTitle: "title",
     defaultColumns: ["title", "slug", "updatedAt"],
+  },
+  hooks: {
+    beforeChange: [populatePublishedAt],
   },
   versions: { drafts: true },
   access: {
@@ -67,7 +68,6 @@ export const PodcastEpisodes: CollectionConfig = {
           name: "spotify",
           label: "Spotify Link",
           type: "text",
-          maxLength: 30,
           admin: {
             width: "50%",
           },
@@ -76,7 +76,6 @@ export const PodcastEpisodes: CollectionConfig = {
           name: "apple",
           label: "Apple Podcasts Link",
           type: "text",
-          maxLength: 30,
           admin: {
             width: "50%",
           },

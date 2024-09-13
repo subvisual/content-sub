@@ -1,11 +1,18 @@
 import type { CollectionConfig } from "payload/types";
 import { slugField } from "../fields/slug";
+import { anyone } from "../access/anyone";
 
 export const Contributors: CollectionConfig = {
   slug: "contributors",
   admin: {
     useAsTitle: "name",
     defaultColumns: ["name", "bio"],
+  },
+
+  // this is to be changed if we decide to unpublish contributors
+  // down the road
+  access: {
+    read: anyone,
   },
   fields: [
     {
@@ -14,6 +21,9 @@ export const Contributors: CollectionConfig = {
       type: "upload",
       relationTo: "media",
       required: true,
+      admin: {
+        position: "sidebar",
+      },
     },
     {
       name: "name",
@@ -57,7 +67,7 @@ export const Contributors: CollectionConfig = {
       fields: [
         {
           name: "linkedIn",
-          label: "LinkedIn",
+          label: "LinkedIn Username",
           type: "text",
           maxLength: 30,
           admin: {
@@ -66,7 +76,7 @@ export const Contributors: CollectionConfig = {
         },
         {
           name: "x",
-          label: "X",
+          label: "X Username",
           type: "text",
           maxLength: 30,
           admin: {
@@ -75,7 +85,7 @@ export const Contributors: CollectionConfig = {
         },
         {
           name: "gitHub",
-          label: "GitHub",
+          label: "GitHub Username",
           type: "text",
           maxLength: 30,
           admin: {
@@ -84,7 +94,7 @@ export const Contributors: CollectionConfig = {
         },
         {
           name: "medium",
-          label: "Medium",
+          label: "Medium Username",
           type: "text",
           maxLength: 30,
           admin: {
@@ -95,4 +105,4 @@ export const Contributors: CollectionConfig = {
     },
     slugField(),
   ],
-}
+};
