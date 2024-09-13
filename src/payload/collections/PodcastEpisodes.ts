@@ -1,10 +1,9 @@
 import { CollectionConfig } from "payload/types";
 
-import { admins } from "../../access/admins";
-import { adminsOrPublished } from "../../access/adminsOrPublished";
-import { slugField } from "../../fields/slug";
-import { populatePublishedAt } from "../../hooks/populatePublishedAt";
-import { populateContributors } from "./hooks/populateContributors";
+import { admins } from "../access/admins";
+import { adminsOrPublished } from "../access/adminsOrPublished";
+import { slugField } from "../fields/slug";
+import { populatePublishedAt } from "../hooks/populatePublishedAt";
 
 // TODO: Add preview;
 
@@ -16,7 +15,6 @@ export const PodcastEpisodes: CollectionConfig = {
   },
   hooks: {
     beforeChange: [populatePublishedAt],
-    afterRead: [populateContributors],
   },
   versions: { drafts: true },
   access: {
@@ -70,7 +68,6 @@ export const PodcastEpisodes: CollectionConfig = {
           name: "spotify",
           label: "Spotify Link",
           type: "text",
-          maxLength: 30,
           admin: {
             width: "50%",
           },
@@ -79,7 +76,6 @@ export const PodcastEpisodes: CollectionConfig = {
           name: "apple",
           label: "Apple Podcasts Link",
           type: "text",
-          maxLength: 30,
           admin: {
             width: "50%",
           },
@@ -92,31 +88,6 @@ export const PodcastEpisodes: CollectionConfig = {
       type: "relationship",
       relationTo: "contributors",
       hasMany: true,
-    },
-    {
-      name: "populatedContributors",
-      type: "array",
-      admin: {
-        readOnly: true,
-        disabled: true,
-      },
-      access: {
-        update: () => false,
-      },
-      fields: [
-        {
-          name: "id",
-          type: "text",
-        },
-        {
-          name: "name",
-          type: "text",
-        },
-        {
-          name: "role",
-          type: "text",
-        },
-      ],
     },
     {
       name: "category",
