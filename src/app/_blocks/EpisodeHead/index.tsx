@@ -12,7 +12,7 @@ import { getEpisodeDuration } from "@/app/_utilities/getEpisodeDuration";
 import { getAudio } from "@/app/_utilities/getAudio";
 import { getImage } from "@/app/_utilities/getImage";
 
-import styles from "./styles.module.css"
+
 
 export const EpisodeHead: React.FC<{ episode: PodcastEpisode }> = ({ episode }) => {
 
@@ -33,7 +33,7 @@ export const EpisodeHead: React.FC<{ episode: PodcastEpisode }> = ({ episode }) 
 
 
   return (
-    <div className={styles.container}>
+    <div style={{ display: "flex", backgroundColor: "#773BFF", position: "relative", padding: "20px" }}>
       {/* First Column */}
       <div style={{ flex: 1, marginRight: "20px" }}>
         <div><BackButton /></div>
