@@ -21,7 +21,7 @@ const queryMap = {
 };
 
 
-export async function fetchPodcastEpisode(args: {
+export async function fetchContent<T>(args: {
   collection: keyof Config["collections"];
   slug?: string
   id?: string

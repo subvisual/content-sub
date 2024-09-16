@@ -3,14 +3,15 @@
 import React from "react";
 
 import {notFound} from "next/navigation";
-import {fetchPodcastEpisode } from "@/app/_api/fetchPodcastEpisode";
+import {fetchContent } from "@/app/_api/fetchContent";
+import { fetchDoc } from "@/app/_api/fetchDoc";
 
 export default async function ContributorPage({params: {slug}}) {
 
   let episode = null;
 
   try {
-    episode = await fetchPodcastEpisode({
+    episode = await fetchDoc({
       collection: "contributors",
       slug,
     });
