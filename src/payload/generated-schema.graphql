@@ -53,12 +53,12 @@ type Query {
   docAccessBlogpost(id: String!): blogpostsDocAccess
   versionBlogpost(id: String): BlogpostVersion
   versionsBlogposts(where: versionsBlogpost_where, limit: Int, page: Int, sort: String): versionsBlogposts
-  TalksAndRoundtable(id: String!, draft: Boolean): TalksAndRoundtable
-  TalksAndRoundtables(draft: Boolean, where: TalksAndRoundtable_where, limit: Int, page: Int, sort: String): TalksAndRoundtables
-  countTalksAndRoundtables(draft: Boolean, where: TalksAndRoundtable_where): countTalksAndRoundtables
-  docAccessTalksAndRoundtable(id: String!): talks_and_roundtablesDocAccess
-  versionTalksAndRoundtable(id: String): TalksAndRoundtableVersion
-  versionsTalksAndRoundtables(where: versionsTalksAndRoundtable_where, limit: Int, page: Int, sort: String): versionsTalksAndRoundtables
+  Talk(id: String!, draft: Boolean): Talk
+  Talks(draft: Boolean, where: Talk_where, limit: Int, page: Int, sort: String): Talks
+  countTalks(draft: Boolean, where: Talk_where): countTalks
+  docAccessTalk(id: String!): talksDocAccess
+  versionTalk(id: String): TalkVersion
+  versionsTalks(where: versionsTalk_where, limit: Int, page: Int, sort: String): versionsTalks
   CaseStudy(id: String!, draft: Boolean): CaseStudy
   CaseStudies(draft: Boolean, where: CaseStudy_where, limit: Int, page: Int, sort: String): CaseStudies
   countCaseStudies(draft: Boolean, where: CaseStudy_where): countCaseStudies
@@ -13021,7 +13021,7 @@ input versionsBlogpost_where_or {
   OR: [versionsBlogpost_where_or]
 }
 
-type TalksAndRoundtable {
+type Talk {
   id: String
   title: String
   about: String
@@ -13031,16 +13031,16 @@ type TalksAndRoundtable {
   slug: String
   updatedAt: DateTime
   createdAt: DateTime
-  _status: TalksAndRoundtable__status
+  _status: Talk__status
 }
 
-enum TalksAndRoundtable__status {
+enum Talk__status {
   draft
   published
 }
 
-type TalksAndRoundtables {
-  docs: [TalksAndRoundtable]
+type Talks {
+  docs: [Talk]
   hasNextPage: Boolean
   hasPrevPage: Boolean
   limit: Int
@@ -13053,22 +13053,22 @@ type TalksAndRoundtables {
   totalPages: Int
 }
 
-input TalksAndRoundtable_where {
-  title: TalksAndRoundtable_title_operator
-  about: TalksAndRoundtable_about_operator
-  categories: TalksAndRoundtable_categories_operator
-  url: TalksAndRoundtable_url_operator
-  publishedAt: TalksAndRoundtable_publishedAt_operator
-  slug: TalksAndRoundtable_slug_operator
-  updatedAt: TalksAndRoundtable_updatedAt_operator
-  createdAt: TalksAndRoundtable_createdAt_operator
-  _status: TalksAndRoundtable__status_operator
-  id: TalksAndRoundtable_id_operator
-  AND: [TalksAndRoundtable_where_and]
-  OR: [TalksAndRoundtable_where_or]
+input Talk_where {
+  title: Talk_title_operator
+  about: Talk_about_operator
+  categories: Talk_categories_operator
+  url: Talk_url_operator
+  publishedAt: Talk_publishedAt_operator
+  slug: Talk_slug_operator
+  updatedAt: Talk_updatedAt_operator
+  createdAt: Talk_createdAt_operator
+  _status: Talk__status_operator
+  id: Talk_id_operator
+  AND: [Talk_where_and]
+  OR: [Talk_where_or]
 }
 
-input TalksAndRoundtable_title_operator {
+input Talk_title_operator {
   equals: String
   not_equals: String
   like: String
@@ -13078,14 +13078,14 @@ input TalksAndRoundtable_title_operator {
   all: [String]
 }
 
-input TalksAndRoundtable_about_operator {
+input Talk_about_operator {
   equals: String
   not_equals: String
   like: String
   contains: String
 }
 
-input TalksAndRoundtable_categories_operator {
+input Talk_categories_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -13094,7 +13094,7 @@ input TalksAndRoundtable_categories_operator {
   exists: Boolean
 }
 
-input TalksAndRoundtable_url_operator {
+input Talk_url_operator {
   equals: String
   not_equals: String
   like: String
@@ -13105,7 +13105,7 @@ input TalksAndRoundtable_url_operator {
   exists: Boolean
 }
 
-input TalksAndRoundtable_publishedAt_operator {
+input Talk_publishedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -13116,7 +13116,7 @@ input TalksAndRoundtable_publishedAt_operator {
   exists: Boolean
 }
 
-input TalksAndRoundtable_slug_operator {
+input Talk_slug_operator {
   equals: String
   not_equals: String
   like: String
@@ -13127,7 +13127,7 @@ input TalksAndRoundtable_slug_operator {
   exists: Boolean
 }
 
-input TalksAndRoundtable_updatedAt_operator {
+input Talk_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -13138,7 +13138,7 @@ input TalksAndRoundtable_updatedAt_operator {
   exists: Boolean
 }
 
-input TalksAndRoundtable_createdAt_operator {
+input Talk_createdAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -13149,21 +13149,21 @@ input TalksAndRoundtable_createdAt_operator {
   exists: Boolean
 }
 
-input TalksAndRoundtable__status_operator {
-  equals: TalksAndRoundtable__status_Input
-  not_equals: TalksAndRoundtable__status_Input
-  in: [TalksAndRoundtable__status_Input]
-  not_in: [TalksAndRoundtable__status_Input]
-  all: [TalksAndRoundtable__status_Input]
+input Talk__status_operator {
+  equals: Talk__status_Input
+  not_equals: Talk__status_Input
+  in: [Talk__status_Input]
+  not_in: [Talk__status_Input]
+  all: [Talk__status_Input]
   exists: Boolean
 }
 
-enum TalksAndRoundtable__status_Input {
+enum Talk__status_Input {
   draft
   published
 }
 
-input TalksAndRoundtable_id_operator {
+input Talk_id_operator {
   equals: String
   not_equals: String
   like: String
@@ -13174,303 +13174,303 @@ input TalksAndRoundtable_id_operator {
   exists: Boolean
 }
 
-input TalksAndRoundtable_where_and {
-  title: TalksAndRoundtable_title_operator
-  about: TalksAndRoundtable_about_operator
-  categories: TalksAndRoundtable_categories_operator
-  url: TalksAndRoundtable_url_operator
-  publishedAt: TalksAndRoundtable_publishedAt_operator
-  slug: TalksAndRoundtable_slug_operator
-  updatedAt: TalksAndRoundtable_updatedAt_operator
-  createdAt: TalksAndRoundtable_createdAt_operator
-  _status: TalksAndRoundtable__status_operator
-  id: TalksAndRoundtable_id_operator
-  AND: [TalksAndRoundtable_where_and]
-  OR: [TalksAndRoundtable_where_or]
+input Talk_where_and {
+  title: Talk_title_operator
+  about: Talk_about_operator
+  categories: Talk_categories_operator
+  url: Talk_url_operator
+  publishedAt: Talk_publishedAt_operator
+  slug: Talk_slug_operator
+  updatedAt: Talk_updatedAt_operator
+  createdAt: Talk_createdAt_operator
+  _status: Talk__status_operator
+  id: Talk_id_operator
+  AND: [Talk_where_and]
+  OR: [Talk_where_or]
 }
 
-input TalksAndRoundtable_where_or {
-  title: TalksAndRoundtable_title_operator
-  about: TalksAndRoundtable_about_operator
-  categories: TalksAndRoundtable_categories_operator
-  url: TalksAndRoundtable_url_operator
-  publishedAt: TalksAndRoundtable_publishedAt_operator
-  slug: TalksAndRoundtable_slug_operator
-  updatedAt: TalksAndRoundtable_updatedAt_operator
-  createdAt: TalksAndRoundtable_createdAt_operator
-  _status: TalksAndRoundtable__status_operator
-  id: TalksAndRoundtable_id_operator
-  AND: [TalksAndRoundtable_where_and]
-  OR: [TalksAndRoundtable_where_or]
+input Talk_where_or {
+  title: Talk_title_operator
+  about: Talk_about_operator
+  categories: Talk_categories_operator
+  url: Talk_url_operator
+  publishedAt: Talk_publishedAt_operator
+  slug: Talk_slug_operator
+  updatedAt: Talk_updatedAt_operator
+  createdAt: Talk_createdAt_operator
+  _status: Talk__status_operator
+  id: Talk_id_operator
+  AND: [Talk_where_and]
+  OR: [Talk_where_or]
 }
 
-type countTalksAndRoundtables {
+type countTalks {
   totalDocs: Int
 }
 
-type talks_and_roundtablesDocAccess {
-  fields: TalksAndRoundtablesDocAccessFields
-  create: TalksAndRoundtablesCreateDocAccess
-  read: TalksAndRoundtablesReadDocAccess
-  update: TalksAndRoundtablesUpdateDocAccess
-  delete: TalksAndRoundtablesDeleteDocAccess
-  readVersions: TalksAndRoundtablesReadVersionsDocAccess
+type talksDocAccess {
+  fields: TalksDocAccessFields
+  create: TalksCreateDocAccess
+  read: TalksReadDocAccess
+  update: TalksUpdateDocAccess
+  delete: TalksDeleteDocAccess
+  readVersions: TalksReadVersionsDocAccess
 }
 
-type TalksAndRoundtablesDocAccessFields {
-  title: TalksAndRoundtablesDocAccessFields_title
-  about: TalksAndRoundtablesDocAccessFields_about
-  categories: TalksAndRoundtablesDocAccessFields_categories
-  url: TalksAndRoundtablesDocAccessFields_url
-  publishedAt: TalksAndRoundtablesDocAccessFields_publishedAt
-  slug: TalksAndRoundtablesDocAccessFields_slug
-  updatedAt: TalksAndRoundtablesDocAccessFields_updatedAt
-  createdAt: TalksAndRoundtablesDocAccessFields_createdAt
-  _status: TalksAndRoundtablesDocAccessFields__status
+type TalksDocAccessFields {
+  title: TalksDocAccessFields_title
+  about: TalksDocAccessFields_about
+  categories: TalksDocAccessFields_categories
+  url: TalksDocAccessFields_url
+  publishedAt: TalksDocAccessFields_publishedAt
+  slug: TalksDocAccessFields_slug
+  updatedAt: TalksDocAccessFields_updatedAt
+  createdAt: TalksDocAccessFields_createdAt
+  _status: TalksDocAccessFields__status
 }
 
-type TalksAndRoundtablesDocAccessFields_title {
-  create: TalksAndRoundtablesDocAccessFields_title_Create
-  read: TalksAndRoundtablesDocAccessFields_title_Read
-  update: TalksAndRoundtablesDocAccessFields_title_Update
-  delete: TalksAndRoundtablesDocAccessFields_title_Delete
+type TalksDocAccessFields_title {
+  create: TalksDocAccessFields_title_Create
+  read: TalksDocAccessFields_title_Read
+  update: TalksDocAccessFields_title_Update
+  delete: TalksDocAccessFields_title_Delete
 }
 
-type TalksAndRoundtablesDocAccessFields_title_Create {
+type TalksDocAccessFields_title_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_title_Read {
+type TalksDocAccessFields_title_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_title_Update {
+type TalksDocAccessFields_title_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_title_Delete {
+type TalksDocAccessFields_title_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_about {
-  create: TalksAndRoundtablesDocAccessFields_about_Create
-  read: TalksAndRoundtablesDocAccessFields_about_Read
-  update: TalksAndRoundtablesDocAccessFields_about_Update
-  delete: TalksAndRoundtablesDocAccessFields_about_Delete
+type TalksDocAccessFields_about {
+  create: TalksDocAccessFields_about_Create
+  read: TalksDocAccessFields_about_Read
+  update: TalksDocAccessFields_about_Update
+  delete: TalksDocAccessFields_about_Delete
 }
 
-type TalksAndRoundtablesDocAccessFields_about_Create {
+type TalksDocAccessFields_about_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_about_Read {
+type TalksDocAccessFields_about_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_about_Update {
+type TalksDocAccessFields_about_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_about_Delete {
+type TalksDocAccessFields_about_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_categories {
-  create: TalksAndRoundtablesDocAccessFields_categories_Create
-  read: TalksAndRoundtablesDocAccessFields_categories_Read
-  update: TalksAndRoundtablesDocAccessFields_categories_Update
-  delete: TalksAndRoundtablesDocAccessFields_categories_Delete
+type TalksDocAccessFields_categories {
+  create: TalksDocAccessFields_categories_Create
+  read: TalksDocAccessFields_categories_Read
+  update: TalksDocAccessFields_categories_Update
+  delete: TalksDocAccessFields_categories_Delete
 }
 
-type TalksAndRoundtablesDocAccessFields_categories_Create {
+type TalksDocAccessFields_categories_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_categories_Read {
+type TalksDocAccessFields_categories_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_categories_Update {
+type TalksDocAccessFields_categories_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_categories_Delete {
+type TalksDocAccessFields_categories_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_url {
-  create: TalksAndRoundtablesDocAccessFields_url_Create
-  read: TalksAndRoundtablesDocAccessFields_url_Read
-  update: TalksAndRoundtablesDocAccessFields_url_Update
-  delete: TalksAndRoundtablesDocAccessFields_url_Delete
+type TalksDocAccessFields_url {
+  create: TalksDocAccessFields_url_Create
+  read: TalksDocAccessFields_url_Read
+  update: TalksDocAccessFields_url_Update
+  delete: TalksDocAccessFields_url_Delete
 }
 
-type TalksAndRoundtablesDocAccessFields_url_Create {
+type TalksDocAccessFields_url_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_url_Read {
+type TalksDocAccessFields_url_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_url_Update {
+type TalksDocAccessFields_url_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_url_Delete {
+type TalksDocAccessFields_url_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_publishedAt {
-  create: TalksAndRoundtablesDocAccessFields_publishedAt_Create
-  read: TalksAndRoundtablesDocAccessFields_publishedAt_Read
-  update: TalksAndRoundtablesDocAccessFields_publishedAt_Update
-  delete: TalksAndRoundtablesDocAccessFields_publishedAt_Delete
+type TalksDocAccessFields_publishedAt {
+  create: TalksDocAccessFields_publishedAt_Create
+  read: TalksDocAccessFields_publishedAt_Read
+  update: TalksDocAccessFields_publishedAt_Update
+  delete: TalksDocAccessFields_publishedAt_Delete
 }
 
-type TalksAndRoundtablesDocAccessFields_publishedAt_Create {
+type TalksDocAccessFields_publishedAt_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_publishedAt_Read {
+type TalksDocAccessFields_publishedAt_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_publishedAt_Update {
+type TalksDocAccessFields_publishedAt_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_publishedAt_Delete {
+type TalksDocAccessFields_publishedAt_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_slug {
-  create: TalksAndRoundtablesDocAccessFields_slug_Create
-  read: TalksAndRoundtablesDocAccessFields_slug_Read
-  update: TalksAndRoundtablesDocAccessFields_slug_Update
-  delete: TalksAndRoundtablesDocAccessFields_slug_Delete
+type TalksDocAccessFields_slug {
+  create: TalksDocAccessFields_slug_Create
+  read: TalksDocAccessFields_slug_Read
+  update: TalksDocAccessFields_slug_Update
+  delete: TalksDocAccessFields_slug_Delete
 }
 
-type TalksAndRoundtablesDocAccessFields_slug_Create {
+type TalksDocAccessFields_slug_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_slug_Read {
+type TalksDocAccessFields_slug_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_slug_Update {
+type TalksDocAccessFields_slug_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_slug_Delete {
+type TalksDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_updatedAt {
-  create: TalksAndRoundtablesDocAccessFields_updatedAt_Create
-  read: TalksAndRoundtablesDocAccessFields_updatedAt_Read
-  update: TalksAndRoundtablesDocAccessFields_updatedAt_Update
-  delete: TalksAndRoundtablesDocAccessFields_updatedAt_Delete
+type TalksDocAccessFields_updatedAt {
+  create: TalksDocAccessFields_updatedAt_Create
+  read: TalksDocAccessFields_updatedAt_Read
+  update: TalksDocAccessFields_updatedAt_Update
+  delete: TalksDocAccessFields_updatedAt_Delete
 }
 
-type TalksAndRoundtablesDocAccessFields_updatedAt_Create {
+type TalksDocAccessFields_updatedAt_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_updatedAt_Read {
+type TalksDocAccessFields_updatedAt_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_updatedAt_Update {
+type TalksDocAccessFields_updatedAt_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_updatedAt_Delete {
+type TalksDocAccessFields_updatedAt_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_createdAt {
-  create: TalksAndRoundtablesDocAccessFields_createdAt_Create
-  read: TalksAndRoundtablesDocAccessFields_createdAt_Read
-  update: TalksAndRoundtablesDocAccessFields_createdAt_Update
-  delete: TalksAndRoundtablesDocAccessFields_createdAt_Delete
+type TalksDocAccessFields_createdAt {
+  create: TalksDocAccessFields_createdAt_Create
+  read: TalksDocAccessFields_createdAt_Read
+  update: TalksDocAccessFields_createdAt_Update
+  delete: TalksDocAccessFields_createdAt_Delete
 }
 
-type TalksAndRoundtablesDocAccessFields_createdAt_Create {
+type TalksDocAccessFields_createdAt_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_createdAt_Read {
+type TalksDocAccessFields_createdAt_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_createdAt_Update {
+type TalksDocAccessFields_createdAt_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields_createdAt_Delete {
+type TalksDocAccessFields_createdAt_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields__status {
-  create: TalksAndRoundtablesDocAccessFields__status_Create
-  read: TalksAndRoundtablesDocAccessFields__status_Read
-  update: TalksAndRoundtablesDocAccessFields__status_Update
-  delete: TalksAndRoundtablesDocAccessFields__status_Delete
+type TalksDocAccessFields__status {
+  create: TalksDocAccessFields__status_Create
+  read: TalksDocAccessFields__status_Read
+  update: TalksDocAccessFields__status_Update
+  delete: TalksDocAccessFields__status_Delete
 }
 
-type TalksAndRoundtablesDocAccessFields__status_Create {
+type TalksDocAccessFields__status_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields__status_Read {
+type TalksDocAccessFields__status_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields__status_Update {
+type TalksDocAccessFields__status_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesDocAccessFields__status_Delete {
+type TalksDocAccessFields__status_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesCreateDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type TalksAndRoundtablesReadDocAccess {
+type TalksCreateDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TalksAndRoundtablesUpdateDocAccess {
+type TalksReadDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TalksAndRoundtablesDeleteDocAccess {
+type TalksUpdateDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TalksAndRoundtablesReadVersionsDocAccess {
+type TalksDeleteDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TalksAndRoundtableVersion {
-  parent(draft: Boolean): TalksAndRoundtable
-  version: TalksAndRoundtableVersion_Version
+type TalksReadVersionsDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalkVersion {
+  parent(draft: Boolean): Talk
+  version: TalkVersion_Version
   createdAt: DateTime
   updatedAt: DateTime
   latest: Boolean
   id: String
 }
 
-type TalksAndRoundtableVersion_Version {
+type TalkVersion_Version {
   title: String
   about: String
   categories: [Category!]
@@ -13479,16 +13479,16 @@ type TalksAndRoundtableVersion_Version {
   slug: String
   updatedAt: DateTime
   createdAt: DateTime
-  _status: TalksAndRoundtableVersion_Version__status
+  _status: TalkVersion_Version__status
 }
 
-enum TalksAndRoundtableVersion_Version__status {
+enum TalkVersion_Version__status {
   draft
   published
 }
 
-type versionsTalksAndRoundtables {
-  docs: [TalksAndRoundtableVersion]
+type versionsTalks {
+  docs: [TalkVersion]
   hasNextPage: Boolean
   hasPrevPage: Boolean
   limit: Int
@@ -13501,26 +13501,26 @@ type versionsTalksAndRoundtables {
   totalPages: Int
 }
 
-input versionsTalksAndRoundtable_where {
-  parent: versionsTalksAndRoundtable_parent_operator
-  version__title: versionsTalksAndRoundtable_version__title_operator
-  version__about: versionsTalksAndRoundtable_version__about_operator
-  version__categories: versionsTalksAndRoundtable_version__categories_operator
-  version__url: versionsTalksAndRoundtable_version__url_operator
-  version__publishedAt: versionsTalksAndRoundtable_version__publishedAt_operator
-  version__slug: versionsTalksAndRoundtable_version__slug_operator
-  version__updatedAt: versionsTalksAndRoundtable_version__updatedAt_operator
-  version__createdAt: versionsTalksAndRoundtable_version__createdAt_operator
-  version___status: versionsTalksAndRoundtable_version___status_operator
-  createdAt: versionsTalksAndRoundtable_createdAt_operator
-  updatedAt: versionsTalksAndRoundtable_updatedAt_operator
-  latest: versionsTalksAndRoundtable_latest_operator
-  id: versionsTalksAndRoundtable_id_operator
-  AND: [versionsTalksAndRoundtable_where_and]
-  OR: [versionsTalksAndRoundtable_where_or]
+input versionsTalk_where {
+  parent: versionsTalk_parent_operator
+  version__title: versionsTalk_version__title_operator
+  version__about: versionsTalk_version__about_operator
+  version__categories: versionsTalk_version__categories_operator
+  version__url: versionsTalk_version__url_operator
+  version__publishedAt: versionsTalk_version__publishedAt_operator
+  version__slug: versionsTalk_version__slug_operator
+  version__updatedAt: versionsTalk_version__updatedAt_operator
+  version__createdAt: versionsTalk_version__createdAt_operator
+  version___status: versionsTalk_version___status_operator
+  createdAt: versionsTalk_createdAt_operator
+  updatedAt: versionsTalk_updatedAt_operator
+  latest: versionsTalk_latest_operator
+  id: versionsTalk_id_operator
+  AND: [versionsTalk_where_and]
+  OR: [versionsTalk_where_or]
 }
 
-input versionsTalksAndRoundtable_parent_operator {
+input versionsTalk_parent_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -13529,7 +13529,7 @@ input versionsTalksAndRoundtable_parent_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_version__title_operator {
+input versionsTalk_version__title_operator {
   equals: String
   not_equals: String
   like: String
@@ -13539,14 +13539,14 @@ input versionsTalksAndRoundtable_version__title_operator {
   all: [String]
 }
 
-input versionsTalksAndRoundtable_version__about_operator {
+input versionsTalk_version__about_operator {
   equals: String
   not_equals: String
   like: String
   contains: String
 }
 
-input versionsTalksAndRoundtable_version__categories_operator {
+input versionsTalk_version__categories_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -13555,7 +13555,7 @@ input versionsTalksAndRoundtable_version__categories_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_version__url_operator {
+input versionsTalk_version__url_operator {
   equals: String
   not_equals: String
   like: String
@@ -13566,7 +13566,7 @@ input versionsTalksAndRoundtable_version__url_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_version__publishedAt_operator {
+input versionsTalk_version__publishedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -13577,7 +13577,7 @@ input versionsTalksAndRoundtable_version__publishedAt_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_version__slug_operator {
+input versionsTalk_version__slug_operator {
   equals: String
   not_equals: String
   like: String
@@ -13588,7 +13588,7 @@ input versionsTalksAndRoundtable_version__slug_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_version__updatedAt_operator {
+input versionsTalk_version__updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -13599,7 +13599,7 @@ input versionsTalksAndRoundtable_version__updatedAt_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_version__createdAt_operator {
+input versionsTalk_version__createdAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -13610,21 +13610,21 @@ input versionsTalksAndRoundtable_version__createdAt_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_version___status_operator {
-  equals: versionsTalksAndRoundtable_version___status_Input
-  not_equals: versionsTalksAndRoundtable_version___status_Input
-  in: [versionsTalksAndRoundtable_version___status_Input]
-  not_in: [versionsTalksAndRoundtable_version___status_Input]
-  all: [versionsTalksAndRoundtable_version___status_Input]
+input versionsTalk_version___status_operator {
+  equals: versionsTalk_version___status_Input
+  not_equals: versionsTalk_version___status_Input
+  in: [versionsTalk_version___status_Input]
+  not_in: [versionsTalk_version___status_Input]
+  all: [versionsTalk_version___status_Input]
   exists: Boolean
 }
 
-enum versionsTalksAndRoundtable_version___status_Input {
+enum versionsTalk_version___status_Input {
   draft
   published
 }
 
-input versionsTalksAndRoundtable_createdAt_operator {
+input versionsTalk_createdAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -13635,7 +13635,7 @@ input versionsTalksAndRoundtable_createdAt_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_updatedAt_operator {
+input versionsTalk_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -13646,13 +13646,13 @@ input versionsTalksAndRoundtable_updatedAt_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_latest_operator {
+input versionsTalk_latest_operator {
   equals: Boolean
   not_equals: Boolean
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_id_operator {
+input versionsTalk_id_operator {
   equals: String
   not_equals: String
   like: String
@@ -13663,42 +13663,42 @@ input versionsTalksAndRoundtable_id_operator {
   exists: Boolean
 }
 
-input versionsTalksAndRoundtable_where_and {
-  parent: versionsTalksAndRoundtable_parent_operator
-  version__title: versionsTalksAndRoundtable_version__title_operator
-  version__about: versionsTalksAndRoundtable_version__about_operator
-  version__categories: versionsTalksAndRoundtable_version__categories_operator
-  version__url: versionsTalksAndRoundtable_version__url_operator
-  version__publishedAt: versionsTalksAndRoundtable_version__publishedAt_operator
-  version__slug: versionsTalksAndRoundtable_version__slug_operator
-  version__updatedAt: versionsTalksAndRoundtable_version__updatedAt_operator
-  version__createdAt: versionsTalksAndRoundtable_version__createdAt_operator
-  version___status: versionsTalksAndRoundtable_version___status_operator
-  createdAt: versionsTalksAndRoundtable_createdAt_operator
-  updatedAt: versionsTalksAndRoundtable_updatedAt_operator
-  latest: versionsTalksAndRoundtable_latest_operator
-  id: versionsTalksAndRoundtable_id_operator
-  AND: [versionsTalksAndRoundtable_where_and]
-  OR: [versionsTalksAndRoundtable_where_or]
+input versionsTalk_where_and {
+  parent: versionsTalk_parent_operator
+  version__title: versionsTalk_version__title_operator
+  version__about: versionsTalk_version__about_operator
+  version__categories: versionsTalk_version__categories_operator
+  version__url: versionsTalk_version__url_operator
+  version__publishedAt: versionsTalk_version__publishedAt_operator
+  version__slug: versionsTalk_version__slug_operator
+  version__updatedAt: versionsTalk_version__updatedAt_operator
+  version__createdAt: versionsTalk_version__createdAt_operator
+  version___status: versionsTalk_version___status_operator
+  createdAt: versionsTalk_createdAt_operator
+  updatedAt: versionsTalk_updatedAt_operator
+  latest: versionsTalk_latest_operator
+  id: versionsTalk_id_operator
+  AND: [versionsTalk_where_and]
+  OR: [versionsTalk_where_or]
 }
 
-input versionsTalksAndRoundtable_where_or {
-  parent: versionsTalksAndRoundtable_parent_operator
-  version__title: versionsTalksAndRoundtable_version__title_operator
-  version__about: versionsTalksAndRoundtable_version__about_operator
-  version__categories: versionsTalksAndRoundtable_version__categories_operator
-  version__url: versionsTalksAndRoundtable_version__url_operator
-  version__publishedAt: versionsTalksAndRoundtable_version__publishedAt_operator
-  version__slug: versionsTalksAndRoundtable_version__slug_operator
-  version__updatedAt: versionsTalksAndRoundtable_version__updatedAt_operator
-  version__createdAt: versionsTalksAndRoundtable_version__createdAt_operator
-  version___status: versionsTalksAndRoundtable_version___status_operator
-  createdAt: versionsTalksAndRoundtable_createdAt_operator
-  updatedAt: versionsTalksAndRoundtable_updatedAt_operator
-  latest: versionsTalksAndRoundtable_latest_operator
-  id: versionsTalksAndRoundtable_id_operator
-  AND: [versionsTalksAndRoundtable_where_and]
-  OR: [versionsTalksAndRoundtable_where_or]
+input versionsTalk_where_or {
+  parent: versionsTalk_parent_operator
+  version__title: versionsTalk_version__title_operator
+  version__about: versionsTalk_version__about_operator
+  version__categories: versionsTalk_version__categories_operator
+  version__url: versionsTalk_version__url_operator
+  version__publishedAt: versionsTalk_version__publishedAt_operator
+  version__slug: versionsTalk_version__slug_operator
+  version__updatedAt: versionsTalk_version__updatedAt_operator
+  version__createdAt: versionsTalk_version__createdAt_operator
+  version___status: versionsTalk_version___status_operator
+  createdAt: versionsTalk_createdAt_operator
+  updatedAt: versionsTalk_updatedAt_operator
+  latest: versionsTalk_latest_operator
+  id: versionsTalk_id_operator
+  AND: [versionsTalk_where_and]
+  OR: [versionsTalk_where_or]
 }
 
 type CaseStudy {
@@ -15689,7 +15689,7 @@ type Access {
   comments: commentsAccess
   podcast_episodes: podcast_episodesAccess
   blogposts: blogpostsAccess
-  talks_and_roundtables: talks_and_roundtablesAccess
+  talks: talksAccess
   case_studies: case_studiesAccess
   redirects: redirectsAccess
   payload_preferences: payload_preferencesAccess
@@ -19854,255 +19854,255 @@ type BlogpostsReadVersionsAccess {
   where: JSONObject
 }
 
-type talks_and_roundtablesAccess {
-  fields: TalksAndRoundtablesFields
-  create: TalksAndRoundtablesCreateAccess
-  read: TalksAndRoundtablesReadAccess
-  update: TalksAndRoundtablesUpdateAccess
-  delete: TalksAndRoundtablesDeleteAccess
-  readVersions: TalksAndRoundtablesReadVersionsAccess
+type talksAccess {
+  fields: TalksFields
+  create: TalksCreateAccess
+  read: TalksReadAccess
+  update: TalksUpdateAccess
+  delete: TalksDeleteAccess
+  readVersions: TalksReadVersionsAccess
 }
 
-type TalksAndRoundtablesFields {
-  title: TalksAndRoundtablesFields_title
-  about: TalksAndRoundtablesFields_about
-  categories: TalksAndRoundtablesFields_categories
-  url: TalksAndRoundtablesFields_url
-  publishedAt: TalksAndRoundtablesFields_publishedAt
-  slug: TalksAndRoundtablesFields_slug
-  updatedAt: TalksAndRoundtablesFields_updatedAt
-  createdAt: TalksAndRoundtablesFields_createdAt
-  _status: TalksAndRoundtablesFields__status
+type TalksFields {
+  title: TalksFields_title
+  about: TalksFields_about
+  categories: TalksFields_categories
+  url: TalksFields_url
+  publishedAt: TalksFields_publishedAt
+  slug: TalksFields_slug
+  updatedAt: TalksFields_updatedAt
+  createdAt: TalksFields_createdAt
+  _status: TalksFields__status
 }
 
-type TalksAndRoundtablesFields_title {
-  create: TalksAndRoundtablesFields_title_Create
-  read: TalksAndRoundtablesFields_title_Read
-  update: TalksAndRoundtablesFields_title_Update
-  delete: TalksAndRoundtablesFields_title_Delete
+type TalksFields_title {
+  create: TalksFields_title_Create
+  read: TalksFields_title_Read
+  update: TalksFields_title_Update
+  delete: TalksFields_title_Delete
 }
 
-type TalksAndRoundtablesFields_title_Create {
+type TalksFields_title_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_title_Read {
+type TalksFields_title_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_title_Update {
+type TalksFields_title_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_title_Delete {
+type TalksFields_title_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_about {
-  create: TalksAndRoundtablesFields_about_Create
-  read: TalksAndRoundtablesFields_about_Read
-  update: TalksAndRoundtablesFields_about_Update
-  delete: TalksAndRoundtablesFields_about_Delete
+type TalksFields_about {
+  create: TalksFields_about_Create
+  read: TalksFields_about_Read
+  update: TalksFields_about_Update
+  delete: TalksFields_about_Delete
 }
 
-type TalksAndRoundtablesFields_about_Create {
+type TalksFields_about_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_about_Read {
+type TalksFields_about_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_about_Update {
+type TalksFields_about_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_about_Delete {
+type TalksFields_about_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_categories {
-  create: TalksAndRoundtablesFields_categories_Create
-  read: TalksAndRoundtablesFields_categories_Read
-  update: TalksAndRoundtablesFields_categories_Update
-  delete: TalksAndRoundtablesFields_categories_Delete
+type TalksFields_categories {
+  create: TalksFields_categories_Create
+  read: TalksFields_categories_Read
+  update: TalksFields_categories_Update
+  delete: TalksFields_categories_Delete
 }
 
-type TalksAndRoundtablesFields_categories_Create {
+type TalksFields_categories_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_categories_Read {
+type TalksFields_categories_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_categories_Update {
+type TalksFields_categories_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_categories_Delete {
+type TalksFields_categories_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_url {
-  create: TalksAndRoundtablesFields_url_Create
-  read: TalksAndRoundtablesFields_url_Read
-  update: TalksAndRoundtablesFields_url_Update
-  delete: TalksAndRoundtablesFields_url_Delete
+type TalksFields_url {
+  create: TalksFields_url_Create
+  read: TalksFields_url_Read
+  update: TalksFields_url_Update
+  delete: TalksFields_url_Delete
 }
 
-type TalksAndRoundtablesFields_url_Create {
+type TalksFields_url_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_url_Read {
+type TalksFields_url_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_url_Update {
+type TalksFields_url_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_url_Delete {
+type TalksFields_url_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_publishedAt {
-  create: TalksAndRoundtablesFields_publishedAt_Create
-  read: TalksAndRoundtablesFields_publishedAt_Read
-  update: TalksAndRoundtablesFields_publishedAt_Update
-  delete: TalksAndRoundtablesFields_publishedAt_Delete
+type TalksFields_publishedAt {
+  create: TalksFields_publishedAt_Create
+  read: TalksFields_publishedAt_Read
+  update: TalksFields_publishedAt_Update
+  delete: TalksFields_publishedAt_Delete
 }
 
-type TalksAndRoundtablesFields_publishedAt_Create {
+type TalksFields_publishedAt_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_publishedAt_Read {
+type TalksFields_publishedAt_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_publishedAt_Update {
+type TalksFields_publishedAt_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_publishedAt_Delete {
+type TalksFields_publishedAt_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_slug {
-  create: TalksAndRoundtablesFields_slug_Create
-  read: TalksAndRoundtablesFields_slug_Read
-  update: TalksAndRoundtablesFields_slug_Update
-  delete: TalksAndRoundtablesFields_slug_Delete
+type TalksFields_slug {
+  create: TalksFields_slug_Create
+  read: TalksFields_slug_Read
+  update: TalksFields_slug_Update
+  delete: TalksFields_slug_Delete
 }
 
-type TalksAndRoundtablesFields_slug_Create {
+type TalksFields_slug_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_slug_Read {
+type TalksFields_slug_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_slug_Update {
+type TalksFields_slug_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_slug_Delete {
+type TalksFields_slug_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_updatedAt {
-  create: TalksAndRoundtablesFields_updatedAt_Create
-  read: TalksAndRoundtablesFields_updatedAt_Read
-  update: TalksAndRoundtablesFields_updatedAt_Update
-  delete: TalksAndRoundtablesFields_updatedAt_Delete
+type TalksFields_updatedAt {
+  create: TalksFields_updatedAt_Create
+  read: TalksFields_updatedAt_Read
+  update: TalksFields_updatedAt_Update
+  delete: TalksFields_updatedAt_Delete
 }
 
-type TalksAndRoundtablesFields_updatedAt_Create {
+type TalksFields_updatedAt_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_updatedAt_Read {
+type TalksFields_updatedAt_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_updatedAt_Update {
+type TalksFields_updatedAt_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_updatedAt_Delete {
+type TalksFields_updatedAt_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_createdAt {
-  create: TalksAndRoundtablesFields_createdAt_Create
-  read: TalksAndRoundtablesFields_createdAt_Read
-  update: TalksAndRoundtablesFields_createdAt_Update
-  delete: TalksAndRoundtablesFields_createdAt_Delete
+type TalksFields_createdAt {
+  create: TalksFields_createdAt_Create
+  read: TalksFields_createdAt_Read
+  update: TalksFields_createdAt_Update
+  delete: TalksFields_createdAt_Delete
 }
 
-type TalksAndRoundtablesFields_createdAt_Create {
+type TalksFields_createdAt_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_createdAt_Read {
+type TalksFields_createdAt_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_createdAt_Update {
+type TalksFields_createdAt_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields_createdAt_Delete {
+type TalksFields_createdAt_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields__status {
-  create: TalksAndRoundtablesFields__status_Create
-  read: TalksAndRoundtablesFields__status_Read
-  update: TalksAndRoundtablesFields__status_Update
-  delete: TalksAndRoundtablesFields__status_Delete
+type TalksFields__status {
+  create: TalksFields__status_Create
+  read: TalksFields__status_Read
+  update: TalksFields__status_Update
+  delete: TalksFields__status_Delete
 }
 
-type TalksAndRoundtablesFields__status_Create {
+type TalksFields__status_Create {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields__status_Read {
+type TalksFields__status_Read {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields__status_Update {
+type TalksFields__status_Update {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesFields__status_Delete {
+type TalksFields__status_Delete {
   permission: Boolean!
 }
 
-type TalksAndRoundtablesCreateAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type TalksAndRoundtablesReadAccess {
+type TalksCreateAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TalksAndRoundtablesUpdateAccess {
+type TalksReadAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TalksAndRoundtablesDeleteAccess {
+type TalksUpdateAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TalksAndRoundtablesReadVersionsAccess {
+type TalksDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksReadVersionsAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -21383,10 +21383,10 @@ type Mutation {
   updateBlogpost(id: String!, autosave: Boolean, data: mutationBlogpostUpdateInput!, draft: Boolean): Blogpost
   deleteBlogpost(id: String!): Blogpost
   restoreVersionBlogpost(id: String): Blogpost
-  createTalksAndRoundtable(data: mutationTalksAndRoundtableInput!, draft: Boolean): TalksAndRoundtable
-  updateTalksAndRoundtable(id: String!, autosave: Boolean, data: mutationTalksAndRoundtableUpdateInput!, draft: Boolean): TalksAndRoundtable
-  deleteTalksAndRoundtable(id: String!): TalksAndRoundtable
-  restoreVersionTalksAndRoundtable(id: String): TalksAndRoundtable
+  createTalk(data: mutationTalkInput!, draft: Boolean): Talk
+  updateTalk(id: String!, autosave: Boolean, data: mutationTalkUpdateInput!, draft: Boolean): Talk
+  deleteTalk(id: String!): Talk
+  restoreVersionTalk(id: String): Talk
   createCaseStudy(data: mutationCaseStudyInput!, draft: Boolean): CaseStudy
   updateCaseStudy(id: String!, autosave: Boolean, data: mutationCaseStudyUpdateInput!, draft: Boolean): CaseStudy
   deleteCaseStudy(id: String!): CaseStudy
@@ -22113,7 +22113,7 @@ enum BlogpostUpdate__status_MutationInput {
   published
 }
 
-input mutationTalksAndRoundtableInput {
+input mutationTalkInput {
   title: String!
   about: String!
   categories: [String]
@@ -22122,15 +22122,15 @@ input mutationTalksAndRoundtableInput {
   slug: String
   updatedAt: String
   createdAt: String
-  _status: TalksAndRoundtable__status_MutationInput
+  _status: Talk__status_MutationInput
 }
 
-enum TalksAndRoundtable__status_MutationInput {
+enum Talk__status_MutationInput {
   draft
   published
 }
 
-input mutationTalksAndRoundtableUpdateInput {
+input mutationTalkUpdateInput {
   title: String
   about: String
   categories: [String]
@@ -22139,10 +22139,10 @@ input mutationTalksAndRoundtableUpdateInput {
   slug: String
   updatedAt: String
   createdAt: String
-  _status: TalksAndRoundtableUpdate__status_MutationInput
+  _status: TalkUpdate__status_MutationInput
 }
 
-enum TalksAndRoundtableUpdate__status_MutationInput {
+enum TalkUpdate__status_MutationInput {
   draft
   published
 }
