@@ -3,12 +3,12 @@ export const CONTENT_BY_AUTHOR = `
     PodcastEpisodes(
       limit: 100,
       where: {
-        contributors: { in: [$authorID] }
+        authors: { in: [$authorID] }
       }) {
       docs {
         id
         title
-        contributors {
+        authors {
           name
         }
       }
@@ -16,12 +16,12 @@ export const CONTENT_BY_AUTHOR = `
     Blogposts(
       limit: 100,
       where: {
-        contributors: { in: [$authorID] }
+        authors: { in: [$authorID] }
       }) {
       docs {
         id
         title
-        contributors {
+        authors {
           name
         }
       }
@@ -29,12 +29,12 @@ export const CONTENT_BY_AUTHOR = `
     CaseStudies(
       limit: 100,
       where: {
-        contributors: { in: [$authorID] }
+        authors: { in: [$authorID] }
       }) {
       docs {
         id
         title
-        contributors {
+        authors {
           name
         }
       }
@@ -42,12 +42,12 @@ export const CONTENT_BY_AUTHOR = `
     TalksAndRoundtables(
       limit: 100,
       where: {
-        contributors: { in: [$authorID] }
+        authors: { in: [$authorID] }
       }) {
       docs {
         id
         title
-        contributors {
+        authors {
           name
         }
       }

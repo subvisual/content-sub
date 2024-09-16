@@ -6,6 +6,11 @@ export const CASE_STUDY = `
         slug
         title
         summary
+        authors {
+          id
+          name
+          role
+        }
         categories {
           title
         }

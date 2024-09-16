@@ -12,7 +12,7 @@ export const BLOGPOST = `
         featuredImage {
           ${MEDIA_FIELDS}
         }
-        contributors {
+        authors {
           name
           role
         }

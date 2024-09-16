@@ -27,9 +27,9 @@ export const CaseStudies: CollectionConfig = {
       type: "textarea",
     },
     {
-      name: "contributors",
+      name: "authors",
       type: "relationship",
-      relationTo: "contributors",
+      relationTo: "authors",
       hasMany: true,
       admin: {
         position: "sidebar",

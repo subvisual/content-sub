@@ -17,7 +17,7 @@ import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
 import { Posts } from "./collections/Posts";
 import { Projects } from "./collections/Projects";
-import { Contributors } from "./collections/Contributors";
+import { Authors } from "./collections/Authors";
 import Users from "./collections/Users";
 import { PodcastEpisodes } from "./collections/PodcastEpisodes";
 import { BlogPosts } from "./collections/BlogPosts";
@@ -78,7 +78,7 @@ export default buildConfig({
     Media,
     Categories,
     Users,
-    Contributors,
+    Authors,
     Comments,
     PodcastEpisodes,
     BlogPosts,
