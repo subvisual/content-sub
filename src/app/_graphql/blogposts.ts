@@ -1,0 +1,36 @@
+import { MEDIA_FIELDS } from "@/app/_graphql/media";
+
+export const BLOGPOST = `
+  query Blogpost {
+    Blogposts {
+      docs {
+        id
+        title
+        slug
+        summary
+        content
+        featuredImage {
+          ${MEDIA_FIELDS}
+        }
+        contributors {
+          name
+          role
+        }
+        category {
+          title
+        }
+        relatedPosts {
+          id
+          slug
+          title
+        }
+        publishedAt
+        featuredImage {
+          ${MEDIA_FIELDS}
+        }
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`
