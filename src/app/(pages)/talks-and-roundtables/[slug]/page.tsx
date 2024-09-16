@@ -4,10 +4,10 @@ import { notFound } from "next/navigation";
 
 export default async function TalksAndRoundTablesPage({ params: { slug } }) {
 
-  let talk = null;
+  let content = null;
 
   try {
-    talk = await fetchDoc({
+    content = await fetchDoc({
         collection: "talks-and-roundtables",
         slug: slug,
       },
@@ -16,10 +16,14 @@ export default async function TalksAndRoundTablesPage({ params: { slug } }) {
     console.error(err);
   }
 
+  if (!content) {
+    notFound()
+  }
+
   return (
     <div>
-      This is the "talks-and-roundtables/{talk.slug}" page.
-      <pre>{JSON.stringify(talk, null, 2)}</pre>
+      Hello, world!
+      <pre>{JSON.stringify(content, null, 2)}</pre>
     </div>
   );
 }
