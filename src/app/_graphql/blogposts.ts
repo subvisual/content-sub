@@ -16,7 +16,7 @@ export const BLOGPOST = `
           name
           role
         }
-        category {
+        categories {
           title
         }
         relatedPosts {

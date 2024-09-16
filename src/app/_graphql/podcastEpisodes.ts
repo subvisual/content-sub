@@ -36,7 +36,7 @@ export const PODCAST_EPISODE = `
         slug
         episodeSummary
         episodeNotes
-        category {
+        categories {
           title
         }
         contributors {

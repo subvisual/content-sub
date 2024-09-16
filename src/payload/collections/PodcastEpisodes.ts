@@ -90,8 +90,8 @@ export const PodcastEpisodes: CollectionConfig = {
       hasMany: true,
     },
     {
-      name: "category",
-      label: "Category",
+      name: "categories",
+      label: "Categories",
       type: "relationship",
       relationTo: "categories",
       hasMany: true,
