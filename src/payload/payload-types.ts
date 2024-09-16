@@ -18,6 +18,8 @@ export interface Config {
     comments: Comment;
     'podcast-episodes': PodcastEpisode;
     blogposts: Blogpost;
+    'talks-and-roundtables': TalksAndRoundtable;
+    'case-studies': CaseStudy;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -671,7 +673,7 @@ export interface PodcastEpisode {
   spotify?: string | null;
   apple?: string | null;
   contributors?: (string | Contributor)[] | null;
-  category?: (string | Category)[] | null;
+  categories?: (string | Category)[] | null;
   relatedEpisodes?: (string | PodcastEpisode)[] | null;
   publishedAt?: string | null;
   slug?: string | null;
@@ -692,9 +694,39 @@ export interface Blogpost {
   }[];
   featuredImage: string | Media;
   contributors?: (string | Contributor)[] | null;
-  category?: (string | Category)[] | null;
+  categories?: (string | Category)[] | null;
   relatedPosts?: (string | Blogpost)[] | null;
   publishedAt?: string | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "talks-and-roundtables".
+ */
+export interface TalksAndRoundtable {
+  id: string;
+  title: string;
+  about: string;
+  categories?: (string | Category)[] | null;
+  url?: string | null;
+  publishedAt?: string | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies".
+ */
+export interface CaseStudy {
+  id: string;
+  title?: string | null;
+  summary?: string | null;
+  categories?: (string | Category)[] | null;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;

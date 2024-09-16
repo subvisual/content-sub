@@ -53,6 +53,18 @@ type Query {
   docAccessBlogpost(id: String!): blogpostsDocAccess
   versionBlogpost(id: String): BlogpostVersion
   versionsBlogposts(where: versionsBlogpost_where, limit: Int, page: Int, sort: String): versionsBlogposts
+  TalksAndRoundtable(id: String!, draft: Boolean): TalksAndRoundtable
+  TalksAndRoundtables(draft: Boolean, where: TalksAndRoundtable_where, limit: Int, page: Int, sort: String): TalksAndRoundtables
+  countTalksAndRoundtables(draft: Boolean, where: TalksAndRoundtable_where): countTalksAndRoundtables
+  docAccessTalksAndRoundtable(id: String!): talks_and_roundtablesDocAccess
+  versionTalksAndRoundtable(id: String): TalksAndRoundtableVersion
+  versionsTalksAndRoundtables(where: versionsTalksAndRoundtable_where, limit: Int, page: Int, sort: String): versionsTalksAndRoundtables
+  CaseStudy(id: String!, draft: Boolean): CaseStudy
+  CaseStudies(draft: Boolean, where: CaseStudy_where, limit: Int, page: Int, sort: String): CaseStudies
+  countCaseStudies(draft: Boolean, where: CaseStudy_where): countCaseStudies
+  docAccessCaseStudy(id: String!): case_studiesDocAccess
+  versionCaseStudy(id: String): CaseStudyVersion
+  versionsCaseStudies(where: versionsCaseStudy_where, limit: Int, page: Int, sort: String): versionsCaseStudies
   Redirect(id: String!): Redirect
   Redirects(where: Redirect_where, limit: Int, page: Int, sort: String): Redirects
   countRedirects(where: Redirect_where): countRedirects
@@ -10113,7 +10125,7 @@ type PodcastEpisode {
   spotify: String
   apple: String
   contributors: [Contributor!]
-  category: [Category!]
+  categories: [Category!]
   relatedEpisodes(draft: Boolean): [PodcastEpisode!]
   publishedAt: DateTime
   slug: String
@@ -10526,7 +10538,7 @@ input PodcastEpisode_where {
   spotify: PodcastEpisode_spotify_operator
   apple: PodcastEpisode_apple_operator
   contributors: PodcastEpisode_contributors_operator
-  category: PodcastEpisode_category_operator
+  categories: PodcastEpisode_categories_operator
   relatedEpisodes: PodcastEpisode_relatedEpisodes_operator
   publishedAt: PodcastEpisode_publishedAt_operator
   slug: PodcastEpisode_slug_operator
@@ -10603,7 +10615,7 @@ input PodcastEpisode_contributors_operator {
   exists: Boolean
 }
 
-input PodcastEpisode_category_operator {
+input PodcastEpisode_categories_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -10699,7 +10711,7 @@ input PodcastEpisode_where_and {
   spotify: PodcastEpisode_spotify_operator
   apple: PodcastEpisode_apple_operator
   contributors: PodcastEpisode_contributors_operator
-  category: PodcastEpisode_category_operator
+  categories: PodcastEpisode_categories_operator
   relatedEpisodes: PodcastEpisode_relatedEpisodes_operator
   publishedAt: PodcastEpisode_publishedAt_operator
   slug: PodcastEpisode_slug_operator
@@ -10720,7 +10732,7 @@ input PodcastEpisode_where_or {
   spotify: PodcastEpisode_spotify_operator
   apple: PodcastEpisode_apple_operator
   contributors: PodcastEpisode_contributors_operator
-  category: PodcastEpisode_category_operator
+  categories: PodcastEpisode_categories_operator
   relatedEpisodes: PodcastEpisode_relatedEpisodes_operator
   publishedAt: PodcastEpisode_publishedAt_operator
   slug: PodcastEpisode_slug_operator
@@ -10754,7 +10766,7 @@ type PodcastEpisodesDocAccessFields {
   spotify: PodcastEpisodesDocAccessFields_spotify
   apple: PodcastEpisodesDocAccessFields_apple
   contributors: PodcastEpisodesDocAccessFields_contributors
-  category: PodcastEpisodesDocAccessFields_category
+  categories: PodcastEpisodesDocAccessFields_categories
   relatedEpisodes: PodcastEpisodesDocAccessFields_relatedEpisodes
   publishedAt: PodcastEpisodesDocAccessFields_publishedAt
   slug: PodcastEpisodesDocAccessFields_slug
@@ -10947,26 +10959,26 @@ type PodcastEpisodesDocAccessFields_contributors_Delete {
   permission: Boolean!
 }
 
-type PodcastEpisodesDocAccessFields_category {
-  create: PodcastEpisodesDocAccessFields_category_Create
-  read: PodcastEpisodesDocAccessFields_category_Read
-  update: PodcastEpisodesDocAccessFields_category_Update
-  delete: PodcastEpisodesDocAccessFields_category_Delete
+type PodcastEpisodesDocAccessFields_categories {
+  create: PodcastEpisodesDocAccessFields_categories_Create
+  read: PodcastEpisodesDocAccessFields_categories_Read
+  update: PodcastEpisodesDocAccessFields_categories_Update
+  delete: PodcastEpisodesDocAccessFields_categories_Delete
 }
 
-type PodcastEpisodesDocAccessFields_category_Create {
+type PodcastEpisodesDocAccessFields_categories_Create {
   permission: Boolean!
 }
 
-type PodcastEpisodesDocAccessFields_category_Read {
+type PodcastEpisodesDocAccessFields_categories_Read {
   permission: Boolean!
 }
 
-type PodcastEpisodesDocAccessFields_category_Update {
+type PodcastEpisodesDocAccessFields_categories_Update {
   permission: Boolean!
 }
 
-type PodcastEpisodesDocAccessFields_category_Delete {
+type PodcastEpisodesDocAccessFields_categories_Delete {
   permission: Boolean!
 }
 
@@ -11151,7 +11163,7 @@ type PodcastEpisodeVersion_Version {
   spotify: String
   apple: String
   contributors: [Contributor!]
-  category: [Category!]
+  categories: [Category!]
   relatedEpisodes(draft: Boolean): [PodcastEpisode!]
   publishedAt: DateTime
   slug: String
@@ -11565,7 +11577,7 @@ input versionsPodcastEpisode_where {
   version__spotify: versionsPodcastEpisode_version__spotify_operator
   version__apple: versionsPodcastEpisode_version__apple_operator
   version__contributors: versionsPodcastEpisode_version__contributors_operator
-  version__category: versionsPodcastEpisode_version__category_operator
+  version__categories: versionsPodcastEpisode_version__categories_operator
   version__relatedEpisodes: versionsPodcastEpisode_version__relatedEpisodes_operator
   version__publishedAt: versionsPodcastEpisode_version__publishedAt_operator
   version__slug: versionsPodcastEpisode_version__slug_operator
@@ -11654,7 +11666,7 @@ input versionsPodcastEpisode_version__contributors_operator {
   exists: Boolean
 }
 
-input versionsPodcastEpisode_version__category_operator {
+input versionsPodcastEpisode_version__categories_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -11779,7 +11791,7 @@ input versionsPodcastEpisode_where_and {
   version__spotify: versionsPodcastEpisode_version__spotify_operator
   version__apple: versionsPodcastEpisode_version__apple_operator
   version__contributors: versionsPodcastEpisode_version__contributors_operator
-  version__category: versionsPodcastEpisode_version__category_operator
+  version__categories: versionsPodcastEpisode_version__categories_operator
   version__relatedEpisodes: versionsPodcastEpisode_version__relatedEpisodes_operator
   version__publishedAt: versionsPodcastEpisode_version__publishedAt_operator
   version__slug: versionsPodcastEpisode_version__slug_operator
@@ -11804,7 +11816,7 @@ input versionsPodcastEpisode_where_or {
   version__spotify: versionsPodcastEpisode_version__spotify_operator
   version__apple: versionsPodcastEpisode_version__apple_operator
   version__contributors: versionsPodcastEpisode_version__contributors_operator
-  version__category: versionsPodcastEpisode_version__category_operator
+  version__categories: versionsPodcastEpisode_version__categories_operator
   version__relatedEpisodes: versionsPodcastEpisode_version__relatedEpisodes_operator
   version__publishedAt: versionsPodcastEpisode_version__publishedAt_operator
   version__slug: versionsPodcastEpisode_version__slug_operator
@@ -11826,7 +11838,7 @@ type Blogpost {
   content(depth: Int): JSON
   featuredImage(where: Blogpost_FeaturedImage_where): Media
   contributors: [Contributor!]
-  category: [Category!]
+  categories: [Category!]
   relatedPosts(draft: Boolean): [Blogpost!]
   publishedAt: DateTime
   slug: String
@@ -12048,7 +12060,7 @@ input Blogpost_where {
   content: Blogpost_content_operator
   featuredImage: Blogpost_featuredImage_operator
   contributors: Blogpost_contributors_operator
-  category: Blogpost_category_operator
+  categories: Blogpost_categories_operator
   relatedPosts: Blogpost_relatedPosts_operator
   publishedAt: Blogpost_publishedAt_operator
   slug: Blogpost_slug_operator
@@ -12098,7 +12110,7 @@ input Blogpost_contributors_operator {
   exists: Boolean
 }
 
-input Blogpost_category_operator {
+input Blogpost_categories_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -12191,7 +12203,7 @@ input Blogpost_where_and {
   content: Blogpost_content_operator
   featuredImage: Blogpost_featuredImage_operator
   contributors: Blogpost_contributors_operator
-  category: Blogpost_category_operator
+  categories: Blogpost_categories_operator
   relatedPosts: Blogpost_relatedPosts_operator
   publishedAt: Blogpost_publishedAt_operator
   slug: Blogpost_slug_operator
@@ -12209,7 +12221,7 @@ input Blogpost_where_or {
   content: Blogpost_content_operator
   featuredImage: Blogpost_featuredImage_operator
   contributors: Blogpost_contributors_operator
-  category: Blogpost_category_operator
+  categories: Blogpost_categories_operator
   relatedPosts: Blogpost_relatedPosts_operator
   publishedAt: Blogpost_publishedAt_operator
   slug: Blogpost_slug_operator
@@ -12240,7 +12252,7 @@ type BlogpostsDocAccessFields {
   content: BlogpostsDocAccessFields_content
   featuredImage: BlogpostsDocAccessFields_featuredImage
   contributors: BlogpostsDocAccessFields_contributors
-  category: BlogpostsDocAccessFields_category
+  categories: BlogpostsDocAccessFields_categories
   relatedPosts: BlogpostsDocAccessFields_relatedPosts
   publishedAt: BlogpostsDocAccessFields_publishedAt
   slug: BlogpostsDocAccessFields_slug
@@ -12364,26 +12376,26 @@ type BlogpostsDocAccessFields_contributors_Delete {
   permission: Boolean!
 }
 
-type BlogpostsDocAccessFields_category {
-  create: BlogpostsDocAccessFields_category_Create
-  read: BlogpostsDocAccessFields_category_Read
-  update: BlogpostsDocAccessFields_category_Update
-  delete: BlogpostsDocAccessFields_category_Delete
+type BlogpostsDocAccessFields_categories {
+  create: BlogpostsDocAccessFields_categories_Create
+  read: BlogpostsDocAccessFields_categories_Read
+  update: BlogpostsDocAccessFields_categories_Update
+  delete: BlogpostsDocAccessFields_categories_Delete
 }
 
-type BlogpostsDocAccessFields_category_Create {
+type BlogpostsDocAccessFields_categories_Create {
   permission: Boolean!
 }
 
-type BlogpostsDocAccessFields_category_Read {
+type BlogpostsDocAccessFields_categories_Read {
   permission: Boolean!
 }
 
-type BlogpostsDocAccessFields_category_Update {
+type BlogpostsDocAccessFields_categories_Update {
   permission: Boolean!
 }
 
-type BlogpostsDocAccessFields_category_Delete {
+type BlogpostsDocAccessFields_categories_Delete {
   permission: Boolean!
 }
 
@@ -12565,7 +12577,7 @@ type BlogpostVersion_Version {
   content(depth: Int): JSON
   featuredImage(where: BlogpostVersion_Version_FeaturedImage_where): Media
   contributors: [Contributor!]
-  category: [Category!]
+  categories: [Category!]
   relatedPosts(draft: Boolean): [Blogpost!]
   publishedAt: DateTime
   slug: String
@@ -12788,7 +12800,7 @@ input versionsBlogpost_where {
   version__content: versionsBlogpost_version__content_operator
   version__featuredImage: versionsBlogpost_version__featuredImage_operator
   version__contributors: versionsBlogpost_version__contributors_operator
-  version__category: versionsBlogpost_version__category_operator
+  version__categories: versionsBlogpost_version__categories_operator
   version__relatedPosts: versionsBlogpost_version__relatedPosts_operator
   version__publishedAt: versionsBlogpost_version__publishedAt_operator
   version__slug: versionsBlogpost_version__slug_operator
@@ -12850,7 +12862,7 @@ input versionsBlogpost_version__contributors_operator {
   exists: Boolean
 }
 
-input versionsBlogpost_version__category_operator {
+input versionsBlogpost_version__categories_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -12972,7 +12984,7 @@ input versionsBlogpost_where_and {
   version__content: versionsBlogpost_version__content_operator
   version__featuredImage: versionsBlogpost_version__featuredImage_operator
   version__contributors: versionsBlogpost_version__contributors_operator
-  version__category: versionsBlogpost_version__category_operator
+  version__categories: versionsBlogpost_version__categories_operator
   version__relatedPosts: versionsBlogpost_version__relatedPosts_operator
   version__publishedAt: versionsBlogpost_version__publishedAt_operator
   version__slug: versionsBlogpost_version__slug_operator
@@ -12994,7 +13006,7 @@ input versionsBlogpost_where_or {
   version__content: versionsBlogpost_version__content_operator
   version__featuredImage: versionsBlogpost_version__featuredImage_operator
   version__contributors: versionsBlogpost_version__contributors_operator
-  version__category: versionsBlogpost_version__category_operator
+  version__categories: versionsBlogpost_version__categories_operator
   version__relatedPosts: versionsBlogpost_version__relatedPosts_operator
   version__publishedAt: versionsBlogpost_version__publishedAt_operator
   version__slug: versionsBlogpost_version__slug_operator
@@ -13007,6 +13019,1262 @@ input versionsBlogpost_where_or {
   id: versionsBlogpost_id_operator
   AND: [versionsBlogpost_where_and]
   OR: [versionsBlogpost_where_or]
+}
+
+type TalksAndRoundtable {
+  id: String
+  title: String
+  about: String
+  categories: [Category!]
+  url: String
+  publishedAt: DateTime
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: TalksAndRoundtable__status
+}
+
+enum TalksAndRoundtable__status {
+  draft
+  published
+}
+
+type TalksAndRoundtables {
+  docs: [TalksAndRoundtable]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input TalksAndRoundtable_where {
+  title: TalksAndRoundtable_title_operator
+  about: TalksAndRoundtable_about_operator
+  categories: TalksAndRoundtable_categories_operator
+  url: TalksAndRoundtable_url_operator
+  publishedAt: TalksAndRoundtable_publishedAt_operator
+  slug: TalksAndRoundtable_slug_operator
+  updatedAt: TalksAndRoundtable_updatedAt_operator
+  createdAt: TalksAndRoundtable_createdAt_operator
+  _status: TalksAndRoundtable__status_operator
+  id: TalksAndRoundtable_id_operator
+  AND: [TalksAndRoundtable_where_and]
+  OR: [TalksAndRoundtable_where_or]
+}
+
+input TalksAndRoundtable_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input TalksAndRoundtable_about_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+}
+
+input TalksAndRoundtable_categories_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input TalksAndRoundtable_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input TalksAndRoundtable_publishedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input TalksAndRoundtable_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input TalksAndRoundtable_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input TalksAndRoundtable_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input TalksAndRoundtable__status_operator {
+  equals: TalksAndRoundtable__status_Input
+  not_equals: TalksAndRoundtable__status_Input
+  in: [TalksAndRoundtable__status_Input]
+  not_in: [TalksAndRoundtable__status_Input]
+  all: [TalksAndRoundtable__status_Input]
+  exists: Boolean
+}
+
+enum TalksAndRoundtable__status_Input {
+  draft
+  published
+}
+
+input TalksAndRoundtable_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input TalksAndRoundtable_where_and {
+  title: TalksAndRoundtable_title_operator
+  about: TalksAndRoundtable_about_operator
+  categories: TalksAndRoundtable_categories_operator
+  url: TalksAndRoundtable_url_operator
+  publishedAt: TalksAndRoundtable_publishedAt_operator
+  slug: TalksAndRoundtable_slug_operator
+  updatedAt: TalksAndRoundtable_updatedAt_operator
+  createdAt: TalksAndRoundtable_createdAt_operator
+  _status: TalksAndRoundtable__status_operator
+  id: TalksAndRoundtable_id_operator
+  AND: [TalksAndRoundtable_where_and]
+  OR: [TalksAndRoundtable_where_or]
+}
+
+input TalksAndRoundtable_where_or {
+  title: TalksAndRoundtable_title_operator
+  about: TalksAndRoundtable_about_operator
+  categories: TalksAndRoundtable_categories_operator
+  url: TalksAndRoundtable_url_operator
+  publishedAt: TalksAndRoundtable_publishedAt_operator
+  slug: TalksAndRoundtable_slug_operator
+  updatedAt: TalksAndRoundtable_updatedAt_operator
+  createdAt: TalksAndRoundtable_createdAt_operator
+  _status: TalksAndRoundtable__status_operator
+  id: TalksAndRoundtable_id_operator
+  AND: [TalksAndRoundtable_where_and]
+  OR: [TalksAndRoundtable_where_or]
+}
+
+type countTalksAndRoundtables {
+  totalDocs: Int
+}
+
+type talks_and_roundtablesDocAccess {
+  fields: TalksAndRoundtablesDocAccessFields
+  create: TalksAndRoundtablesCreateDocAccess
+  read: TalksAndRoundtablesReadDocAccess
+  update: TalksAndRoundtablesUpdateDocAccess
+  delete: TalksAndRoundtablesDeleteDocAccess
+  readVersions: TalksAndRoundtablesReadVersionsDocAccess
+}
+
+type TalksAndRoundtablesDocAccessFields {
+  title: TalksAndRoundtablesDocAccessFields_title
+  about: TalksAndRoundtablesDocAccessFields_about
+  categories: TalksAndRoundtablesDocAccessFields_categories
+  url: TalksAndRoundtablesDocAccessFields_url
+  publishedAt: TalksAndRoundtablesDocAccessFields_publishedAt
+  slug: TalksAndRoundtablesDocAccessFields_slug
+  updatedAt: TalksAndRoundtablesDocAccessFields_updatedAt
+  createdAt: TalksAndRoundtablesDocAccessFields_createdAt
+  _status: TalksAndRoundtablesDocAccessFields__status
+}
+
+type TalksAndRoundtablesDocAccessFields_title {
+  create: TalksAndRoundtablesDocAccessFields_title_Create
+  read: TalksAndRoundtablesDocAccessFields_title_Read
+  update: TalksAndRoundtablesDocAccessFields_title_Update
+  delete: TalksAndRoundtablesDocAccessFields_title_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields_title_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_title_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_title_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_about {
+  create: TalksAndRoundtablesDocAccessFields_about_Create
+  read: TalksAndRoundtablesDocAccessFields_about_Read
+  update: TalksAndRoundtablesDocAccessFields_about_Update
+  delete: TalksAndRoundtablesDocAccessFields_about_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields_about_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_about_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_about_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_about_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_categories {
+  create: TalksAndRoundtablesDocAccessFields_categories_Create
+  read: TalksAndRoundtablesDocAccessFields_categories_Read
+  update: TalksAndRoundtablesDocAccessFields_categories_Update
+  delete: TalksAndRoundtablesDocAccessFields_categories_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields_categories_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_categories_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_categories_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_categories_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_url {
+  create: TalksAndRoundtablesDocAccessFields_url_Create
+  read: TalksAndRoundtablesDocAccessFields_url_Read
+  update: TalksAndRoundtablesDocAccessFields_url_Update
+  delete: TalksAndRoundtablesDocAccessFields_url_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields_url_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_url_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_url_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_url_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_publishedAt {
+  create: TalksAndRoundtablesDocAccessFields_publishedAt_Create
+  read: TalksAndRoundtablesDocAccessFields_publishedAt_Read
+  update: TalksAndRoundtablesDocAccessFields_publishedAt_Update
+  delete: TalksAndRoundtablesDocAccessFields_publishedAt_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields_publishedAt_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_publishedAt_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_publishedAt_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_publishedAt_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_slug {
+  create: TalksAndRoundtablesDocAccessFields_slug_Create
+  read: TalksAndRoundtablesDocAccessFields_slug_Read
+  update: TalksAndRoundtablesDocAccessFields_slug_Update
+  delete: TalksAndRoundtablesDocAccessFields_slug_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_slug_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_updatedAt {
+  create: TalksAndRoundtablesDocAccessFields_updatedAt_Create
+  read: TalksAndRoundtablesDocAccessFields_updatedAt_Read
+  update: TalksAndRoundtablesDocAccessFields_updatedAt_Update
+  delete: TalksAndRoundtablesDocAccessFields_updatedAt_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_createdAt {
+  create: TalksAndRoundtablesDocAccessFields_createdAt_Create
+  read: TalksAndRoundtablesDocAccessFields_createdAt_Read
+  update: TalksAndRoundtablesDocAccessFields_createdAt_Update
+  delete: TalksAndRoundtablesDocAccessFields_createdAt_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields__status {
+  create: TalksAndRoundtablesDocAccessFields__status_Create
+  read: TalksAndRoundtablesDocAccessFields__status_Read
+  update: TalksAndRoundtablesDocAccessFields__status_Update
+  delete: TalksAndRoundtablesDocAccessFields__status_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields__status_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields__status_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields__status_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields__status_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksAndRoundtablesReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksAndRoundtablesUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksAndRoundtablesDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksAndRoundtablesReadVersionsDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksAndRoundtableVersion {
+  parent(draft: Boolean): TalksAndRoundtable
+  version: TalksAndRoundtableVersion_Version
+  createdAt: DateTime
+  updatedAt: DateTime
+  latest: Boolean
+  id: String
+}
+
+type TalksAndRoundtableVersion_Version {
+  title: String
+  about: String
+  categories: [Category!]
+  url: String
+  publishedAt: DateTime
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: TalksAndRoundtableVersion_Version__status
+}
+
+enum TalksAndRoundtableVersion_Version__status {
+  draft
+  published
+}
+
+type versionsTalksAndRoundtables {
+  docs: [TalksAndRoundtableVersion]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input versionsTalksAndRoundtable_where {
+  parent: versionsTalksAndRoundtable_parent_operator
+  version__title: versionsTalksAndRoundtable_version__title_operator
+  version__about: versionsTalksAndRoundtable_version__about_operator
+  version__categories: versionsTalksAndRoundtable_version__categories_operator
+  version__url: versionsTalksAndRoundtable_version__url_operator
+  version__publishedAt: versionsTalksAndRoundtable_version__publishedAt_operator
+  version__slug: versionsTalksAndRoundtable_version__slug_operator
+  version__updatedAt: versionsTalksAndRoundtable_version__updatedAt_operator
+  version__createdAt: versionsTalksAndRoundtable_version__createdAt_operator
+  version___status: versionsTalksAndRoundtable_version___status_operator
+  createdAt: versionsTalksAndRoundtable_createdAt_operator
+  updatedAt: versionsTalksAndRoundtable_updatedAt_operator
+  latest: versionsTalksAndRoundtable_latest_operator
+  id: versionsTalksAndRoundtable_id_operator
+  AND: [versionsTalksAndRoundtable_where_and]
+  OR: [versionsTalksAndRoundtable_where_or]
+}
+
+input versionsTalksAndRoundtable_parent_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_version__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsTalksAndRoundtable_version__about_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+}
+
+input versionsTalksAndRoundtable_version__categories_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_version__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_version__publishedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_version__slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_version__updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_version__createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_version___status_operator {
+  equals: versionsTalksAndRoundtable_version___status_Input
+  not_equals: versionsTalksAndRoundtable_version___status_Input
+  in: [versionsTalksAndRoundtable_version___status_Input]
+  not_in: [versionsTalksAndRoundtable_version___status_Input]
+  all: [versionsTalksAndRoundtable_version___status_Input]
+  exists: Boolean
+}
+
+enum versionsTalksAndRoundtable_version___status_Input {
+  draft
+  published
+}
+
+input versionsTalksAndRoundtable_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_latest_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_where_and {
+  parent: versionsTalksAndRoundtable_parent_operator
+  version__title: versionsTalksAndRoundtable_version__title_operator
+  version__about: versionsTalksAndRoundtable_version__about_operator
+  version__categories: versionsTalksAndRoundtable_version__categories_operator
+  version__url: versionsTalksAndRoundtable_version__url_operator
+  version__publishedAt: versionsTalksAndRoundtable_version__publishedAt_operator
+  version__slug: versionsTalksAndRoundtable_version__slug_operator
+  version__updatedAt: versionsTalksAndRoundtable_version__updatedAt_operator
+  version__createdAt: versionsTalksAndRoundtable_version__createdAt_operator
+  version___status: versionsTalksAndRoundtable_version___status_operator
+  createdAt: versionsTalksAndRoundtable_createdAt_operator
+  updatedAt: versionsTalksAndRoundtable_updatedAt_operator
+  latest: versionsTalksAndRoundtable_latest_operator
+  id: versionsTalksAndRoundtable_id_operator
+  AND: [versionsTalksAndRoundtable_where_and]
+  OR: [versionsTalksAndRoundtable_where_or]
+}
+
+input versionsTalksAndRoundtable_where_or {
+  parent: versionsTalksAndRoundtable_parent_operator
+  version__title: versionsTalksAndRoundtable_version__title_operator
+  version__about: versionsTalksAndRoundtable_version__about_operator
+  version__categories: versionsTalksAndRoundtable_version__categories_operator
+  version__url: versionsTalksAndRoundtable_version__url_operator
+  version__publishedAt: versionsTalksAndRoundtable_version__publishedAt_operator
+  version__slug: versionsTalksAndRoundtable_version__slug_operator
+  version__updatedAt: versionsTalksAndRoundtable_version__updatedAt_operator
+  version__createdAt: versionsTalksAndRoundtable_version__createdAt_operator
+  version___status: versionsTalksAndRoundtable_version___status_operator
+  createdAt: versionsTalksAndRoundtable_createdAt_operator
+  updatedAt: versionsTalksAndRoundtable_updatedAt_operator
+  latest: versionsTalksAndRoundtable_latest_operator
+  id: versionsTalksAndRoundtable_id_operator
+  AND: [versionsTalksAndRoundtable_where_and]
+  OR: [versionsTalksAndRoundtable_where_or]
+}
+
+type CaseStudy {
+  id: String
+  title: String
+  summary: String
+  categories: [Category!]
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: CaseStudy__status
+}
+
+enum CaseStudy__status {
+  draft
+  published
+}
+
+type CaseStudies {
+  docs: [CaseStudy]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input CaseStudy_where {
+  title: CaseStudy_title_operator
+  summary: CaseStudy_summary_operator
+  categories: CaseStudy_categories_operator
+  slug: CaseStudy_slug_operator
+  updatedAt: CaseStudy_updatedAt_operator
+  createdAt: CaseStudy_createdAt_operator
+  _status: CaseStudy__status_operator
+  id: CaseStudy_id_operator
+  AND: [CaseStudy_where_and]
+  OR: [CaseStudy_where_or]
+}
+
+input CaseStudy_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CaseStudy_summary_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input CaseStudy_categories_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input CaseStudy_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CaseStudy_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input CaseStudy_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input CaseStudy__status_operator {
+  equals: CaseStudy__status_Input
+  not_equals: CaseStudy__status_Input
+  in: [CaseStudy__status_Input]
+  not_in: [CaseStudy__status_Input]
+  all: [CaseStudy__status_Input]
+  exists: Boolean
+}
+
+enum CaseStudy__status_Input {
+  draft
+  published
+}
+
+input CaseStudy_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CaseStudy_where_and {
+  title: CaseStudy_title_operator
+  summary: CaseStudy_summary_operator
+  categories: CaseStudy_categories_operator
+  slug: CaseStudy_slug_operator
+  updatedAt: CaseStudy_updatedAt_operator
+  createdAt: CaseStudy_createdAt_operator
+  _status: CaseStudy__status_operator
+  id: CaseStudy_id_operator
+  AND: [CaseStudy_where_and]
+  OR: [CaseStudy_where_or]
+}
+
+input CaseStudy_where_or {
+  title: CaseStudy_title_operator
+  summary: CaseStudy_summary_operator
+  categories: CaseStudy_categories_operator
+  slug: CaseStudy_slug_operator
+  updatedAt: CaseStudy_updatedAt_operator
+  createdAt: CaseStudy_createdAt_operator
+  _status: CaseStudy__status_operator
+  id: CaseStudy_id_operator
+  AND: [CaseStudy_where_and]
+  OR: [CaseStudy_where_or]
+}
+
+type countCaseStudies {
+  totalDocs: Int
+}
+
+type case_studiesDocAccess {
+  fields: CaseStudiesDocAccessFields
+  create: CaseStudiesCreateDocAccess
+  read: CaseStudiesReadDocAccess
+  update: CaseStudiesUpdateDocAccess
+  delete: CaseStudiesDeleteDocAccess
+  readVersions: CaseStudiesReadVersionsDocAccess
+}
+
+type CaseStudiesDocAccessFields {
+  title: CaseStudiesDocAccessFields_title
+  summary: CaseStudiesDocAccessFields_summary
+  categories: CaseStudiesDocAccessFields_categories
+  slug: CaseStudiesDocAccessFields_slug
+  updatedAt: CaseStudiesDocAccessFields_updatedAt
+  createdAt: CaseStudiesDocAccessFields_createdAt
+  _status: CaseStudiesDocAccessFields__status
+}
+
+type CaseStudiesDocAccessFields_title {
+  create: CaseStudiesDocAccessFields_title_Create
+  read: CaseStudiesDocAccessFields_title_Read
+  update: CaseStudiesDocAccessFields_title_Update
+  delete: CaseStudiesDocAccessFields_title_Delete
+}
+
+type CaseStudiesDocAccessFields_title_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_title_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_title_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_summary {
+  create: CaseStudiesDocAccessFields_summary_Create
+  read: CaseStudiesDocAccessFields_summary_Read
+  update: CaseStudiesDocAccessFields_summary_Update
+  delete: CaseStudiesDocAccessFields_summary_Delete
+}
+
+type CaseStudiesDocAccessFields_summary_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_summary_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_summary_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_summary_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_categories {
+  create: CaseStudiesDocAccessFields_categories_Create
+  read: CaseStudiesDocAccessFields_categories_Read
+  update: CaseStudiesDocAccessFields_categories_Update
+  delete: CaseStudiesDocAccessFields_categories_Delete
+}
+
+type CaseStudiesDocAccessFields_categories_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_categories_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_categories_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_categories_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_slug {
+  create: CaseStudiesDocAccessFields_slug_Create
+  read: CaseStudiesDocAccessFields_slug_Read
+  update: CaseStudiesDocAccessFields_slug_Update
+  delete: CaseStudiesDocAccessFields_slug_Delete
+}
+
+type CaseStudiesDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_slug_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_updatedAt {
+  create: CaseStudiesDocAccessFields_updatedAt_Create
+  read: CaseStudiesDocAccessFields_updatedAt_Read
+  update: CaseStudiesDocAccessFields_updatedAt_Update
+  delete: CaseStudiesDocAccessFields_updatedAt_Delete
+}
+
+type CaseStudiesDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_createdAt {
+  create: CaseStudiesDocAccessFields_createdAt_Create
+  read: CaseStudiesDocAccessFields_createdAt_Read
+  update: CaseStudiesDocAccessFields_createdAt_Update
+  delete: CaseStudiesDocAccessFields_createdAt_Delete
+}
+
+type CaseStudiesDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields__status {
+  create: CaseStudiesDocAccessFields__status_Create
+  read: CaseStudiesDocAccessFields__status_Read
+  update: CaseStudiesDocAccessFields__status_Update
+  delete: CaseStudiesDocAccessFields__status_Delete
+}
+
+type CaseStudiesDocAccessFields__status_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields__status_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields__status_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields__status_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CaseStudiesReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CaseStudiesUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CaseStudiesDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CaseStudiesReadVersionsDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CaseStudyVersion {
+  parent(draft: Boolean): CaseStudy
+  version: CaseStudyVersion_Version
+  createdAt: DateTime
+  updatedAt: DateTime
+  latest: Boolean
+  id: String
+}
+
+type CaseStudyVersion_Version {
+  title: String
+  summary: String
+  categories: [Category!]
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: CaseStudyVersion_Version__status
+}
+
+enum CaseStudyVersion_Version__status {
+  draft
+  published
+}
+
+type versionsCaseStudies {
+  docs: [CaseStudyVersion]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input versionsCaseStudy_where {
+  parent: versionsCaseStudy_parent_operator
+  version__title: versionsCaseStudy_version__title_operator
+  version__summary: versionsCaseStudy_version__summary_operator
+  version__categories: versionsCaseStudy_version__categories_operator
+  version__slug: versionsCaseStudy_version__slug_operator
+  version__updatedAt: versionsCaseStudy_version__updatedAt_operator
+  version__createdAt: versionsCaseStudy_version__createdAt_operator
+  version___status: versionsCaseStudy_version___status_operator
+  createdAt: versionsCaseStudy_createdAt_operator
+  updatedAt: versionsCaseStudy_updatedAt_operator
+  latest: versionsCaseStudy_latest_operator
+  id: versionsCaseStudy_id_operator
+  AND: [versionsCaseStudy_where_and]
+  OR: [versionsCaseStudy_where_or]
+}
+
+input versionsCaseStudy_parent_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsCaseStudy_version__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsCaseStudy_version__summary_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input versionsCaseStudy_version__categories_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsCaseStudy_version__slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsCaseStudy_version__updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsCaseStudy_version__createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsCaseStudy_version___status_operator {
+  equals: versionsCaseStudy_version___status_Input
+  not_equals: versionsCaseStudy_version___status_Input
+  in: [versionsCaseStudy_version___status_Input]
+  not_in: [versionsCaseStudy_version___status_Input]
+  all: [versionsCaseStudy_version___status_Input]
+  exists: Boolean
+}
+
+enum versionsCaseStudy_version___status_Input {
+  draft
+  published
+}
+
+input versionsCaseStudy_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsCaseStudy_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsCaseStudy_latest_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input versionsCaseStudy_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsCaseStudy_where_and {
+  parent: versionsCaseStudy_parent_operator
+  version__title: versionsCaseStudy_version__title_operator
+  version__summary: versionsCaseStudy_version__summary_operator
+  version__categories: versionsCaseStudy_version__categories_operator
+  version__slug: versionsCaseStudy_version__slug_operator
+  version__updatedAt: versionsCaseStudy_version__updatedAt_operator
+  version__createdAt: versionsCaseStudy_version__createdAt_operator
+  version___status: versionsCaseStudy_version___status_operator
+  createdAt: versionsCaseStudy_createdAt_operator
+  updatedAt: versionsCaseStudy_updatedAt_operator
+  latest: versionsCaseStudy_latest_operator
+  id: versionsCaseStudy_id_operator
+  AND: [versionsCaseStudy_where_and]
+  OR: [versionsCaseStudy_where_or]
+}
+
+input versionsCaseStudy_where_or {
+  parent: versionsCaseStudy_parent_operator
+  version__title: versionsCaseStudy_version__title_operator
+  version__summary: versionsCaseStudy_version__summary_operator
+  version__categories: versionsCaseStudy_version__categories_operator
+  version__slug: versionsCaseStudy_version__slug_operator
+  version__updatedAt: versionsCaseStudy_version__updatedAt_operator
+  version__createdAt: versionsCaseStudy_version__createdAt_operator
+  version___status: versionsCaseStudy_version___status_operator
+  createdAt: versionsCaseStudy_createdAt_operator
+  updatedAt: versionsCaseStudy_updatedAt_operator
+  latest: versionsCaseStudy_latest_operator
+  id: versionsCaseStudy_id_operator
+  AND: [versionsCaseStudy_where_and]
+  OR: [versionsCaseStudy_where_or]
 }
 
 type Redirect {
@@ -13661,6 +14929,7 @@ type PayloadPreferencesDeleteDocAccess {
 type Settings {
   postsPage(draft: Boolean): Page
   projectsPage(draft: Boolean): Page
+  podcastEpisodesPage(draft: Boolean): Page
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -13674,6 +14943,7 @@ type settingsDocAccess {
 type SettingsDocAccessFields {
   postsPage: SettingsDocAccessFields_postsPage
   projectsPage: SettingsDocAccessFields_projectsPage
+  podcastEpisodesPage: SettingsDocAccessFields_podcastEpisodesPage
   updatedAt: SettingsDocAccessFields_updatedAt
   createdAt: SettingsDocAccessFields_createdAt
 }
@@ -13721,6 +14991,29 @@ type SettingsDocAccessFields_projectsPage_Update {
 }
 
 type SettingsDocAccessFields_projectsPage_Delete {
+  permission: Boolean!
+}
+
+type SettingsDocAccessFields_podcastEpisodesPage {
+  create: SettingsDocAccessFields_podcastEpisodesPage_Create
+  read: SettingsDocAccessFields_podcastEpisodesPage_Read
+  update: SettingsDocAccessFields_podcastEpisodesPage_Update
+  delete: SettingsDocAccessFields_podcastEpisodesPage_Delete
+}
+
+type SettingsDocAccessFields_podcastEpisodesPage_Create {
+  permission: Boolean!
+}
+
+type SettingsDocAccessFields_podcastEpisodesPage_Read {
+  permission: Boolean!
+}
+
+type SettingsDocAccessFields_podcastEpisodesPage_Update {
+  permission: Boolean!
+}
+
+type SettingsDocAccessFields_podcastEpisodesPage_Delete {
   permission: Boolean!
 }
 
@@ -14396,6 +15689,8 @@ type Access {
   comments: commentsAccess
   podcast_episodes: podcast_episodesAccess
   blogposts: blogpostsAccess
+  talks_and_roundtables: talks_and_roundtablesAccess
+  case_studies: case_studiesAccess
   redirects: redirectsAccess
   payload_preferences: payload_preferencesAccess
   settings: settingsAccess
@@ -17855,7 +19150,7 @@ type PodcastEpisodesFields {
   spotify: PodcastEpisodesFields_spotify
   apple: PodcastEpisodesFields_apple
   contributors: PodcastEpisodesFields_contributors
-  category: PodcastEpisodesFields_category
+  categories: PodcastEpisodesFields_categories
   relatedEpisodes: PodcastEpisodesFields_relatedEpisodes
   publishedAt: PodcastEpisodesFields_publishedAt
   slug: PodcastEpisodesFields_slug
@@ -18048,26 +19343,26 @@ type PodcastEpisodesFields_contributors_Delete {
   permission: Boolean!
 }
 
-type PodcastEpisodesFields_category {
-  create: PodcastEpisodesFields_category_Create
-  read: PodcastEpisodesFields_category_Read
-  update: PodcastEpisodesFields_category_Update
-  delete: PodcastEpisodesFields_category_Delete
+type PodcastEpisodesFields_categories {
+  create: PodcastEpisodesFields_categories_Create
+  read: PodcastEpisodesFields_categories_Read
+  update: PodcastEpisodesFields_categories_Update
+  delete: PodcastEpisodesFields_categories_Delete
 }
 
-type PodcastEpisodesFields_category_Create {
+type PodcastEpisodesFields_categories_Create {
   permission: Boolean!
 }
 
-type PodcastEpisodesFields_category_Read {
+type PodcastEpisodesFields_categories_Read {
   permission: Boolean!
 }
 
-type PodcastEpisodesFields_category_Update {
+type PodcastEpisodesFields_categories_Update {
   permission: Boolean!
 }
 
-type PodcastEpisodesFields_category_Delete {
+type PodcastEpisodesFields_categories_Delete {
   permission: Boolean!
 }
 
@@ -18249,7 +19544,7 @@ type BlogpostsFields {
   content: BlogpostsFields_content
   featuredImage: BlogpostsFields_featuredImage
   contributors: BlogpostsFields_contributors
-  category: BlogpostsFields_category
+  categories: BlogpostsFields_categories
   relatedPosts: BlogpostsFields_relatedPosts
   publishedAt: BlogpostsFields_publishedAt
   slug: BlogpostsFields_slug
@@ -18373,26 +19668,26 @@ type BlogpostsFields_contributors_Delete {
   permission: Boolean!
 }
 
-type BlogpostsFields_category {
-  create: BlogpostsFields_category_Create
-  read: BlogpostsFields_category_Read
-  update: BlogpostsFields_category_Update
-  delete: BlogpostsFields_category_Delete
+type BlogpostsFields_categories {
+  create: BlogpostsFields_categories_Create
+  read: BlogpostsFields_categories_Read
+  update: BlogpostsFields_categories_Update
+  delete: BlogpostsFields_categories_Delete
 }
 
-type BlogpostsFields_category_Create {
+type BlogpostsFields_categories_Create {
   permission: Boolean!
 }
 
-type BlogpostsFields_category_Read {
+type BlogpostsFields_categories_Read {
   permission: Boolean!
 }
 
-type BlogpostsFields_category_Update {
+type BlogpostsFields_categories_Update {
   permission: Boolean!
 }
 
-type BlogpostsFields_category_Delete {
+type BlogpostsFields_categories_Delete {
   permission: Boolean!
 }
 
@@ -18555,6 +19850,464 @@ type BlogpostsDeleteAccess {
 }
 
 type BlogpostsReadVersionsAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type talks_and_roundtablesAccess {
+  fields: TalksAndRoundtablesFields
+  create: TalksAndRoundtablesCreateAccess
+  read: TalksAndRoundtablesReadAccess
+  update: TalksAndRoundtablesUpdateAccess
+  delete: TalksAndRoundtablesDeleteAccess
+  readVersions: TalksAndRoundtablesReadVersionsAccess
+}
+
+type TalksAndRoundtablesFields {
+  title: TalksAndRoundtablesFields_title
+  about: TalksAndRoundtablesFields_about
+  categories: TalksAndRoundtablesFields_categories
+  url: TalksAndRoundtablesFields_url
+  publishedAt: TalksAndRoundtablesFields_publishedAt
+  slug: TalksAndRoundtablesFields_slug
+  updatedAt: TalksAndRoundtablesFields_updatedAt
+  createdAt: TalksAndRoundtablesFields_createdAt
+  _status: TalksAndRoundtablesFields__status
+}
+
+type TalksAndRoundtablesFields_title {
+  create: TalksAndRoundtablesFields_title_Create
+  read: TalksAndRoundtablesFields_title_Read
+  update: TalksAndRoundtablesFields_title_Update
+  delete: TalksAndRoundtablesFields_title_Delete
+}
+
+type TalksAndRoundtablesFields_title_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_title_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_title_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_title_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_about {
+  create: TalksAndRoundtablesFields_about_Create
+  read: TalksAndRoundtablesFields_about_Read
+  update: TalksAndRoundtablesFields_about_Update
+  delete: TalksAndRoundtablesFields_about_Delete
+}
+
+type TalksAndRoundtablesFields_about_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_about_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_about_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_about_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_categories {
+  create: TalksAndRoundtablesFields_categories_Create
+  read: TalksAndRoundtablesFields_categories_Read
+  update: TalksAndRoundtablesFields_categories_Update
+  delete: TalksAndRoundtablesFields_categories_Delete
+}
+
+type TalksAndRoundtablesFields_categories_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_categories_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_categories_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_categories_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_url {
+  create: TalksAndRoundtablesFields_url_Create
+  read: TalksAndRoundtablesFields_url_Read
+  update: TalksAndRoundtablesFields_url_Update
+  delete: TalksAndRoundtablesFields_url_Delete
+}
+
+type TalksAndRoundtablesFields_url_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_url_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_url_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_url_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_publishedAt {
+  create: TalksAndRoundtablesFields_publishedAt_Create
+  read: TalksAndRoundtablesFields_publishedAt_Read
+  update: TalksAndRoundtablesFields_publishedAt_Update
+  delete: TalksAndRoundtablesFields_publishedAt_Delete
+}
+
+type TalksAndRoundtablesFields_publishedAt_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_publishedAt_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_publishedAt_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_publishedAt_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_slug {
+  create: TalksAndRoundtablesFields_slug_Create
+  read: TalksAndRoundtablesFields_slug_Read
+  update: TalksAndRoundtablesFields_slug_Update
+  delete: TalksAndRoundtablesFields_slug_Delete
+}
+
+type TalksAndRoundtablesFields_slug_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_slug_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_slug_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_slug_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_updatedAt {
+  create: TalksAndRoundtablesFields_updatedAt_Create
+  read: TalksAndRoundtablesFields_updatedAt_Read
+  update: TalksAndRoundtablesFields_updatedAt_Update
+  delete: TalksAndRoundtablesFields_updatedAt_Delete
+}
+
+type TalksAndRoundtablesFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_createdAt {
+  create: TalksAndRoundtablesFields_createdAt_Create
+  read: TalksAndRoundtablesFields_createdAt_Read
+  update: TalksAndRoundtablesFields_createdAt_Update
+  delete: TalksAndRoundtablesFields_createdAt_Delete
+}
+
+type TalksAndRoundtablesFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields__status {
+  create: TalksAndRoundtablesFields__status_Create
+  read: TalksAndRoundtablesFields__status_Read
+  update: TalksAndRoundtablesFields__status_Update
+  delete: TalksAndRoundtablesFields__status_Delete
+}
+
+type TalksAndRoundtablesFields__status_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields__status_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields__status_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields__status_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksAndRoundtablesReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksAndRoundtablesUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksAndRoundtablesDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type TalksAndRoundtablesReadVersionsAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type case_studiesAccess {
+  fields: CaseStudiesFields
+  create: CaseStudiesCreateAccess
+  read: CaseStudiesReadAccess
+  update: CaseStudiesUpdateAccess
+  delete: CaseStudiesDeleteAccess
+  readVersions: CaseStudiesReadVersionsAccess
+}
+
+type CaseStudiesFields {
+  title: CaseStudiesFields_title
+  summary: CaseStudiesFields_summary
+  categories: CaseStudiesFields_categories
+  slug: CaseStudiesFields_slug
+  updatedAt: CaseStudiesFields_updatedAt
+  createdAt: CaseStudiesFields_createdAt
+  _status: CaseStudiesFields__status
+}
+
+type CaseStudiesFields_title {
+  create: CaseStudiesFields_title_Create
+  read: CaseStudiesFields_title_Read
+  update: CaseStudiesFields_title_Update
+  delete: CaseStudiesFields_title_Delete
+}
+
+type CaseStudiesFields_title_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_title_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_title_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_title_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_summary {
+  create: CaseStudiesFields_summary_Create
+  read: CaseStudiesFields_summary_Read
+  update: CaseStudiesFields_summary_Update
+  delete: CaseStudiesFields_summary_Delete
+}
+
+type CaseStudiesFields_summary_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_summary_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_summary_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_summary_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_categories {
+  create: CaseStudiesFields_categories_Create
+  read: CaseStudiesFields_categories_Read
+  update: CaseStudiesFields_categories_Update
+  delete: CaseStudiesFields_categories_Delete
+}
+
+type CaseStudiesFields_categories_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_categories_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_categories_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_categories_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_slug {
+  create: CaseStudiesFields_slug_Create
+  read: CaseStudiesFields_slug_Read
+  update: CaseStudiesFields_slug_Update
+  delete: CaseStudiesFields_slug_Delete
+}
+
+type CaseStudiesFields_slug_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_slug_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_slug_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_slug_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_updatedAt {
+  create: CaseStudiesFields_updatedAt_Create
+  read: CaseStudiesFields_updatedAt_Read
+  update: CaseStudiesFields_updatedAt_Update
+  delete: CaseStudiesFields_updatedAt_Delete
+}
+
+type CaseStudiesFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_createdAt {
+  create: CaseStudiesFields_createdAt_Create
+  read: CaseStudiesFields_createdAt_Read
+  update: CaseStudiesFields_createdAt_Update
+  delete: CaseStudiesFields_createdAt_Delete
+}
+
+type CaseStudiesFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesFields__status {
+  create: CaseStudiesFields__status_Create
+  read: CaseStudiesFields__status_Read
+  update: CaseStudiesFields__status_Update
+  delete: CaseStudiesFields__status_Delete
+}
+
+type CaseStudiesFields__status_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesFields__status_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesFields__status_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesFields__status_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CaseStudiesReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CaseStudiesUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CaseStudiesDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CaseStudiesReadVersionsAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -18922,6 +20675,7 @@ type settingsAccess {
 type SettingsFields {
   postsPage: SettingsFields_postsPage
   projectsPage: SettingsFields_projectsPage
+  podcastEpisodesPage: SettingsFields_podcastEpisodesPage
   updatedAt: SettingsFields_updatedAt
   createdAt: SettingsFields_createdAt
 }
@@ -18969,6 +20723,29 @@ type SettingsFields_projectsPage_Update {
 }
 
 type SettingsFields_projectsPage_Delete {
+  permission: Boolean!
+}
+
+type SettingsFields_podcastEpisodesPage {
+  create: SettingsFields_podcastEpisodesPage_Create
+  read: SettingsFields_podcastEpisodesPage_Read
+  update: SettingsFields_podcastEpisodesPage_Update
+  delete: SettingsFields_podcastEpisodesPage_Delete
+}
+
+type SettingsFields_podcastEpisodesPage_Create {
+  permission: Boolean!
+}
+
+type SettingsFields_podcastEpisodesPage_Read {
+  permission: Boolean!
+}
+
+type SettingsFields_podcastEpisodesPage_Update {
+  permission: Boolean!
+}
+
+type SettingsFields_podcastEpisodesPage_Delete {
   permission: Boolean!
 }
 
@@ -19606,6 +21383,14 @@ type Mutation {
   updateBlogpost(id: String!, autosave: Boolean, data: mutationBlogpostUpdateInput!, draft: Boolean): Blogpost
   deleteBlogpost(id: String!): Blogpost
   restoreVersionBlogpost(id: String): Blogpost
+  createTalksAndRoundtable(data: mutationTalksAndRoundtableInput!, draft: Boolean): TalksAndRoundtable
+  updateTalksAndRoundtable(id: String!, autosave: Boolean, data: mutationTalksAndRoundtableUpdateInput!, draft: Boolean): TalksAndRoundtable
+  deleteTalksAndRoundtable(id: String!): TalksAndRoundtable
+  restoreVersionTalksAndRoundtable(id: String): TalksAndRoundtable
+  createCaseStudy(data: mutationCaseStudyInput!, draft: Boolean): CaseStudy
+  updateCaseStudy(id: String!, autosave: Boolean, data: mutationCaseStudyUpdateInput!, draft: Boolean): CaseStudy
+  deleteCaseStudy(id: String!): CaseStudy
+  restoreVersionCaseStudy(id: String): CaseStudy
   createRedirect(data: mutationRedirectInput!): Redirect
   updateRedirect(id: String!, autosave: Boolean, data: mutationRedirectUpdateInput!): Redirect
   deleteRedirect(id: String!): Redirect
@@ -20251,7 +22036,7 @@ input mutationPodcastEpisodeInput {
   spotify: String
   apple: String
   contributors: [String]
-  category: [String]
+  categories: [String]
   relatedEpisodes: [String]
   publishedAt: String
   slug: String
@@ -20274,7 +22059,7 @@ input mutationPodcastEpisodeUpdateInput {
   spotify: String
   apple: String
   contributors: [String]
-  category: [String]
+  categories: [String]
   relatedEpisodes: [String]
   publishedAt: String
   slug: String
@@ -20294,7 +22079,7 @@ input mutationBlogpostInput {
   content: JSON!
   featuredImage: String!
   contributors: [String]
-  category: [String]
+  categories: [String]
   relatedPosts: [String]
   publishedAt: String
   slug: String
@@ -20314,7 +22099,7 @@ input mutationBlogpostUpdateInput {
   content: JSON
   featuredImage: String
   contributors: [String]
-  category: [String]
+  categories: [String]
   relatedPosts: [String]
   publishedAt: String
   slug: String
@@ -20324,6 +22109,70 @@ input mutationBlogpostUpdateInput {
 }
 
 enum BlogpostUpdate__status_MutationInput {
+  draft
+  published
+}
+
+input mutationTalksAndRoundtableInput {
+  title: String!
+  about: String!
+  categories: [String]
+  url: String
+  publishedAt: String
+  slug: String
+  updatedAt: String
+  createdAt: String
+  _status: TalksAndRoundtable__status_MutationInput
+}
+
+enum TalksAndRoundtable__status_MutationInput {
+  draft
+  published
+}
+
+input mutationTalksAndRoundtableUpdateInput {
+  title: String
+  about: String
+  categories: [String]
+  url: String
+  publishedAt: String
+  slug: String
+  updatedAt: String
+  createdAt: String
+  _status: TalksAndRoundtableUpdate__status_MutationInput
+}
+
+enum TalksAndRoundtableUpdate__status_MutationInput {
+  draft
+  published
+}
+
+input mutationCaseStudyInput {
+  title: String
+  summary: String
+  categories: [String]
+  slug: String
+  updatedAt: String
+  createdAt: String
+  _status: CaseStudy__status_MutationInput
+}
+
+enum CaseStudy__status_MutationInput {
+  draft
+  published
+}
+
+input mutationCaseStudyUpdateInput {
+  title: String
+  summary: String
+  categories: [String]
+  slug: String
+  updatedAt: String
+  createdAt: String
+  _status: CaseStudyUpdate__status_MutationInput
+}
+
+enum CaseStudyUpdate__status_MutationInput {
   draft
   published
 }
@@ -20411,6 +22260,7 @@ enum PayloadPreferenceUpdate_UserRelationshipInputRelationTo {
 input mutationSettingsInput {
   postsPage: String
   projectsPage: String
+  podcastEpisodesPage: String
   updatedAt: String
   createdAt: String
 }
