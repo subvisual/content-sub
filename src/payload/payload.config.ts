@@ -12,11 +12,8 @@ import { buildConfig } from "payload/config";
 
 // Collections go here
 import Categories from "./collections/Categories";
-import Comments from "./collections/Comments";
 import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
-import { Posts } from "./collections/Posts";
-import { Projects } from "./collections/Projects";
 import { Authors } from "./collections/Authors";
 import Users from "./collections/Users";
 import { PodcastEpisodes } from "./collections/PodcastEpisodes";
@@ -73,13 +70,10 @@ export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   collections: [
     Pages,
-    Posts,
-    Projects,
     Media,
     Categories,
     Users,
     Authors,
-    Comments,
     PodcastEpisodes,
     BlogPosts,
     TalksAndRoundtables,
@@ -102,19 +96,5 @@ export default buildConfig({
       method: "get",
       handler: seed,
     },
-  ],
-  plugins: [
-    redirects({
-      collections: ["pages", "posts"],
-    }),
-    nestedDocs({
-      collections: ["categories"],
-    }),
-    seo({
-      collections: ["pages", "posts", "projects"],
-      generateTitle,
-      uploadsCollection: "media",
-    }),
-    payloadCloud(),
   ],
 });
