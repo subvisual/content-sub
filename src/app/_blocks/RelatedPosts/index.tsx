@@ -26,8 +26,7 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = props => {
         </Gutter>
       )}
       <Gutter>
-        <div className={classes.grid}>
-          {docs?.map((doc, index) => {
+        <div className={classes.grid}>docs?.map((doc, index) => {
             if (typeof doc === 'string') return null
 
             return (
