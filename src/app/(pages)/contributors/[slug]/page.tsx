@@ -4,7 +4,6 @@ import React from "react";
 
 import { notFound } from "next/navigation";
 import fetchContentFromAuthor from "@/app/_api/fetchContentFromAuthor";
-import fetchAuthor from "@/app/_api/fetchAuthor";
 import { fetchDoc } from "@/app/_api/fetchDoc";
 
 

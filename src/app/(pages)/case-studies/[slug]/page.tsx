@@ -4,10 +4,10 @@ import { notFound } from "next/navigation";
 
 export default async function CaseStudiesPage ({params: { slug }}) {
 
-  let casestudy = null
+  let content = null
 
   try {
-    casestudy = await fetchDoc({
+    content = await fetchDoc({
       collection: "case-studies",
       slug,
       });
@@ -15,14 +15,13 @@ export default async function CaseStudiesPage ({params: { slug }}) {
     console.error(err);
   }
 
-  if (!casestudy) {
+  if (!content) {
     notFound()
   }
 
   return (
     <div>
-      This is the "case-studies/{casestudy.slug}" page.
-      <pre>{JSON.stringify(casestudy, null, 2)}</pre>
+      <pre>{JSON.stringify(content, null, 2)}</pre>
     </div>
   )
 }
