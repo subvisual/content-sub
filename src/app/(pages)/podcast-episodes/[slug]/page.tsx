@@ -1,8 +1,6 @@
 import React from "react";
 
 import { notFound } from "next/navigation";
-import { fetchContent } from "@/app/_api/fetchContent";
-import { formatDateTime } from "@/app/_utilities/formatDateTime";
 import { EpisodeHead } from "../../../_blocks/EpisodeHead";
 import { EpisodeContent } from "@/app/_blocks/EpisodeContent";
 import { RecommendedContent } from "@/app/_blocks/RecommendedContent";
