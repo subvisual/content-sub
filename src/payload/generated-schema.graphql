@@ -31,10 +31,12 @@ type Query {
   docAccessUser(id: String!): usersDocAccess
   meUser: usersMe
   initializedUser: Boolean
-  Contributor(id: String!): Contributor
-  Contributors(where: Contributor_where, limit: Int, page: Int, sort: String): Contributors
-  countContributors(where: Contributor_where): countContributors
-  docAccessContributor(id: String!): contributorsDocAccess
+  Author(id: String!, draft: Boolean): Author
+  Authors(draft: Boolean, where: Author_where, limit: Int, page: Int, sort: String): Authors
+  countAuthors(draft: Boolean, where: Author_where): countAuthors
+  docAccessAuthor(id: String!): authorsDocAccess
+  versionAuthor(id: String): AuthorVersion
+  versionsAuthors(where: versionsAuthor_where, limit: Int, page: Int, sort: String): versionsAuthors
   Comment(id: String!, draft: Boolean): Comment
   Comments(draft: Boolean, where: Comment_where, limit: Int, page: Int, sort: String): Comments
   countComments(draft: Boolean, where: Comment_where): countComments
@@ -8756,40 +8758,42 @@ type usersMe {
   user: User
 }
 
-type Contributor {
+type Author {
   id: String
-  featuredImage(where: Contributor_FeaturedImage_where): Media!
-  name: String!
-  role: Contributor_role!
-  bio: String!
+  featuredImage(where: Author_FeaturedImage_where): Media
+  name: String
+  role: Author_role
+  bio: String
   linkedIn: String
   x: String
   gitHub: String
   medium: String
+  publishedAt: DateTime
   slug: String
   updatedAt: DateTime
   createdAt: DateTime
+  _status: Author__status
 }
 
-input Contributor_FeaturedImage_where {
-  alt: Contributor_FeaturedImage_alt_operator
-  caption: Contributor_FeaturedImage_caption_operator
-  updatedAt: Contributor_FeaturedImage_updatedAt_operator
-  createdAt: Contributor_FeaturedImage_createdAt_operator
-  url: Contributor_FeaturedImage_url_operator
-  filename: Contributor_FeaturedImage_filename_operator
-  mimeType: Contributor_FeaturedImage_mimeType_operator
-  filesize: Contributor_FeaturedImage_filesize_operator
-  width: Contributor_FeaturedImage_width_operator
-  height: Contributor_FeaturedImage_height_operator
-  focalX: Contributor_FeaturedImage_focalX_operator
-  focalY: Contributor_FeaturedImage_focalY_operator
-  id: Contributor_FeaturedImage_id_operator
-  AND: [Contributor_FeaturedImage_where_and]
-  OR: [Contributor_FeaturedImage_where_or]
+input Author_FeaturedImage_where {
+  alt: Author_FeaturedImage_alt_operator
+  caption: Author_FeaturedImage_caption_operator
+  updatedAt: Author_FeaturedImage_updatedAt_operator
+  createdAt: Author_FeaturedImage_createdAt_operator
+  url: Author_FeaturedImage_url_operator
+  filename: Author_FeaturedImage_filename_operator
+  mimeType: Author_FeaturedImage_mimeType_operator
+  filesize: Author_FeaturedImage_filesize_operator
+  width: Author_FeaturedImage_width_operator
+  height: Author_FeaturedImage_height_operator
+  focalX: Author_FeaturedImage_focalX_operator
+  focalY: Author_FeaturedImage_focalY_operator
+  id: Author_FeaturedImage_id_operator
+  AND: [Author_FeaturedImage_where_and]
+  OR: [Author_FeaturedImage_where_or]
 }
 
-input Contributor_FeaturedImage_alt_operator {
+input Author_FeaturedImage_alt_operator {
   equals: String
   not_equals: String
   like: String
@@ -8799,7 +8803,7 @@ input Contributor_FeaturedImage_alt_operator {
   all: [String]
 }
 
-input Contributor_FeaturedImage_caption_operator {
+input Author_FeaturedImage_caption_operator {
   equals: JSON
   not_equals: JSON
   like: JSON
@@ -8807,7 +8811,7 @@ input Contributor_FeaturedImage_caption_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_updatedAt_operator {
+input Author_FeaturedImage_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -8818,7 +8822,7 @@ input Contributor_FeaturedImage_updatedAt_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_createdAt_operator {
+input Author_FeaturedImage_createdAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -8829,7 +8833,7 @@ input Contributor_FeaturedImage_createdAt_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_url_operator {
+input Author_FeaturedImage_url_operator {
   equals: String
   not_equals: String
   like: String
@@ -8840,7 +8844,7 @@ input Contributor_FeaturedImage_url_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_filename_operator {
+input Author_FeaturedImage_filename_operator {
   equals: String
   not_equals: String
   like: String
@@ -8851,7 +8855,7 @@ input Contributor_FeaturedImage_filename_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_mimeType_operator {
+input Author_FeaturedImage_mimeType_operator {
   equals: String
   not_equals: String
   like: String
@@ -8862,7 +8866,7 @@ input Contributor_FeaturedImage_mimeType_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_filesize_operator {
+input Author_FeaturedImage_filesize_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -8872,7 +8876,7 @@ input Contributor_FeaturedImage_filesize_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_width_operator {
+input Author_FeaturedImage_width_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -8882,7 +8886,7 @@ input Contributor_FeaturedImage_width_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_height_operator {
+input Author_FeaturedImage_height_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -8892,7 +8896,7 @@ input Contributor_FeaturedImage_height_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_focalX_operator {
+input Author_FeaturedImage_focalX_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -8902,7 +8906,7 @@ input Contributor_FeaturedImage_focalX_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_focalY_operator {
+input Author_FeaturedImage_focalY_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -8912,7 +8916,7 @@ input Contributor_FeaturedImage_focalY_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_id_operator {
+input Author_FeaturedImage_id_operator {
   equals: String
   not_equals: String
   like: String
@@ -8923,50 +8927,55 @@ input Contributor_FeaturedImage_id_operator {
   exists: Boolean
 }
 
-input Contributor_FeaturedImage_where_and {
-  alt: Contributor_FeaturedImage_alt_operator
-  caption: Contributor_FeaturedImage_caption_operator
-  updatedAt: Contributor_FeaturedImage_updatedAt_operator
-  createdAt: Contributor_FeaturedImage_createdAt_operator
-  url: Contributor_FeaturedImage_url_operator
-  filename: Contributor_FeaturedImage_filename_operator
-  mimeType: Contributor_FeaturedImage_mimeType_operator
-  filesize: Contributor_FeaturedImage_filesize_operator
-  width: Contributor_FeaturedImage_width_operator
-  height: Contributor_FeaturedImage_height_operator
-  focalX: Contributor_FeaturedImage_focalX_operator
-  focalY: Contributor_FeaturedImage_focalY_operator
-  id: Contributor_FeaturedImage_id_operator
-  AND: [Contributor_FeaturedImage_where_and]
-  OR: [Contributor_FeaturedImage_where_or]
+input Author_FeaturedImage_where_and {
+  alt: Author_FeaturedImage_alt_operator
+  caption: Author_FeaturedImage_caption_operator
+  updatedAt: Author_FeaturedImage_updatedAt_operator
+  createdAt: Author_FeaturedImage_createdAt_operator
+  url: Author_FeaturedImage_url_operator
+  filename: Author_FeaturedImage_filename_operator
+  mimeType: Author_FeaturedImage_mimeType_operator
+  filesize: Author_FeaturedImage_filesize_operator
+  width: Author_FeaturedImage_width_operator
+  height: Author_FeaturedImage_height_operator
+  focalX: Author_FeaturedImage_focalX_operator
+  focalY: Author_FeaturedImage_focalY_operator
+  id: Author_FeaturedImage_id_operator
+  AND: [Author_FeaturedImage_where_and]
+  OR: [Author_FeaturedImage_where_or]
 }
 
-input Contributor_FeaturedImage_where_or {
-  alt: Contributor_FeaturedImage_alt_operator
-  caption: Contributor_FeaturedImage_caption_operator
-  updatedAt: Contributor_FeaturedImage_updatedAt_operator
-  createdAt: Contributor_FeaturedImage_createdAt_operator
-  url: Contributor_FeaturedImage_url_operator
-  filename: Contributor_FeaturedImage_filename_operator
-  mimeType: Contributor_FeaturedImage_mimeType_operator
-  filesize: Contributor_FeaturedImage_filesize_operator
-  width: Contributor_FeaturedImage_width_operator
-  height: Contributor_FeaturedImage_height_operator
-  focalX: Contributor_FeaturedImage_focalX_operator
-  focalY: Contributor_FeaturedImage_focalY_operator
-  id: Contributor_FeaturedImage_id_operator
-  AND: [Contributor_FeaturedImage_where_and]
-  OR: [Contributor_FeaturedImage_where_or]
+input Author_FeaturedImage_where_or {
+  alt: Author_FeaturedImage_alt_operator
+  caption: Author_FeaturedImage_caption_operator
+  updatedAt: Author_FeaturedImage_updatedAt_operator
+  createdAt: Author_FeaturedImage_createdAt_operator
+  url: Author_FeaturedImage_url_operator
+  filename: Author_FeaturedImage_filename_operator
+  mimeType: Author_FeaturedImage_mimeType_operator
+  filesize: Author_FeaturedImage_filesize_operator
+  width: Author_FeaturedImage_width_operator
+  height: Author_FeaturedImage_height_operator
+  focalX: Author_FeaturedImage_focalX_operator
+  focalY: Author_FeaturedImage_focalY_operator
+  id: Author_FeaturedImage_id_operator
+  AND: [Author_FeaturedImage_where_and]
+  OR: [Author_FeaturedImage_where_or]
 }
 
-enum Contributor_role {
+enum Author_role {
   developer
   product_manager
   designer
 }
 
-type Contributors {
-  docs: [Contributor]
+enum Author__status {
+  draft
+  published
+}
+
+type Authors {
+  docs: [Author]
   hasNextPage: Boolean
   hasPrevPage: Boolean
   limit: Int
@@ -8979,29 +8988,31 @@ type Contributors {
   totalPages: Int
 }
 
-input Contributor_where {
-  featuredImage: Contributor_featuredImage_operator
-  name: Contributor_name_operator
-  role: Contributor_role_operator
-  bio: Contributor_bio_operator
-  linkedIn: Contributor_linkedIn_operator
-  x: Contributor_x_operator
-  gitHub: Contributor_gitHub_operator
-  medium: Contributor_medium_operator
-  slug: Contributor_slug_operator
-  updatedAt: Contributor_updatedAt_operator
-  createdAt: Contributor_createdAt_operator
-  id: Contributor_id_operator
-  AND: [Contributor_where_and]
-  OR: [Contributor_where_or]
+input Author_where {
+  featuredImage: Author_featuredImage_operator
+  name: Author_name_operator
+  role: Author_role_operator
+  bio: Author_bio_operator
+  linkedIn: Author_linkedIn_operator
+  x: Author_x_operator
+  gitHub: Author_gitHub_operator
+  medium: Author_medium_operator
+  publishedAt: Author_publishedAt_operator
+  slug: Author_slug_operator
+  updatedAt: Author_updatedAt_operator
+  createdAt: Author_createdAt_operator
+  _status: Author__status_operator
+  id: Author_id_operator
+  AND: [Author_where_and]
+  OR: [Author_where_or]
 }
 
-input Contributor_featuredImage_operator {
+input Author_featuredImage_operator {
   equals: String
   not_equals: String
 }
 
-input Contributor_name_operator {
+input Author_name_operator {
   equals: String
   not_equals: String
   like: String
@@ -9011,39 +9022,28 @@ input Contributor_name_operator {
   all: [String]
 }
 
-input Contributor_role_operator {
-  equals: Contributor_role_Input
-  not_equals: Contributor_role_Input
-  in: [Contributor_role_Input]
-  not_in: [Contributor_role_Input]
-  all: [Contributor_role_Input]
+input Author_role_operator {
+  equals: Author_role_Input
+  not_equals: Author_role_Input
+  in: [Author_role_Input]
+  not_in: [Author_role_Input]
+  all: [Author_role_Input]
 }
 
-enum Contributor_role_Input {
+enum Author_role_Input {
   developer
   product_manager
   designer
 }
 
-input Contributor_bio_operator {
+input Author_bio_operator {
   equals: String
   not_equals: String
   like: String
   contains: String
 }
 
-input Contributor_linkedIn_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Contributor_x_operator {
+input Author_linkedIn_operator {
   equals: String
   not_equals: String
   like: String
@@ -9054,7 +9054,7 @@ input Contributor_x_operator {
   exists: Boolean
 }
 
-input Contributor_gitHub_operator {
+input Author_x_operator {
   equals: String
   not_equals: String
   like: String
@@ -9065,7 +9065,7 @@ input Contributor_gitHub_operator {
   exists: Boolean
 }
 
-input Contributor_medium_operator {
+input Author_gitHub_operator {
   equals: String
   not_equals: String
   like: String
@@ -9076,7 +9076,7 @@ input Contributor_medium_operator {
   exists: Boolean
 }
 
-input Contributor_slug_operator {
+input Author_medium_operator {
   equals: String
   not_equals: String
   like: String
@@ -9087,7 +9087,7 @@ input Contributor_slug_operator {
   exists: Boolean
 }
 
-input Contributor_updatedAt_operator {
+input Author_publishedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -9098,18 +9098,7 @@ input Contributor_updatedAt_operator {
   exists: Boolean
 }
 
-input Contributor_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Contributor_id_operator {
+input Author_slug_operator {
   equals: String
   not_equals: String
   like: String
@@ -9120,337 +9109,935 @@ input Contributor_id_operator {
   exists: Boolean
 }
 
-input Contributor_where_and {
-  featuredImage: Contributor_featuredImage_operator
-  name: Contributor_name_operator
-  role: Contributor_role_operator
-  bio: Contributor_bio_operator
-  linkedIn: Contributor_linkedIn_operator
-  x: Contributor_x_operator
-  gitHub: Contributor_gitHub_operator
-  medium: Contributor_medium_operator
-  slug: Contributor_slug_operator
-  updatedAt: Contributor_updatedAt_operator
-  createdAt: Contributor_createdAt_operator
-  id: Contributor_id_operator
-  AND: [Contributor_where_and]
-  OR: [Contributor_where_or]
+input Author_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
 }
 
-input Contributor_where_or {
-  featuredImage: Contributor_featuredImage_operator
-  name: Contributor_name_operator
-  role: Contributor_role_operator
-  bio: Contributor_bio_operator
-  linkedIn: Contributor_linkedIn_operator
-  x: Contributor_x_operator
-  gitHub: Contributor_gitHub_operator
-  medium: Contributor_medium_operator
-  slug: Contributor_slug_operator
-  updatedAt: Contributor_updatedAt_operator
-  createdAt: Contributor_createdAt_operator
-  id: Contributor_id_operator
-  AND: [Contributor_where_and]
-  OR: [Contributor_where_or]
+input Author_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
 }
 
-type countContributors {
+input Author__status_operator {
+  equals: Author__status_Input
+  not_equals: Author__status_Input
+  in: [Author__status_Input]
+  not_in: [Author__status_Input]
+  all: [Author__status_Input]
+  exists: Boolean
+}
+
+enum Author__status_Input {
+  draft
+  published
+}
+
+input Author_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Author_where_and {
+  featuredImage: Author_featuredImage_operator
+  name: Author_name_operator
+  role: Author_role_operator
+  bio: Author_bio_operator
+  linkedIn: Author_linkedIn_operator
+  x: Author_x_operator
+  gitHub: Author_gitHub_operator
+  medium: Author_medium_operator
+  publishedAt: Author_publishedAt_operator
+  slug: Author_slug_operator
+  updatedAt: Author_updatedAt_operator
+  createdAt: Author_createdAt_operator
+  _status: Author__status_operator
+  id: Author_id_operator
+  AND: [Author_where_and]
+  OR: [Author_where_or]
+}
+
+input Author_where_or {
+  featuredImage: Author_featuredImage_operator
+  name: Author_name_operator
+  role: Author_role_operator
+  bio: Author_bio_operator
+  linkedIn: Author_linkedIn_operator
+  x: Author_x_operator
+  gitHub: Author_gitHub_operator
+  medium: Author_medium_operator
+  publishedAt: Author_publishedAt_operator
+  slug: Author_slug_operator
+  updatedAt: Author_updatedAt_operator
+  createdAt: Author_createdAt_operator
+  _status: Author__status_operator
+  id: Author_id_operator
+  AND: [Author_where_and]
+  OR: [Author_where_or]
+}
+
+type countAuthors {
   totalDocs: Int
 }
 
-type contributorsDocAccess {
-  fields: ContributorsDocAccessFields
-  create: ContributorsCreateDocAccess
-  read: ContributorsReadDocAccess
-  update: ContributorsUpdateDocAccess
-  delete: ContributorsDeleteDocAccess
+type authorsDocAccess {
+  fields: AuthorsDocAccessFields
+  create: AuthorsCreateDocAccess
+  read: AuthorsReadDocAccess
+  update: AuthorsUpdateDocAccess
+  delete: AuthorsDeleteDocAccess
+  readVersions: AuthorsReadVersionsDocAccess
 }
 
-type ContributorsDocAccessFields {
-  featuredImage: ContributorsDocAccessFields_featuredImage
-  name: ContributorsDocAccessFields_name
-  role: ContributorsDocAccessFields_role
-  bio: ContributorsDocAccessFields_bio
-  linkedIn: ContributorsDocAccessFields_linkedIn
-  x: ContributorsDocAccessFields_x
-  gitHub: ContributorsDocAccessFields_gitHub
-  medium: ContributorsDocAccessFields_medium
-  slug: ContributorsDocAccessFields_slug
-  updatedAt: ContributorsDocAccessFields_updatedAt
-  createdAt: ContributorsDocAccessFields_createdAt
+type AuthorsDocAccessFields {
+  featuredImage: AuthorsDocAccessFields_featuredImage
+  name: AuthorsDocAccessFields_name
+  role: AuthorsDocAccessFields_role
+  bio: AuthorsDocAccessFields_bio
+  linkedIn: AuthorsDocAccessFields_linkedIn
+  x: AuthorsDocAccessFields_x
+  gitHub: AuthorsDocAccessFields_gitHub
+  medium: AuthorsDocAccessFields_medium
+  publishedAt: AuthorsDocAccessFields_publishedAt
+  slug: AuthorsDocAccessFields_slug
+  updatedAt: AuthorsDocAccessFields_updatedAt
+  createdAt: AuthorsDocAccessFields_createdAt
+  _status: AuthorsDocAccessFields__status
 }
 
-type ContributorsDocAccessFields_featuredImage {
-  create: ContributorsDocAccessFields_featuredImage_Create
-  read: ContributorsDocAccessFields_featuredImage_Read
-  update: ContributorsDocAccessFields_featuredImage_Update
-  delete: ContributorsDocAccessFields_featuredImage_Delete
+type AuthorsDocAccessFields_featuredImage {
+  create: AuthorsDocAccessFields_featuredImage_Create
+  read: AuthorsDocAccessFields_featuredImage_Read
+  update: AuthorsDocAccessFields_featuredImage_Update
+  delete: AuthorsDocAccessFields_featuredImage_Delete
 }
 
-type ContributorsDocAccessFields_featuredImage_Create {
+type AuthorsDocAccessFields_featuredImage_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_featuredImage_Read {
+type AuthorsDocAccessFields_featuredImage_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_featuredImage_Update {
+type AuthorsDocAccessFields_featuredImage_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_featuredImage_Delete {
+type AuthorsDocAccessFields_featuredImage_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_name {
-  create: ContributorsDocAccessFields_name_Create
-  read: ContributorsDocAccessFields_name_Read
-  update: ContributorsDocAccessFields_name_Update
-  delete: ContributorsDocAccessFields_name_Delete
+type AuthorsDocAccessFields_name {
+  create: AuthorsDocAccessFields_name_Create
+  read: AuthorsDocAccessFields_name_Read
+  update: AuthorsDocAccessFields_name_Update
+  delete: AuthorsDocAccessFields_name_Delete
 }
 
-type ContributorsDocAccessFields_name_Create {
+type AuthorsDocAccessFields_name_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_name_Read {
+type AuthorsDocAccessFields_name_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_name_Update {
+type AuthorsDocAccessFields_name_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_name_Delete {
+type AuthorsDocAccessFields_name_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_role {
-  create: ContributorsDocAccessFields_role_Create
-  read: ContributorsDocAccessFields_role_Read
-  update: ContributorsDocAccessFields_role_Update
-  delete: ContributorsDocAccessFields_role_Delete
+type AuthorsDocAccessFields_role {
+  create: AuthorsDocAccessFields_role_Create
+  read: AuthorsDocAccessFields_role_Read
+  update: AuthorsDocAccessFields_role_Update
+  delete: AuthorsDocAccessFields_role_Delete
 }
 
-type ContributorsDocAccessFields_role_Create {
+type AuthorsDocAccessFields_role_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_role_Read {
+type AuthorsDocAccessFields_role_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_role_Update {
+type AuthorsDocAccessFields_role_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_role_Delete {
+type AuthorsDocAccessFields_role_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_bio {
-  create: ContributorsDocAccessFields_bio_Create
-  read: ContributorsDocAccessFields_bio_Read
-  update: ContributorsDocAccessFields_bio_Update
-  delete: ContributorsDocAccessFields_bio_Delete
+type AuthorsDocAccessFields_bio {
+  create: AuthorsDocAccessFields_bio_Create
+  read: AuthorsDocAccessFields_bio_Read
+  update: AuthorsDocAccessFields_bio_Update
+  delete: AuthorsDocAccessFields_bio_Delete
 }
 
-type ContributorsDocAccessFields_bio_Create {
+type AuthorsDocAccessFields_bio_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_bio_Read {
+type AuthorsDocAccessFields_bio_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_bio_Update {
+type AuthorsDocAccessFields_bio_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_bio_Delete {
+type AuthorsDocAccessFields_bio_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_linkedIn {
-  create: ContributorsDocAccessFields_linkedIn_Create
-  read: ContributorsDocAccessFields_linkedIn_Read
-  update: ContributorsDocAccessFields_linkedIn_Update
-  delete: ContributorsDocAccessFields_linkedIn_Delete
+type AuthorsDocAccessFields_linkedIn {
+  create: AuthorsDocAccessFields_linkedIn_Create
+  read: AuthorsDocAccessFields_linkedIn_Read
+  update: AuthorsDocAccessFields_linkedIn_Update
+  delete: AuthorsDocAccessFields_linkedIn_Delete
 }
 
-type ContributorsDocAccessFields_linkedIn_Create {
+type AuthorsDocAccessFields_linkedIn_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_linkedIn_Read {
+type AuthorsDocAccessFields_linkedIn_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_linkedIn_Update {
+type AuthorsDocAccessFields_linkedIn_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_linkedIn_Delete {
+type AuthorsDocAccessFields_linkedIn_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_x {
-  create: ContributorsDocAccessFields_x_Create
-  read: ContributorsDocAccessFields_x_Read
-  update: ContributorsDocAccessFields_x_Update
-  delete: ContributorsDocAccessFields_x_Delete
+type AuthorsDocAccessFields_x {
+  create: AuthorsDocAccessFields_x_Create
+  read: AuthorsDocAccessFields_x_Read
+  update: AuthorsDocAccessFields_x_Update
+  delete: AuthorsDocAccessFields_x_Delete
 }
 
-type ContributorsDocAccessFields_x_Create {
+type AuthorsDocAccessFields_x_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_x_Read {
+type AuthorsDocAccessFields_x_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_x_Update {
+type AuthorsDocAccessFields_x_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_x_Delete {
+type AuthorsDocAccessFields_x_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_gitHub {
-  create: ContributorsDocAccessFields_gitHub_Create
-  read: ContributorsDocAccessFields_gitHub_Read
-  update: ContributorsDocAccessFields_gitHub_Update
-  delete: ContributorsDocAccessFields_gitHub_Delete
+type AuthorsDocAccessFields_gitHub {
+  create: AuthorsDocAccessFields_gitHub_Create
+  read: AuthorsDocAccessFields_gitHub_Read
+  update: AuthorsDocAccessFields_gitHub_Update
+  delete: AuthorsDocAccessFields_gitHub_Delete
 }
 
-type ContributorsDocAccessFields_gitHub_Create {
+type AuthorsDocAccessFields_gitHub_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_gitHub_Read {
+type AuthorsDocAccessFields_gitHub_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_gitHub_Update {
+type AuthorsDocAccessFields_gitHub_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_gitHub_Delete {
+type AuthorsDocAccessFields_gitHub_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_medium {
-  create: ContributorsDocAccessFields_medium_Create
-  read: ContributorsDocAccessFields_medium_Read
-  update: ContributorsDocAccessFields_medium_Update
-  delete: ContributorsDocAccessFields_medium_Delete
+type AuthorsDocAccessFields_medium {
+  create: AuthorsDocAccessFields_medium_Create
+  read: AuthorsDocAccessFields_medium_Read
+  update: AuthorsDocAccessFields_medium_Update
+  delete: AuthorsDocAccessFields_medium_Delete
 }
 
-type ContributorsDocAccessFields_medium_Create {
+type AuthorsDocAccessFields_medium_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_medium_Read {
+type AuthorsDocAccessFields_medium_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_medium_Update {
+type AuthorsDocAccessFields_medium_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_medium_Delete {
+type AuthorsDocAccessFields_medium_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_slug {
-  create: ContributorsDocAccessFields_slug_Create
-  read: ContributorsDocAccessFields_slug_Read
-  update: ContributorsDocAccessFields_slug_Update
-  delete: ContributorsDocAccessFields_slug_Delete
+type AuthorsDocAccessFields_publishedAt {
+  create: AuthorsDocAccessFields_publishedAt_Create
+  read: AuthorsDocAccessFields_publishedAt_Read
+  update: AuthorsDocAccessFields_publishedAt_Update
+  delete: AuthorsDocAccessFields_publishedAt_Delete
 }
 
-type ContributorsDocAccessFields_slug_Create {
+type AuthorsDocAccessFields_publishedAt_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_slug_Read {
+type AuthorsDocAccessFields_publishedAt_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_slug_Update {
+type AuthorsDocAccessFields_publishedAt_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_slug_Delete {
+type AuthorsDocAccessFields_publishedAt_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_updatedAt {
-  create: ContributorsDocAccessFields_updatedAt_Create
-  read: ContributorsDocAccessFields_updatedAt_Read
-  update: ContributorsDocAccessFields_updatedAt_Update
-  delete: ContributorsDocAccessFields_updatedAt_Delete
+type AuthorsDocAccessFields_slug {
+  create: AuthorsDocAccessFields_slug_Create
+  read: AuthorsDocAccessFields_slug_Read
+  update: AuthorsDocAccessFields_slug_Update
+  delete: AuthorsDocAccessFields_slug_Delete
 }
 
-type ContributorsDocAccessFields_updatedAt_Create {
+type AuthorsDocAccessFields_slug_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_updatedAt_Read {
+type AuthorsDocAccessFields_slug_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_updatedAt_Update {
+type AuthorsDocAccessFields_slug_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_updatedAt_Delete {
+type AuthorsDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_createdAt {
-  create: ContributorsDocAccessFields_createdAt_Create
-  read: ContributorsDocAccessFields_createdAt_Read
-  update: ContributorsDocAccessFields_createdAt_Update
-  delete: ContributorsDocAccessFields_createdAt_Delete
+type AuthorsDocAccessFields_updatedAt {
+  create: AuthorsDocAccessFields_updatedAt_Create
+  read: AuthorsDocAccessFields_updatedAt_Read
+  update: AuthorsDocAccessFields_updatedAt_Update
+  delete: AuthorsDocAccessFields_updatedAt_Delete
 }
 
-type ContributorsDocAccessFields_createdAt_Create {
+type AuthorsDocAccessFields_updatedAt_Create {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_createdAt_Read {
+type AuthorsDocAccessFields_updatedAt_Read {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_createdAt_Update {
+type AuthorsDocAccessFields_updatedAt_Update {
   permission: Boolean!
 }
 
-type ContributorsDocAccessFields_createdAt_Delete {
+type AuthorsDocAccessFields_updatedAt_Delete {
   permission: Boolean!
 }
 
-type ContributorsCreateDocAccess {
+type AuthorsDocAccessFields_createdAt {
+  create: AuthorsDocAccessFields_createdAt_Create
+  read: AuthorsDocAccessFields_createdAt_Read
+  update: AuthorsDocAccessFields_createdAt_Update
+  delete: AuthorsDocAccessFields_createdAt_Delete
+}
+
+type AuthorsDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type AuthorsDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type AuthorsDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type AuthorsDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type AuthorsDocAccessFields__status {
+  create: AuthorsDocAccessFields__status_Create
+  read: AuthorsDocAccessFields__status_Read
+  update: AuthorsDocAccessFields__status_Update
+  delete: AuthorsDocAccessFields__status_Delete
+}
+
+type AuthorsDocAccessFields__status_Create {
+  permission: Boolean!
+}
+
+type AuthorsDocAccessFields__status_Read {
+  permission: Boolean!
+}
+
+type AuthorsDocAccessFields__status_Update {
+  permission: Boolean!
+}
+
+type AuthorsDocAccessFields__status_Delete {
+  permission: Boolean!
+}
+
+type AuthorsCreateDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type ContributorsReadDocAccess {
+type AuthorsReadDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type ContributorsUpdateDocAccess {
+type AuthorsUpdateDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type ContributorsDeleteDocAccess {
+type AuthorsDeleteDocAccess {
   permission: Boolean!
   where: JSONObject
+}
+
+type AuthorsReadVersionsDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type AuthorVersion {
+  parent(draft: Boolean): Author
+  version: AuthorVersion_Version
+  createdAt: DateTime
+  updatedAt: DateTime
+  latest: Boolean
+  id: String
+}
+
+type AuthorVersion_Version {
+  featuredImage(where: AuthorVersion_Version_FeaturedImage_where): Media
+  name: String
+  role: AuthorVersion_Version_role
+  bio: String
+  linkedIn: String
+  x: String
+  gitHub: String
+  medium: String
+  publishedAt: DateTime
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: AuthorVersion_Version__status
+}
+
+input AuthorVersion_Version_FeaturedImage_where {
+  alt: AuthorVersion_Version_FeaturedImage_alt_operator
+  caption: AuthorVersion_Version_FeaturedImage_caption_operator
+  updatedAt: AuthorVersion_Version_FeaturedImage_updatedAt_operator
+  createdAt: AuthorVersion_Version_FeaturedImage_createdAt_operator
+  url: AuthorVersion_Version_FeaturedImage_url_operator
+  filename: AuthorVersion_Version_FeaturedImage_filename_operator
+  mimeType: AuthorVersion_Version_FeaturedImage_mimeType_operator
+  filesize: AuthorVersion_Version_FeaturedImage_filesize_operator
+  width: AuthorVersion_Version_FeaturedImage_width_operator
+  height: AuthorVersion_Version_FeaturedImage_height_operator
+  focalX: AuthorVersion_Version_FeaturedImage_focalX_operator
+  focalY: AuthorVersion_Version_FeaturedImage_focalY_operator
+  id: AuthorVersion_Version_FeaturedImage_id_operator
+  AND: [AuthorVersion_Version_FeaturedImage_where_and]
+  OR: [AuthorVersion_Version_FeaturedImage_where_or]
+}
+
+input AuthorVersion_Version_FeaturedImage_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input AuthorVersion_Version_FeaturedImage_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input AuthorVersion_Version_FeaturedImage_where_and {
+  alt: AuthorVersion_Version_FeaturedImage_alt_operator
+  caption: AuthorVersion_Version_FeaturedImage_caption_operator
+  updatedAt: AuthorVersion_Version_FeaturedImage_updatedAt_operator
+  createdAt: AuthorVersion_Version_FeaturedImage_createdAt_operator
+  url: AuthorVersion_Version_FeaturedImage_url_operator
+  filename: AuthorVersion_Version_FeaturedImage_filename_operator
+  mimeType: AuthorVersion_Version_FeaturedImage_mimeType_operator
+  filesize: AuthorVersion_Version_FeaturedImage_filesize_operator
+  width: AuthorVersion_Version_FeaturedImage_width_operator
+  height: AuthorVersion_Version_FeaturedImage_height_operator
+  focalX: AuthorVersion_Version_FeaturedImage_focalX_operator
+  focalY: AuthorVersion_Version_FeaturedImage_focalY_operator
+  id: AuthorVersion_Version_FeaturedImage_id_operator
+  AND: [AuthorVersion_Version_FeaturedImage_where_and]
+  OR: [AuthorVersion_Version_FeaturedImage_where_or]
+}
+
+input AuthorVersion_Version_FeaturedImage_where_or {
+  alt: AuthorVersion_Version_FeaturedImage_alt_operator
+  caption: AuthorVersion_Version_FeaturedImage_caption_operator
+  updatedAt: AuthorVersion_Version_FeaturedImage_updatedAt_operator
+  createdAt: AuthorVersion_Version_FeaturedImage_createdAt_operator
+  url: AuthorVersion_Version_FeaturedImage_url_operator
+  filename: AuthorVersion_Version_FeaturedImage_filename_operator
+  mimeType: AuthorVersion_Version_FeaturedImage_mimeType_operator
+  filesize: AuthorVersion_Version_FeaturedImage_filesize_operator
+  width: AuthorVersion_Version_FeaturedImage_width_operator
+  height: AuthorVersion_Version_FeaturedImage_height_operator
+  focalX: AuthorVersion_Version_FeaturedImage_focalX_operator
+  focalY: AuthorVersion_Version_FeaturedImage_focalY_operator
+  id: AuthorVersion_Version_FeaturedImage_id_operator
+  AND: [AuthorVersion_Version_FeaturedImage_where_and]
+  OR: [AuthorVersion_Version_FeaturedImage_where_or]
+}
+
+enum AuthorVersion_Version_role {
+  developer
+  product_manager
+  designer
+}
+
+enum AuthorVersion_Version__status {
+  draft
+  published
+}
+
+type versionsAuthors {
+  docs: [AuthorVersion]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input versionsAuthor_where {
+  parent: versionsAuthor_parent_operator
+  version__featuredImage: versionsAuthor_version__featuredImage_operator
+  version__name: versionsAuthor_version__name_operator
+  version__role: versionsAuthor_version__role_operator
+  version__bio: versionsAuthor_version__bio_operator
+  version__linkedIn: versionsAuthor_version__linkedIn_operator
+  version__x: versionsAuthor_version__x_operator
+  version__gitHub: versionsAuthor_version__gitHub_operator
+  version__medium: versionsAuthor_version__medium_operator
+  version__publishedAt: versionsAuthor_version__publishedAt_operator
+  version__slug: versionsAuthor_version__slug_operator
+  version__updatedAt: versionsAuthor_version__updatedAt_operator
+  version__createdAt: versionsAuthor_version__createdAt_operator
+  version___status: versionsAuthor_version___status_operator
+  createdAt: versionsAuthor_createdAt_operator
+  updatedAt: versionsAuthor_updatedAt_operator
+  latest: versionsAuthor_latest_operator
+  id: versionsAuthor_id_operator
+  AND: [versionsAuthor_where_and]
+  OR: [versionsAuthor_where_or]
+}
+
+input versionsAuthor_parent_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsAuthor_version__featuredImage_operator {
+  equals: String
+  not_equals: String
+}
+
+input versionsAuthor_version__name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsAuthor_version__role_operator {
+  equals: versionsAuthor_version__role_Input
+  not_equals: versionsAuthor_version__role_Input
+  in: [versionsAuthor_version__role_Input]
+  not_in: [versionsAuthor_version__role_Input]
+  all: [versionsAuthor_version__role_Input]
+}
+
+enum versionsAuthor_version__role_Input {
+  developer
+  product_manager
+  designer
+}
+
+input versionsAuthor_version__bio_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+}
+
+input versionsAuthor_version__linkedIn_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsAuthor_version__x_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsAuthor_version__gitHub_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsAuthor_version__medium_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsAuthor_version__publishedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsAuthor_version__slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsAuthor_version__updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsAuthor_version__createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsAuthor_version___status_operator {
+  equals: versionsAuthor_version___status_Input
+  not_equals: versionsAuthor_version___status_Input
+  in: [versionsAuthor_version___status_Input]
+  not_in: [versionsAuthor_version___status_Input]
+  all: [versionsAuthor_version___status_Input]
+  exists: Boolean
+}
+
+enum versionsAuthor_version___status_Input {
+  draft
+  published
+}
+
+input versionsAuthor_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsAuthor_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsAuthor_latest_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input versionsAuthor_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsAuthor_where_and {
+  parent: versionsAuthor_parent_operator
+  version__featuredImage: versionsAuthor_version__featuredImage_operator
+  version__name: versionsAuthor_version__name_operator
+  version__role: versionsAuthor_version__role_operator
+  version__bio: versionsAuthor_version__bio_operator
+  version__linkedIn: versionsAuthor_version__linkedIn_operator
+  version__x: versionsAuthor_version__x_operator
+  version__gitHub: versionsAuthor_version__gitHub_operator
+  version__medium: versionsAuthor_version__medium_operator
+  version__publishedAt: versionsAuthor_version__publishedAt_operator
+  version__slug: versionsAuthor_version__slug_operator
+  version__updatedAt: versionsAuthor_version__updatedAt_operator
+  version__createdAt: versionsAuthor_version__createdAt_operator
+  version___status: versionsAuthor_version___status_operator
+  createdAt: versionsAuthor_createdAt_operator
+  updatedAt: versionsAuthor_updatedAt_operator
+  latest: versionsAuthor_latest_operator
+  id: versionsAuthor_id_operator
+  AND: [versionsAuthor_where_and]
+  OR: [versionsAuthor_where_or]
+}
+
+input versionsAuthor_where_or {
+  parent: versionsAuthor_parent_operator
+  version__featuredImage: versionsAuthor_version__featuredImage_operator
+  version__name: versionsAuthor_version__name_operator
+  version__role: versionsAuthor_version__role_operator
+  version__bio: versionsAuthor_version__bio_operator
+  version__linkedIn: versionsAuthor_version__linkedIn_operator
+  version__x: versionsAuthor_version__x_operator
+  version__gitHub: versionsAuthor_version__gitHub_operator
+  version__medium: versionsAuthor_version__medium_operator
+  version__publishedAt: versionsAuthor_version__publishedAt_operator
+  version__slug: versionsAuthor_version__slug_operator
+  version__updatedAt: versionsAuthor_version__updatedAt_operator
+  version__createdAt: versionsAuthor_version__createdAt_operator
+  version___status: versionsAuthor_version___status_operator
+  createdAt: versionsAuthor_createdAt_operator
+  updatedAt: versionsAuthor_updatedAt_operator
+  latest: versionsAuthor_latest_operator
+  id: versionsAuthor_id_operator
+  AND: [versionsAuthor_where_and]
+  OR: [versionsAuthor_where_or]
 }
 
 type Comment {
@@ -10124,7 +10711,7 @@ type PodcastEpisode {
   episodeFile(where: PodcastEpisode_EpisodeFile_where): Media
   spotify: String
   apple: String
-  contributors: [Contributor!]
+  authors(draft: Boolean): [Author!]
   categories: [Category!]
   relatedEpisodes(draft: Boolean): [PodcastEpisode!]
   publishedAt: DateTime
@@ -10537,7 +11124,7 @@ input PodcastEpisode_where {
   episodeFile: PodcastEpisode_episodeFile_operator
   spotify: PodcastEpisode_spotify_operator
   apple: PodcastEpisode_apple_operator
-  contributors: PodcastEpisode_contributors_operator
+  authors: PodcastEpisode_authors_operator
   categories: PodcastEpisode_categories_operator
   relatedEpisodes: PodcastEpisode_relatedEpisodes_operator
   publishedAt: PodcastEpisode_publishedAt_operator
@@ -10606,7 +11193,7 @@ input PodcastEpisode_apple_operator {
   exists: Boolean
 }
 
-input PodcastEpisode_contributors_operator {
+input PodcastEpisode_authors_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -10710,7 +11297,7 @@ input PodcastEpisode_where_and {
   episodeFile: PodcastEpisode_episodeFile_operator
   spotify: PodcastEpisode_spotify_operator
   apple: PodcastEpisode_apple_operator
-  contributors: PodcastEpisode_contributors_operator
+  authors: PodcastEpisode_authors_operator
   categories: PodcastEpisode_categories_operator
   relatedEpisodes: PodcastEpisode_relatedEpisodes_operator
   publishedAt: PodcastEpisode_publishedAt_operator
@@ -10731,7 +11318,7 @@ input PodcastEpisode_where_or {
   episodeFile: PodcastEpisode_episodeFile_operator
   spotify: PodcastEpisode_spotify_operator
   apple: PodcastEpisode_apple_operator
-  contributors: PodcastEpisode_contributors_operator
+  authors: PodcastEpisode_authors_operator
   categories: PodcastEpisode_categories_operator
   relatedEpisodes: PodcastEpisode_relatedEpisodes_operator
   publishedAt: PodcastEpisode_publishedAt_operator
@@ -10765,7 +11352,7 @@ type PodcastEpisodesDocAccessFields {
   episodeFile: PodcastEpisodesDocAccessFields_episodeFile
   spotify: PodcastEpisodesDocAccessFields_spotify
   apple: PodcastEpisodesDocAccessFields_apple
-  contributors: PodcastEpisodesDocAccessFields_contributors
+  authors: PodcastEpisodesDocAccessFields_authors
   categories: PodcastEpisodesDocAccessFields_categories
   relatedEpisodes: PodcastEpisodesDocAccessFields_relatedEpisodes
   publishedAt: PodcastEpisodesDocAccessFields_publishedAt
@@ -10936,26 +11523,26 @@ type PodcastEpisodesDocAccessFields_apple_Delete {
   permission: Boolean!
 }
 
-type PodcastEpisodesDocAccessFields_contributors {
-  create: PodcastEpisodesDocAccessFields_contributors_Create
-  read: PodcastEpisodesDocAccessFields_contributors_Read
-  update: PodcastEpisodesDocAccessFields_contributors_Update
-  delete: PodcastEpisodesDocAccessFields_contributors_Delete
+type PodcastEpisodesDocAccessFields_authors {
+  create: PodcastEpisodesDocAccessFields_authors_Create
+  read: PodcastEpisodesDocAccessFields_authors_Read
+  update: PodcastEpisodesDocAccessFields_authors_Update
+  delete: PodcastEpisodesDocAccessFields_authors_Delete
 }
 
-type PodcastEpisodesDocAccessFields_contributors_Create {
+type PodcastEpisodesDocAccessFields_authors_Create {
   permission: Boolean!
 }
 
-type PodcastEpisodesDocAccessFields_contributors_Read {
+type PodcastEpisodesDocAccessFields_authors_Read {
   permission: Boolean!
 }
 
-type PodcastEpisodesDocAccessFields_contributors_Update {
+type PodcastEpisodesDocAccessFields_authors_Update {
   permission: Boolean!
 }
 
-type PodcastEpisodesDocAccessFields_contributors_Delete {
+type PodcastEpisodesDocAccessFields_authors_Delete {
   permission: Boolean!
 }
 
@@ -11162,7 +11749,7 @@ type PodcastEpisodeVersion_Version {
   episodeFile(where: PodcastEpisodeVersion_Version_EpisodeFile_where): Media
   spotify: String
   apple: String
-  contributors: [Contributor!]
+  authors(draft: Boolean): [Author!]
   categories: [Category!]
   relatedEpisodes(draft: Boolean): [PodcastEpisode!]
   publishedAt: DateTime
@@ -11576,7 +12163,7 @@ input versionsPodcastEpisode_where {
   version__episodeFile: versionsPodcastEpisode_version__episodeFile_operator
   version__spotify: versionsPodcastEpisode_version__spotify_operator
   version__apple: versionsPodcastEpisode_version__apple_operator
-  version__contributors: versionsPodcastEpisode_version__contributors_operator
+  version__authors: versionsPodcastEpisode_version__authors_operator
   version__categories: versionsPodcastEpisode_version__categories_operator
   version__relatedEpisodes: versionsPodcastEpisode_version__relatedEpisodes_operator
   version__publishedAt: versionsPodcastEpisode_version__publishedAt_operator
@@ -11657,7 +12244,7 @@ input versionsPodcastEpisode_version__apple_operator {
   exists: Boolean
 }
 
-input versionsPodcastEpisode_version__contributors_operator {
+input versionsPodcastEpisode_version__authors_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -11790,7 +12377,7 @@ input versionsPodcastEpisode_where_and {
   version__episodeFile: versionsPodcastEpisode_version__episodeFile_operator
   version__spotify: versionsPodcastEpisode_version__spotify_operator
   version__apple: versionsPodcastEpisode_version__apple_operator
-  version__contributors: versionsPodcastEpisode_version__contributors_operator
+  version__authors: versionsPodcastEpisode_version__authors_operator
   version__categories: versionsPodcastEpisode_version__categories_operator
   version__relatedEpisodes: versionsPodcastEpisode_version__relatedEpisodes_operator
   version__publishedAt: versionsPodcastEpisode_version__publishedAt_operator
@@ -11815,7 +12402,7 @@ input versionsPodcastEpisode_where_or {
   version__episodeFile: versionsPodcastEpisode_version__episodeFile_operator
   version__spotify: versionsPodcastEpisode_version__spotify_operator
   version__apple: versionsPodcastEpisode_version__apple_operator
-  version__contributors: versionsPodcastEpisode_version__contributors_operator
+  version__authors: versionsPodcastEpisode_version__authors_operator
   version__categories: versionsPodcastEpisode_version__categories_operator
   version__relatedEpisodes: versionsPodcastEpisode_version__relatedEpisodes_operator
   version__publishedAt: versionsPodcastEpisode_version__publishedAt_operator
@@ -11837,7 +12424,7 @@ type Blogpost {
   summary: String
   content(depth: Int): JSON
   featuredImage(where: Blogpost_FeaturedImage_where): Media
-  contributors: [Contributor!]
+  authors(draft: Boolean): [Author!]
   categories: [Category!]
   relatedPosts(draft: Boolean): [Blogpost!]
   publishedAt: DateTime
@@ -12059,7 +12646,7 @@ input Blogpost_where {
   summary: Blogpost_summary_operator
   content: Blogpost_content_operator
   featuredImage: Blogpost_featuredImage_operator
-  contributors: Blogpost_contributors_operator
+  authors: Blogpost_authors_operator
   categories: Blogpost_categories_operator
   relatedPosts: Blogpost_relatedPosts_operator
   publishedAt: Blogpost_publishedAt_operator
@@ -12101,7 +12688,7 @@ input Blogpost_featuredImage_operator {
   not_equals: String
 }
 
-input Blogpost_contributors_operator {
+input Blogpost_authors_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -12202,7 +12789,7 @@ input Blogpost_where_and {
   summary: Blogpost_summary_operator
   content: Blogpost_content_operator
   featuredImage: Blogpost_featuredImage_operator
-  contributors: Blogpost_contributors_operator
+  authors: Blogpost_authors_operator
   categories: Blogpost_categories_operator
   relatedPosts: Blogpost_relatedPosts_operator
   publishedAt: Blogpost_publishedAt_operator
@@ -12220,7 +12807,7 @@ input Blogpost_where_or {
   summary: Blogpost_summary_operator
   content: Blogpost_content_operator
   featuredImage: Blogpost_featuredImage_operator
-  contributors: Blogpost_contributors_operator
+  authors: Blogpost_authors_operator
   categories: Blogpost_categories_operator
   relatedPosts: Blogpost_relatedPosts_operator
   publishedAt: Blogpost_publishedAt_operator
@@ -12251,7 +12838,7 @@ type BlogpostsDocAccessFields {
   summary: BlogpostsDocAccessFields_summary
   content: BlogpostsDocAccessFields_content
   featuredImage: BlogpostsDocAccessFields_featuredImage
-  contributors: BlogpostsDocAccessFields_contributors
+  authors: BlogpostsDocAccessFields_authors
   categories: BlogpostsDocAccessFields_categories
   relatedPosts: BlogpostsDocAccessFields_relatedPosts
   publishedAt: BlogpostsDocAccessFields_publishedAt
@@ -12353,26 +12940,26 @@ type BlogpostsDocAccessFields_featuredImage_Delete {
   permission: Boolean!
 }
 
-type BlogpostsDocAccessFields_contributors {
-  create: BlogpostsDocAccessFields_contributors_Create
-  read: BlogpostsDocAccessFields_contributors_Read
-  update: BlogpostsDocAccessFields_contributors_Update
-  delete: BlogpostsDocAccessFields_contributors_Delete
+type BlogpostsDocAccessFields_authors {
+  create: BlogpostsDocAccessFields_authors_Create
+  read: BlogpostsDocAccessFields_authors_Read
+  update: BlogpostsDocAccessFields_authors_Update
+  delete: BlogpostsDocAccessFields_authors_Delete
 }
 
-type BlogpostsDocAccessFields_contributors_Create {
+type BlogpostsDocAccessFields_authors_Create {
   permission: Boolean!
 }
 
-type BlogpostsDocAccessFields_contributors_Read {
+type BlogpostsDocAccessFields_authors_Read {
   permission: Boolean!
 }
 
-type BlogpostsDocAccessFields_contributors_Update {
+type BlogpostsDocAccessFields_authors_Update {
   permission: Boolean!
 }
 
-type BlogpostsDocAccessFields_contributors_Delete {
+type BlogpostsDocAccessFields_authors_Delete {
   permission: Boolean!
 }
 
@@ -12576,7 +13163,7 @@ type BlogpostVersion_Version {
   summary: String
   content(depth: Int): JSON
   featuredImage(where: BlogpostVersion_Version_FeaturedImage_where): Media
-  contributors: [Contributor!]
+  authors(draft: Boolean): [Author!]
   categories: [Category!]
   relatedPosts(draft: Boolean): [Blogpost!]
   publishedAt: DateTime
@@ -12799,7 +13386,7 @@ input versionsBlogpost_where {
   version__summary: versionsBlogpost_version__summary_operator
   version__content: versionsBlogpost_version__content_operator
   version__featuredImage: versionsBlogpost_version__featuredImage_operator
-  version__contributors: versionsBlogpost_version__contributors_operator
+  version__authors: versionsBlogpost_version__authors_operator
   version__categories: versionsBlogpost_version__categories_operator
   version__relatedPosts: versionsBlogpost_version__relatedPosts_operator
   version__publishedAt: versionsBlogpost_version__publishedAt_operator
@@ -12853,7 +13440,7 @@ input versionsBlogpost_version__featuredImage_operator {
   not_equals: String
 }
 
-input versionsBlogpost_version__contributors_operator {
+input versionsBlogpost_version__authors_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -12983,7 +13570,7 @@ input versionsBlogpost_where_and {
   version__summary: versionsBlogpost_version__summary_operator
   version__content: versionsBlogpost_version__content_operator
   version__featuredImage: versionsBlogpost_version__featuredImage_operator
-  version__contributors: versionsBlogpost_version__contributors_operator
+  version__authors: versionsBlogpost_version__authors_operator
   version__categories: versionsBlogpost_version__categories_operator
   version__relatedPosts: versionsBlogpost_version__relatedPosts_operator
   version__publishedAt: versionsBlogpost_version__publishedAt_operator
@@ -13005,7 +13592,7 @@ input versionsBlogpost_where_or {
   version__summary: versionsBlogpost_version__summary_operator
   version__content: versionsBlogpost_version__content_operator
   version__featuredImage: versionsBlogpost_version__featuredImage_operator
-  version__contributors: versionsBlogpost_version__contributors_operator
+  version__authors: versionsBlogpost_version__authors_operator
   version__categories: versionsBlogpost_version__categories_operator
   version__relatedPosts: versionsBlogpost_version__relatedPosts_operator
   version__publishedAt: versionsBlogpost_version__publishedAt_operator
@@ -13027,6 +13614,7 @@ type TalksAndRoundtable {
   about: String
   categories: [Category!]
   url: String
+  authors(draft: Boolean): [Author!]
   publishedAt: DateTime
   slug: String
   updatedAt: DateTime
@@ -13058,6 +13646,7 @@ input TalksAndRoundtable_where {
   about: TalksAndRoundtable_about_operator
   categories: TalksAndRoundtable_categories_operator
   url: TalksAndRoundtable_url_operator
+  authors: TalksAndRoundtable_authors_operator
   publishedAt: TalksAndRoundtable_publishedAt_operator
   slug: TalksAndRoundtable_slug_operator
   updatedAt: TalksAndRoundtable_updatedAt_operator
@@ -13102,6 +13691,15 @@ input TalksAndRoundtable_url_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
+}
+
+input TalksAndRoundtable_authors_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
   exists: Boolean
 }
 
@@ -13179,6 +13777,7 @@ input TalksAndRoundtable_where_and {
   about: TalksAndRoundtable_about_operator
   categories: TalksAndRoundtable_categories_operator
   url: TalksAndRoundtable_url_operator
+  authors: TalksAndRoundtable_authors_operator
   publishedAt: TalksAndRoundtable_publishedAt_operator
   slug: TalksAndRoundtable_slug_operator
   updatedAt: TalksAndRoundtable_updatedAt_operator
@@ -13194,6 +13793,7 @@ input TalksAndRoundtable_where_or {
   about: TalksAndRoundtable_about_operator
   categories: TalksAndRoundtable_categories_operator
   url: TalksAndRoundtable_url_operator
+  authors: TalksAndRoundtable_authors_operator
   publishedAt: TalksAndRoundtable_publishedAt_operator
   slug: TalksAndRoundtable_slug_operator
   updatedAt: TalksAndRoundtable_updatedAt_operator
@@ -13222,6 +13822,7 @@ type TalksAndRoundtablesDocAccessFields {
   about: TalksAndRoundtablesDocAccessFields_about
   categories: TalksAndRoundtablesDocAccessFields_categories
   url: TalksAndRoundtablesDocAccessFields_url
+  authors: TalksAndRoundtablesDocAccessFields_authors
   publishedAt: TalksAndRoundtablesDocAccessFields_publishedAt
   slug: TalksAndRoundtablesDocAccessFields_slug
   updatedAt: TalksAndRoundtablesDocAccessFields_updatedAt
@@ -13318,6 +13919,29 @@ type TalksAndRoundtablesDocAccessFields_url_Update {
 }
 
 type TalksAndRoundtablesDocAccessFields_url_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_authors {
+  create: TalksAndRoundtablesDocAccessFields_authors_Create
+  read: TalksAndRoundtablesDocAccessFields_authors_Read
+  update: TalksAndRoundtablesDocAccessFields_authors_Update
+  delete: TalksAndRoundtablesDocAccessFields_authors_Delete
+}
+
+type TalksAndRoundtablesDocAccessFields_authors_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_authors_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_authors_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesDocAccessFields_authors_Delete {
   permission: Boolean!
 }
 
@@ -13475,6 +14099,7 @@ type TalksAndRoundtableVersion_Version {
   about: String
   categories: [Category!]
   url: String
+  authors(draft: Boolean): [Author!]
   publishedAt: DateTime
   slug: String
   updatedAt: DateTime
@@ -13507,6 +14132,7 @@ input versionsTalksAndRoundtable_where {
   version__about: versionsTalksAndRoundtable_version__about_operator
   version__categories: versionsTalksAndRoundtable_version__categories_operator
   version__url: versionsTalksAndRoundtable_version__url_operator
+  version__authors: versionsTalksAndRoundtable_version__authors_operator
   version__publishedAt: versionsTalksAndRoundtable_version__publishedAt_operator
   version__slug: versionsTalksAndRoundtable_version__slug_operator
   version__updatedAt: versionsTalksAndRoundtable_version__updatedAt_operator
@@ -13563,6 +14189,15 @@ input versionsTalksAndRoundtable_version__url_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
+}
+
+input versionsTalksAndRoundtable_version__authors_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
   exists: Boolean
 }
 
@@ -13669,6 +14304,7 @@ input versionsTalksAndRoundtable_where_and {
   version__about: versionsTalksAndRoundtable_version__about_operator
   version__categories: versionsTalksAndRoundtable_version__categories_operator
   version__url: versionsTalksAndRoundtable_version__url_operator
+  version__authors: versionsTalksAndRoundtable_version__authors_operator
   version__publishedAt: versionsTalksAndRoundtable_version__publishedAt_operator
   version__slug: versionsTalksAndRoundtable_version__slug_operator
   version__updatedAt: versionsTalksAndRoundtable_version__updatedAt_operator
@@ -13688,6 +14324,7 @@ input versionsTalksAndRoundtable_where_or {
   version__about: versionsTalksAndRoundtable_version__about_operator
   version__categories: versionsTalksAndRoundtable_version__categories_operator
   version__url: versionsTalksAndRoundtable_version__url_operator
+  version__authors: versionsTalksAndRoundtable_version__authors_operator
   version__publishedAt: versionsTalksAndRoundtable_version__publishedAt_operator
   version__slug: versionsTalksAndRoundtable_version__slug_operator
   version__updatedAt: versionsTalksAndRoundtable_version__updatedAt_operator
@@ -13705,6 +14342,7 @@ type CaseStudy {
   id: String
   title: String
   summary: String
+  authors(draft: Boolean): [Author!]
   categories: [Category!]
   slug: String
   updatedAt: DateTime
@@ -13734,6 +14372,7 @@ type CaseStudies {
 input CaseStudy_where {
   title: CaseStudy_title_operator
   summary: CaseStudy_summary_operator
+  authors: CaseStudy_authors_operator
   categories: CaseStudy_categories_operator
   slug: CaseStudy_slug_operator
   updatedAt: CaseStudy_updatedAt_operator
@@ -13760,6 +14399,15 @@ input CaseStudy_summary_operator {
   not_equals: String
   like: String
   contains: String
+  exists: Boolean
+}
+
+input CaseStudy_authors_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
   exists: Boolean
 }
 
@@ -13833,6 +14481,7 @@ input CaseStudy_id_operator {
 input CaseStudy_where_and {
   title: CaseStudy_title_operator
   summary: CaseStudy_summary_operator
+  authors: CaseStudy_authors_operator
   categories: CaseStudy_categories_operator
   slug: CaseStudy_slug_operator
   updatedAt: CaseStudy_updatedAt_operator
@@ -13846,6 +14495,7 @@ input CaseStudy_where_and {
 input CaseStudy_where_or {
   title: CaseStudy_title_operator
   summary: CaseStudy_summary_operator
+  authors: CaseStudy_authors_operator
   categories: CaseStudy_categories_operator
   slug: CaseStudy_slug_operator
   updatedAt: CaseStudy_updatedAt_operator
@@ -13872,6 +14522,7 @@ type case_studiesDocAccess {
 type CaseStudiesDocAccessFields {
   title: CaseStudiesDocAccessFields_title
   summary: CaseStudiesDocAccessFields_summary
+  authors: CaseStudiesDocAccessFields_authors
   categories: CaseStudiesDocAccessFields_categories
   slug: CaseStudiesDocAccessFields_slug
   updatedAt: CaseStudiesDocAccessFields_updatedAt
@@ -13922,6 +14573,29 @@ type CaseStudiesDocAccessFields_summary_Update {
 }
 
 type CaseStudiesDocAccessFields_summary_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_authors {
+  create: CaseStudiesDocAccessFields_authors_Create
+  read: CaseStudiesDocAccessFields_authors_Read
+  update: CaseStudiesDocAccessFields_authors_Update
+  delete: CaseStudiesDocAccessFields_authors_Delete
+}
+
+type CaseStudiesDocAccessFields_authors_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_authors_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_authors_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesDocAccessFields_authors_Delete {
   permission: Boolean!
 }
 
@@ -14077,6 +14751,7 @@ type CaseStudyVersion {
 type CaseStudyVersion_Version {
   title: String
   summary: String
+  authors(draft: Boolean): [Author!]
   categories: [Category!]
   slug: String
   updatedAt: DateTime
@@ -14107,6 +14782,7 @@ input versionsCaseStudy_where {
   parent: versionsCaseStudy_parent_operator
   version__title: versionsCaseStudy_version__title_operator
   version__summary: versionsCaseStudy_version__summary_operator
+  version__authors: versionsCaseStudy_version__authors_operator
   version__categories: versionsCaseStudy_version__categories_operator
   version__slug: versionsCaseStudy_version__slug_operator
   version__updatedAt: versionsCaseStudy_version__updatedAt_operator
@@ -14145,6 +14821,15 @@ input versionsCaseStudy_version__summary_operator {
   not_equals: String
   like: String
   contains: String
+  exists: Boolean
+}
+
+input versionsCaseStudy_version__authors_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
   exists: Boolean
 }
 
@@ -14247,6 +14932,7 @@ input versionsCaseStudy_where_and {
   parent: versionsCaseStudy_parent_operator
   version__title: versionsCaseStudy_version__title_operator
   version__summary: versionsCaseStudy_version__summary_operator
+  version__authors: versionsCaseStudy_version__authors_operator
   version__categories: versionsCaseStudy_version__categories_operator
   version__slug: versionsCaseStudy_version__slug_operator
   version__updatedAt: versionsCaseStudy_version__updatedAt_operator
@@ -14264,6 +14950,7 @@ input versionsCaseStudy_where_or {
   parent: versionsCaseStudy_parent_operator
   version__title: versionsCaseStudy_version__title_operator
   version__summary: versionsCaseStudy_version__summary_operator
+  version__authors: versionsCaseStudy_version__authors_operator
   version__categories: versionsCaseStudy_version__categories_operator
   version__slug: versionsCaseStudy_version__slug_operator
   version__updatedAt: versionsCaseStudy_version__updatedAt_operator
@@ -15685,7 +16372,7 @@ type Access {
   media: mediaAccess
   categories: categoriesAccess
   users: usersAccess
-  contributors: contributorsAccess
+  authors: authorsAccess
   comments: commentsAccess
   podcast_episodes: podcast_episodesAccess
   blogposts: blogpostsAccess
@@ -18580,297 +19267,351 @@ type UsersUnlockAccess {
   where: JSONObject
 }
 
-type contributorsAccess {
-  fields: ContributorsFields
-  create: ContributorsCreateAccess
-  read: ContributorsReadAccess
-  update: ContributorsUpdateAccess
-  delete: ContributorsDeleteAccess
+type authorsAccess {
+  fields: AuthorsFields
+  create: AuthorsCreateAccess
+  read: AuthorsReadAccess
+  update: AuthorsUpdateAccess
+  delete: AuthorsDeleteAccess
+  readVersions: AuthorsReadVersionsAccess
 }
 
-type ContributorsFields {
-  featuredImage: ContributorsFields_featuredImage
-  name: ContributorsFields_name
-  role: ContributorsFields_role
-  bio: ContributorsFields_bio
-  linkedIn: ContributorsFields_linkedIn
-  x: ContributorsFields_x
-  gitHub: ContributorsFields_gitHub
-  medium: ContributorsFields_medium
-  slug: ContributorsFields_slug
-  updatedAt: ContributorsFields_updatedAt
-  createdAt: ContributorsFields_createdAt
+type AuthorsFields {
+  featuredImage: AuthorsFields_featuredImage
+  name: AuthorsFields_name
+  role: AuthorsFields_role
+  bio: AuthorsFields_bio
+  linkedIn: AuthorsFields_linkedIn
+  x: AuthorsFields_x
+  gitHub: AuthorsFields_gitHub
+  medium: AuthorsFields_medium
+  publishedAt: AuthorsFields_publishedAt
+  slug: AuthorsFields_slug
+  updatedAt: AuthorsFields_updatedAt
+  createdAt: AuthorsFields_createdAt
+  _status: AuthorsFields__status
 }
 
-type ContributorsFields_featuredImage {
-  create: ContributorsFields_featuredImage_Create
-  read: ContributorsFields_featuredImage_Read
-  update: ContributorsFields_featuredImage_Update
-  delete: ContributorsFields_featuredImage_Delete
+type AuthorsFields_featuredImage {
+  create: AuthorsFields_featuredImage_Create
+  read: AuthorsFields_featuredImage_Read
+  update: AuthorsFields_featuredImage_Update
+  delete: AuthorsFields_featuredImage_Delete
 }
 
-type ContributorsFields_featuredImage_Create {
+type AuthorsFields_featuredImage_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_featuredImage_Read {
+type AuthorsFields_featuredImage_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_featuredImage_Update {
+type AuthorsFields_featuredImage_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_featuredImage_Delete {
+type AuthorsFields_featuredImage_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_name {
-  create: ContributorsFields_name_Create
-  read: ContributorsFields_name_Read
-  update: ContributorsFields_name_Update
-  delete: ContributorsFields_name_Delete
+type AuthorsFields_name {
+  create: AuthorsFields_name_Create
+  read: AuthorsFields_name_Read
+  update: AuthorsFields_name_Update
+  delete: AuthorsFields_name_Delete
 }
 
-type ContributorsFields_name_Create {
+type AuthorsFields_name_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_name_Read {
+type AuthorsFields_name_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_name_Update {
+type AuthorsFields_name_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_name_Delete {
+type AuthorsFields_name_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_role {
-  create: ContributorsFields_role_Create
-  read: ContributorsFields_role_Read
-  update: ContributorsFields_role_Update
-  delete: ContributorsFields_role_Delete
+type AuthorsFields_role {
+  create: AuthorsFields_role_Create
+  read: AuthorsFields_role_Read
+  update: AuthorsFields_role_Update
+  delete: AuthorsFields_role_Delete
 }
 
-type ContributorsFields_role_Create {
+type AuthorsFields_role_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_role_Read {
+type AuthorsFields_role_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_role_Update {
+type AuthorsFields_role_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_role_Delete {
+type AuthorsFields_role_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_bio {
-  create: ContributorsFields_bio_Create
-  read: ContributorsFields_bio_Read
-  update: ContributorsFields_bio_Update
-  delete: ContributorsFields_bio_Delete
+type AuthorsFields_bio {
+  create: AuthorsFields_bio_Create
+  read: AuthorsFields_bio_Read
+  update: AuthorsFields_bio_Update
+  delete: AuthorsFields_bio_Delete
 }
 
-type ContributorsFields_bio_Create {
+type AuthorsFields_bio_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_bio_Read {
+type AuthorsFields_bio_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_bio_Update {
+type AuthorsFields_bio_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_bio_Delete {
+type AuthorsFields_bio_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_linkedIn {
-  create: ContributorsFields_linkedIn_Create
-  read: ContributorsFields_linkedIn_Read
-  update: ContributorsFields_linkedIn_Update
-  delete: ContributorsFields_linkedIn_Delete
+type AuthorsFields_linkedIn {
+  create: AuthorsFields_linkedIn_Create
+  read: AuthorsFields_linkedIn_Read
+  update: AuthorsFields_linkedIn_Update
+  delete: AuthorsFields_linkedIn_Delete
 }
 
-type ContributorsFields_linkedIn_Create {
+type AuthorsFields_linkedIn_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_linkedIn_Read {
+type AuthorsFields_linkedIn_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_linkedIn_Update {
+type AuthorsFields_linkedIn_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_linkedIn_Delete {
+type AuthorsFields_linkedIn_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_x {
-  create: ContributorsFields_x_Create
-  read: ContributorsFields_x_Read
-  update: ContributorsFields_x_Update
-  delete: ContributorsFields_x_Delete
+type AuthorsFields_x {
+  create: AuthorsFields_x_Create
+  read: AuthorsFields_x_Read
+  update: AuthorsFields_x_Update
+  delete: AuthorsFields_x_Delete
 }
 
-type ContributorsFields_x_Create {
+type AuthorsFields_x_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_x_Read {
+type AuthorsFields_x_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_x_Update {
+type AuthorsFields_x_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_x_Delete {
+type AuthorsFields_x_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_gitHub {
-  create: ContributorsFields_gitHub_Create
-  read: ContributorsFields_gitHub_Read
-  update: ContributorsFields_gitHub_Update
-  delete: ContributorsFields_gitHub_Delete
+type AuthorsFields_gitHub {
+  create: AuthorsFields_gitHub_Create
+  read: AuthorsFields_gitHub_Read
+  update: AuthorsFields_gitHub_Update
+  delete: AuthorsFields_gitHub_Delete
 }
 
-type ContributorsFields_gitHub_Create {
+type AuthorsFields_gitHub_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_gitHub_Read {
+type AuthorsFields_gitHub_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_gitHub_Update {
+type AuthorsFields_gitHub_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_gitHub_Delete {
+type AuthorsFields_gitHub_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_medium {
-  create: ContributorsFields_medium_Create
-  read: ContributorsFields_medium_Read
-  update: ContributorsFields_medium_Update
-  delete: ContributorsFields_medium_Delete
+type AuthorsFields_medium {
+  create: AuthorsFields_medium_Create
+  read: AuthorsFields_medium_Read
+  update: AuthorsFields_medium_Update
+  delete: AuthorsFields_medium_Delete
 }
 
-type ContributorsFields_medium_Create {
+type AuthorsFields_medium_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_medium_Read {
+type AuthorsFields_medium_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_medium_Update {
+type AuthorsFields_medium_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_medium_Delete {
+type AuthorsFields_medium_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_slug {
-  create: ContributorsFields_slug_Create
-  read: ContributorsFields_slug_Read
-  update: ContributorsFields_slug_Update
-  delete: ContributorsFields_slug_Delete
+type AuthorsFields_publishedAt {
+  create: AuthorsFields_publishedAt_Create
+  read: AuthorsFields_publishedAt_Read
+  update: AuthorsFields_publishedAt_Update
+  delete: AuthorsFields_publishedAt_Delete
 }
 
-type ContributorsFields_slug_Create {
+type AuthorsFields_publishedAt_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_slug_Read {
+type AuthorsFields_publishedAt_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_slug_Update {
+type AuthorsFields_publishedAt_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_slug_Delete {
+type AuthorsFields_publishedAt_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_updatedAt {
-  create: ContributorsFields_updatedAt_Create
-  read: ContributorsFields_updatedAt_Read
-  update: ContributorsFields_updatedAt_Update
-  delete: ContributorsFields_updatedAt_Delete
+type AuthorsFields_slug {
+  create: AuthorsFields_slug_Create
+  read: AuthorsFields_slug_Read
+  update: AuthorsFields_slug_Update
+  delete: AuthorsFields_slug_Delete
 }
 
-type ContributorsFields_updatedAt_Create {
+type AuthorsFields_slug_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_updatedAt_Read {
+type AuthorsFields_slug_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_updatedAt_Update {
+type AuthorsFields_slug_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_updatedAt_Delete {
+type AuthorsFields_slug_Delete {
   permission: Boolean!
 }
 
-type ContributorsFields_createdAt {
-  create: ContributorsFields_createdAt_Create
-  read: ContributorsFields_createdAt_Read
-  update: ContributorsFields_createdAt_Update
-  delete: ContributorsFields_createdAt_Delete
+type AuthorsFields_updatedAt {
+  create: AuthorsFields_updatedAt_Create
+  read: AuthorsFields_updatedAt_Read
+  update: AuthorsFields_updatedAt_Update
+  delete: AuthorsFields_updatedAt_Delete
 }
 
-type ContributorsFields_createdAt_Create {
+type AuthorsFields_updatedAt_Create {
   permission: Boolean!
 }
 
-type ContributorsFields_createdAt_Read {
+type AuthorsFields_updatedAt_Read {
   permission: Boolean!
 }
 
-type ContributorsFields_createdAt_Update {
+type AuthorsFields_updatedAt_Update {
   permission: Boolean!
 }
 
-type ContributorsFields_createdAt_Delete {
+type AuthorsFields_updatedAt_Delete {
   permission: Boolean!
 }
 
-type ContributorsCreateAccess {
+type AuthorsFields_createdAt {
+  create: AuthorsFields_createdAt_Create
+  read: AuthorsFields_createdAt_Read
+  update: AuthorsFields_createdAt_Update
+  delete: AuthorsFields_createdAt_Delete
+}
+
+type AuthorsFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type AuthorsFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type AuthorsFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type AuthorsFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type AuthorsFields__status {
+  create: AuthorsFields__status_Create
+  read: AuthorsFields__status_Read
+  update: AuthorsFields__status_Update
+  delete: AuthorsFields__status_Delete
+}
+
+type AuthorsFields__status_Create {
+  permission: Boolean!
+}
+
+type AuthorsFields__status_Read {
+  permission: Boolean!
+}
+
+type AuthorsFields__status_Update {
+  permission: Boolean!
+}
+
+type AuthorsFields__status_Delete {
+  permission: Boolean!
+}
+
+type AuthorsCreateAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type ContributorsReadAccess {
+type AuthorsReadAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type ContributorsUpdateAccess {
+type AuthorsUpdateAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type ContributorsDeleteAccess {
+type AuthorsDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type AuthorsReadVersionsAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -19149,7 +19890,7 @@ type PodcastEpisodesFields {
   episodeFile: PodcastEpisodesFields_episodeFile
   spotify: PodcastEpisodesFields_spotify
   apple: PodcastEpisodesFields_apple
-  contributors: PodcastEpisodesFields_contributors
+  authors: PodcastEpisodesFields_authors
   categories: PodcastEpisodesFields_categories
   relatedEpisodes: PodcastEpisodesFields_relatedEpisodes
   publishedAt: PodcastEpisodesFields_publishedAt
@@ -19320,26 +20061,26 @@ type PodcastEpisodesFields_apple_Delete {
   permission: Boolean!
 }
 
-type PodcastEpisodesFields_contributors {
-  create: PodcastEpisodesFields_contributors_Create
-  read: PodcastEpisodesFields_contributors_Read
-  update: PodcastEpisodesFields_contributors_Update
-  delete: PodcastEpisodesFields_contributors_Delete
+type PodcastEpisodesFields_authors {
+  create: PodcastEpisodesFields_authors_Create
+  read: PodcastEpisodesFields_authors_Read
+  update: PodcastEpisodesFields_authors_Update
+  delete: PodcastEpisodesFields_authors_Delete
 }
 
-type PodcastEpisodesFields_contributors_Create {
+type PodcastEpisodesFields_authors_Create {
   permission: Boolean!
 }
 
-type PodcastEpisodesFields_contributors_Read {
+type PodcastEpisodesFields_authors_Read {
   permission: Boolean!
 }
 
-type PodcastEpisodesFields_contributors_Update {
+type PodcastEpisodesFields_authors_Update {
   permission: Boolean!
 }
 
-type PodcastEpisodesFields_contributors_Delete {
+type PodcastEpisodesFields_authors_Delete {
   permission: Boolean!
 }
 
@@ -19543,7 +20284,7 @@ type BlogpostsFields {
   summary: BlogpostsFields_summary
   content: BlogpostsFields_content
   featuredImage: BlogpostsFields_featuredImage
-  contributors: BlogpostsFields_contributors
+  authors: BlogpostsFields_authors
   categories: BlogpostsFields_categories
   relatedPosts: BlogpostsFields_relatedPosts
   publishedAt: BlogpostsFields_publishedAt
@@ -19645,26 +20386,26 @@ type BlogpostsFields_featuredImage_Delete {
   permission: Boolean!
 }
 
-type BlogpostsFields_contributors {
-  create: BlogpostsFields_contributors_Create
-  read: BlogpostsFields_contributors_Read
-  update: BlogpostsFields_contributors_Update
-  delete: BlogpostsFields_contributors_Delete
+type BlogpostsFields_authors {
+  create: BlogpostsFields_authors_Create
+  read: BlogpostsFields_authors_Read
+  update: BlogpostsFields_authors_Update
+  delete: BlogpostsFields_authors_Delete
 }
 
-type BlogpostsFields_contributors_Create {
+type BlogpostsFields_authors_Create {
   permission: Boolean!
 }
 
-type BlogpostsFields_contributors_Read {
+type BlogpostsFields_authors_Read {
   permission: Boolean!
 }
 
-type BlogpostsFields_contributors_Update {
+type BlogpostsFields_authors_Update {
   permission: Boolean!
 }
 
-type BlogpostsFields_contributors_Delete {
+type BlogpostsFields_authors_Delete {
   permission: Boolean!
 }
 
@@ -19868,6 +20609,7 @@ type TalksAndRoundtablesFields {
   about: TalksAndRoundtablesFields_about
   categories: TalksAndRoundtablesFields_categories
   url: TalksAndRoundtablesFields_url
+  authors: TalksAndRoundtablesFields_authors
   publishedAt: TalksAndRoundtablesFields_publishedAt
   slug: TalksAndRoundtablesFields_slug
   updatedAt: TalksAndRoundtablesFields_updatedAt
@@ -19964,6 +20706,29 @@ type TalksAndRoundtablesFields_url_Update {
 }
 
 type TalksAndRoundtablesFields_url_Delete {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_authors {
+  create: TalksAndRoundtablesFields_authors_Create
+  read: TalksAndRoundtablesFields_authors_Read
+  update: TalksAndRoundtablesFields_authors_Update
+  delete: TalksAndRoundtablesFields_authors_Delete
+}
+
+type TalksAndRoundtablesFields_authors_Create {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_authors_Read {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_authors_Update {
+  permission: Boolean!
+}
+
+type TalksAndRoundtablesFields_authors_Delete {
   permission: Boolean!
 }
 
@@ -20119,6 +20884,7 @@ type case_studiesAccess {
 type CaseStudiesFields {
   title: CaseStudiesFields_title
   summary: CaseStudiesFields_summary
+  authors: CaseStudiesFields_authors
   categories: CaseStudiesFields_categories
   slug: CaseStudiesFields_slug
   updatedAt: CaseStudiesFields_updatedAt
@@ -20169,6 +20935,29 @@ type CaseStudiesFields_summary_Update {
 }
 
 type CaseStudiesFields_summary_Delete {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_authors {
+  create: CaseStudiesFields_authors_Create
+  read: CaseStudiesFields_authors_Read
+  update: CaseStudiesFields_authors_Update
+  delete: CaseStudiesFields_authors_Delete
+}
+
+type CaseStudiesFields_authors_Create {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_authors_Read {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_authors_Update {
+  permission: Boolean!
+}
+
+type CaseStudiesFields_authors_Delete {
   permission: Boolean!
 }
 
@@ -21368,9 +22157,10 @@ type Mutation {
   forgotPasswordUser(disableEmail: Boolean, email: String!, expiration: Int): Boolean!
   resetPasswordUser(password: String, token: String): usersResetPassword
   verifyEmailUser(token: String): Boolean
-  createContributor(data: mutationContributorInput!): Contributor
-  updateContributor(id: String!, autosave: Boolean, data: mutationContributorUpdateInput!): Contributor
-  deleteContributor(id: String!): Contributor
+  createAuthor(data: mutationAuthorInput!, draft: Boolean): Author
+  updateAuthor(id: String!, autosave: Boolean, data: mutationAuthorUpdateInput!, draft: Boolean): Author
+  deleteAuthor(id: String!): Author
+  restoreVersionAuthor(id: String): Author
   createComment(data: mutationCommentInput!, draft: Boolean): Comment
   updateComment(id: String!, autosave: Boolean, data: mutationCommentUpdateInput!, draft: Boolean): Comment
   deleteComment(id: String!): Comment
@@ -21947,44 +22737,58 @@ type usersResetPassword {
   user: User
 }
 
-input mutationContributorInput {
+input mutationAuthorInput {
   featuredImage: String!
   name: String!
-  role: Contributor_role_MutationInput!
+  role: Author_role_MutationInput!
   bio: String!
   linkedIn: String
   x: String
   gitHub: String
   medium: String
+  publishedAt: String
   slug: String
   updatedAt: String
   createdAt: String
+  _status: Author__status_MutationInput
 }
 
-enum Contributor_role_MutationInput {
+enum Author_role_MutationInput {
   developer
   product_manager
   designer
 }
 
-input mutationContributorUpdateInput {
+enum Author__status_MutationInput {
+  draft
+  published
+}
+
+input mutationAuthorUpdateInput {
   featuredImage: String
   name: String
-  role: ContributorUpdate_role_MutationInput
+  role: AuthorUpdate_role_MutationInput
   bio: String
   linkedIn: String
   x: String
   gitHub: String
   medium: String
+  publishedAt: String
   slug: String
   updatedAt: String
   createdAt: String
+  _status: AuthorUpdate__status_MutationInput
 }
 
-enum ContributorUpdate_role_MutationInput {
+enum AuthorUpdate_role_MutationInput {
   developer
   product_manager
   designer
+}
+
+enum AuthorUpdate__status_MutationInput {
+  draft
+  published
 }
 
 input mutationCommentInput {
@@ -22035,7 +22839,7 @@ input mutationPodcastEpisodeInput {
   episodeFile: String!
   spotify: String
   apple: String
-  contributors: [String]
+  authors: [String]
   categories: [String]
   relatedEpisodes: [String]
   publishedAt: String
@@ -22058,7 +22862,7 @@ input mutationPodcastEpisodeUpdateInput {
   episodeFile: String
   spotify: String
   apple: String
-  contributors: [String]
+  authors: [String]
   categories: [String]
   relatedEpisodes: [String]
   publishedAt: String
@@ -22078,7 +22882,7 @@ input mutationBlogpostInput {
   summary: String!
   content: JSON!
   featuredImage: String!
-  contributors: [String]
+  authors: [String]
   categories: [String]
   relatedPosts: [String]
   publishedAt: String
@@ -22098,7 +22902,7 @@ input mutationBlogpostUpdateInput {
   summary: String
   content: JSON
   featuredImage: String
-  contributors: [String]
+  authors: [String]
   categories: [String]
   relatedPosts: [String]
   publishedAt: String
@@ -22118,6 +22922,7 @@ input mutationTalksAndRoundtableInput {
   about: String!
   categories: [String]
   url: String
+  authors: [String]
   publishedAt: String
   slug: String
   updatedAt: String
@@ -22135,6 +22940,7 @@ input mutationTalksAndRoundtableUpdateInput {
   about: String
   categories: [String]
   url: String
+  authors: [String]
   publishedAt: String
   slug: String
   updatedAt: String
@@ -22150,6 +22956,7 @@ enum TalksAndRoundtableUpdate__status_MutationInput {
 input mutationCaseStudyInput {
   title: String
   summary: String
+  authors: [String]
   categories: [String]
   slug: String
   updatedAt: String
@@ -22165,6 +22972,7 @@ enum CaseStudy__status_MutationInput {
 input mutationCaseStudyUpdateInput {
   title: String
   summary: String
+  authors: [String]
   categories: [String]
   slug: String
   updatedAt: String

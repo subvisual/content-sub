@@ -50,10 +50,9 @@ export const BlogPosts: CollectionConfig = {
       },
     },
     {
-      name: "contributors",
-      label: "Contributors",
+      name: "authors",
       type: "relationship",
-      relationTo: "contributors",
+      relationTo: "authors",
       hasMany: true,
       admin: {
         position: "sidebar",

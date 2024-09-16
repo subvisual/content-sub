@@ -6,6 +6,11 @@ export const TALK = `
         slug
         title
         about
+        authors {
+          id
+          name
+          role
+        }
         categories {
           title
         }

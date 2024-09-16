@@ -6,8 +6,8 @@ import { populatePublishedAt } from "../hooks/populatePublishedAt";
 import { adminsOrPublished } from "../access/adminsOrPublished";
 import { admins } from "../access/admins";
 
-export const Contributors: CollectionConfig = {
-  slug: "contributors",
+export const Authors: CollectionConfig = {
+  slug: "authors",
   admin: {
     useAsTitle: "name",
     defaultColumns: ["name", "role", "slug"],

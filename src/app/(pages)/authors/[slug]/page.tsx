@@ -14,7 +14,7 @@ export default async function ContributorPage({ params: { slug } }) {
 
   try {
     contributor = await fetchDoc({
-      collection: "contributors",
+      collection: "authors",
       slug});
   } catch (err) {
     console.error(err);

@@ -1,8 +1,8 @@
 import { MEDIA_FIELDS } from "./media";
 
-export const CONTRIBUTORS = `
-  query Contributor {
-    Contributors(limit: 10) {
+export const Authors = `
+  query Author {
+    Authors(limit: 10) {
       docs {
         id
         name
@@ -11,9 +11,9 @@ export const CONTRIBUTORS = `
   }
 `
 
-export const CONTRIBUTOR = `
-  query Contributor($slug: String) {
-   Contributors(where: { slug: { equals: $slug }}) {
+export const AUTHOR = `
+  query Author($slug: String) {
+   Authors(where: { slug: { equals: $slug }}) {
     docs {
      id
      name
