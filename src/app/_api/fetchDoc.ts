@@ -6,6 +6,11 @@ import { POST } from '../_graphql/posts'
 import { PROJECT } from '../_graphql/projects'
 import { GRAPHQL_API_URL } from './shared'
 import { payloadToken } from './token'
+import { PODCAST_EPISODE } from "@/app/_graphql/podcastEpisodes";
+import { CONTRIBUTOR } from "@/app/_graphql/contributors";
+import { BLOGPOST } from "@/app/_graphql/blogposts";
+import { CASE_STUDY } from "@/app/_graphql/caseStudies";
+import { TALK } from "@/app/_graphql/talks";
 
 const queryMap = {
   pages: {
@@ -19,6 +24,26 @@ const queryMap = {
   projects: {
     query: PROJECT,
     key: 'Projects',
+  },
+  "podcast-episodes": {
+    query: PODCAST_EPISODE,
+    key: "PodcastEpisodes",
+  },
+  contributors: {
+    query: CONTRIBUTOR,
+    key: "Contributors",
+  },
+  blogposts: {
+    query: BLOGPOST,
+    key: "Blogposts",
+  },
+  "case-studies": {
+    query: CASE_STUDY,
+    key: "CaseStudies",
+  },
+  talks: {
+    query: TALK,
+    key: "Talks",
   },
 }
 

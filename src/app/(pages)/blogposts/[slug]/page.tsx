@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { fetchPodcastEpisode } from "@/app/_api/fetchPodcastEpisode";
+import { fetchContent } from "@/app/_api/fetchContent";
 import { notFound } from "next/navigation";
 
 export default async function BlogpostPage ({params: {slug}}) {
@@ -9,7 +9,7 @@ export default async function BlogpostPage ({params: {slug}}) {
   let episode = null;
 
   try {
-    episode = await fetchPodcastEpisode({
+    episode = await fetchContent({
       collection: "blogposts",
       slug,
     });
