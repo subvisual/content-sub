@@ -47,6 +47,15 @@ export const TalksAndRoundtables: CollectionConfig = {
       type: "text",
     },
     {
+      name: "contributors",
+      type: "relationship",
+      relationTo: "contributors",
+      hasMany: true,
+      admin: {
+        position: "sidebar",
+      },
+    },
+    {
       name: "publishedAt",
       type: "date",
       admin: {

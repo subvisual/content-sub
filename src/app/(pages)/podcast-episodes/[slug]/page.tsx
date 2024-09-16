@@ -56,6 +56,7 @@ export default async function PodcastEpisodesPage({ params: { slug } }) {
 
     <div>
       <div>
+        <div>{contributors[0].id} is {typeof contributors[0].id}</div>
         <EpisodeHead episode={episode} />
         <EpisodeContent episode={episode}/>
         <RecommendedContent collection={"podcast-episodes"} relatedContent={relatedEpisodes}/>

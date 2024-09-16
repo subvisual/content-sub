@@ -17,7 +17,6 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) =>
       },
       hooks: {
         beforeValidate: [formatSlug(fieldToUse)],
-        beforeValidate: [formatSlug(fieldToUse)],
       },
     },
     overrides,

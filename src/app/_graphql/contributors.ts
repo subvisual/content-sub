@@ -12,8 +12,8 @@ export const CONTRIBUTORS = `
 `
 
 export const CONTRIBUTOR = `
-  query Contributor {
-   Contributors {
+  query Contributor($slug: String) {
+   Contributors(where: { slug: { equals: $slug }}) {
     docs {
      id
      name

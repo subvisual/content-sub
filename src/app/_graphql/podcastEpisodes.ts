@@ -40,6 +40,7 @@ export const PODCAST_EPISODE = `
           title
         }
         contributors {
+          id
           name
           role
         }
