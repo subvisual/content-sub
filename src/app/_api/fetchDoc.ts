@@ -10,7 +10,7 @@ import { PODCAST_EPISODE } from "@/app/_graphql/podcastEpisodes";
 import { CONTRIBUTOR } from "@/app/_graphql/contributors";
 import { BLOGPOST } from "@/app/_graphql/blogposts";
 import { CASE_STUDY } from "@/app/_graphql/caseStudies";
-import { TALK } from "@/app/_graphql/talks";
+import { TALK } from "@/app/_graphql/talksAndRoundtables";
 
 const queryMap = {
   pages: {
@@ -41,9 +41,9 @@ const queryMap = {
     query: CASE_STUDY,
     key: "CaseStudies",
   },
-  talks: {
+  "talks-and-roundtables": {
     query: TALK,
-    key: "Talks",
+    key: "TalksAndRoundtables",
   },
 }
 
