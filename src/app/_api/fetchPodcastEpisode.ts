@@ -1,12 +1,22 @@
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+  import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { GRAPHQL_API_URL } from "@/app/_api/shared";
 import { PODCAST_EPISODE } from "@/app/_graphql/podcastEpisodes";
 import { Config } from "@/payload/payload-types";
+  import { CONTRIBUTOR } from "@/app/_graphql/contributors";
+  import { BLOGPOST } from "@/app/_graphql/blogposts";
 
 const queryMap = {
   "podcast-episodes": {
     query: PODCAST_EPISODE,
     key: "PodcastEpisodes",
+  },
+  contributors: {
+    query: CONTRIBUTOR,
+    key: "Contributors",
+  },
+  blogposts: {
+    query: BLOGPOST,
+    key: "Blogposts",
   },
 };
 

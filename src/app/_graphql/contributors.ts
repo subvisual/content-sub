@@ -1,5 +1,7 @@
+import { MEDIA_FIELDS } from "./media";
+
 export const CONTRIBUTORS = `
-  query Contributors {
+  query Contributor {
     Contributors(limit: 10) {
       docs {
         id
@@ -15,6 +17,16 @@ export const CONTRIBUTOR = `
     docs {
      id
      name
+     featuredImage {
+          ${MEDIA_FIELDS}
+        }
+     role
+     bio
+     linkedIn
+     x
+     gitHub
+     medium
+     slug
      }
    }
   }

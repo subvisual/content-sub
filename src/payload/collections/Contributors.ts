@@ -1,16 +1,17 @@
 import type { CollectionConfig } from "payload/types";
 import { slugField } from "../fields/slug";
+import formatSlug from '../utilities/formatSlug'
 import { anyone } from "../access/anyone";
+import { populatePublishedAt } from "../hooks/populatePublishedAt";
+import { adminsOrPublished } from "../access/adminsOrPublished";
+import { admins } from "../access/admins";
 
 export const Contributors: CollectionConfig = {
   slug: "contributors",
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["name", "bio"],
+    defaultColumns: ["name", "role", "slug"],
   },
-
-  // this is to be changed if we decide to unpublish contributors
-  // down the road
   access: {
     read: anyone,
   },
