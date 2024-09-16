@@ -1,6 +1,6 @@
 import type { CollectionConfig } from "payload/types";
 import { slugField } from "../fields/slug";
-import formatSlug from '../utilities/formatSlug'
+import formatSlug from "../utilities/formatSlug";
 import { anyone } from "../access/anyone";
 import { populatePublishedAt } from "../hooks/populatePublishedAt";
 import { adminsOrPublished } from "../access/adminsOrPublished";
@@ -12,8 +12,15 @@ export const Contributors: CollectionConfig = {
     useAsTitle: "name",
     defaultColumns: ["name", "role", "slug"],
   },
+  hooks: {
+    beforeChange: [populatePublishedAt],
+  },
+  versions: { drafts: true },
   access: {
     read: anyone,
+    update: anyone,
+    create: admins,
+    delete: admins,
   },
   fields: [
     {
@@ -103,6 +110,26 @@ export const Contributors: CollectionConfig = {
           },
         },
       ],
+    },
+    {
+      name: "publishedAt",
+      type: "date",
+      admin: {
+        position: "sidebar",
+        date: {
+          pickerAppearance: "dayAndTime",
+        },
+      },
+      hooks: {
+        beforeChange: [
+          ({ siblingData, value }) => {
+            if (siblingData._status === "published" && !value) {
+              return new Date();
+            }
+            return value;
+          },
+        ],
+      },
     },
     slugField(),
   ],
