@@ -1,8 +1,6 @@
-import React from 'react'
+import { PodcastEpisode } from '../../../payload/payload-types'
 
-import { PodcastEpisode } from '@/payload/payload-types'
-
-export const EpisodeContent: React.FC<{ episode: PodcastEpisode }> = ({ episode }) => {
+export default function EpisodeContent({ episode }: { episode: PodcastEpisode }) {
   const { spotify, apple, episodeSummary, episodeNotes, categories } = episode
 
   return (
@@ -47,7 +45,6 @@ export const EpisodeContent: React.FC<{ episode: PodcastEpisode }> = ({ episode 
         <div>
           <h1>Category block</h1>
           <p>A CategoryPill per category: {categories.map(cat => cat.title).join(' | ')}</p>
-          <pre>{JSON.stringify(episode, null, 2)}</pre>
         </div>
       </div>
     </div>

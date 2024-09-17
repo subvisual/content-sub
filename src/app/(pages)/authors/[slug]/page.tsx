@@ -1,10 +1,8 @@
-'use client'
-
 import React from 'react'
 import { notFound } from 'next/navigation'
 
-import fetchContentFromAuthor from '@/app/_api/fetchContentFromAuthor'
-import { fetchDoc } from '@/app/_api/fetchDoc'
+import { fetchContentFromAuthor } from "../../../_api/fetchContentFromAuthor"
+import { fetchDoc } from "../../../_api/fetchDoc"
 
 export default async function ContributorPage({ params: { slug } }) {
   let contributor = null

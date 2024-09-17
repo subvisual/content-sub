@@ -5,7 +5,6 @@ import nextBuild from 'next/dist/build'
 import path from 'path'
 import payload from 'payload'
 
-import { seed } from './payload/seed'
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -22,11 +21,6 @@ const start = async (): Promise<void> => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
     },
   })
-
-  if (process.env.PAYLOAD_SEED === 'true') {
-    await seed(payload)
-    process.exit()
-  }
 
   if (process.env.NEXT_BUILD) {
     app.listen(PORT, async () => {

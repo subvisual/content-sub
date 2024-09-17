@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 const AudioPlayer: React.FC<{ src: string; type: string }> = ({ src, type }) => {
   return (
     <div>

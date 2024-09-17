@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function EpisodeFeaturedImage({ src, w = '264px', h = '264px' }) {
   return (
     <div style={{ flexShrink: 0 }}>

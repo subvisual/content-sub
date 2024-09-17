@@ -1,7 +1,7 @@
 import { CONTENT_FROM_AUTHOR } from '../_graphql/contentFromAuthor'
 import { GRAPHQL_API_URL } from './shared'
 
-export default async function fetchContentFromAuthor<T>({
+export async function fetchContentFromAuthor<T>({
   authorID,
 }: {
   authorID: string
