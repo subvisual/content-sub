@@ -42,9 +42,7 @@ export default async function Post({ params: { slug } }) {
   const { layout, relatedPosts, enablePremiumContent, premiumContent } = post
 
   return (
-
     <React.Fragment>
-
       <PostHero post={post} />
       <Blocks blocks={layout} />
       {enablePremiumContent && <PremiumContent postSlug={slug as string} disableTopPadding />}
