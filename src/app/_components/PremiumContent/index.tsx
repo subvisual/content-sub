@@ -30,7 +30,6 @@ export const PremiumContent: React.FC<{
 
     const start = Date.now()
 
-
     isRequesting.current = false
   }, [user, postSlug])
 

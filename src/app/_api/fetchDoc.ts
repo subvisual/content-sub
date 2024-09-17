@@ -4,36 +4,37 @@ import type { Config } from '../../payload/payload-types'
 import { PAGE } from '../_graphql/pages'
 import { GRAPHQL_API_URL } from './shared'
 import { payloadToken } from './token'
-import { PODCAST_EPISODE } from "@/app/_graphql/podcastEpisodes";
-import { AUTHOR } from "@/app/_graphql/authors";
-import { BLOGPOST } from "@/app/_graphql/blogposts";
-import { CASE_STUDY } from "@/app/_graphql/caseStudies";
-import { TALK } from "@/app/_graphql/talksAndRoundtables";
+
+import { AUTHOR } from '@/app/_graphql/authors'
+import { BLOGPOST } from '@/app/_graphql/blogposts'
+import { CASE_STUDY } from '@/app/_graphql/caseStudies'
+import { PODCAST_EPISODE } from '@/app/_graphql/podcastEpisodes'
+import { TALK } from '@/app/_graphql/talksAndRoundtables'
 
 const queryMap = {
   pages: {
     query: PAGE,
     key: 'Pages',
   },
-  "podcast-episodes": {
+  'podcast-episodes': {
     query: PODCAST_EPISODE,
-    key: "PodcastEpisodes",
+    key: 'PodcastEpisodes',
   },
   authors: {
     query: AUTHOR,
-    key: "Authors",
+    key: 'Authors',
   },
   blogposts: {
     query: BLOGPOST,
-    key: "Blogposts",
+    key: 'Blogposts',
   },
-  "case-studies": {
+  'case-studies': {
     query: CASE_STUDY,
-    key: "CaseStudies",
+    key: 'CaseStudies',
   },
-  "talks-and-roundtables": {
+  'talks-and-roundtables': {
     query: TALK,
-    key: "TalksAndRoundtables",
+    key: 'TalksAndRoundtables',
   },
 }
 

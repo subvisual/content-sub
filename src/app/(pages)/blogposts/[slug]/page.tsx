@@ -1,24 +1,24 @@
-"use client"
+'use client'
 
-import React from "react"
-import { notFound } from "next/navigation";
-import { fetchDoc } from "@/app/_api/fetchDoc";
+import React from 'react'
+import { notFound } from 'next/navigation'
 
-export default async function BlogpostPage ({params: {slug}}) {
+import { fetchDoc } from '@/app/_api/fetchDoc'
 
-  let episode = null;
+export default async function BlogpostPage({ params: { slug } }) {
+  let episode = null
 
   try {
     episode = await fetchDoc({
-      collection: "blogposts",
+      collection: 'blogposts',
       slug,
-    });
+    })
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
 
   if (!episode) {
-    notFound();
+    notFound()
   }
 
   return (

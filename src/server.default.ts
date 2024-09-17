@@ -1,5 +1,9 @@
 import dotenv from 'dotenv'
+import express from 'express'
 import path from 'path'
+import payload from 'payload'
+
+import { seed } from './payload/seed'
 
 // This file is used to replace `server.ts` when ejecting i.e. `yarn eject`
 // See `../eject.ts` for exact details on how this file is used
@@ -8,11 +12,6 @@ import path from 'path'
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
-
-import express from 'express'
-import payload from 'payload'
-
-import { seed } from './payload/seed'
 
 const app = express()
 const PORT = process.env.PORT || 3000

@@ -1,40 +1,30 @@
-import { webpackBundler } from "@payloadcms/bundler-webpack";
-import { mongooseAdapter } from "@payloadcms/db-mongodb";
-import { payloadCloud } from "@payloadcms/plugin-cloud";
-import nestedDocs from "@payloadcms/plugin-nested-docs";
-import redirects from "@payloadcms/plugin-redirects";
-import seo from "@payloadcms/plugin-seo";
-import type { GenerateTitle } from "@payloadcms/plugin-seo/types";
-import { slateEditor } from "@payloadcms/richtext-slate";
-import dotenv from "dotenv";
-import path from "path";
-import { buildConfig } from "payload/config";
+import { webpackBundler } from '@payloadcms/bundler-webpack'
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { slateEditor } from '@payloadcms/richtext-slate'
+import dotenv from 'dotenv'
+import path from 'path'
+import { buildConfig } from 'payload/config'
 
+import { Authors } from './collections/Authors'
+import { BlogPosts } from './collections/BlogPosts'
+import { CaseStudies } from './collections/CaseStudies'
 // Collections go here
-import Categories from "./collections/Categories";
-import { Media } from "./collections/Media";
-import { Pages } from "./collections/Pages";
-import { Authors } from "./collections/Authors";
-import Users from "./collections/Users";
-import { PodcastEpisodes } from "./collections/PodcastEpisodes";
-import { BlogPosts } from "./collections/BlogPosts";
-import { CaseStudies } from "./collections/CaseStudies";
-import { TalksAndRoundtables } from "./collections/TalksAndRoundtables";
-
-import BeforeDashboard from "./components/BeforeDashboard";
-import BeforeLogin from "./components/BeforeLogin";
-import { seed } from "./endpoints/seed";
-import { Footer } from "./globals/Footer";
-import { Header } from "./globals/Header";
-import { Settings } from "./globals/Settings";
-
-const generateTitle: GenerateTitle = () => {
-  return "My Website";
-};
+import Categories from './collections/Categories'
+import { Media } from './collections/Media'
+import { Pages } from './collections/Pages'
+import { PodcastEpisodes } from './collections/PodcastEpisodes'
+import { TalksAndRoundtables } from './collections/TalksAndRoundtables'
+import Users from './collections/Users'
+import BeforeDashboard from './components/BeforeDashboard'
+import BeforeLogin from './components/BeforeLogin'
+import { seed } from './endpoints/seed'
+import { Footer } from './globals/Footer'
+import { Header } from './globals/Header'
+import { Settings } from './globals/Settings'
 
 dotenv.config({
-  path: path.resolve(__dirname, "../../.env"),
-});
+  path: path.resolve(__dirname, '../../.env'),
+})
 
 export default buildConfig({
   admin: {
@@ -54,10 +44,10 @@ export default buildConfig({
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
-          dotenv: path.resolve(__dirname, "./dotenv.js"),
-          [path.resolve(__dirname, "./endpoints/seed")]: path.resolve(
+          dotenv: path.resolve(__dirname, './dotenv.js'),
+          [path.resolve(__dirname, './endpoints/seed')]: path.resolve(
             __dirname,
-            "./emptyModuleMock.js",
+            './emptyModuleMock.js',
           ),
         },
       },
@@ -81,20 +71,20 @@ export default buildConfig({
   ],
   globals: [Settings, Header, Footer],
   typescript: {
-    outputFile: path.resolve(__dirname, "payload-types.ts"),
+    outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
   graphQL: {
-    schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),
+    schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
-  cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
-  csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
+  cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
+  csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   endpoints: [
     // The seed endpoint is used to populate the database with some example data
     // You should delete this endpoint before deploying your site to production
     {
-      path: "/seed",
-      method: "get",
+      path: '/seed',
+      method: 'get',
       handler: seed,
     },
   ],
-});
+})

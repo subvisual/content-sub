@@ -1,19 +1,18 @@
-import React from "react";
-import { fetchDoc } from "@/app/_api/fetchDoc";
-import { notFound } from "next/navigation";
+import React from 'react'
+import { notFound } from 'next/navigation'
+
+import { fetchDoc } from '@/app/_api/fetchDoc'
 
 export default async function TalksAndRoundTablesPage({ params: { slug } }) {
-
-  let content = null;
+  let content = null
 
   try {
     content = await fetchDoc({
-        collection: "talks-and-roundtables",
-        slug: slug,
-      },
-    );
+      collection: 'talks-and-roundtables',
+      slug: slug,
+    })
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
 
   if (!content) {
@@ -25,5 +24,5 @@ export default async function TalksAndRoundTablesPage({ params: { slug } }) {
       Hello, world!
       <pre>{JSON.stringify(content, null, 2)}</pre>
     </div>
-  );
+  )
 }
