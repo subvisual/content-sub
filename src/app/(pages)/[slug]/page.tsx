@@ -4,12 +4,13 @@ import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 import { Page } from '../../../payload/payload-types'
-import { staticHome } from '../../../payload/seed/home-static'
+import { staticHome } from './staticHome'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
 import { Hero } from '../../_components/Hero'
 import { generateMeta } from '../../_utilities/generateMeta'
+import StaticPage from "@/app/(pages)/[slug]/staticHome";
 
 // Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
 // This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
@@ -86,10 +87,6 @@ export async function generateMetadata({ params: { slug = 'home' } }): Promise<M
     // this is so that we can render static fallback pages for the demo
     // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
     // in production you may want to redirect to a 404  page or at least log the error somewhere
-  }
-
-  if (!page) {
-    if (slug === 'home') page = staticHome
   }
 
   return generateMeta({ doc: page })
