@@ -26,7 +26,7 @@ export default async function ContributorPage({ params: { slug } }) {
   const contributorID = contributor.id
 
   try {
-    postsFromContributor = await fetchContentFromAuthor(contributorID)
+    postsFromContributor = await fetchContentFromAuthor({ authorID: contributorID })
   } catch (err) {
     console.error(err)
   }

@@ -1,4 +1,4 @@
-export const CONTENT_BY_AUTHOR = `
+export const CONTENT_FROM_AUTHOR = `
   query GetContent($authorID: JSON!) {
     PodcastEpisodes(
       limit: 100,
