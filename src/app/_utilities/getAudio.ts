@@ -1,4 +1,9 @@
-export function getAudio(episodeFile) {
+interface AudioFile {
+  audioFileSource: string | undefined
+  audioFileType: string | undefined
+}
+
+export function getAudio(episodeFile: { filename?: string; mimeType?: string }): AudioFile {
   let audioFileSource: string | undefined = undefined
   let audioFileType: string | undefined = undefined
 

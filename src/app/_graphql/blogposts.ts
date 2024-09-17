@@ -1,4 +1,4 @@
-import { MEDIA_FIELDS } from '@/app/_graphql/media'
+import { MEDIA_FIELDS } from "./media"
 
 export const BLOGPOST = `
   query Blogpost {
