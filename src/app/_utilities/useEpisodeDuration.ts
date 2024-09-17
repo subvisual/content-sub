@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { formatEpisodeDuration } from "@/app/_utilities/formatEpisodeDuration";
 
-export function getEpisodeDuration(src) {
+export function useEpisodeDuration(src) {
     const [duration, setDuration] = useState<number | null>(null);
 
     useEffect(() => {

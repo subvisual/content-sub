@@ -8,7 +8,7 @@ import { formatDateTime } from "@/app/_utilities/formatDateTime";
 import AudioPlayer from "@/app/_components/AudioPlayer";
 import EpisodeFeaturedImage from "@/app/_components/EpisodeFeaturedImage";
 
-import { getEpisodeDuration } from "@/app/_utilities/getEpisodeDuration";
+import { useEpisodeDuration } from "@/app/_utilities/useEpisodeDuration";
 import { getAudio } from "@/app/_utilities/getAudio";
 import { getImage } from "@/app/_utilities/getImage";
 
@@ -41,7 +41,7 @@ export const EpisodeHead: React.FC<{ episode: PodcastEpisode }> = ({ episode }) 
           <ContentTypePill />
           <h5>{title}</h5>
           <h6>episode.podcastName property</h6>
-          <h6>{formatDateTime(publishedAt)} ((DurationIcon)) {getEpisodeDuration(audioFileSource)}</h6>
+          <h6>{formatDateTime(publishedAt)} ((DurationIcon)) {useEpisodeDuration(audioFileSource)}</h6>
         </div>
         <div>
           {/* TODO Add conditionals later on: render only if it's a podcast episode */}

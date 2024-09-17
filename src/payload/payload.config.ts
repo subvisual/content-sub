@@ -19,7 +19,7 @@ import { Posts } from "./collections/Posts";
 import { Projects } from "./collections/Projects";
 import { Contributors } from "./collections/Contributors";
 import Users from "./collections/Users";
-import { PodcastEpisodes } from "./collections/PodcasstEpisodes";
+import { PodcastEpisodes } from "./collections/PodcastEpisodes";
 import { BlogPosts } from "./collections/BlogPosts";
 
 import BeforeDashboard from "./components/BeforeDashboard";
