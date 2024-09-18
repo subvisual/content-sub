@@ -27,7 +27,7 @@ export const CONTENT_FROM_AUTHOR = `
         featuredImage {
           ${MEDIA_FIELDS}
         }
-        episodeSummary
+        summary
         episodeFile {
           ${MEDIA_FIELDS}
         }
