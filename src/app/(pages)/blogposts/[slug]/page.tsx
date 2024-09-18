@@ -1,15 +1,15 @@
 "use client"
 
 import React from "react"
-import { fetchContent } from "@/app/_api/fetchContent";
 import { notFound } from "next/navigation";
+import { fetchDoc } from "@/app/_api/fetchDoc";
 
 export default async function BlogpostPage ({params: {slug}}) {
 
   let episode = null;
 
   try {
-    episode = await fetchContent({
+    episode = await fetchDoc({
       collection: "blogposts",
       slug,
     });

@@ -4,7 +4,6 @@ import React, { useEffect } from 'react'
 import Link from 'next/link'
 
 import { Page } from '../../../payload/payload-types'
-import { POST_PREMIUM_CONTENT } from '../../_graphql/posts'
 import { useAuth } from '../../_providers/Auth'
 import { Blocks } from '../Blocks'
 import { Gutter } from '../Gutter'
@@ -31,45 +30,6 @@ export const PremiumContent: React.FC<{
 
     const start = Date.now()
 
-    const getPaywallContent = async () => {
-      setIsLoading(true)
-
-      try {
-        const premiumContent = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql`, {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            query: POST_PREMIUM_CONTENT,
-            variables: {
-              slug: postSlug,
-            },
-          }),
-        })
-          ?.then(res => res.json())
-          ?.then(res => res?.data?.Posts.docs[0]?.premiumContent)
-
-        if (premiumContent) {
-          setBlocks(premiumContent)
-        }
-
-        // wait before setting `isLoading` to `false` to give the illusion of loading
-        // this is to prevent a flash of the loading shimmer on fast networks
-        const end = Date.now()
-        if (end - start < 1000) {
-          await new Promise(resolve => setTimeout(resolve, 500 - (end - start)))
-        }
-
-        setIsLoading(false)
-      } catch (error) {
-        console.error(error) // eslint-disable-line no-console
-        setIsLoading(false)
-      }
-    }
-
-    getPaywallContent()
 
     isRequesting.current = false
   }, [user, postSlug])

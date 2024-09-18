@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
-import { fetchComments } from '../../_api/fetchComments'
 import { Button } from '../../_components/Button'
 import { Gutter } from '../../_components/Gutter'
 import { HR } from '../../_components/HR'
@@ -20,10 +19,6 @@ export default async function Account() {
     nullUserRedirect: `/login?error=${encodeURIComponent(
       'You must be logged in to access your account.',
     )}&redirect=${encodeURIComponent('/account')}`,
-  })
-
-  const comments = await fetchComments({
-    user: user?.id,
   })
 
   return (
