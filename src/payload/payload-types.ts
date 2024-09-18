@@ -203,8 +203,8 @@ export interface Author {
 export interface PodcastEpisode {
   id: string;
   title: string;
-  episodeSummary: string;
-  episodeNotes: string;
+  summary: string;
+  notes: string;
   featuredImage: string | Media;
   episodeFile: string | Media;
   spotify?: string | null;

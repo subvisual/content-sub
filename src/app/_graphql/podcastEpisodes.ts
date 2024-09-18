@@ -34,8 +34,8 @@ export const PODCAST_EPISODE = `
         id
         title
         slug
-        episodeSummary
-        episodeNotes
+        summary
+        notes
         categories {
           title
         }
