@@ -1,3 +1,5 @@
+import { MEDIA_FIELDS } from "@/app/_graphql/media";
+
 export const CONTENT_FROM_AUTHOR = `
   query GetContent($authorID: JSON!) {
     PodcastEpisodes(
@@ -11,6 +13,18 @@ export const CONTENT_FROM_AUTHOR = `
         authors {
           name
         }
+        categories {
+          title
+        }
+        authors {
+          name
+        }
+        publishedAt
+        episodeSummary
+        episodeFile {
+          ${MEDIA_FIELDS}
+        }
+        slug
       }
     }
     Blogposts(
@@ -20,7 +34,13 @@ export const CONTENT_FROM_AUTHOR = `
       }) {
       docs {
         id
+        slug
         title
+        summary
+        categories {
+          title
+        }
+        publishedAt
         authors {
           name
         }
