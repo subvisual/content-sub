@@ -1,18 +1,30 @@
-import { GRAPHQL_API_URL } from "@/app/_api/shared";
-import { CONTENT_BY_AUTHOR } from "@/app/_graphql/contentFromAuthor";
+import { CONTENT_FROM_AUTHOR } from '../_graphql/contentFromAuthor'
+import { GRAPHQL_API_URL } from './shared'
 
-export default async function fetchContentFromAuthor(contributorID) {
-  const docs = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
-    method: "POST",
+export async function fetchContentFromAuthor<T>({
+  authorID,
+}: {
+  authorID: string
+}): Promise<{ Blogposts: T; PodcastEpisodes: T; CaseStudies: T; TalksAndRoundtables: T }> {
+  return await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      query: CONTENT_BY_AUTHOR,
-      variables: { authorID: contributorID },
+      query: CONTENT_FROM_AUTHOR,
+      variables: { authorID: authorID },
     }),
   })
-    .then(res => res.json())
+    ?.then(res => res.json())
+    ?.then(res => {
+      if (res.errors) throw new Error(res?.errors?.[0]?.message ?? 'Error fetching content.')
 
-  return docs
+      const Blogposts = res?.data?.Blogposts?.docs || []
+      const PodcastEpisodes = res?.data?.PodcastEpisodes?.docs || []
+      const CaseStudies = res?.data?.CaseStudies?.docs || []
+      const TalksAndRoundtables = res?.data?.TalksAndRoundtables?.docs || []
+
+      return { Blogposts, PodcastEpisodes, CaseStudies, TalksAndRoundtables }
+    })
 }

@@ -1,18 +1,18 @@
-import React from "react";
-import { fetchDoc } from "@/app/_api/fetchDoc";
-import { notFound } from "next/navigation";
+import React from 'react'
+import { notFound } from 'next/navigation'
 
-export default async function CaseStudiesPage ({params: { slug }}) {
+import { fetchDoc } from "../../../_api/fetchDoc"
 
+export default async function CaseStudiesPage({ params: { slug } }) {
   let content = null
 
   try {
     content = await fetchDoc({
-      collection: "case-studies",
+      collection: 'case-studies',
       slug,
-      });
+    })
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
 
   if (!content) {

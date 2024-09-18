@@ -17,7 +17,7 @@ const blockComponents = {
 }
 
 export const Blocks: React.FC<{
-  blocks: (Page['layout'][0] | RelatedPostsProps )[]
+  blocks: (Page['layout'][0] | RelatedPostsProps)[]
   disableTopPadding?: boolean
 }> = props => {
   const { disableTopPadding, blocks } = props

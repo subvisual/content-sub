@@ -1,16 +1,15 @@
-import type { CollectionConfig } from "payload/types";
-import { slugField } from "../fields/slug";
-import formatSlug from "../utilities/formatSlug";
-import { anyone } from "../access/anyone";
-import { populatePublishedAt } from "../hooks/populatePublishedAt";
-import { adminsOrPublished } from "../access/adminsOrPublished";
-import { admins } from "../access/admins";
+import type { CollectionConfig } from 'payload/types'
+
+import { admins } from '../access/admins'
+import { anyone } from '../access/anyone'
+import { slugField } from '../fields/slug'
+import { populatePublishedAt } from '../hooks/populatePublishedAt'
 
 export const Authors: CollectionConfig = {
-  slug: "authors",
+  slug: 'authors',
   admin: {
-    useAsTitle: "name",
-    defaultColumns: ["name", "role", "slug"],
+    useAsTitle: 'name',
+    defaultColumns: ['name', 'role', 'slug'],
   },
   hooks: {
     beforeChange: [populatePublishedAt],
@@ -24,113 +23,115 @@ export const Authors: CollectionConfig = {
   },
   fields: [
     {
-      name: "featuredImage",
-      label: "Picture",
-      type: "upload",
-      relationTo: "media",
+      name: 'featuredImage',
+      label: 'Picture',
+      type: 'upload',
+      relationTo: 'media',
       required: true,
       admin: {
-        position: "sidebar",
+        position: 'sidebar',
       },
     },
     {
-      name: "name",
-      type: "text",
+      name: 'name',
+      type: 'text',
       required: true,
     },
     {
-      name: "role",
-      type: "select",
+      name: 'role',
+      type: 'select',
       required: true,
       admin: {
         isClearable: true,
       },
       options: [
         {
-          label: "Developer",
-          value: "developer",
+          label: 'Developer',
+          value: 'developer',
         },
         {
-          label: "Product Manager",
-          value: "product-manager",
+          label: 'Product Manager',
+          value: 'product-manager',
         },
         {
-          label: "Designer",
-          value: "designer",
+          label: 'Designer',
+          value: 'designer',
         },
       ],
     },
     {
-      name: "bio",
-      type: "textarea",
+      name: 'bio',
+      type: 'textarea',
       maxLength: 250,
       required: true,
       admin: {
         description: ({ path, value }) =>
-          `${typeof value === "string" ? 250 - value.length : "250"} characters left (field: ${path})`,
+          `${
+            typeof value === 'string' ? 250 - value.length : '250'
+          } characters left (field: ${path})`,
       },
     },
     {
-      type: "row",
+      type: 'row',
       fields: [
         {
-          name: "linkedIn",
-          label: "LinkedIn Username",
-          type: "text",
+          name: 'linkedIn',
+          label: 'LinkedIn Username',
+          type: 'text',
           maxLength: 30,
           admin: {
-            width: "25%",
+            width: '25%',
           },
         },
         {
-          name: "x",
-          label: "X Username",
-          type: "text",
+          name: 'x',
+          label: 'X Username',
+          type: 'text',
           maxLength: 30,
           admin: {
-            width: "25%",
+            width: '25%',
           },
         },
         {
-          name: "gitHub",
-          label: "GitHub Username",
-          type: "text",
+          name: 'gitHub',
+          label: 'GitHub Username',
+          type: 'text',
           maxLength: 30,
           admin: {
-            width: "25%",
+            width: '25%',
           },
         },
         {
-          name: "medium",
-          label: "Medium Username",
-          type: "text",
+          name: 'medium',
+          label: 'Medium Username',
+          type: 'text',
           maxLength: 30,
           admin: {
-            width: "25%",
+            width: '25%',
           },
         },
       ],
     },
     {
-      name: "publishedAt",
-      type: "date",
+      name: 'publishedAt',
+      type: 'date',
       admin: {
-        position: "sidebar",
+        position: 'sidebar',
         date: {
-          pickerAppearance: "dayAndTime",
+          pickerAppearance: 'dayAndTime',
         },
       },
       hooks: {
         beforeChange: [
           ({ siblingData, value }) => {
-            if (siblingData._status === "published" && !value) {
-              return new Date();
+            if (siblingData._status === 'published' && !value) {
+              return new Date()
             }
-            return value;
+            return value
           },
         ],
       },
     },
     slugField(),
   ],
-};
+}

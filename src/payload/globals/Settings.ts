@@ -25,10 +25,10 @@ export const Settings: GlobalConfig = {
       label: 'Projects page',
     },
     {
-      name: "podcastEpisodesPage",
+      name: 'podcastEpisodesPage',
       type: 'relationship',
       relationTo: 'pages',
       label: 'Podcast episodes page',
-    }
+    },
   ],
 }

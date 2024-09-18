@@ -1,14 +1,14 @@
-import type { CollectionConfig } from "payload/types";
-import { slugField } from "../fields/slug";
+import type { CollectionConfig } from 'payload/types'
 
-import { adminsOrPublished } from "../access/adminsOrPublished";
-import { admins } from "../access/admins";
+import { admins } from '../access/admins'
+import { adminsOrPublished } from '../access/adminsOrPublished'
+import { slugField } from '../fields/slug'
 
 export const CaseStudies: CollectionConfig = {
-  slug: "case-studies",
+  slug: 'case-studies',
   admin: {
-    useAsTitle: "title",
-    defaultColumns: ["title", "slug", "updatedAt"],
+    useAsTitle: 'title',
+    defaultColumns: ['title', 'slug', 'updatedAt'],
   },
   versions: { drafts: true },
   access: {
@@ -19,31 +19,31 @@ export const CaseStudies: CollectionConfig = {
   },
   fields: [
     {
-      name: "title",
-      type: "text",
+      name: 'title',
+      type: 'text',
     },
     {
-      name: "summary",
-      type: "textarea",
+      name: 'summary',
+      type: 'textarea',
     },
     {
-      name: "authors",
-      type: "relationship",
-      relationTo: "authors",
+      name: 'authors',
+      type: 'relationship',
+      relationTo: 'authors',
       hasMany: true,
       admin: {
-        position: "sidebar",
+        position: 'sidebar',
       },
     },
     {
-      name: "categories",
-      type: "relationship",
-      relationTo: "categories",
+      name: 'categories',
+      type: 'relationship',
+      relationTo: 'categories',
       hasMany: true,
       admin: {
-        position: "sidebar",
+        position: 'sidebar',
       },
     },
     slugField(),
   ],
-};
+}

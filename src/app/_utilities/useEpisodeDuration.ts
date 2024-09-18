@@ -1,23 +1,21 @@
-import { useEffect, useState } from "react";
-import { formatEpisodeDuration } from "@/app/_utilities/formatEpisodeDuration";
+import { useEffect, useState } from 'react'
 
-export function useEpisodeDuration(src) {
-    const [duration, setDuration] = useState<number | null>(null);
+import { formatEpisodeDuration } from "./formatEpisodeDuration"
 
-    useEffect(() => {
-      const audio = new Audio(src);
+export function useEpisodeDuration({ src }: { src: string }): string {
+  const [duration, setDuration] = useState<number | null>(null)
 
-      // Set the audio duration when metadata is loaded
-      audio.addEventListener("loadedmetadata", () => {
-        setDuration(audio.duration);
-      });
+  useEffect(() => {
+    const audio = new Audio(src)
 
-      // Cleanup event listener on component unmount
-      return () => {
-        audio.removeEventListener("loadedmetadata", () => {
-        });
-      };
-    }, [src]);
+    audio.addEventListener('loadedmetadata', () => {
+      setDuration(audio.duration)
+    })
 
-    return formatEpisodeDuration(duration)
-  }
+    return () => {
+      audio.removeEventListener('loadedmetadata', () => {})
+    }
+  }, [src])
+
+  return formatEpisodeDuration(duration)
+}

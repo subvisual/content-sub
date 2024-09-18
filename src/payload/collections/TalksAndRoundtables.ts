@@ -1,14 +1,14 @@
-import type { CollectionConfig } from "payload/types";
-import { slugField } from "../fields/slug";
+import type { CollectionConfig } from 'payload/types'
 
-import { adminsOrPublished } from "../access/adminsOrPublished";
-import { admins } from "../access/admins";
+import { admins } from '../access/admins'
+import { adminsOrPublished } from '../access/adminsOrPublished'
+import { slugField } from '../fields/slug'
 
 export const TalksAndRoundtables: CollectionConfig = {
-  slug: "talks-and-roundtables",
+  slug: 'talks-and-roundtables',
   admin: {
-    useAsTitle: "title",
-    defaultColumns: ["title", "slug", "updatedAt"],
+    useAsTitle: 'title',
+    defaultColumns: ['title', 'slug', 'updatedAt'],
   },
   versions: { drafts: true },
   access: {
@@ -19,62 +19,64 @@ export const TalksAndRoundtables: CollectionConfig = {
   },
   fields: [
     {
-      name: "title",
-      type: "text",
+      name: 'title',
+      type: 'text',
       required: true,
     },
     {
-      name: "about",
-      type: "textarea",
+      name: 'about',
+      type: 'textarea',
       required: true,
       maxLength: 250,
       admin: {
         description: ({ path, value }) =>
-          `${typeof value === "string" ? 250 - value.length : "250"} characters left (field: ${path})`,
+          `${
+            typeof value === 'string' ? 250 - value.length : '250'
+          } characters left (field: ${path})`,
       },
     },
     {
-      name: "categories",
-      type: "relationship",
-      relationTo: "categories",
+      name: 'categories',
+      type: 'relationship',
+      relationTo: 'categories',
       hasMany: true,
       admin: {
-        position: "sidebar",
+        position: 'sidebar',
       },
     },
     {
-      name: "url",
-      type: "text",
+      name: 'url',
+      type: 'text',
     },
     {
-      name: "authors",
-      type: "relationship",
-      relationTo: "authors",
+      name: 'authors',
+      type: 'relationship',
+      relationTo: 'authors',
       hasMany: true,
       admin: {
-        position: "sidebar",
+        position: 'sidebar',
       },
     },
     {
-      name: "publishedAt",
-      type: "date",
+      name: 'publishedAt',
+      type: 'date',
       admin: {
-        position: "sidebar",
+        position: 'sidebar',
         date: {
-          pickerAppearance: "dayAndTime",
+          pickerAppearance: 'dayAndTime',
         },
       },
       hooks: {
         beforeChange: [
           ({ siblingData, value }) => {
-            if (siblingData._status === "published" && !value) {
-              return new Date();
+            if (siblingData._status === 'published' && !value) {
+              return new Date()
             }
-            return value;
+            return value
           },
         ],
       },
     },
     slugField(),
   ],
-};
+}

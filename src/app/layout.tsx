@@ -5,7 +5,6 @@ import { AdminBar } from './_components/AdminBar'
 import { Footer } from './_components/Footer'
 import { Header } from './_components/Header'
 import { Providers } from './_providers'
-import { InitTheme } from './_providers/Theme/InitTheme'
 import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
 
 import './_css/app.scss'
@@ -14,7 +13,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>

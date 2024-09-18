@@ -1,10 +1,9 @@
-import React from 'react'
 import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 import { Page } from '../../../payload/payload-types'
-import { staticHome } from '../../../payload/seed/home-static'
+import { staticHome } from './staticHome'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
@@ -86,10 +85,6 @@ export async function generateMetadata({ params: { slug = 'home' } }): Promise<M
     // this is so that we can render static fallback pages for the demo
     // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
     // in production you may want to redirect to a 404  page or at least log the error somewhere
-  }
-
-  if (!page) {
-    if (slug === 'home') page = staticHome
   }
 
   return generateMeta({ doc: page })

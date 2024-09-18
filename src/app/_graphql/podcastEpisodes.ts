@@ -1,4 +1,4 @@
-import { MEDIA, MEDIA_FIELDS } from "./media";
+import { MEDIA_FIELDS } from './media'
 
 // TODO: Figure out refering to authors and media files.
 
