@@ -14,10 +14,12 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
-    contributors: Contributor;
+    authors: Author;
     comments: Comment;
     'podcast-episodes': PodcastEpisode;
     blogposts: Blogpost;
+    'talks-and-roundtables': TalksAndRoundtable;
+    'case-studies': CaseStudy;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -624,9 +626,9 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contributors".
+ * via the `definition` "authors".
  */
-export interface Contributor {
+export interface Author {
   id: string;
   featuredImage: string | Media;
   name: string;
@@ -636,9 +638,11 @@ export interface Contributor {
   x?: string | null;
   gitHub?: string | null;
   medium?: string | null;
+  publishedAt?: string | null;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -670,8 +674,8 @@ export interface PodcastEpisode {
   episodeFile: string | Media;
   spotify?: string | null;
   apple?: string | null;
-  contributors?: (string | Contributor)[] | null;
-  category?: (string | Category)[] | null;
+  authors?: (string | Author)[] | null;
+  categories?: (string | Category)[] | null;
   relatedEpisodes?: (string | PodcastEpisode)[] | null;
   publishedAt?: string | null;
   slug?: string | null;
@@ -691,10 +695,42 @@ export interface Blogpost {
     [k: string]: unknown;
   }[];
   featuredImage: string | Media;
-  contributors?: (string | Contributor)[] | null;
-  category?: (string | Category)[] | null;
+  authors?: (string | Author)[] | null;
+  categories?: (string | Category)[] | null;
   relatedPosts?: (string | Blogpost)[] | null;
   publishedAt?: string | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "talks-and-roundtables".
+ */
+export interface TalksAndRoundtable {
+  id: string;
+  title: string;
+  about: string;
+  categories?: (string | Category)[] | null;
+  url?: string | null;
+  authors?: (string | Author)[] | null;
+  publishedAt?: string | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies".
+ */
+export interface CaseStudy {
+  id: string;
+  title?: string | null;
+  summary?: string | null;
+  authors?: (string | Author)[] | null;
+  categories?: (string | Category)[] | null;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;

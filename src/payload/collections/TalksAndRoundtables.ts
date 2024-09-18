@@ -4,8 +4,8 @@ import { slugField } from "../fields/slug";
 import { adminsOrPublished } from "../access/adminsOrPublished";
 import { admins } from "../access/admins";
 
-export const BlogPosts: CollectionConfig = {
-  slug: "blogposts",
+export const TalksAndRoundtables: CollectionConfig = {
+  slug: "talks-and-roundtables",
   admin: {
     useAsTitle: "title",
     defaultColumns: ["title", "slug", "updatedAt"],
@@ -24,7 +24,7 @@ export const BlogPosts: CollectionConfig = {
       required: true,
     },
     {
-      name: "summary",
+      name: "about",
       type: "textarea",
       required: true,
       maxLength: 250,
@@ -34,20 +34,17 @@ export const BlogPosts: CollectionConfig = {
       },
     },
     {
-      name: "content",
-      label: "Content",
-      type: "richText",
-      required: true,
-    },
-    {
-      name: "featuredImage",
-      label: "Featured Image",
-      type: "upload",
-      relationTo: "media",
-      required: true,
+      name: "categories",
+      type: "relationship",
+      relationTo: "categories",
+      hasMany: true,
       admin: {
         position: "sidebar",
       },
+    },
+    {
+      name: "url",
+      type: "text",
     },
     {
       name: "authors",
@@ -57,22 +54,6 @@ export const BlogPosts: CollectionConfig = {
       admin: {
         position: "sidebar",
       },
-    },
-    {
-      name: "categories",
-      label: "Categories",
-      type: "relationship",
-      relationTo: "categories",
-      hasMany: true,
-      admin: {
-        position: "sidebar",
-      },
-    },
-    {
-      name: "relatedPosts",
-      type: "relationship",
-      relationTo: "blogposts",
-      hasMany: true,
     },
     {
       name: "publishedAt",
@@ -96,4 +77,4 @@ export const BlogPosts: CollectionConfig = {
     },
     slugField(),
   ],
-}
+};

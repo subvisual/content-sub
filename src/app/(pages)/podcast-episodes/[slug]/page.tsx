@@ -1,12 +1,13 @@
 import React from "react";
 
 import { notFound } from "next/navigation";
-import { fetchPodcastEpisode } from "@/app/_api/fetchPodcastEpisode";
+import { fetchContent } from "@/app/_api/fetchContent";
 import { formatDateTime } from "@/app/_utilities/formatDateTime";
 import { EpisodeHead } from "../../../_blocks/EpisodeHead";
 import { EpisodeContent } from "@/app/_blocks/EpisodeContent";
 import { RecommendedContent } from "@/app/_blocks/RecommendedContent";
 import { Subscribe } from "@/app/_blocks/Subscribe";
+import { fetchDoc } from "@/app/_api/fetchDoc";
 
 export default async function PodcastEpisodesPage({ params: { slug } }) {
 
@@ -15,7 +16,7 @@ export default async function PodcastEpisodesPage({ params: { slug } }) {
   let episode = null;
 
   try {
-    episode = await fetchPodcastEpisode({
+    episode = await fetchDoc({
       collection: "podcast-episodes",
       slug,
     });
@@ -53,6 +54,7 @@ export default async function PodcastEpisodesPage({ params: { slug } }) {
 
     <div>
       <div>
+        <div>{contributors[0].id} is {typeof contributors[0].id}</div>
         <EpisodeHead episode={episode} />
         <EpisodeContent episode={episode}/>
         <RecommendedContent collection={"podcast-episodes"} relatedContent={relatedEpisodes}/>

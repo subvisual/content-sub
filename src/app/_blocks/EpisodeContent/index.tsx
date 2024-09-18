@@ -8,7 +8,7 @@ export const EpisodeContent: React.FC<{ episode: PodcastEpisode }> = ({ episode 
     apple,
     episodeSummary,
     episodeNotes,
-    category,
+    categories,
   } = episode
 
 
@@ -45,7 +45,8 @@ export const EpisodeContent: React.FC<{ episode: PodcastEpisode }> = ({ episode 
         </div>
         <div>
           <h1>Category block</h1>
-          <p>A CategoryPill per category: {category.map(cat => cat.title).join(" | ")}</p>
+          <p>A CategoryPill per category: {categories.map(cat => cat.title).join(" | ")}</p>
+          <pre>{JSON.stringify(episode, null, 2)}</pre>
         </div>
       </div>
     </div>

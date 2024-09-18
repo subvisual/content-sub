@@ -1,6 +1,6 @@
 import { MEDIA, MEDIA_FIELDS } from "./media";
 
-// TODO: Figure out refering to contributors and media files.
+// TODO: Figure out refering to authors and media files.
 
 export const PODCAST_EPISODES = `
   query PodcastEpisodes {
@@ -36,10 +36,11 @@ export const PODCAST_EPISODE = `
         slug
         episodeSummary
         episodeNotes
-        category {
+        categories {
           title
         }
-        contributors {
+        authors {
+          id
           name
           role
         }
