@@ -17,9 +17,16 @@ export const CONTENT_FROM_AUTHOR = `
           title
         }
         authors {
+          featuredImage {
+            ${MEDIA_FIELDS}
+          }
           name
+          slug
         }
         publishedAt
+        featuredImage {
+          ${MEDIA_FIELDS}
+        }
         episodeSummary
         episodeFile {
           ${MEDIA_FIELDS}
@@ -34,6 +41,9 @@ export const CONTENT_FROM_AUTHOR = `
       }) {
       docs {
         id
+        featuredImage {
+          ${MEDIA_FIELDS}
+        }
         slug
         title
         summary
@@ -42,7 +52,11 @@ export const CONTENT_FROM_AUTHOR = `
         }
         publishedAt
         authors {
+          featuredImage {
+            ${MEDIA_FIELDS}
+          }
           name
+          slug
         }
       }
     }
@@ -55,7 +69,11 @@ export const CONTENT_FROM_AUTHOR = `
         id
         title
         authors {
+          featuredImage {
+            ${MEDIA_FIELDS}
+          }
           name
+          slug
         }
       }
     }
@@ -68,7 +86,11 @@ export const CONTENT_FROM_AUTHOR = `
         id
         title
         authors {
+          featuredImage {
+            ${MEDIA_FIELDS}
+          }
           name
+          slug
         }
       }
     }
