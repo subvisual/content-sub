@@ -1,7 +1,13 @@
+import { undefined } from 'zod'
+
 import { CONTENT_FROM_AUTHOR } from '../_graphql/contentFromAuthor'
 import { GRAPHQL_API_URL } from './shared'
 
-export async function fetchContentFromAuthor<T>({ authorID }: { authorID: string }): Promise<T[]> {
+export async function fetchContentFromAuthor<T>({
+  authorID,
+}: {
+  authorID: string
+}): Promise<{ Blogposts: T; PodcastEpisodes: T; CaseStudies: T; TalksAndRoundtables: T }> {
   try {
     return await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
       method: 'POST',
@@ -22,13 +28,9 @@ export async function fetchContentFromAuthor<T>({ authorID }: { authorID: string
         const CaseStudies = res?.data?.CaseStudies?.docs || []
         const TalksAndRoundtables = res?.data?.TalksAndRoundtables?.docs || []
 
-        const content = { Blogposts, PodcastEpisodes, CaseStudies, TalksAndRoundtables }
-
-        return Object.values(content).filter(
-          innerArray => Array.isArray(innerArray) && innerArray.length > 0,
-        )
+        return { Blogposts, PodcastEpisodes, CaseStudies, TalksAndRoundtables }
       })
   } catch (err: unknown) {
-    return []
+    return {}
   }
 }
