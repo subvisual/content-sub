@@ -8,12 +8,10 @@ export function useEpisodeDuration({ src }: { src: string }): string {
   useEffect(() => {
     const audio = new Audio(src)
 
-    // Set the audio duration when metadata is loaded
     audio.addEventListener('loadedmetadata', () => {
       setDuration(audio.duration)
     })
 
-    // Cleanup event listener on component unmount
     return () => {
       audio.removeEventListener('loadedmetadata', () => {})
     }

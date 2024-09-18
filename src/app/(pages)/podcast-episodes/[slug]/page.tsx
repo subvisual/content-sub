@@ -25,8 +25,6 @@ export default async function PodcastEpisodesPage({ params: { slug } }) {
   const featuredImageSource = `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${featuredImage.filename}`
 
   const audioFileSource = `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${episodeFile.filename}`
-  // const audio = new Audio(audioFileSource);
-  // audio.addEventListener("loadedmetadata", () => {console.log(audio.duration)})
 
   return (
     <div>

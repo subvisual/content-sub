@@ -3,7 +3,6 @@ export const formatDateTime = (timestamp: string): string => {
   let date = now
   if (timestamp) date = new Date(timestamp)
 
-  // Array of full month names
   const monthNames = [
     'January',
     'February',
@@ -19,12 +18,12 @@ export const formatDateTime = (timestamp: string): string => {
     'December',
   ]
 
-  const months = date.getMonth() // 0-based index
+  const months = date.getMonth()
   const days = date.getDate()
   const YYYY = date.getFullYear()
 
-  const monthName = monthNames[months] // Get the full name of the month
-  const DD = days < 10 ? `0${days}` : days // Add leading zero to day if needed
+  const monthName = monthNames[months]
+  const DD = days < 10 ? `0${days}` : days
 
   return `${monthName} ${DD}, ${YYYY}`
 }
