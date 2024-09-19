@@ -7,6 +7,7 @@ import { getImage } from '../../_utilities/getImage'
 import { toKebabCase } from '../../_utilities/toKebabCase'
 import Authors from '../Authors'
 import EpisodeFeaturedImage from '../EpisodeFeaturedImage'
+import CategoryPill from '../CategoryPill'
 
 interface ContentSummaryProps {
   contentType: string
@@ -27,11 +28,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
         </div>
         <div>
           {Array.isArray(categories) && categories.length > 0
-            ? categories.map((category, i) => (
-              <p key={i} style={{ fontSize: '14px', color: '#007bff' }}>
-                  {category.title}
-                </p>
-              ))
+            ? categories.map((category, i) => <CategoryPill title={category.title} />)
             : null}
         </div>
         <div>
