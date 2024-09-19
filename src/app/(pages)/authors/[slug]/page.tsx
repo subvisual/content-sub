@@ -14,6 +14,7 @@ import Authors from "@/app/_components/Authors";
 import EpisodeFeaturedImage from "@/app/_components/EpisodeFeaturedImage";
 import ContentSummary from "@/app/_components/ContentSummary";
 import FeaturedImage from "@/app/_components/FeaturedImage";
+import AuthorSummary from "@/app/_components/AuthorSummary";
 
 export default async function ContributorPage({ params: { slug } }) {
   let author = null;
@@ -32,7 +33,7 @@ export default async function ContributorPage({ params: { slug } }) {
   }
 
   const { id, name, bio, role, featuredImage, linkedin, github, medium, x } = author;
-  
+
   postsFromContributor = await fetchContentFromAuthor({ authorID: id });
   const totalArticles = Object.values(postsFromContributor).filter(
     innerArray => Array.isArray(innerArray) && innerArray.length > 0,
@@ -42,43 +43,8 @@ export default async function ContributorPage({ params: { slug } }) {
     <div>
       <div style={{ background: "purple" }}>
         <BackButton />
-        <div>
-          {/*Left column*/}
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {/* Image container */}
-            <FeaturedImage src={featuredImage}/>            
+        <AuthorSummary author={author}/>
 
-            {/* Info container */}
-            <div>
-              <h5 style={{ margin: 0 }}>{name}</h5>
-              <h6 style={{ margin: 0, fontWeight: "normal" }}>{role}</h6>
-
-              {/* Social links */}
-              <div style={{ marginTop: "10px" }}>
-                <a href={linkedin} target="_blank" rel="noopener noreferrer">
-                  LinkedIn
-                </a>{" "}
-                |
-                <a href={github} target="_blank" rel="noopener noreferrer">
-                  {" "}
-                  GitHub
-                </a>{" "}
-                |
-                <a href={medium} target="_blank" rel="noopener noreferrer">
-                  {" "}
-                  Medium
-                </a>{" "}
-                |
-                <a href={x} target="_blank" rel="noopener noreferrer">
-                  {" "}
-                  X
-                </a>
-              </div>
-            </div>
-          </div>
-          {/*  Right column */}
-          <div>{bio}</div>
-        </div>
       </div>
       {/* ContentGrid */}
       <div style={{ background: "white", color: "black" }}>
