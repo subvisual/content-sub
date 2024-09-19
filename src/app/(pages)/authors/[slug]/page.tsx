@@ -13,25 +13,26 @@ import categories from "@/payload/collections/Categories";
 import Authors from "@/app/_components/Authors";
 import EpisodeFeaturedImage from "@/app/_components/EpisodeFeaturedImage";
 import ContentSummary from "@/app/_components/ContentSummary";
+import FeaturedImage from "@/app/_components/FeaturedImage";
 
 export default async function ContributorPage({ params: { slug } }) {
-  let contributor = null;
+  let author = null;
   let postsFromContributor = null;
 
   try {
-    contributor = await fetchDoc({
+    author = await fetchDoc({
       collection: "authors",
       slug,
     });
   } catch (err) {
   }
 
-  if (!contributor) {
+  if (!author) {
     notFound();
   }
 
-  const { id, name, role, featuredImage, linkedin, github, medium, x, bio } = contributor;
-
+  const { id, name, bio, role, featuredImage, linkedin, github, medium, x } = author;
+  
   postsFromContributor = await fetchContentFromAuthor({ authorID: id });
   const totalArticles = Object.values(postsFromContributor).filter(
     innerArray => Array.isArray(innerArray) && innerArray.length > 0,
@@ -45,13 +46,7 @@ export default async function ContributorPage({ params: { slug } }) {
           {/*Left column*/}
           <div style={{ display: "flex", alignItems: "center" }}>
             {/* Image container */}
-            <div style={{ width: 120, height: 120, marginRight: "20px" }}>
-              <img
-                src={getImage(featuredImage)}
-                alt={name}
-                style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }}
-              />
-            </div>
+            <FeaturedImage src={featuredImage}/>            
 
             {/* Info container */}
             <div>
@@ -85,7 +80,7 @@ export default async function ContributorPage({ params: { slug } }) {
           <div>{bio}</div>
         </div>
       </div>
-
+      {/* ContentGrid */}
       <div style={{ background: "white", color: "black" }}>
         <div style={{ textAlign: "right" }}>{totalArticles} Articles</div>
         <div>
