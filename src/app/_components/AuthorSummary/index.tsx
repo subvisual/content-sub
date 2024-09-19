@@ -1,8 +1,8 @@
 import React from 'react'
 
-import FeaturedImage from '@/app/_components/FeaturedImage'
-import SocialLinks from '@/app/_components/SocialLinks'
-import { Author } from '@/payload/payload-types'
+import FeaturedImage from '../FeaturedImage'
+import SocialLinks from '../SocialLinks'
+import { Author } from '../../../payload/payload-types'
 
 export default function AuthorSummary({ author }: { author: Author }) {
   const { name, role, bio, linkedIn, gitHub, medium, x, featuredImage } = author
@@ -18,7 +18,6 @@ export default function AuthorSummary({ author }: { author: Author }) {
         <div style={{ marginLeft: '10px' }}>
           <h5 style={{ margin: 0 }}>{name}</h5>
           <h6 style={{ margin: 0, fontWeight: 'normal' }}>{role}</h6>
-          {/* Social links */}
           <SocialLinks socials={socials} />
         </div>
       </div>

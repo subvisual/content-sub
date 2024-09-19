@@ -1,4 +1,4 @@
-import { getImage } from '@/app/_utilities/getImage'
+import { getImage } from '../../_utilities/getImage'
 
 export default function FeaturedImage({ src }) {
 
