@@ -12,14 +12,16 @@ import { useEpisodeDuration } from "@/app/_utilities/useEpisodeDuration";
 import categories from "@/payload/collections/Categories";
 import Authors from "@/app/_components/Authors";
 import EpisodeFeaturedImage from "@/app/_components/EpisodeFeaturedImage";
-import ContentSummary from "@/app/_components/ContentSummary";
+import ContentCard from "../../../_components/ContentCard";
 import FeaturedImage from "@/app/_components/FeaturedImage";
 import AuthorSummary from "@/app/_components/AuthorSummary";
+import AuthorContentGrid from "@/app/_blocks/AuthorContentGrid";
 
 export default async function ContributorPage({ params: { slug } }) {
   let author = null;
   let postsFromContributor = null;
 
+  // TODO: update fetchDoc to include error handling instead of making it on-page
   try {
     author = await fetchDoc({
       collection: "authors",
@@ -39,107 +41,14 @@ export default async function ContributorPage({ params: { slug } }) {
     innerArray => Array.isArray(innerArray) && innerArray.length > 0,
   ).length;
 
+
   return (
     <div>
       <div style={{ background: "purple" }}>
         <BackButton />
-        <AuthorSummary author={author}/>
-
+        <AuthorSummary author={author} />
       </div>
-      {/* ContentGrid */}
-      <div style={{ background: "white", color: "black" }}>
-        <div style={{ textAlign: "right" }}>{totalArticles} Articles</div>
-        <div>
-          <div style={{ display: "flex" }}>
-            {/*<pre>{JSON.stringify(postsFromContributor, null, 2)}</pre>*/}
-
-            {Object.keys(postsFromContributor).map(key =>
-              postsFromContributor[key].map((item, i) => (
-                <div
-                  key={i}
-                  style={{
-                    border: "1px solid #ddd",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                    margin: "10px",
-                    padding: "15px",
-                    backgroundColor: "#fff",
-                    transition: "transform 0.2s",
-                    cursor: "pointer",
-                  }}
-                >
-                  <EpisodeFeaturedImage src={getImage(item.featuredImage)} />
-                  <ContentSummary contentType={key} content={item}/>
-                  <Authors authors={item.authors} />
-
-                </div>
-              )),
-            )}
-          </div>
-        </div>
-      </div>
-
-
-      {/* Content block*/}
-      <div style={{ background: "white", color: "black" }}>
-        <div style={{ textAlign: "right" }}>{totalArticles} Articles</div>
-        <div>
-          <div style={{ display: "flex" }}>
-            {/*<pre>{JSON.stringify(postsFromContributor, null, 2)}</pre>*/}
-
-            {Object.keys(postsFromContributor).map(key =>
-              postsFromContributor[key].map((item, i) => (
-                <div
-                  key={i}
-                  style={{
-                    border: "1px solid #ddd",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                    margin: "10px",
-                    padding: "15px",
-                    backgroundColor: "#fff",
-                    transition: "transform 0.2s",
-                    cursor: "pointer",
-                  }}
-                >
-                  <div>{item.featuredImage ? (<img style={{ width: 324, height: 319 }} src={getImage(item.featuredImage)} />) : null}</div>
-                  <p style={{ fontSize: "14px", fontWeight: "bold" }}>{key}</p>
-                  <h1 style={{ fontSize: "18px", margin: "10px 0" }}>{item.title}</h1>
-                  {/* TODO: Update collections so all use "summary" */}
-                  {key === "Blogposts" ? (
-                    <p style={{ fontSize: "16px", color: "#555" }}>{item.summary}</p>
-                  ) : (
-                    <p style={{ fontSize: "16px", color: "#555" }}>{item.episodeSummary}</p>
-                  )}
-
-                  <div>
-                    {Array.isArray(item.categories) && item.categories.length > 0
-                      ? item.categories.map((category, i) => (
-                        <p key={i} style={{ fontSize: "14px", color: "#007bff" }}>
-                          {category.title}
-                        </p>
-                      ))
-                      : null}
-                  </div>
-                  <div>
-                    <div>
-                      {formatDateTime(item.publishedAt)} |{" "}
-                      {key === "Blogposts" ? <span>ReadTime</span> : <span>Duration</span>}
-                    </div>
-                  </div>
-                  <div>
-                    <div style={{ display: "flex" }}>
-                      {item.authors.map((author, i) => (
-                        <AuthorPill key={i} author={author} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )),
-            )}
-          </div>
-        </div>
-      </div>
+      <AuthorContentGrid content={postsFromContributor} />
     </div>
   );
 }
