@@ -1,43 +1,47 @@
 import React from 'react'
+import Link from 'next/link'
 
-import Authors from '@/app/_components/Authors'
-import EpisodeFeaturedImage from '@/app/_components/EpisodeFeaturedImage'
-import { formatDateTime } from '@/app/_utilities/formatDateTime'
-import { getImage } from '@/app/_utilities/getImage'
-import { Blogpost, CaseStudy, PodcastEpisode, TalksAndRoundtable } from '@/payload/payload-types'
+import { Blogpost, PodcastEpisode } from '../../../payload/payload-types'
+import { formatDateTime } from '../../_utilities/formatDateTime'
+import { getImage } from '../../_utilities/getImage'
+import { toKebabCase } from '../../_utilities/toKebabCase'
+import Authors from '../Authors'
+import EpisodeFeaturedImage from '../EpisodeFeaturedImage'
 
 interface ContentSummaryProps {
-  key: string
-  content: Blogpost | PodcastEpisode
+  contentType: string
+  content: Blogpost | PodcastEpisode // TODO: Extend to CaseStudy and TalksAndRoundTables once consistency is assured
 }
 
-export default function ContentCard({ key, content }: ContentSummaryProps) {
-  const { title, summary, featuredImage, categories, publishedAt, authors } = content
+export default function ContentCard({ contentType, content }: ContentSummaryProps) {
+  const { slug, title, summary, featuredImage, categories, publishedAt, authors } = content
 
   return (
     <div>
-      <div>
-        <EpisodeFeaturedImage src={getImage(featuredImage)} />
-        <p style={{ fontSize: '14px', fontWeight: 'bold' }}>{key}</p>
-        <h1 style={{ fontSize: '18px', margin: '10px 0' }}>{title}</h1>
-        <p style={{ fontSize: '16px', color: '#555' }}>{summary}</p>
-      </div>
-      <div>
-        {Array.isArray(categories) && categories.length > 0
-          ? categories.map((category, i) => (
-              <p key={i} style={{ fontSize: '14px', color: '#007bff' }}>
-                {category.title}
-              </p>
-            ))
-          : null}
-      </div>
-      <div>
+      <Link href={`/${toKebabCase(contentType)}/${slug}`}>
         <div>
-          {formatDateTime(publishedAt)} |{' '}
-          {key === 'PodcastEpisodes' ? <span>Duration</span> : <span>Read Time</span>}
+          <EpisodeFeaturedImage src={getImage(featuredImage)} />
+          <p style={{ fontSize: '14px', fontWeight: 'bold' }}>{contentType}</p>
+          <h1 style={{ fontSize: '18px', margin: '10px 0' }}>{title}</h1>
+          <p style={{ fontSize: '16px', color: '#555' }}>{summary}</p>
         </div>
-      </div>
-      <Authors authors={authors} />
+        <div>
+          {Array.isArray(categories) && categories.length > 0
+            ? categories.map((category, i) => (
+              <p key={i} style={{ fontSize: '14px', color: '#007bff' }}>
+                  {category.title}
+                </p>
+              ))
+            : null}
+        </div>
+        <div>
+          <div>
+            {formatDateTime(publishedAt)} |{' '}
+            {contentType === 'PodcastEpisodes' ? <span>Duration</span> : <span>Read Time</span>}
+          </div>
+        </div>
+        <Authors authors={authors} />
+      </Link>
     </div>
   )
 }
