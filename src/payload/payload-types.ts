@@ -227,8 +227,21 @@ export interface Blogpost {
   title: string;
   summary: string;
   content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
     [k: string]: unknown;
-  }[];
+  };
+  content_html?: string | null;
   featuredImage: string | Media;
   authors?: (string | Author)[] | null;
   categories?: (string | Category)[] | null;

@@ -28,6 +28,7 @@ export const BLOGPOST = `
         featuredImage {
           ${MEDIA_FIELDS}
         }
+        content_html
         createdAt
         updatedAt
       }
