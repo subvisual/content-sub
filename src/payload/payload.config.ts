@@ -20,6 +20,7 @@ import BeforeLogin from './components/BeforeLogin'
 import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
+import { InlineCodeTextFeature, lexicalEditor, TreeViewFeature } from "@payloadcms/richtext-lexical";
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -52,7 +53,11 @@ export default buildConfig({
       },
     }),
   },
-  editor: slateEditor({}),
+  editor: lexicalEditor({
+    features: ({defaultFeatures}) => [
+      ...defaultFeatures,
+    ]
+  }),
   db: mongooseAdapter({
     url: process.env.DATABASE_URI,
   }),
