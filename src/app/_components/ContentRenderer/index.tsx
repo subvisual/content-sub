@@ -1,4 +1,4 @@
-import DOMpurify from 'dompurify'
+import DOMpurify from 'isomorphic-dompurify'
 
 export default function ContentRenderer({ content_html }: { content_html: string }) {
   // Sanitize HTML content to prevent XSS vulnerabilities.
