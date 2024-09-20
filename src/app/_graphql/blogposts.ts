@@ -15,6 +15,9 @@ export const BLOGPOST = `
         authors {
           name
           role
+          featuredImage {
+            ${MEDIA_FIELDS}
+          }
         }
         categories {
           title

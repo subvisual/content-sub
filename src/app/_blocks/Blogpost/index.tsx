@@ -1,18 +1,17 @@
 import EpisodeFeaturedImage from "@/app/_components/EpisodeFeaturedImage";
-import { getImage } from "@/app/_utilities/getImage";
 import { Blogpost } from "@/payload/payload-types";
-import ContentRenderer from "@/app/_components/ContentRenderer";
+import DOMPurify from "isomorphic-dompurify";
 
 export default function BlogpostContent({ post }: { post: Blogpost }) {
 
   const { summary, content_html, featuredImage } = post;
+  const sanitizedContent = DOMPurify.sanitize(content_html);
 
-  console.log(featuredImage);
   return (
     <div>
-
+      <EpisodeFeaturedImage src={featuredImage} />
       <div>{summary}</div>
-      <ContentRenderer content_html={content_html} />
+      <div dangerouslySetInnerHTML={{__html: sanitizedContent}}/>
 
     </div>
   );
