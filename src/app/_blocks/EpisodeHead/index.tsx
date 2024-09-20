@@ -10,7 +10,7 @@ import { getAudio } from '../../_utilities/getAudio'
 import { useEpisodeDuration } from '../../_utilities/useEpisodeDuration'
 import { getImage } from '../../_utilities/getImage'
 
-export const EpisodeHead: React.FC<{ episode: PodcastEpisode }> = ({ episode }) => {
+export default function EpisodeHead({ episode }) {
   const { title, episodeFile, publishedAt, featuredImage } = episode
 
   // TODO: convert into conditional logic based on ContentType

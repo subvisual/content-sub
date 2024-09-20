@@ -1,7 +1,7 @@
 import { PodcastEpisode } from '../../../payload/payload-types'
 
 export default function EpisodeContent({ episode }: { episode: PodcastEpisode }) {
-  const { spotify, apple, episodeSummary, episodeNotes, categories } = episode
+  const { spotify, apple, summary, notes, categories } = episode
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
@@ -31,9 +31,9 @@ export default function EpisodeContent({ episode }: { episode: PodcastEpisode })
       <div style={{ backgroundColor: 'white', color: '#403F4C', flex: '2' }}>
         <h1>EpisodeContent block goes here</h1>
         <h3>Episode Summary</h3>
-        <span>{episodeSummary}</span>
+        <span>{summary}</span>
         <h3>Episode Notes</h3>
-        <span>{episodeNotes}</span>
+        <span>{notes}</span>
       </div>
 
       {/* Share/Category Column */}
