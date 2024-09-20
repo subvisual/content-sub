@@ -1,4 +1,4 @@
-import { MEDIA_FIELDS } from "./media"
+import { MEDIA_FIELDS } from './media'
 
 export const BLOGPOST = `
   query Blogpost ($slug: String) {

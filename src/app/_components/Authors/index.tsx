@@ -1,7 +1,8 @@
-import AuthorPill from "@/app/_components/AuthorPill";
-import React from "react";
+import React from 'react'
 
-export default function Authors({authors}) {
+import AuthorPill from '@/app/_components/AuthorPill'
+
+export default function Authors({ authors }) {
   return (
     <div>
       <div style={{ display: 'flex' }}>

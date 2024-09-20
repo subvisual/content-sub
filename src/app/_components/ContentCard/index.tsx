@@ -6,8 +6,8 @@ import { formatDateTime } from '../../_utilities/formatDateTime'
 import { getImage } from '../../_utilities/getImage'
 import { toKebabCase } from '../../_utilities/toKebabCase'
 import Authors from '../Authors'
-import EpisodeFeaturedImage from '../EpisodeFeaturedImage'
 import CategoryPill from '../CategoryPill'
+import EpisodeFeaturedImage from '../EpisodeFeaturedImage'
 
 interface ContentSummaryProps {
   contentType: string

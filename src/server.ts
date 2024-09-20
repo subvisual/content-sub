@@ -5,7 +5,6 @@ import nextBuild from 'next/dist/build'
 import path from 'path'
 import payload from 'payload'
 
-
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })

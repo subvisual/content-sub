@@ -8,7 +8,7 @@ import BackButton from '../../../_components/BackButton'
 
 export default async function ContributorPage({ params: { slug } }) {
   // TODO: update fetchDoc to include error handling instead of making it on-page
-  const author = await fetchDoc({collection: 'authors', slug})
+  const author = await fetchDoc({ collection: 'authors', slug })
   const contentFromAuthor = await fetchContentFromAuthor({ authorID: author.id })
 
   if (!author) {

@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 
 import { fetchDoc } from '../../../_api/fetchDoc'
 import EpisodeContent from '../../../_blocks/EpisodeContent'
-import EpisodeHead  from '../../../_blocks/EpisodeHead'
+import EpisodeHead from '../../../_blocks/EpisodeHead'
 import { RecommendedContent } from '../../../_blocks/RecommendedContent'
 import { Subscribe } from '../../../_blocks/Subscribe'
 

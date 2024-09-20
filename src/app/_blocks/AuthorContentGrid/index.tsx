@@ -34,8 +34,7 @@ export default function AuthorContentGrid({ content }: AuthorContentGridProps) {
               >
                 <ContentCard contentType={key} content={contentPiece} />
               </div>
-            )),
-          )}
+            )),)}
         </div>
       </div>
     </div>
