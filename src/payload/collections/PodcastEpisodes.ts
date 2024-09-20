@@ -30,13 +30,13 @@ export const PodcastEpisodes: CollectionConfig = {
       required: true,
     },
     {
-      name: 'episodeSummary',
+      name: 'summary',
       label: 'Episode Summary',
       type: 'textarea',
       required: true,
     },
     {
-      name: 'episodeNotes',
+      name: 'notes',
       label: 'Episode Notes',
       type: 'textarea',
       required: true,

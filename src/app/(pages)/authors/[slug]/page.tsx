@@ -1,43 +1,27 @@
-import React from 'react'
 import { notFound } from 'next/navigation'
 
-import { fetchContentFromAuthor } from "../../../_api/fetchContentFromAuthor"
-import { fetchDoc } from "../../../_api/fetchDoc"
+import { fetchContentFromAuthor } from '../../../_api/fetchContentFromAuthor'
+import { fetchDoc } from '../../../_api/fetchDoc'
+import AuthorContentGrid from '../../../_blocks/AuthorContentGrid'
+import AuthorSummary from '../../../_components/AuthorSummary'
+import BackButton from '../../../_components/BackButton'
 
 export default async function ContributorPage({ params: { slug } }) {
-  let contributor = null
-  let postsFromContributor = null
+  // TODO: update fetchDoc to include error handling instead of making it on-page
+  const author = await fetchDoc({collection: 'authors', slug})
+  const contentFromAuthor = await fetchContentFromAuthor({ authorID: author.id })
 
-  try {
-    contributor = await fetchDoc({
-      collection: 'authors',
-      slug,
-    })
-  } catch (err) {
-    console.error(err)
-  }
-
-  if (!contributor) {
+  if (!author) {
     notFound()
-  }
-
-  const contributorID = contributor.id
-
-  try {
-    postsFromContributor = await fetchContentFromAuthor({ authorID: contributorID })
-  } catch (err) {
-    console.error(err)
   }
 
   return (
     <div>
-      <div>
-        Hello "{contributor.name}"!
-        <div>
-          <h1>Posts by "{contributor.name}</h1>
-          <pre>{JSON.stringify(postsFromContributor, null, 2)}</pre>
-        </div>
+      <div style={{ background: 'purple' }}>
+        <BackButton />
+        <AuthorSummary author={author} />
       </div>
+      <AuthorContentGrid content={contentFromAuthor} />
     </div>
   )
 }
