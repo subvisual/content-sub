@@ -4,9 +4,11 @@ import ArchiveButton from '@/app/_components/BlogPostArchiveButton'
 import { estimateReadTime } from '@/app/_utilities/estimateReadTime'
 import { formatDateTime } from '@/app/_utilities/formatDateTime'
 import { Blogpost } from '@/payload/payload-types'
+import AuthorPill from "@/app/_components/AuthorPill";
 
 export default function PostSummary({ post }: { post: Blogpost }) {
   const { title, publishedAt, content, authors } = post
+
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -17,12 +19,14 @@ export default function PostSummary({ post }: { post: Blogpost }) {
         <div>
           {formatDateTime(publishedAt)} | {estimateReadTime('Placeholder')}
         </div>
+
       </div>
 
       {/* Right column */}
       <div style={{ flex: 1, textAlign: 'right' }}>
         <p style={{ fontSize: 20 }}>WRITTEN BY</p>
-        <p>(AuthorPill with SocialLinks)</p>
+        <AuthorPill author={post.authors[0]}/>
+
       </div>
     </div>
   )
