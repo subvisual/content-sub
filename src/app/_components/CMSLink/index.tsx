@@ -51,15 +51,4 @@ export const CMSLink: React.FC<CMSLinkType> = ({
       )
     }
   }
-
-  return (
-    <Button
-      className={className}
-      newTab={newTab}
-      href={href}
-      appearance={appearance}
-      label={label}
-      invert={invert}
-    />
-  )
 }
