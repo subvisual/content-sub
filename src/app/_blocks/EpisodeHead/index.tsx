@@ -7,8 +7,8 @@ import ContentTypePill from '../../_components/ContentTypePill'
 import EpisodeFeaturedImage from '../../_components/EpisodeFeaturedImage'
 import { formatDateTime } from '../../_utilities/formatDateTime'
 import { getAudio } from '../../_utilities/getAudio'
-import { useEpisodeDuration } from '../../_utilities/useEpisodeDuration'
 import { getImage } from '../../_utilities/getImage'
+import { useEpisodeDuration } from '../../_utilities/useEpisodeDuration'
 
 export default function EpisodeHead({ episode }) {
   const { title, episodeFile, publishedAt, featuredImage } = episode

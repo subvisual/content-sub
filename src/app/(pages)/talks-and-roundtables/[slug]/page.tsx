@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
-import { fetchDoc } from "../../../_api/fetchDoc"
+
+import { fetchDoc } from '../../../_api/fetchDoc'
 
 export default async function TalksAndRoundTablesPage({ params: { slug } }) {
   let content = null

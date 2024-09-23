@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { formatEpisodeDuration } from "./formatEpisodeDuration"
+import { formatEpisodeDuration } from './formatEpisodeDuration'
 
 export function useEpisodeDuration({ src }: { src: string }): string {
   const [duration, setDuration] = useState<number | null>(null)

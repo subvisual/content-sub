@@ -1,3 +1,4 @@
+import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from '@payloadcms/richtext-lexical'
 import type { CollectionConfig } from 'payload/types'
 
 import { admins } from '../access/admins'
@@ -40,7 +41,11 @@ export const BlogPosts: CollectionConfig = {
       label: 'Content',
       type: 'richText',
       required: true,
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [...defaultFeatures, HTMLConverterFeature({})],
+      }),
     },
+    lexicalHTML('content', { name: 'content_html' }),
     {
       name: 'featuredImage',
       label: 'Featured Image',

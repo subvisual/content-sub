@@ -1,8 +1,8 @@
 import React from 'react'
 
+import { Author } from '../../../payload/payload-types'
 import FeaturedImage from '../FeaturedImage'
 import SocialLinks from '../SocialLinks'
-import { Author } from '../../../payload/payload-types'
 
 export default function AuthorSummary({ author }: { author: Author }) {
   const { name, role, bio, linkedIn, gitHub, medium, x, featuredImage } = author

@@ -1,7 +1,7 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
 
-import { fetchDoc } from "../../../_api/fetchDoc"
+import { fetchDoc } from '../../../_api/fetchDoc'
 
 export default async function CaseStudiesPage({ params: { slug } }) {
   let content = null

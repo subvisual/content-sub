@@ -1,5 +1,6 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { InlineCodeTextFeature, lexicalEditor, TreeViewFeature } from '@payloadcms/richtext-lexical'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
 import path from 'path'
@@ -20,7 +21,6 @@ import BeforeLogin from './components/BeforeLogin'
 import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
-import { InlineCodeTextFeature, lexicalEditor, TreeViewFeature } from "@payloadcms/richtext-lexical";
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -54,9 +54,7 @@ export default buildConfig({
     }),
   },
   editor: lexicalEditor({
-    features: ({defaultFeatures}) => [
-      ...defaultFeatures,
-    ]
+    features: ({ defaultFeatures }) => [...defaultFeatures],
   }),
   db: mongooseAdapter({
     url: process.env.DATABASE_URI,

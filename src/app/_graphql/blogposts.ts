@@ -1,8 +1,8 @@
-import { MEDIA_FIELDS } from "./media"
+import { MEDIA_FIELDS } from './media'
 
 export const BLOGPOST = `
-  query Blogpost {
-    Blogposts {
+  query Blogpost ($slug: String) {
+    Blogposts(where: { slug: { equals: $slug }}) {
       docs {
         id
         title
@@ -15,6 +15,9 @@ export const BLOGPOST = `
         authors {
           name
           role
+          featuredImage {
+            ${MEDIA_FIELDS}
+          }
         }
         categories {
           title
@@ -28,6 +31,7 @@ export const BLOGPOST = `
         featuredImage {
           ${MEDIA_FIELDS}
         }
+        content_html
         createdAt
         updatedAt
       }

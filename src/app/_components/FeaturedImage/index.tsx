@@ -1,7 +1,6 @@
 import { getImage } from '../../_utilities/getImage'
 
 export default function FeaturedImage({ src }) {
-
   return (
     <div style={{ width: 120, height: 120, marginRight: '20px' }}>
       <img
