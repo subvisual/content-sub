@@ -66,7 +66,7 @@ const richText: RichText = (
               {
                 name: 'enableLink',
                 type: 'checkbox',
-                label: 'Enable Link',
+                label: 'Enable CMSLink',
               },
               link({
                 appearances: false,

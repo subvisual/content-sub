@@ -66,7 +66,7 @@ export const PodcastEpisodes: CollectionConfig = {
       fields: [
         {
           name: 'spotify',
-          label: 'Spotify Link',
+          label: 'Spotify CMSLink',
           type: 'text',
           admin: {
             width: '50%',
@@ -74,7 +74,7 @@ export const PodcastEpisodes: CollectionConfig = {
         },
         {
           name: 'apple',
-          label: 'Apple Podcasts Link',
+          label: 'Apple Podcasts CMSLink',
           type: 'text',
           admin: {
             width: '50%',
