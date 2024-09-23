@@ -1,14 +1,14 @@
-import React from "react";
-import { Footer } from "../../../payload/payload-types";
-import { fetchFooter } from "../../_api/fetchGlobals";
+import React from 'react'
 
-import { CMSLink } from "../CMSLink";
+import { Footer } from '../../../payload/payload-types'
+import { fetchFooter } from '../../_api/fetchGlobals'
+import { CMSLink } from '../CMSLink'
 
 export async function Footer() {
-  let footer: Footer | null = null;
+  let footer: Footer | null = null
 
   try {
-    footer = await fetchFooter();
+    footer = await fetchFooter()
   } catch (error) {
     // When deploying this template on Payload Cloud, this page needs to build before the APIs are live
     // So swallow the error here and simply render the footer without nav items if one occurs
@@ -16,16 +16,15 @@ export async function Footer() {
     // console.error(error)
   }
 
-  const navItems = footer?.navItems || [];
+  const navItems = footer?.navItems || []
 
   return (
-    <footer >
-      <nav >
+    <footer>
+      <nav>
         {navItems.map(({ link }, i) => {
-          return <CMSLink key={i} {...link} />;
+          return <CMSLink key={i} {...link} />
         })}
       </nav>
-
     </footer>
-  );
+  )
 }
