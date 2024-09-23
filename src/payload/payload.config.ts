@@ -1,7 +1,7 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { InlineCodeTextFeature, lexicalEditor, TreeViewFeature } from '@payloadcms/richtext-lexical'
-import { slateEditor } from '@payloadcms/richtext-slate'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+
 import dotenv from 'dotenv'
 import path from 'path'
 import { buildConfig } from 'payload/config'

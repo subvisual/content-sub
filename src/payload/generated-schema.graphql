@@ -6078,6 +6078,7 @@ type Blogpost {
   title: String
   summary: String
   content(depth: Int): JSON
+  content_html: String
   featuredImage(where: Blogpost_FeaturedImage_where): Media
   authors(draft: Boolean): [Author!]
   categories: [Category!]
@@ -6300,6 +6301,7 @@ input Blogpost_where {
   title: Blogpost_title_operator
   summary: Blogpost_summary_operator
   content: Blogpost_content_operator
+  content_html: Blogpost_content_html_operator
   featuredImage: Blogpost_featuredImage_operator
   authors: Blogpost_authors_operator
   categories: Blogpost_categories_operator
@@ -6336,6 +6338,17 @@ input Blogpost_content_operator {
   not_equals: JSON
   like: JSON
   contains: JSON
+}
+
+input Blogpost_content_html_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Blogpost_featuredImage_operator {
@@ -6443,6 +6456,7 @@ input Blogpost_where_and {
   title: Blogpost_title_operator
   summary: Blogpost_summary_operator
   content: Blogpost_content_operator
+  content_html: Blogpost_content_html_operator
   featuredImage: Blogpost_featuredImage_operator
   authors: Blogpost_authors_operator
   categories: Blogpost_categories_operator
@@ -6461,6 +6475,7 @@ input Blogpost_where_or {
   title: Blogpost_title_operator
   summary: Blogpost_summary_operator
   content: Blogpost_content_operator
+  content_html: Blogpost_content_html_operator
   featuredImage: Blogpost_featuredImage_operator
   authors: Blogpost_authors_operator
   categories: Blogpost_categories_operator
@@ -6492,6 +6507,7 @@ type BlogpostsDocAccessFields {
   title: BlogpostsDocAccessFields_title
   summary: BlogpostsDocAccessFields_summary
   content: BlogpostsDocAccessFields_content
+  content_html: BlogpostsDocAccessFields_content_html
   featuredImage: BlogpostsDocAccessFields_featuredImage
   authors: BlogpostsDocAccessFields_authors
   categories: BlogpostsDocAccessFields_categories
@@ -6569,6 +6585,29 @@ type BlogpostsDocAccessFields_content_Update {
 }
 
 type BlogpostsDocAccessFields_content_Delete {
+  permission: Boolean!
+}
+
+type BlogpostsDocAccessFields_content_html {
+  create: BlogpostsDocAccessFields_content_html_Create
+  read: BlogpostsDocAccessFields_content_html_Read
+  update: BlogpostsDocAccessFields_content_html_Update
+  delete: BlogpostsDocAccessFields_content_html_Delete
+}
+
+type BlogpostsDocAccessFields_content_html_Create {
+  permission: Boolean!
+}
+
+type BlogpostsDocAccessFields_content_html_Read {
+  permission: Boolean!
+}
+
+type BlogpostsDocAccessFields_content_html_Update {
+  permission: Boolean!
+}
+
+type BlogpostsDocAccessFields_content_html_Delete {
   permission: Boolean!
 }
 
@@ -6817,6 +6856,7 @@ type BlogpostVersion_Version {
   title: String
   summary: String
   content(depth: Int): JSON
+  content_html: String
   featuredImage(where: BlogpostVersion_Version_FeaturedImage_where): Media
   authors(draft: Boolean): [Author!]
   categories: [Category!]
@@ -7040,6 +7080,7 @@ input versionsBlogpost_where {
   version__title: versionsBlogpost_version__title_operator
   version__summary: versionsBlogpost_version__summary_operator
   version__content: versionsBlogpost_version__content_operator
+  version__content_html: versionsBlogpost_version__content_html_operator
   version__featuredImage: versionsBlogpost_version__featuredImage_operator
   version__authors: versionsBlogpost_version__authors_operator
   version__categories: versionsBlogpost_version__categories_operator
@@ -7088,6 +7129,17 @@ input versionsBlogpost_version__content_operator {
   not_equals: JSON
   like: JSON
   contains: JSON
+}
+
+input versionsBlogpost_version__content_html_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input versionsBlogpost_version__featuredImage_operator {
@@ -7224,6 +7276,7 @@ input versionsBlogpost_where_and {
   version__title: versionsBlogpost_version__title_operator
   version__summary: versionsBlogpost_version__summary_operator
   version__content: versionsBlogpost_version__content_operator
+  version__content_html: versionsBlogpost_version__content_html_operator
   version__featuredImage: versionsBlogpost_version__featuredImage_operator
   version__authors: versionsBlogpost_version__authors_operator
   version__categories: versionsBlogpost_version__categories_operator
@@ -7246,6 +7299,7 @@ input versionsBlogpost_where_or {
   version__title: versionsBlogpost_version__title_operator
   version__summary: versionsBlogpost_version__summary_operator
   version__content: versionsBlogpost_version__content_operator
+  version__content_html: versionsBlogpost_version__content_html_operator
   version__featuredImage: versionsBlogpost_version__featuredImage_operator
   version__authors: versionsBlogpost_version__authors_operator
   version__categories: versionsBlogpost_version__categories_operator
@@ -11563,6 +11617,7 @@ type BlogpostsFields {
   title: BlogpostsFields_title
   summary: BlogpostsFields_summary
   content: BlogpostsFields_content
+  content_html: BlogpostsFields_content_html
   featuredImage: BlogpostsFields_featuredImage
   authors: BlogpostsFields_authors
   categories: BlogpostsFields_categories
@@ -11640,6 +11695,29 @@ type BlogpostsFields_content_Update {
 }
 
 type BlogpostsFields_content_Delete {
+  permission: Boolean!
+}
+
+type BlogpostsFields_content_html {
+  create: BlogpostsFields_content_html_Create
+  read: BlogpostsFields_content_html_Read
+  update: BlogpostsFields_content_html_Update
+  delete: BlogpostsFields_content_html_Delete
+}
+
+type BlogpostsFields_content_html_Create {
+  permission: Boolean!
+}
+
+type BlogpostsFields_content_html_Read {
+  permission: Boolean!
+}
+
+type BlogpostsFields_content_html_Update {
+  permission: Boolean!
+}
+
+type BlogpostsFields_content_html_Delete {
   permission: Boolean!
 }
 
@@ -13581,6 +13659,7 @@ input mutationBlogpostInput {
   title: String!
   summary: String!
   content: JSON!
+  content_html: String
   featuredImage: String!
   authors: [String]
   categories: [String]
@@ -13601,6 +13680,7 @@ input mutationBlogpostUpdateInput {
   title: String
   summary: String
   content: JSON
+  content_html: String
   featuredImage: String
   authors: [String]
   categories: [String]

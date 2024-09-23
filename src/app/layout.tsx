@@ -1,13 +1,9 @@
 import React from 'react'
 import { Metadata } from 'next'
 
-import { AdminBar } from './_components/AdminBar'
 import { Footer } from './_components/Footer'
 import { Header } from './_components/Header'
-import { Providers } from './_providers'
 import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
-
-import './_css/app.scss'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,14 +13,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body>
-        <Providers>
-          <AdminBar />
-          {/* @ts-expect-error */}
-          <Header />
-          {children}
-          {/* @ts-expect-error */}
-          <Footer />
-        </Providers>
+        {/* @ts-expect-error */}
+        <Header />
+        {children}
+        {/* @ts-expect-error */}
+        <Footer />
       </body>
     </html>
   )
