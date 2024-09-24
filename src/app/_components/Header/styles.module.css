@@ -1,0 +1,46 @@
+.contactUsPill {
+  border: 1px solid var(--dark-rock-800);
+  border-radius: 33px;
+  width: 161px;
+  height: 66px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.contactUsPill:hover {
+  color: var(--sub-blue-800)
+}
+
+.container {
+  font-family: Colfax;
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  padding: 20px;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.navbar {
+  display: none;
+  align-items: center;
+  gap: 27px;
+}
+
+.dropDownIcon {
+  display: flex;
+  cursor: pointer;
+}
+
+@media (min-width: 1080px) {
+  .navbar {
+    display: flex;
+  }
+
+  .dropDownIcon {
+    display: none;
+  }
+}

@@ -1,6 +1,5 @@
 :root {
   /* Colors */
-
   --sub-blue-900: #2952DD;
   --sub-blue-800: #045CFC;
   --sub-blue-700: #006FFF;
@@ -25,6 +24,12 @@
 
   --dark-rock-800: #403F4C;
   --soft-white-100: #F6F6F6;
+
+  /* Links */
+  a {
+    text-decoration: none;
+    color: var(--dark-rock-800);
+  }
 
   /* Typography */
   --colfax-medium: "Colfax Medium", Roboto, sans-serif;
@@ -57,7 +62,7 @@
     font-size: 18px;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1080px) {
     h1 {
       font-size: 160px;
     }
