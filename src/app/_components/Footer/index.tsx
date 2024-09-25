@@ -1,16 +1,14 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import { Footer } from "../../../payload/payload-types";
-import { fetchFooter } from "../../_api/fetchGlobals";
-
-
-import styles from "./styles.module.css";
+import { Footer } from '../../../payload/payload-types'
+import { fetchFooter } from '../../_api/fetchGlobals'
+import styles from './styles.module.css'
 
 export async function Footer() {
-  let footer: Footer | null = null;
+  let footer: Footer | null = null
 
   try {
-    footer = await fetchFooter();
+    footer = await fetchFooter()
   } catch (error) {
     // When deploying this template on Payload Cloud, this page needs to build before the APIs are live
     // So swallow the error here and simply render the footer without nav items if one occurs
@@ -18,49 +16,45 @@ export async function Footer() {
     // console.error(error)
   }
 
-  const navItems = footer?.navItems || [];
+  const navItems = footer?.navItems || []
 
   return (
-
-    <footer className={styles.footer}>
-      <div className={styles.item}>
-        <h5>Go To</h5>
-        <div className={styles.goToNav}>
-          {navItems.map(({ link }, i) => {
-            return (
-              <Link className={styles.link} key={i} href={link.url}>{link.label}</Link>
-            );
+    <div className={styles.containter}>
+      <footer className={styles.footer}>
+        <div className={styles.item}>
+          <h5>Go To</h5>
+          <div className={styles.goToNav}>
+            {navItems.map(({ link }, i) => {
+              return (
+                <Link className={styles.link} key={i} href={link.url}>
+                  {link.label}
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+        <div className={styles.item}>
+          {/* TODO: Update fetchGlobals to include socials and then update here. */}
+          <h5>We're Social</h5>
+          {['Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md'].map((item, i) => {
+            return <span style={{ marginRight: '20px' }}>{item}</span>
           })}
         </div>
-
-      </div>
-      <div className={styles.item}>
-        {/* TODO: Update fetchGlobals to include socials and then update here. */}
-        <h5>We're Social</h5>
-        {["Md", "Md", "Md", "Md", "Md", "Md", "Md", "Md"].map((item, i) => {
-          return <span style={{ marginRight: "20px" }}>{item}</span>;
-        })}
-      </div>
-      <div className={styles.item}>
-        <h5>Contact Us</h5>
-        <a href={"mailto:contact@subvisual.com"}>
+        <div className={styles.item}>
+          <h5>Contact Us</h5>
+          <a href={'mailto:contact@subvisual.com'}>
+            <p>contact@subvisual.com</p>
+          </a>
+        </div>
+        <div className={styles.item}>
+          <h5>Offices</h5>
           <p>
-            contact@subvisual.com
+            Remote. Work anywhere in Europe.
+            <br />
+            Or join our mothership, landed in Braga, Portugal
           </p>
-        </a>
-      </div>
-      <div className={styles.item}>
-        <h5>Offices</h5>
-        <p>
-          Remote. Work anywhere in Europe.
-          <br />
-          Or join our mothership, landed in Braga, Portugal
-        </p>
-      </div>
-
-
-    </footer>
-
-
-  );
+        </div>
+      </footer>
+    </div>
+  )
 }
