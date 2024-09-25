@@ -1,19 +1,17 @@
-import { CMSLink } from '../CMSLink'
+import Link from "next/link";
 
-{
-  /* eslint-disable @next/next/no-img-element */
-}
+import { Header } from "../../../payload/payload-types";
+import { fetchHeader } from "../../_api/fetchGlobals";
+import styles from "./styles.module.css";
 
-import React from 'react'
-
-import { Header } from '../../../payload/payload-types'
-import { fetchHeader } from '../../_api/fetchGlobals'
+import DropDownIcon from "./DropDownIcon";
+import Logo from "@/app/_components/Header/Logo";
 
 export async function Header() {
-  let header: Header | null = null
+  let header: Header | null = null;
 
   try {
-    header = await fetchHeader()
+    header = await fetchHeader();
   } catch (error) {
     // When deploying this template on Payload Cloud, this page needs to build before the APIs are live
     // So swallow the error here and simply render the header without nav items if one occurs
@@ -21,15 +19,30 @@ export async function Header() {
     // console.error(error)
   }
 
-  const navItems = header?.navItems || []
+  const navItems = header?.navItems || [];
 
   return (
     <>
-      <header>
-        {navItems.map(({ link }, i) => {
-          return <CMSLink key={i} {...link} appearance="none" />
-        })}
+      <header className={styles.container}>
+        <div>
+          <Logo/>
+        </div>
+
+        {/* TODO: Conditionally format Content Hub to reflect active link?*/}
+        <nav className={styles.navbar}>
+          {navItems.map(({ link }, i) => {
+            return (
+              <Link key={i} href={link.url}>
+                {link.label}
+              </Link>
+            );
+          })}
+          <Link href={"mailto:contact@subvisual.com"} className={styles.contactUsPill}>
+            CONTACT US
+          </Link>
+        </nav>
+        <DropDownIcon className={styles.dropDownIcon} />
       </header>
     </>
-  )
+  );
 }

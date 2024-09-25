@@ -23,7 +23,6 @@ export const CMSLink: React.FC<CMSLinkType> = ({
   newTab,
   reference,
   label,
-
   children,
   className,
 }) => {
