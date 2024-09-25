@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 
 import { Footer } from "../../../payload/payload-types";
@@ -6,6 +5,7 @@ import { fetchFooter } from "../../_api/fetchGlobals";
 
 
 import styles from "./styles.module.css";
+
 export async function Footer() {
   let footer: Footer | null = null;
 
@@ -21,26 +21,27 @@ export async function Footer() {
   const navItems = footer?.navItems || [];
 
   return (
+
     <footer className={styles.footer}>
-      <div>
+      <div className={styles.item}>
         <h5>Go To</h5>
-        <nav className={styles.goToNav}>
+        <div className={styles.goToNav}>
           {navItems.map(({ link }, i) => {
             return (
-              <Link className={link} key={i} href={link.url}>{link.label}</Link>
+              <Link className={styles.link} key={i} href={link.url}>{link.label}</Link>
             );
           })}
-        </nav>
+        </div>
 
       </div>
-      <div>
+      <div className={styles.item}>
         {/* TODO: Update fetchGlobals to include socials and then update here. */}
         <h5>We're Social</h5>
         {["Md", "Md", "Md", "Md", "Md", "Md", "Md", "Md"].map((item, i) => {
           return <span style={{ marginRight: "20px" }}>{item}</span>;
         })}
       </div>
-      <div>
+      <div className={styles.item}>
         <h5>Contact Us</h5>
         <a href={"mailto:contact@subvisual.com"}>
           <p>
@@ -48,7 +49,7 @@ export async function Footer() {
           </p>
         </a>
       </div>
-      <div>
+      <div className={styles.item}>
         <h5>Offices</h5>
         <p>
           Remote. Work anywhere in Europe.
