@@ -59,6 +59,8 @@ type Query {
   docAccessHeader: headerDocAccess
   Footer(draft: Boolean): Footer
   docAccessFooter: footerDocAccess
+  Social(draft: Boolean): Social
+  docAccessSocial: socialsDocAccess
   Access: Access
 }
 
@@ -9709,6 +9711,185 @@ type FooterUpdateDocAccess {
   where: JSONObject
 }
 
+type Social {
+  socials: [Social_Socials!]
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type Social_Socials {
+  name: String
+  link: String
+  id: String
+}
+
+type socialsDocAccess {
+  fields: SocialsDocAccessFields
+  read: SocialsReadDocAccess
+  update: SocialsUpdateDocAccess
+}
+
+type SocialsDocAccessFields {
+  socials: SocialsDocAccessFields_socials
+  updatedAt: SocialsDocAccessFields_updatedAt
+  createdAt: SocialsDocAccessFields_createdAt
+}
+
+type SocialsDocAccessFields_socials {
+  create: SocialsDocAccessFields_socials_Create
+  read: SocialsDocAccessFields_socials_Read
+  update: SocialsDocAccessFields_socials_Update
+  delete: SocialsDocAccessFields_socials_Delete
+  fields: SocialsDocAccessFields_socials_Fields
+}
+
+type SocialsDocAccessFields_socials_Create {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_Read {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_Update {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_Delete {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_Fields {
+  name: SocialsDocAccessFields_socials_name
+  link: SocialsDocAccessFields_socials_link
+  id: SocialsDocAccessFields_socials_id
+}
+
+type SocialsDocAccessFields_socials_name {
+  create: SocialsDocAccessFields_socials_name_Create
+  read: SocialsDocAccessFields_socials_name_Read
+  update: SocialsDocAccessFields_socials_name_Update
+  delete: SocialsDocAccessFields_socials_name_Delete
+}
+
+type SocialsDocAccessFields_socials_name_Create {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_name_Read {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_name_Update {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_name_Delete {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_link {
+  create: SocialsDocAccessFields_socials_link_Create
+  read: SocialsDocAccessFields_socials_link_Read
+  update: SocialsDocAccessFields_socials_link_Update
+  delete: SocialsDocAccessFields_socials_link_Delete
+}
+
+type SocialsDocAccessFields_socials_link_Create {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_link_Read {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_link_Update {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_link_Delete {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_id {
+  create: SocialsDocAccessFields_socials_id_Create
+  read: SocialsDocAccessFields_socials_id_Read
+  update: SocialsDocAccessFields_socials_id_Update
+  delete: SocialsDocAccessFields_socials_id_Delete
+}
+
+type SocialsDocAccessFields_socials_id_Create {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_id_Read {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_id_Update {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_socials_id_Delete {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_updatedAt {
+  create: SocialsDocAccessFields_updatedAt_Create
+  read: SocialsDocAccessFields_updatedAt_Read
+  update: SocialsDocAccessFields_updatedAt_Update
+  delete: SocialsDocAccessFields_updatedAt_Delete
+}
+
+type SocialsDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_createdAt {
+  create: SocialsDocAccessFields_createdAt_Create
+  read: SocialsDocAccessFields_createdAt_Read
+  update: SocialsDocAccessFields_createdAt_Update
+  delete: SocialsDocAccessFields_createdAt_Delete
+}
+
+type SocialsDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type SocialsDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type SocialsReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SocialsUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Access {
   canAccessAdmin: Boolean!
   pages: pagesAccess
@@ -9724,6 +9905,7 @@ type Access {
   settings: settingsAccess
   header: headerAccess
   footer: footerAccess
+  socials: socialsAccess
 }
 
 type pagesAccess {
@@ -13283,6 +13465,173 @@ type FooterUpdateAccess {
   where: JSONObject
 }
 
+type socialsAccess {
+  fields: SocialsFields
+  read: SocialsReadAccess
+  update: SocialsUpdateAccess
+}
+
+type SocialsFields {
+  socials: SocialsFields_socials
+  updatedAt: SocialsFields_updatedAt
+  createdAt: SocialsFields_createdAt
+}
+
+type SocialsFields_socials {
+  create: SocialsFields_socials_Create
+  read: SocialsFields_socials_Read
+  update: SocialsFields_socials_Update
+  delete: SocialsFields_socials_Delete
+  fields: SocialsFields_socials_Fields
+}
+
+type SocialsFields_socials_Create {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_Read {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_Update {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_Delete {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_Fields {
+  name: SocialsFields_socials_name
+  link: SocialsFields_socials_link
+  id: SocialsFields_socials_id
+}
+
+type SocialsFields_socials_name {
+  create: SocialsFields_socials_name_Create
+  read: SocialsFields_socials_name_Read
+  update: SocialsFields_socials_name_Update
+  delete: SocialsFields_socials_name_Delete
+}
+
+type SocialsFields_socials_name_Create {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_name_Read {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_name_Update {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_name_Delete {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_link {
+  create: SocialsFields_socials_link_Create
+  read: SocialsFields_socials_link_Read
+  update: SocialsFields_socials_link_Update
+  delete: SocialsFields_socials_link_Delete
+}
+
+type SocialsFields_socials_link_Create {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_link_Read {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_link_Update {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_link_Delete {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_id {
+  create: SocialsFields_socials_id_Create
+  read: SocialsFields_socials_id_Read
+  update: SocialsFields_socials_id_Update
+  delete: SocialsFields_socials_id_Delete
+}
+
+type SocialsFields_socials_id_Create {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_id_Read {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_id_Update {
+  permission: Boolean!
+}
+
+type SocialsFields_socials_id_Delete {
+  permission: Boolean!
+}
+
+type SocialsFields_updatedAt {
+  create: SocialsFields_updatedAt_Create
+  read: SocialsFields_updatedAt_Read
+  update: SocialsFields_updatedAt_Update
+  delete: SocialsFields_updatedAt_Delete
+}
+
+type SocialsFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type SocialsFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type SocialsFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type SocialsFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type SocialsFields_createdAt {
+  create: SocialsFields_createdAt_Create
+  read: SocialsFields_createdAt_Read
+  update: SocialsFields_createdAt_Update
+  delete: SocialsFields_createdAt_Delete
+}
+
+type SocialsFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type SocialsFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type SocialsFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type SocialsFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type SocialsReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SocialsUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Mutation {
   createPage(data: mutationPageInput!, draft: Boolean): Page
   updatePage(id: String!, autosave: Boolean, data: mutationPageUpdateInput!, draft: Boolean): Page
@@ -13330,6 +13679,7 @@ type Mutation {
   updateSettings(data: mutationSettingsInput!, draft: Boolean): Settings
   updateHeader(data: mutationHeaderInput!, draft: Boolean): Header
   updateFooter(data: mutationFooterInput!, draft: Boolean): Footer
+  updateSocial(data: mutationSocialInput!, draft: Boolean): Social
 }
 
 input mutationPageInput {
@@ -13861,4 +14211,16 @@ input Footer_NavItems_Link_ReferenceRelationshipInput {
 
 enum Footer_NavItems_Link_ReferenceRelationshipInputRelationTo {
   pages
+}
+
+input mutationSocialInput {
+  socials: [mutationSocial_SocialsInput]
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationSocial_SocialsInput {
+  name: String!
+  link: String!
+  id: String
 }
