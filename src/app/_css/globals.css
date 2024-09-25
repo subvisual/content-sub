@@ -37,6 +37,10 @@
   /* TODO: Replace placeholder TNR for actual Acta*/
   --acta-book: "Acta Book", "Times New Roman", serif;
 
+  body {
+    font-size: 14px;
+    text-rendering: optimizeLegibility;
+  }
 
   h1 {
     font-size: 56px;
@@ -63,6 +67,11 @@
   }
 
   @media (min-width: 1080px) {
+
+    body {
+      font-size: 20px;
+    }
+
     h1 {
       font-size: 160px;
     }
