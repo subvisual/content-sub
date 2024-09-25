@@ -1,5 +1,5 @@
 :root {
-  /* Colors */
+    /* Colors */
   --sub-blue-900: #2952DD;
   --sub-blue-800: #045CFC;
   --sub-blue-700: #006FFF;
@@ -25,21 +25,48 @@
   --dark-rock-800: #403F4C;
   --soft-white-100: #F6F6F6;
 
-  /* Links */
-  a {
-    text-decoration: none;
-    color: var(--dark-rock-800);
-  }
-
-  /* Typography */
+    /* Typography */
   --colfax-medium: "Colfax Medium", Roboto, sans-serif;
   --colfax-regular: Colfax, Roboto, sans-serif;
   /* TODO: Replace placeholder TNR for actual Acta*/
   --acta-book: "Acta Book", "Times New Roman", serif;
 
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+  }
+
   body {
     font-size: 14px;
     text-rendering: optimizeLegibility;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+
+  input, button, textarea, select {
+    font: inherit;
+  }
+
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+
+  #root, #__next {
+    isolation: isolate;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--dark-rock-800);
   }
 
   h1 {
