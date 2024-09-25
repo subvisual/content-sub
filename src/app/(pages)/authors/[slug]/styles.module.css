@@ -1,0 +1,25 @@
+.backButton {
+  font-family: Colfax, sans-serif;
+  padding-top: 40px;
+  padding-left: 15px;
+  padding-bottom: 40px;
+}
+
+.container {
+  background-color: var(--sub-purple-50);
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media(min-width: 1080px) {
+  .container {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+  }
+
+  .backButton {
+    padding-left: 95px;
+  }
+}

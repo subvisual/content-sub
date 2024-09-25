@@ -6,6 +6,9 @@ import AuthorContentGrid from '../../../_blocks/AuthorContentGrid'
 import AuthorSummary from '../../../_components/AuthorSummary'
 import BackButton from '../../../_components/BackButton'
 
+import styles from './styles.module.css'
+import { Subscribe } from "@/app/_blocks/Subscribe";
+
 export default async function ContributorPage({ params: { slug } }) {
   // TODO: update fetchDoc to include error handling instead of making it on-page
   const author = await fetchDoc({ collection: 'authors', slug })
@@ -17,11 +20,13 @@ export default async function ContributorPage({ params: { slug } }) {
 
   return (
     <div>
-      <div style={{ background: 'purple' }}>
-        <BackButton />
+      <div className={styles.container}>
+        <BackButton className={styles.backButton}/>
         <AuthorSummary author={author} />
+        <div></div>
       </div>
       <AuthorContentGrid content={contentFromAuthor} />
+      {/*<Subscribe/>*/}
     </div>
   )
 }

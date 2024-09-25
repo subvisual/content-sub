@@ -1,0 +1,11 @@
+.container {
+  display: block;
+  font-family: Colfax, sans-serif;
+  align-items: center;
+}
+
+.backArrow {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
