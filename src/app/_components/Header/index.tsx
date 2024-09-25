@@ -5,6 +5,7 @@ import { fetchHeader } from "../../_api/fetchGlobals";
 import styles from "./styles.module.css";
 
 import DropDownIcon from "./DropDownIcon";
+import Logo from "@/app/_components/Header/Logo";
 
 export async function Header() {
   let header: Header | null = null;
@@ -23,7 +24,9 @@ export async function Header() {
   return (
     <>
       <header className={styles.container}>
-        <div style={{ fontFamily: "Times New Roman" }}>SUBVISUAL</div>
+        <div>
+          <Logo/>
+        </div>
 
         {/* TODO: Conditionally format Content Hub to reflect active link?*/}
         <nav className={styles.navbar}>
