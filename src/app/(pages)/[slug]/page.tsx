@@ -35,7 +35,7 @@ export default async function Page({ params: { slug = "home" } }) {
 
 
   return (
-    <div>
+    <>
       {/* Head Block*/}
       <div className={styles.headBlock}>
         <div className={styles.imageContainer}>
@@ -45,7 +45,7 @@ export default async function Page({ params: { slug = "home" } }) {
         {/*  Top Highlight  */}
         <div className={`${styles.highlights} ${styles.topHighlight}`}>
           <p> HIGHLIGHTS </p>
-          <h5> From nutritionist to product designer: Reinvinting my carrer at 30</h5>
+          <h6> From nutritionist to product designer: Reinvinting my carrer at 30</h6>
           <p>
             <span className={styles.categoryPill}>Inside subvisual</span> Date and Readtime{" "}
           </p>
@@ -73,13 +73,17 @@ export default async function Page({ params: { slug = "home" } }) {
       </div>
 
       {/* Content Grid */}
-      <div>
-        {content_list.map((article, i) => (
-          <ContentCard key={i} contentType={article.key} content={article.content} />
-        ))}
+      <div className={styles.contentGridContainer}>
+        <div className={styles.contentGrid}>
+          {content_list.map((article, i) => (
+            <div className={styles.contentCard} key={i}>
+              <ContentCard key={i} contentType={article.key} content={article.content} />
+            </div>
+          ))}
+        </div>
       </div>
       <Subscribe />
-    </div>
+    </>
   );
 }
 

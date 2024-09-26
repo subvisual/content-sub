@@ -65,6 +65,28 @@
   border-radius: 50%;
 }
 
+.contentGridContainer{
+  width: calc(100% - 160px);
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.contentGrid {
+
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+
+}
+
+.contentCard {
+  padding: 49px 20px 49px 20px;
+  height: min-content;
+
+  border: 1px solid var(--dark-rock-800);
+}
+
 
 @media(min-width: 1024px) {
   .headBlock {
@@ -87,7 +109,7 @@
 
   .topImage {
     width: 100%;
-    height: 100%;
+    height: 566px;
   }
 
   .imageContainer {
@@ -100,7 +122,7 @@
   background-color: var(--sub-purple-300);
   background-color: var(--sub-purple-400);
   grid-column: 2;
-  height: auto;
+  height: 283px;
   width: 100%;
 
 }
@@ -110,7 +132,7 @@
   border-radius: 45px;
   border: 1px solid var(--dark-rock-800);
   grid-column: 2;
-  height: auto;
+  height: 283px;
   width: 100%;
 }
 }
