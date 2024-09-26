@@ -4,7 +4,7 @@ export function Subscribe() {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <img className={styles.image} src={'sub.png'} />
+        <img className={styles.image} src={'/subscribe-card-image.png'} />
       </div>
       <div className={styles.CTABlock}>
         <h5>Subscribe to Subvisual Inspo</h5>
