@@ -6,11 +6,11 @@ import styles from './styles.module.css'
 
 export default function BackButton({className}) {
   return (
-    <div className={className}>
-      <Link href="/">
+    <>
+      <Link className={className} href="/">
         <BackArrow className={styles.backArrow} />
         Back
       </Link>
-    </div>
+    </>
   )
 }

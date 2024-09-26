@@ -4,16 +4,20 @@ import {
   PodcastEpisode,
   TalksAndRoundtable,
 } from '../../../payload/payload-types'
-
 import ContentCard from '../../_components/ContentCard'
 import { calculateTotalArticles } from '../../_utilities/calculateTotalArticles'
 import styles from './styles.module.css'
 
-interface AuthorContentGridProps {
-  content: Blogpost[] | PodcastEpisode[] | CaseStudy[] | TalksAndRoundtable[]
-}
-
-export default function AuthorContentGrid({ content }: AuthorContentGridProps) {
+export default function AuthorContentGrid({
+  content,
+}: {
+  content: {
+    Blogposts: Blogpost[]
+    PodcastEpisodes: PodcastEpisode[]
+    CasteStudies: CaseStudy[]
+    TalksAndRoundtables: TalksAndRoundtable[]
+  }
+}) {
   return (
     <div className={styles.gridContainer}>
       <div className={styles.articleCounter}>
