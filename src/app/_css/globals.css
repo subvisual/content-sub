@@ -1,3 +1,5 @@
+@import 'fonts.css';
+
 :root {
   /* Colors */
   --sub-blue-900: #2952DD;
@@ -27,8 +29,8 @@
 
   /* Typography */
   --colfax-medium: "Colfax Medium", Roboto, sans-serif;
-  --colfax-regular: Colfax, Roboto, sans-serif;
-  --acta-regular: ActaW01-Book, "Times New Roman", serif;
+  --colfax-regular: "Colfax Regular", Roboto, sans-serif;
+  --acta-book: "Acta Book", "Times New Roman", serif;
   --acta-bold: "Acta Bold", "Times New Roman", serif;
 
   /* Mobile font-sizes */
@@ -41,7 +43,7 @@
 
   /* Desktop font-sizes*/
   --desktop-subtitle: 28px;
-  --desktop-overline: 20px;
+  --desktop-body: 20px;
   --desktop-caption: 16px;
   --desktop-small: 14px;
   --desktop-xsmall: 12px;
@@ -61,6 +63,8 @@ body {
   text-rendering: optimizeLegibility;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  font-family: var(--colfax-regular);
+  font-size: var(--mobile-body-01)
 }
 
 img, picture, video, canvas, svg {
@@ -113,7 +117,7 @@ h6 {
 @media (min-width: 1080px) {
 
   body {
-    font-size: 20px;
+    font-size: var(--desktop-body)
   }
 
   h1 {
