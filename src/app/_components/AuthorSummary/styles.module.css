@@ -1,7 +1,7 @@
 .gridContainer {
   padding-bottom: 40px;
   display: grid;
-  font-family: Colfax, sans-serif;
+  font-family: var(--colfax-regular);
   color: var(--dark-rock-800);
   grid-template-rows: 1fr 1fr;
 }
@@ -26,7 +26,6 @@
 .authorBio {
   padding-left: 15px;
   padding-right: 15px;
-
 }
 
 @media(min-width: 1080px) {
@@ -35,7 +34,6 @@
     grid-template-rows: 1fr;
     padding-left: 80px;
     padding-right: 80px;
-
   }
 }
 
