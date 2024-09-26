@@ -1,4 +1,4 @@
-.containter {
+.container {
   display: flex;
   justify-content: center;
 }
@@ -7,19 +7,17 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 0.5fr);
-  font-family: Colfax, sans-serif;
+  font-family: var(--colfax-regular);
   column-gap: 160px;
-  padding: 0 10px 0 10px;
+  row-gap: 40px;
+  font-size: 14px;
 }
 
-.footer h5 {
-  color: var(--sub-blue-700);
-  margin-bottom: 20px;
-}
-
-.item {
-  padding-top: 40px;
-}
+.title {
+    color: var(--sub-blue-700);
+    padding-bottom: 20px;
+    font-size: 20px;
+  }
 
 .goToNav {
   width: 80%;
@@ -32,9 +30,10 @@
   .footer {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 0.5fr 0.5fr;
-
+    padding-top: 72px;
+    padding-bottom: 72px;
+    row-gap: 60px;
   }
-
 }
 
 

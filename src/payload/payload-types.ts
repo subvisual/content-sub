@@ -24,6 +24,7 @@ export interface Config {
     settings: Settings;
     header: Header;
     footer: Footer;
+    socials: Social;
   };
 }
 /**
@@ -372,6 +373,22 @@ export interface Footer {
           url?: string | null;
           label: string;
         };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "socials".
+ */
+export interface Social {
+  id: string;
+  socials?:
+    | {
+        name: string;
+        link: string;
         id?: string | null;
       }[]
     | null;
