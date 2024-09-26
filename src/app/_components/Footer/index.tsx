@@ -21,7 +21,7 @@ export async function Footer() {
   return (
     <div className={styles.container}>
       <footer className={styles.footer}>
-        <div className={styles.item}>
+        <div>
           <p className={styles.title}>Go To</p>
           <div className={styles.goToNav}>
             {navItems.map(({ link }, i) => {
@@ -33,20 +33,20 @@ export async function Footer() {
             })}
           </div>
         </div>
-        <div className={styles.item}>
+        <div>
           {/* TODO: Update fetchGlobals to include socials and then update here. */}
           <p className={styles.title}>We're Social</p>
           {['Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md'].map((item, i) => {
             return <span style={{ marginRight: '20px' }}>{item}</span>
           })}
         </div>
-        <div className={styles.item}>
+        <div>
           <p className={styles.title}>Contact Us</p>
           <a href={'mailto:contact@subvisual.com'}>
             <p>contact@subvisual.com</p>
           </a>
         </div>
-        <div className={styles.item}>
+        <div>
           <p className={styles.title}>Offices</p>
           <p>
             Remote. Work anywhere in Europe.
