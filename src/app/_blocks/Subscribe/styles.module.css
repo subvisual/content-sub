@@ -1,0 +1,69 @@
+.container{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  background-color: var(--sub-purple-50);
+  color: var(--sub-purple-400);
+  border-radius: 25px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 328px;
+  font-family: var(--colfax-regular);
+}
+
+.CTABlock {
+  height: min-content;
+}
+
+.emailContainer {
+  display: flex;
+}
+
+.emailInput {
+  width: 100%;
+  border: none;
+  border-radius: 100px;
+  padding-left: 20px;
+  font-size: 16px; /* todo: create body01 fontsize var*/
+  font-family: var(--colfax-regular);
+}
+
+.image {
+  vertical-align: middle;
+  width: 100%;
+}
+
+.subscribeButton {
+  display: flex;
+  align-items: center;
+  background-color: var(--sub-purple-400);
+  color: var(--soft-white-100);
+  padding: 14px 24px 14px 24px;
+  border-radius: 100px;
+  border: 1px solid var(--sub-purple-500);
+  height: 40px;
+  margin-left: -15%;
+  font-size: 16px;
+  font-family: var(--colfax-regular);
+}
+
+@media(min-width: 1024px) {
+  .container{
+    width: 836px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    column-gap: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .CTABlock{
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .imageContainer {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}

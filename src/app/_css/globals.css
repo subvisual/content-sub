@@ -25,18 +25,18 @@
   --dark-rock-800: #403F4C;
   --soft-white-100: #F6F6F6;
 
-  /* Links */
-  a {
-    text-decoration: none;
-    color: var(--dark-rock-800);
-  }
-
   /* Typography */
   --colfax-medium: "Colfax Medium", Roboto, sans-serif;
   --colfax-regular: Colfax, Roboto, sans-serif;
   /* TODO: Replace placeholder TNR for actual Acta*/
   --acta-book: "Acta Book", "Times New Roman", serif;
+}
 
+/* Links */
+  a {
+    text-decoration: none;
+    color: var(--dark-rock-800);
+  }
 
   h1 {
     font-size: 56px;
@@ -87,5 +87,4 @@
       font-size: 28px;
     }
   }
-}
 
