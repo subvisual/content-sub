@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 0.5fr);
+  font-family: var(--colfax-regular);
+  column-gap: 160px;
+  row-gap: 40px;
+  font-size: 14px;
+}
+
+.title {
+    color: var(--sub-blue-700);
+    padding-bottom: 20px;
+    font-size: 20px;
+  }
+
+.goToNav {
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr);
+  gap: 20px;
+}
+
+@media (min-width: 1080px) {
+  .footer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr;
+    padding-top: 72px;
+    padding-bottom: 72px;
+    row-gap: 60px;
+  }
+}
+
+
