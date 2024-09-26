@@ -1,10 +1,16 @@
 // TODO: update href to filter for the same category
 import Link from 'next/link'
+import BackArrow from "../../_icons/BackArrow";
 
-export default function BackButton() {
+import styles from './styles.module.css'
+
+export default function BackButton({className}) {
   return (
     <>
-      <Link href="/">Back</Link>
+      <Link className={className} href="/">
+        <BackArrow className={styles.backArrow} />
+        Back
+      </Link>
     </>
   )
 }

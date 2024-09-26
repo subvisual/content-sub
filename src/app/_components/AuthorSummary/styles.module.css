@@ -1,0 +1,39 @@
+.gridContainer {
+  padding-bottom: 40px;
+  display: grid;
+  font-family: var(--colfax-regular);
+  color: var(--dark-rock-800);
+  grid-template-rows: 1fr 1fr;
+}
+
+.authorInfoCard {
+  display: flex;
+  gap: 16px;
+  padding-left: 16px;
+  vertical-align: middle;
+}
+
+.featuredImage {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.authorInfo {
+}
+
+.authorBio {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media(min-width: 1080px) {
+  .gridContainer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+

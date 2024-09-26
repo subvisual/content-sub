@@ -1,0 +1,45 @@
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--colfax-regular)
+}
+
+.articleCounter {
+  align-self: flex-end;
+  padding-right: 20px;
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 1fr);
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.contentCard {
+  padding: 49px 20px 49px 20px;
+  height: min-content;
+  width: 328px;
+  border: 1px solid var(--dark-rock-800);
+  border-radius: 25px;
+}
+
+@media(min-width: 1024px) {
+  .articleCounter {
+    padding-right: 100px;
+  }
+
+  .contentGrid{
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+
+  .contentCard {
+    width: 100%;
+
+  }
+
+}
