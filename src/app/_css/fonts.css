@@ -1,31 +1,15 @@
 @font-face {
-  font-family: 'Acta Bold';
-  src: url('/fonts/Acta-Bold.woff2') format('woff2'),
-  url('/fonts/Acta-Bold.woff') format('woff');
+  font-family: 'Acta';
+  src: url('/fonts/Acta.woff2') format('woff2'),
+  url('/fonts/Acta.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Acta Book';
-  src: url('/fonts/Acta-Book.woff2') format('woff2'),
-  url('/fonts/Acta-Book.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Colfax Medium';
-  src: url('/fonts/ColfaxWebMedium.woff2') format('woff2'),
-  url('/fonts/ColfaxWebMedium.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Colfax Regular';
-  src: url('/fonts/ColfaxWebRegular.woff2') format('woff2'),
-  url('/fonts/ColfaxWebRegular.woff') format('woff');
+  font-family: 'Colfax';
+  src: url('/fonts/Colfax.woff2') format('woff2'),
+  url('/fonts/Colfax.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
