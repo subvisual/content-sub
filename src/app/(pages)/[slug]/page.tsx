@@ -1,16 +1,20 @@
-import React from "react";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { notFound } from "next/navigation";
+
 
 import { Page } from "../../../payload/payload-types";
 import { fetchDoc } from "../../_api/fetchDoc";
-import { fetchDocs } from "../../_api/fetchDocs";
+
 import { generateMeta } from "../../_utilities/generateMeta";
-import { staticHome } from "./staticHome";
-import { Subscribe } from "@/app/_blocks/Subscribe";
 
 import styles from "./styles.module.css";
+
+
+import { Subscribe } from "@/app/_blocks/Subscribe";
+import { ALL_CONTENT } from "@/app/_graphql/allContent";
+import ContentCard from "@/app/_components/ContentCard";
+import { fetcher } from "@/app/_utilities/fetcher";
+
 // Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
 // This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
 // To do this, we include the `no-cache` header on the fetch requests used to get the data for this page
@@ -19,7 +23,16 @@ import styles from "./styles.module.css";
 // If you are not using Payload Cloud then this line can be removed, see `../../../README.md#cache`
 export const dynamic = "force-dynamic";
 
+
 export default async function Page({ params: { slug = "home" } }) {
+  const content = await fetcher({ query: ALL_CONTENT });
+
+  const content_list = Object.keys(content).flatMap(key =>
+    content[key].map(content => ({
+      contentType: key,
+      content: content,
+    })));
+
 
   return (
     <div>
@@ -33,9 +46,11 @@ export default async function Page({ params: { slug = "home" } }) {
         <div className={`${styles.highlights} ${styles.topHighlight}`}>
           <p> HIGHLIGHTS </p>
           <h5> From nutritionist to product designer: Reinvinting my carrer at 30</h5>
-          <p> <span className={styles.categoryPill}>Inside subvisual</span> Date and Readtime </p>
+          <p>
+            <span className={styles.categoryPill}>Inside subvisual</span> Date and Readtime{" "}
+          </p>
           <div className={styles.authorPill}>
-            <img className={styles.authorImage} src={'/static-image.jpg'} />
+            <img className={styles.authorImage} src={"/static-image.jpg"} />
             Rui Sousa
           </div>
         </div>
@@ -43,29 +58,30 @@ export default async function Page({ params: { slug = "home" } }) {
         {/*  Bottom Highlight */}
         <div className={`${styles.highlights} ${styles.bottomHighlight}`}>
           <p> HIGHLIGHTS </p>
-          <p> From nutritionist to product designer: <br /> Reinvinting my carrer at 30</p>
-          <p><span className={styles.categoryPill}>Inside subvisual</span> Date and Readtime </p>
+          <p>
+            {" "}
+            From nutritionist to product designer: <br /> Reinvinting my carrer at 30
+          </p>
+          <p>
+            <span className={styles.categoryPill}>Inside subvisual</span> Date and Readtime{" "}
+          </p>
           <div className={styles.authorPill}>
             <img className={styles.authorImage} src={"/static-image.jpg"} />
             Rui Sousa
           </div>
-
         </div>
-
-
       </div>
 
       {/* Content Grid */}
       <div>
-
+        {content_list.map((article, i) => (
+          <ContentCard key={i} contentType={article.key} content={article.content} />
+        ))}
       </div>
-
       <Subscribe />
     </div>
-
   );
 }
-
 
 export async function generateMetadata({ params: { slug = "home" } }): Promise<Metadata> {
   const { isEnabled: isDraftMode } = draftMode();
