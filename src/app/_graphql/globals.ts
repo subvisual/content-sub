@@ -44,3 +44,21 @@ query Settings {
   ${SETTINGS}
 }
 `
+
+export const SOCIALS = `
+  Socials {
+      name
+      link
+    }
+`
+
+export const SOCIALS_QUERY = `
+query Socials {
+  Social {
+    socials {
+      name
+      link
+    }
+  }
+}
+`

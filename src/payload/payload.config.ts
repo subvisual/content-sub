@@ -21,6 +21,7 @@ import BeforeLogin from './components/BeforeLogin'
 import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
+import { Socials } from './globals/Socials'
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -71,7 +72,7 @@ export default buildConfig({
     TalksAndRoundtables,
     CaseStudies,
   ],
-  globals: [Settings, Header, Footer],
+  globals: [Settings, Header, Footer, Socials],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
