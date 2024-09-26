@@ -21,7 +21,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
     <div>
       <Link href={`/${toKebabCase(contentType)}/${slug}`}>
         <div>
-          <EpisodeFeaturedImage src={getImage(featuredImage)} />
+          {/*<EpisodeFeaturedImage src={getImage(featuredImage)} />*/}
           <p style={{ fontSize: '14px', fontWeight: 'bold' }}>{contentType}</p>
           <h1 style={{ fontSize: '18px', margin: '10px 0' }}>{title}</h1>
           <p style={{ fontSize: '16px', color: '#555' }}>{summary}</p>

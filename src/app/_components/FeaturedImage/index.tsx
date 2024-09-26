@@ -1,12 +1,10 @@
 import { getImage } from '../../_utilities/getImage'
+import { className } from "postcss-selector-parser";
 
-export default function FeaturedImage({ src }) {
+export default function FeaturedImage({ src, className }) {
   return (
-    <div style={{ width: 120, height: 120, marginRight: '20px' }}>
-      <img
-        src={getImage(src)}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
-      />
-    </div>
+
+      <img className={className} src={getImage(src)} />
+
   )
 }

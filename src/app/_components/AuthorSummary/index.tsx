@@ -1,29 +1,34 @@
-import React from 'react'
+import React from "react";
 
-import { Author } from '../../../payload/payload-types'
-import FeaturedImage from '../FeaturedImage'
-import SocialLinks from '../SocialLinks'
+import { Author } from "../../../payload/payload-types";
+import FeaturedImage from "../FeaturedImage";
+import SocialLinks from "../SocialLinks";
+
+import styles from "./styles.module.css";
 
 export default function AuthorSummary({ author }: { author: Author }) {
-  const { name, role, bio, linkedIn, gitHub, medium, x, featuredImage } = author
+  const { name, role, bio, linkedIn, gitHub, medium, x, featuredImage } = author;
 
   // TODO: Convert this to an array with names in collection config
-  const socials: string[] = [linkedIn, gitHub, medium, x].filter(Boolean)
+  const socials: string[] = [linkedIn, gitHub, medium, x].filter(Boolean);
 
   return (
-    <div style={{ display: 'flex' }}>
-      {/* Left column - Name, role and socials*/}
-      <div style={{ display: 'flex', alignItems: 'center', flex: '1' }}>
-        <FeaturedImage src={featuredImage} />
-        <div style={{ marginLeft: '10px' }}>
-          <h5 style={{ margin: 0 }}>{name}</h5>
-          <h6 style={{ margin: 0, fontWeight: 'normal' }}>{role}</h6>
+    <div className={styles.gridContainer}>
+      <div className={styles.authorInfoCard}>
+        <FeaturedImage className={styles.featuredImage} src={featuredImage} />
+        <div className={styles.authorInfo}>
+
+          <h5>{name}</h5>
+          <p>{role}</p>
           <SocialLinks socials={socials} />
         </div>
       </div>
+      <div className={styles.authorBio}>{bio}</div>
 
-      {/* Right column - Bio */}
-      <div style={{ marginLeft: 'auto', flex: '1' }}>{bio}</div>
+
+
     </div>
-  )
+
+
+  );
 }
