@@ -1,11 +1,12 @@
 import Link from 'next/link'
+import LinkedInIcon from "@/app/_icons/LinkedInIcon";
 
 export default function SocialLinks({ socials }: { socials: string[] }) {
   return (
     <div style={{ marginTop: '10px' }}>
       {socials.map((link, i) => (
         <Link href={link} key={i}>
-          {link}
+          <LinkedInIcon size={32} />
         </Link>
       ))}
     </div>

@@ -28,27 +28,29 @@
   --soft-white-100: #F6F6F6;
 
   /* Typography */
-  --colfax-medium: "Colfax Medium", Roboto, sans-serif;
-  --colfax-regular: "Colfax Regular", Roboto, sans-serif;
-  --acta-book: "Acta Book", "Times New Roman", serif;
-  --acta-bold: "Acta Bold", "Times New Roman", serif;
+  --colfax: "Colfax", Roboto, sans-serif;
+  --acta-bold: "Acta", "Times New Roman", serif;
+  --font-weight-500: 500;
+  --font-weight-800: 800;
 
-  /* Mobile font-sizes */
-  --mobile-subtitle-01: 16px;
-  --mobile-subtitle-02: 14px;
-  --mobile-body-01: 16px;
-  --mobile-body-02: 14px;
-  --mobile-overline: 12px;
-  --mobile-caption: 10px;
-
-  /* Desktop font-sizes*/
-  --desktop-subtitle: 28px;
-  --desktop-body: 20px;
-  --desktop-caption: 16px;
-  --desktop-small: 14px;
-  --desktop-xsmall: 12px;
-  --mobile-small: 10px;
-}
+  /*  Font Sizes */
+  --size-160: 160px;
+  --size-113: 113px;
+  --size-80: 80px;
+  --size-56: 56px;
+  --size-48: 48px;
+  --size-40: 40px;
+  --size-36: 36px;
+  --size-32: 32px;
+  --size-24: 24px;
+  --size-28: 28px;
+  --size-20: 20px;
+  --size-18: 18px;
+  --size-16: 16px;
+  --size-14: 14px;
+  --size-12: 12px;
+  --size-13: 13px;
+}    /* end of :root */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -59,12 +61,11 @@
 }
 
 body {
-  font-size: 14px;
+  font-size: var(--size-14);
   text-rendering: optimizeLegibility;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: var(--colfax-regular);
-  font-size: var(--mobile-body-01)
 }
 
 img, picture, video, canvas, svg {
@@ -91,57 +92,58 @@ a {
 }
 
 h1 {
-  font-size: 56px;
+  font-size: var(--size-56);
 }
 
 h2 {
-  font-size: 48px;
+  font-size: var(--size-48);
 }
 
 h3 {
-  font-size: 36px;
+  font-size: var(--size-36);
 }
 
 h4 {
-  font-size: 32px;
+  font-size: var(--size-32);
 }
 
 h5 {
-  font-size: 24px;
+  font-size: var(--size-24);
 }
 
 h6 {
-  font-size: 18px;
+  font-size: var(--size-18);
 }
 
 @media (min-width: 1080px) {
 
   body {
-    font-size: var(--desktop-body)
+    font-size: var(--size-20);
   }
 
   h1 {
-    font-size: 160px;
+    font-size: var(--size-160);
   }
 
   h2 {
-    font-size: 113px;
+    font-size: var(--size-113);
   }
 
   h3 {
-    font-size: 80px;
+    font-size: var(--size-80);
   }
 
   h4 {
-    font-size: 56px;
+    font-size: var(--size-56);
   }
 
   h5 {
-    font-size: 40px;
+    font-size: var(--size-40);
   }
 
   h6 {
-    font-size: 28px;
+    font-size: var(--size-28);
   }
+
 }
 
