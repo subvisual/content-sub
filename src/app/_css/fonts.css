@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Acta';
+  src: url('/fonts/Acta.woff2') format('woff2'),
+  url('/fonts/Acta.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Colfax';
+  src: url('/fonts/Colfax.woff2') format('woff2'),
+  url('/fonts/Colfax.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
