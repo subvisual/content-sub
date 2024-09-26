@@ -45,6 +45,7 @@
   margin-left: -15%;
   font-size: 16px;
   font-family: var(--colfax-regular);
+  cursor: pointer;
 }
 
 @media(min-width: 1024px) {
