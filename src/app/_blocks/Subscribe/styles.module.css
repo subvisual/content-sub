@@ -2,14 +2,16 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
+  row-gap: 20px;
   background-color: var(--sub-purple-50);
   color: var(--sub-purple-400);
   border-radius: 25px;
   margin: 0 auto;
   margin-top: 40px;
+  margin-bottom: 40px;
   padding: 20px;
   width: 328px;
-  font-family: var(--colfax-regular);
+  font-family: var(--colfax);
 }
 
 .CTABlock {
@@ -18,6 +20,7 @@
 
 .emailContainer {
   display: flex;
+  margin-top: 20px;
 }
 
 .emailInput {
@@ -26,7 +29,7 @@
   border-radius: 100px;
   padding-left: 20px;
   font-size: 16px; /* todo: create body01 fontsize var*/
-  font-family: var(--colfax-regular);
+  font-family: var(--colfax);
 }
 
 .image {
@@ -58,6 +61,10 @@
     padding-left: 40px;
     padding-right: 40px;
     margin-top: 80px;
+  }
+
+  .emailContainer {
+    margin-top: 100px;
   }
 
   .CTABlock{
