@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 
-import ContentCard from '@/app/_components/ContentCard'
-import ContentNavBar from '@/app/_components/ContentNavBar/ContentNavBar'
+import ContentCard from '../../_components/ContentCard'
+import ContentNavBar from '../../_components/ContentNavBar/ContentNavBar'
+import { filterArticles } from '../../_utilities/filterArticles'
 import styles from './styles.module.css'
-import { filterContent } from "@/app/_utilities/filterContent";
+
+import { ContentTypes } from '../../_utilities/fetcher'
 
 const colorMap = {
   All: 'var(--dark-rock-800)',
@@ -15,13 +17,16 @@ const colorMap = {
   TalksAndRoundtables: 'var(--sub-purple-300)',
 }
 
-export default function HubContentGrid({ content }) {
+interface HubContentGridProps {
+  articles: ContentTypes
+}
 
+export default function HubContentGrid({ articles }: HubContentGridProps) {
   // todo: fix rendering when there is no content
 
-  const [activeButton, setActiveButton] = useState('All')
-  content = filterContent({
-    articles: content,
+  const [activeButton, setActiveButton] = useState<keyof ContentTypes | 'All'>('All')
+  const filteredArticles = filterArticles({
+    articles: articles,
     filter: activeButton,
   })
 
@@ -32,11 +37,11 @@ export default function HubContentGrid({ content }) {
   return (
     <>
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
-      <div className={styles.contentGridContainer} style={{borderColor: colorMap[activeButton]}}>
+      <div className={styles.contentGridContainer} style={{ borderColor: colorMap[activeButton] }}>
         <div className={styles.contentGrid}>
-          {content.map((article, i) => (
+          {filteredArticles.map((article, i) => (
             <div className={styles.contentCard} key={i}>
-              <ContentCard key={i} contentType={article.key} content={article.content} />
+              <ContentCard key={article.id} contentType={article.key} content={article.content} />
             </div>
           ))}
         </div>

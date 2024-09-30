@@ -1,7 +1,22 @@
-import { GRAPHQL_API_URL } from "@/app/_api/shared";
+import type {
+  Blogpost,
+  CaseStudy,
+  PodcastEpisode,
+  TalksAndRoundtable,
+} from '../../payload/payload-types'
+import { GRAPHQL_API_URL } from '../_api/shared'
 
-export async function fetcher(args: { query: string; variables?: Record<string, any> }) {
+export interface ContentTypes {
+  Blogposts: Blogpost[]
+  PodcastEpisodes: PodcastEpisode[]
+  CaseStudies: CaseStudy[]
+  TalksAndRoundtables: TalksAndRoundtable[]
+}
 
+export async function fetcher(args: {
+  query: string
+  variables?: Record<string, any>
+}): Promise<ContentTypes> {
   const { query, variables } = args
 
   try {
@@ -24,6 +39,6 @@ export async function fetcher(args: { query: string; variables?: Record<string, 
         return { Blogposts, PodcastEpisodes, CaseStudies, TalksAndRoundtables }
       })
   } catch (err: unknown) {
-    return []
+    return { Blogposts: [], CaseStudies: [], PodcastEpisodes: [], TalksAndRoundtables: [] }
   }
 }

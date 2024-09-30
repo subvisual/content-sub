@@ -4,6 +4,7 @@ export const ALL_CONTENT = `
 query Content {
   PodcastEpisodes {
     docs {
+      id
       slug
       title
       summary
@@ -24,6 +25,7 @@ query Content {
   }
   Blogposts {
     docs {
+      id
       slug
       title
       summary
@@ -44,11 +46,13 @@ query Content {
   }
   CaseStudies {
     docs {
+      id
       slug
     }
   }
   TalksAndRoundtables {
     docs {
+      id
       slug
     }
   }
