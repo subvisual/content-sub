@@ -1,8 +1,6 @@
-import { MEDIA_FIELDS } from "@/app/_graphql/media";
-
 export const ALL_CONTENT = `
 query Content {
-  PodcastEpisodes {
+  PodcastEpisodes (limit: 50){
     docs {
       id
       slug
@@ -23,7 +21,7 @@ query Content {
       }
     }
   }
-  Blogposts {
+  Blogposts (limit: 50){
     docs {
       id
       slug
@@ -44,13 +42,13 @@ query Content {
       }
     }
   }
-  CaseStudies {
+  CaseStudies (limit: 50){
     docs {
       id
       slug
     }
   }
-  TalksAndRoundtables {
+  TalksAndRoundtables (limit: 50){
     docs {
       id
       slug
