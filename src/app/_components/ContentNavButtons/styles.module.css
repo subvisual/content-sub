@@ -1,0 +1,6 @@
+.buttonText {
+  text-anchor: start;
+  dominant-baseline: middle;
+  font-size: 16px;
+  font-weight: bold;
+}

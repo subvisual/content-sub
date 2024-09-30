@@ -1,3 +1,5 @@
+
+
 import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 
@@ -8,26 +10,17 @@ import styles from './styles.module.css'
 
 import { Subscribe } from '@/app/_blocks/Subscribe'
 import ContentCard from '@/app/_components/ContentCard'
+import {
+  AllContent,
+  Blogposts,
+  CaseStudies,
+  Podcasts,
+  Talks,
+} from '@/app/_components/ContentNavButtons/ContentNavButtons'
 import SearchBar from '@/app/_components/SearchBar'
 import { ALL_CONTENT } from '@/app/_graphql/allContent'
-import {
-  AllContentOff,
-  BlogpostsOff,
-  BlogpostsOn,
-  CaseStudiesOff,
-  PodcastsOff,
-  PodcastsOn,
-  TalksOff,
-  TalksOn,
-} from '@/app/_icons/contentTypeButtons'
-import MagnifyingGlass, {
-  AllIcon,
-  BlogpostIcon,
-  CaseStudiesIcon,
-  PodcastIcon,
-  TalksIcon,
-} from '@/app/_icons/icons'
 import { fetcher } from '@/app/_utilities/fetcher'
+import ContentNavBar from "@/app/_components/ContentNavBar/ContentNavBar";
 
 // Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
 // This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
@@ -46,11 +39,13 @@ export default async function Page({ params: { slug = 'home' } }) {
       content: content,
     })),)
 
+
+
   return (
     <>
       {/* Head Block*/}
       <div className={styles.headBlock}>
-        <div className={styles.imageContainer}>
+        <div className={styles.hubLogo}>
           <p>
             Content
             <br />
@@ -92,11 +87,7 @@ export default async function Page({ params: { slug = 'home' } }) {
       <SearchBar />
 
       {/* Content Grid */}
-      <div className={styles.contentNav}>
-        <button className={styles.all}>
-          <AllContentOff className={styles.allContentOff} />
-        </button>
-      </div>
+      <ContentNavBar/>
       <div className={styles.contentGridContainer}>
         <div className={styles.contentGrid}>
           {content_list.map((article, i) => (
