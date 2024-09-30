@@ -5,17 +5,25 @@ import { useState } from 'react'
 import ContentCard from '@/app/_components/ContentCard'
 import ContentNavBar from '@/app/_components/ContentNavBar/ContentNavBar'
 import styles from './styles.module.css'
+import { filterContent } from "@/app/_utilities/filterContent";
 
 const colorMap = {
-  all: 'var(--dark-rock-800)',
-  blogposts: 'var(--sub-blue-600)',
-  podcasts: 'var(--sub-purple-600)',
-  caseStudies: 'var(--sub-orange-800)',
-  talks: 'var(--sub-purple-300)',
+  All: 'var(--dark-rock-800)',
+  Blogposts: 'var(--sub-blue-600)',
+  PodcastEpisodes: 'var(--sub-purple-600)',
+  CaseStudies: 'var(--sub-orange-800)',
+  TalksAndRoundtables: 'var(--sub-purple-300)',
 }
 
 export default function HubContentGrid({ content }) {
-  const [activeButton, setActiveButton] = useState('all')
+
+  // todo: fix rendering when there is no content
+
+  const [activeButton, setActiveButton] = useState('All')
+  content = filterContent({
+    articles: content,
+    filter: activeButton,
+  })
 
   const handleActiveButtonChange = buttonName => {
     setActiveButton(buttonName)
