@@ -11,19 +11,15 @@ import {
   Talks,
 } from "@/app/_components/ContentNavButtons/ContentNavButtons";
 
-export default function ContentNavBar(  ) {
-  const [activeButton, setActiveButton] = useState("all");
+export default function ContentNavBar({activeButton, onActiveButtonChange}  ) {
+
 
   const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName)
-    window.location.hash = buttonName;
-
-
+    onActiveButtonChange(buttonName)
   };
 
    return (
      // todo: make whole button clickable?
-
     <div className={styles.contentNav}>
       <button
         className={`${styles.button}  ${styles.allButton} ${activeButton === 'all' ? styles.activeButton : ''}`}

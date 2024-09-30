@@ -21,6 +21,7 @@ import SearchBar from '@/app/_components/SearchBar'
 import { ALL_CONTENT } from '@/app/_graphql/allContent'
 import { fetcher } from '@/app/_utilities/fetcher'
 import ContentNavBar from "@/app/_components/ContentNavBar/ContentNavBar";
+import HubContentGrid from "@/app/_blocks/HubContentGrid/page";
 
 // Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
 // This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
@@ -87,16 +88,7 @@ export default async function Page({ params: { slug = 'home' } }) {
       <SearchBar />
 
       {/* Content Grid */}
-      <ContentNavBar/>
-      <div className={styles.contentGridContainer}>
-        <div className={styles.contentGrid}>
-          {content_list.map((article, i) => (
-            <div className={styles.contentCard} key={i}>
-              <ContentCard key={i} contentType={article.key} content={article.content} />
-            </div>
-          ))}
-        </div>
-      </div>
+      <HubContentGrid content={content_list}/>
       <Subscribe />
     </>
   )

@@ -73,33 +73,7 @@
 
 
 
-/* Content grid */
-.contentGridContainer {
-  position: relative;
-  background-color: #FFFFFF;
-  width: max(calc(100% - 32px), calc(100% - 160px));
-  margin: 0 auto;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  border-radius: 25px;
-  border: 1px solid black;
-  overflow: hidden;
-  z-index: 3;
-}
 
-.contentGrid {
-  padding: 0;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-
-}
-
-.contentCard {
-  padding: 50px 20px;
-  height: min-content;
-  border: 1px solid var(--dark-rock-800);
-}
 
 
 @media (min-width: 1024px) {
@@ -134,10 +108,7 @@
     font-size: var(--size-16);
   }
 
-  /* Content Grid */
-  .contentGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+
 
 
 }
