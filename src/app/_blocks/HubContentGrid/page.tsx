@@ -7,7 +7,7 @@ import ContentNavBar from '../../_components/ContentNavBar/ContentNavBar'
 import { filterArticles } from '../../_utilities/filterArticles'
 import styles from './styles.module.css'
 
-import { ContentTypes } from '../../_utilities/fetcher'
+import { ContentTypes } from '../../_interfaces/ContentTypes'
 
 const colorMap = {
   All: 'var(--dark-rock-800)',

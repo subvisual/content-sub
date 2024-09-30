@@ -1,17 +1,5 @@
-import type {
-  Blogpost,
-  CaseStudy,
-  PodcastEpisode,
-  TalksAndRoundtable,
-} from '../../payload/payload-types'
 import { GRAPHQL_API_URL } from '../_api/shared'
-
-export interface ContentTypes {
-  Blogposts: Blogpost[]
-  PodcastEpisodes: PodcastEpisode[]
-  CaseStudies: CaseStudy[]
-  TalksAndRoundtables: TalksAndRoundtable[]
-}
+import { ContentTypes } from "@/app/_interfaces/ContentTypes";
 
 export async function fetcher(args: {
   query: string

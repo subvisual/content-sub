@@ -1,17 +1,7 @@
-import type {
-  Blogpost,
-  CaseStudy,
-  PodcastEpisode,
-  TalksAndRoundtable,
-} from '../../payload/payload-types'
+import { ContentTypes } from "../_interfaces/ContentTypes";
 
 interface ArticleFilterProps {
-  articles: {
-    Blogposts: Blogpost[]
-    PodcastEpisodes: PodcastEpisode[]
-    CaseStudies: CaseStudy[]
-    TalksAndRoundtables: TalksAndRoundtable[]
-  }
+  articles: ContentTypes
   filter: 'All' | 'Blogposts' | 'PodcastEpisodes' | 'CaseStudies' | 'TalksAndRoundtables'
 }
 
