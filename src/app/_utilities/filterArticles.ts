@@ -2,10 +2,10 @@ import { ContentTypes } from "../_interfaces/ContentTypes";
 
 interface ArticleFilterProps {
   articles: ContentTypes
-  filter: 'All' | 'Blogposts' | 'PodcastEpisodes' | 'CaseStudies' | 'TalksAndRoundtables'
+  filter: keyof ContentTypes | 'All'
 }
 
-export function filterArticles({ articles, filter = 'All' }: ArticleFilterProps) {
+export function filterArticles<T extends keyof ContentTypes>({ articles, filter = 'All' }: ArticleFilterProps) : { contentType: string, content: ContentTypes | ContentTypes[T] } {
   // redundant?
   const validFilters = ['All', 'Blogposts', 'PodcastEpisodes', 'CaseStudies', 'TalksAndRoundtables']
 

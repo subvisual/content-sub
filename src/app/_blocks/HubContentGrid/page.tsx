@@ -34,6 +34,8 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
     setActiveButton(buttonName)
   }
 
+  console.log(filteredArticles)
+
   return (
     <>
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
