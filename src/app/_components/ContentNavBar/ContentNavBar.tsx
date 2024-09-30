@@ -11,11 +11,14 @@ import {
   Talks,
 } from "@/app/_components/ContentNavButtons/ContentNavButtons";
 
-export default function ContentNavBar() {
+export default function ContentNavBar(  ) {
   const [activeButton, setActiveButton] = useState("all");
 
   const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName);
+    setActiveButton(buttonName)
+    window.location.hash = buttonName;
+
+
   };
 
    return (
