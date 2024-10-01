@@ -21,6 +21,19 @@ interface HubContentGridProps {
   articles: ContentTypes
 }
 
+/* 
+content = [{
+  type: 'blogpost,
+  ...
+},
+{
+  type: 'podcast,
+  ...
+}]
+
+content.filter(item => item.type === filter)
+*/
+
 export default function HubContentGrid({ articles }: HubContentGridProps) {
   // todo: fix rendering when there is no content
 
@@ -41,9 +54,13 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
       <div className={styles.contentGridContainer} style={{ borderColor: colorMap[activeButton] }}>
         <div className={styles.contentGrid}>
-          {filteredArticles.map((article, i) => (
+          {filteredArticles.content.map((article, i) => (
             <div className={styles.contentCard} key={i}>
-              <ContentCard key={article.id} contentType={article.key} content={article.content} />
+              <ContentCard
+                key={article.id}
+                contentType={filteredArticles.contentType}
+                content={article}
+              />
             </div>
           ))}
         </div>
