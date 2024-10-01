@@ -5,7 +5,7 @@ interface ArticleFilterProps {
   filter: keyof ContentTypes | 'All'
 }
 
-export function filterArticles<T extends keyof ContentTypes>({ articles, filter = 'All' }: ArticleFilterProps) : { contentType: string, content: ContentTypes | ContentTypes[T] } {
+  export function filterArticles<T extends keyof ContentTypes>({ articles, filter = 'All' }: ArticleFilterProps) : { contentType: string, content: ContentTypes | ContentTypes[T] } {
   // redundant?
   const validFilters = ['All', 'Blogposts', 'PodcastEpisodes', 'CaseStudies', 'TalksAndRoundtables']
 
