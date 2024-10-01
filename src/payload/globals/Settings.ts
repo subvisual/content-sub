@@ -13,22 +13,16 @@ export const Settings: GlobalConfig = {
   },
   fields: [
     {
-      name: 'postsPage',
+      name: 'mainHighlight',
       type: 'relationship',
-      relationTo: 'pages',
-      label: 'Posts page',
+      relationTo: 'blogposts',
+      label: 'Main Highlight',
     },
     {
-      name: 'projectsPage',
+      name: 'secondaryHighlight',
       type: 'relationship',
-      relationTo: 'pages',
-      label: 'Projects page',
-    },
-    {
-      name: 'podcastEpisodesPage',
-      type: 'relationship',
-      relationTo: 'pages',
-      label: 'Podcast episodes page',
-    },
+      relationTo: 'blogposts',
+      label: 'Secondary Highlight',
+    }
   ],
 }

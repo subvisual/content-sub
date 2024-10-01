@@ -17,14 +17,8 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-
 }
 
-.contentCard {
-  padding: 50px 20px;
-  height: min-content;
-  border: 1px solid var(--dark-rock-800);
-}
 
 @media(min-width: 1024px) {
   .contentGrid {

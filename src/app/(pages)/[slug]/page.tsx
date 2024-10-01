@@ -10,6 +10,8 @@ import { ALL_CONTENT } from '../../_graphql/allContent'
 import { fetcher } from '../../_utilities/fetcher'
 import { generateMeta } from '../../_utilities/generateMeta'
 import styles from './styles.module.css'
+import HubHead from "@/app/_blocks/HubHead";
+import { fetchSettings } from "@/app/_api/fetchGlobals";
 
 // Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
 // This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
@@ -21,48 +23,13 @@ export const dynamic = 'force-dynamic'
 
 export default async function Page({ params: { slug = 'home' } }) {
   const articles = await fetcher({ query: ALL_CONTENT })
+  const highglights = await fetchSettings()
+
+
 
   return (
     <>
-      {/* Head Block*/}
-      <div className={styles.headBlock}>
-        <div className={styles.hubLogo}>
-          <p>
-            Content
-            <br />
-            <span style={{ fontFamily: 'var(--acta-bold)' }}>Hub</span>
-          </p>
-        </div>
-
-        {/*  Top Highlight  */}
-        <div className={`${styles.highlights} ${styles.topHighlight}`}>
-          <p> HIGHLIGHTS </p>
-          <h6> From nutritionist to product designer: Reinvinting my carrer at 30</h6>
-          <p>
-            <span className={styles.categoryPill}>Inside subvisual</span> Date and Readtime{' '}
-          </p>
-          <div className={styles.authorPill}>
-            <img className={styles.authorImage} src={'/static-image.jpg'} />
-            Rui Sousa
-          </div>
-        </div>
-
-        {/*  Bottom Highlight */}
-        <div className={`${styles.highlights} ${styles.bottomHighlight}`}>
-          <p> HIGHLIGHTS </p>
-          <p>
-            {' '}
-            From nutritionist to product designer: <br /> Reinvinting my carrer at 30
-          </p>
-          <p>
-            <span className={styles.categoryPill}>Inside subvisual</span> Date and Readtime{' '}
-          </p>
-          <div className={styles.authorPill}>
-            <img className={styles.authorImage} src={'/static-image.jpg'} />
-            Rui Sousa
-          </div>
-        </div>
-      </div>
+      <HubHead highlights={highglights}/>
 
       {/* Search Bar */}
       <SearchBar />

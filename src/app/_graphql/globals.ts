@@ -1,4 +1,4 @@
-import { LINK_FIELDS } from './link'
+import { LINK_FIELDS } from "./link";
 
 export const HEADER = `
   Header {
@@ -6,13 +6,13 @@ export const HEADER = `
       link ${LINK_FIELDS({ disableAppearance: true })}
 		}
   }
-`
+`;
 
 export const HEADER_QUERY = `
 query Header {
   ${HEADER}
 }
-`
+`;
 
 export const FOOTER = `
   Footer {
@@ -20,36 +20,48 @@ export const FOOTER = `
       link ${LINK_FIELDS({ disableAppearance: true })}
 		}
   }
-`
+`;
 
 export const FOOTER_QUERY = `
 query Footer {
   ${FOOTER}
 }
-`
+`;
 
-export const SETTINGS = `
-  Settings {
-    postsPage {
-      slug
-    }
-    projectsPage {
-      slug
-    }
-  }
-`
 
 export const SETTINGS_QUERY = `
 query Settings {
-  ${SETTINGS}
-}
-`
-
-export const SOCIALS = `
-  Socials {
-      name
-      link
+  Settings {
+    mainHighlight {
+      id
+      title
+      publishedAt
+      categories {
+        title
+      }
+      authors {
+        name
+        featuredImage {
+          filename
+        }
+      }
     }
+    secondaryHighlight {
+      id
+      title
+      publishedAt
+      categories {
+        title
+      }
+      authors {
+        name
+        featuredImage {
+          filename
+        }
+      }
+    }
+  }
+}
 `
 
 export const SOCIALS_QUERY = `
@@ -61,4 +73,4 @@ query Socials {
     }
   }
 }
-`
+`;

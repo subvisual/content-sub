@@ -1,12 +1,15 @@
 import { getImage } from '@/app/_utilities/getImage'
+import styles from "./styles.module.css";
 
 export default function AuthorPill({ author }) {
+
+  const imageSource = getImage(author.featuredImage)
+
   return (
-    <div style={{ outlineStyle: 'solid', outlineColor: 'blue', width: 144 }}>
-      <div style={{ display: 'flex' }}>
-        <img style={{ width: 32, height: 32 }} src={getImage(author.featuredImage)} />
-        <span>{author.name}</span>
-      </div>
+    <div className={styles.authorPill}>
+      <img className={styles.authorImage} src={imageSource} />
+      {author.name}
     </div>
   )
 }
+

@@ -1,0 +1,30 @@
+.authorPill {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: var(--soft-white-100);
+  width: fit-content;
+  border-radius: 100px;
+  padding: 5px 15px 5px 5px;
+  color: var(--dark-rock-800);
+  font-size: var(--size-12);
+  font-family: var(--colfax);
+  transition: 0.5s ease;
+}
+
+.authorImage {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  transition: 0.5s ease;
+}
+
+.authorPill:hover {
+  color: #C1C1C1;
+}
+
+.authorPill:hover .authorImage {
+  opacity: 0.5;
+}
+
+

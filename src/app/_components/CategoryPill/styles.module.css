@@ -1,0 +1,25 @@
+.categoryPill {
+  color: var(--sub-blue-800);
+  background-color: var(--sub-blue-100);
+  height: 28px;
+  padding: 4px 20px;
+  border-radius: 100px;
+  font-family: var(--colfax);
+  font-weight: bold;
+  font-size: var(--size-10);
+  width: fit-content;
+  align-content: center;
+  transition: 0.5s ease;
+}
+
+.categoryPill:hover {
+  background-color: var(--sub-blue-300);
+  transition: 0.5s ease;
+
+}
+@media (min-width: 1024px) {
+
+  .categoryPill {
+    font-size: var(--size-16);
+  }
+}

@@ -40,13 +40,11 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
       <div className={styles.contentGridContainer} style={{ borderColor: colorMap[activeButton] }}>
         <div className={styles.contentGrid}>
           {filteredArticles.map((article, i) => (
-            <div className={styles.contentCard} key={i}>
-              <ContentCard
-                key={article.content.id}
-                contentType={article.contentType}
-                content={article.content}
-              />
-            </div>
+            <ContentCard
+              key={article.content.id}
+              contentType={article.contentType}
+              content={article.content}
+            />
           ))}
         </div>
       </div>
