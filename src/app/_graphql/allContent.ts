@@ -1,6 +1,6 @@
 export const ALL_CONTENT = `
 query Content {
-  PodcastEpisodes (limit: 50){
+  PodcastEpisodes(limit: 50) {
     docs {
       id
       slug
@@ -21,7 +21,7 @@ query Content {
       }
     }
   }
-  Blogposts (limit: 50){
+  Blogposts(limit: 50) {
     docs {
       id
       slug
@@ -42,13 +42,13 @@ query Content {
       }
     }
   }
-  CaseStudies (limit: 50){
+  CaseStudies(limit: 50) {
     docs {
       id
       slug
     }
   }
-  TalksAndRoundtables (limit: 50){
+  TalksAndRoundtables(limit: 50) {
     docs {
       id
       slug

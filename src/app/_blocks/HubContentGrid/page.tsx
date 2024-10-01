@@ -4,10 +4,9 @@ import { useState } from 'react'
 
 import ContentCard from '../../_components/ContentCard'
 import ContentNavBar from '../../_components/ContentNavBar/ContentNavBar'
+import { ContentTypeArrays } from '../../_interfaces/ContentTypeArrays'
 import { filterArticles } from '../../_utilities/filterArticles'
 import styles from './styles.module.css'
-
-import { ContentTypes } from '../../_interfaces/ContentTypes'
 
 const colorMap = {
   All: 'var(--dark-rock-800)',
@@ -18,23 +17,22 @@ const colorMap = {
 }
 
 interface HubContentGridProps {
-  articles: ContentTypes
+  articles: ContentTypeArrays
 }
 
 export default function HubContentGrid({ articles }: HubContentGridProps) {
   // todo: fix rendering when there is no content
 
-  const [activeButton, setActiveButton] = useState<keyof ContentTypes | 'All'>('All')
+  const [activeButton, setActiveButton] = useState<keyof ContentTypeArrays | 'All'>('All')
+
+  const handleActiveButtonChange = (buttonName: keyof ContentTypeArrays) => {
+    setActiveButton(buttonName)
+  }
+
   const filteredArticles = filterArticles({
     articles: articles,
     filter: activeButton,
   })
-
-  const handleActiveButtonChange = buttonName => {
-    setActiveButton(buttonName)
-  }
-
-  console.log(filteredArticles)
 
   return (
     <>
@@ -43,7 +41,11 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
         <div className={styles.contentGrid}>
           {filteredArticles.map((article, i) => (
             <div className={styles.contentCard} key={i}>
-              <ContentCard key={article.id} contentType={article.key} content={article.content} />
+              <ContentCard
+                key={article.content.id}
+                contentType={article.contentType}
+                content={article.content}
+              />
             </div>
           ))}
         </div>

@@ -1,6 +1,6 @@
 import type { Blogpost, CaseStudy, PodcastEpisode, TalksAndRoundtable } from "@/payload/payload-types";
 
-export interface ContentTypes {
+export interface ContentTypeArrays {
   Blogposts: Blogpost[]
   PodcastEpisodes: PodcastEpisode[]
   CaseStudies: CaseStudy[]

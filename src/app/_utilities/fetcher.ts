@@ -1,10 +1,10 @@
 import { GRAPHQL_API_URL } from '../_api/shared'
-import { ContentTypes } from "@/app/_interfaces/ContentTypes";
+import { ContentTypeArrays } from "@/app/_interfaces/ContentTypeArrays";
 
 export async function fetcher(args: {
   query: string
   variables?: Record<string, any>
-}): Promise<ContentTypes> {
+}): Promise<ContentTypeArrays> {
   const { query, variables } = args
 
   try {

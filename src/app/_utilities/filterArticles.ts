@@ -1,20 +1,31 @@
-import { ContentTypes } from "../_interfaces/ContentTypes";
+import type { ContentTypeArrays } from '../_interfaces/ContentTypeArrays'
+
+import type {
+  Blogpost,
+  CaseStudy,
+  PodcastEpisode,
+  TalksAndRoundtable,
+} from '@/payload/payload-types'
 
 interface ArticleFilterProps {
-  articles: ContentTypes
-  filter: keyof ContentTypes | 'All'
+  articles: {
+    Blogposts: Blogpost[],
+    PodcastEpisodes: PodcastEpisode[],
+    CaseStudies: CaseStudy[],
+    TalksAndRoundtables: TalksAndRoundtable[],
+  }
+  filter: 'All' | 'Blogposts' | 'PodcastEpisodes' | 'TalksAndRoundtables' | 'CaseStudies'
 }
 
-  export function filterArticles<T extends keyof ContentTypes>({ articles, filter = 'All' }: ArticleFilterProps) : { contentType: string, content: ContentTypes | ContentTypes[T] } {
-  // redundant?
-  const validFilters = ['All', 'Blogposts', 'PodcastEpisodes', 'CaseStudies', 'TalksAndRoundtables']
-
-  if (!validFilters.includes(filter)) {
-    throw new Error('Not a valid filter')
-  }
-
+export function filterArticles({ articles, filter = 'All' }: ArticleFilterProps): Array<{
+  contentType: 'Blogposts' | 'PodcastEpisodes' | 'CaseStudies' | 'TalksAndRoundtables'
+  content: Blogpost | PodcastEpisode | CaseStudy | TalksAndRoundtable
+}> {
   if (filter === 'All') {
-    return Object.keys(articles).flatMap(articleType =>
+
+    const keys = Object.keys(articles) as Array<keyof ArticleFilterProps['articles']>
+
+    return keys.flatMap(articleType =>
       articles[articleType].map(article => ({
         contentType: articleType,
         content: article,
