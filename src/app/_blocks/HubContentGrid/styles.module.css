@@ -3,11 +3,12 @@
   position: relative;
   background-color: #FFFFFF;
   width: max(calc(100% - 32px), calc(100% - 160px));
-  margin: 0 auto;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  border-radius: 25px;
-  border: 1px solid;
+  margin: 40px auto;
+  border-bottom-right-radius: 45px;
+  border-bottom-left-radius: 45px;
+  border-top-right-radius: 45px;
+  border: 1px solid var(--dark-rock-800) !important;
+  border-top: none;
   overflow: hidden;
   z-index: 3;
 }
@@ -24,10 +25,18 @@
   padding: 50px 20px;
   height: min-content;
   border: 1px solid var(--dark-rock-800);
+  border-top: none;
 }
 
 @media(min-width: 1024px) {
   .contentGrid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .contentGridContainer {
+    border-top: 1px solid;
+    border-radius: 25px;
+    margin: 0 auto;
+  }
+
 }

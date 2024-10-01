@@ -46,7 +46,7 @@ export function AllIcon({ x, y, width = "24", height = "24", stroke = "white" })
   );
 }
 
-export function BlogpostIcon({ x, y, width, height, stroke = "black" }) {
+export function BlogpostIcon({ x, y, width = '24', height = '24', stroke = "black" }) {
   return (
     <svg x={x} y={y} width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
