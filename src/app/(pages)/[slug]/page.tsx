@@ -25,6 +25,7 @@ export default async function Page({ params: { slug = 'home' } }) {
 
   return (
     <>
+      
       {/* Head Block*/}
       <div className={styles.headBlock}>
         <div className={styles.hubLogo}>

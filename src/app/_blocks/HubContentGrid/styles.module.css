@@ -13,6 +13,15 @@
   z-index: 3;
 }
 
+.contentGridContainer::after {
+  content: '';
+  position: absolute;
+  border-top: 2px solid var(--dark-rock-800);
+  width: 22.6%;
+  top: 0;
+  right: 0;
+}
+
 .contentGrid {
   padding: 0;
   margin: 0 auto;

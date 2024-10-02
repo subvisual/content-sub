@@ -36,6 +36,7 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
 
   return (
     <>
+      {/* ToDo: add conditional management of border-top-right-radius based on dropdown toggle */}
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
       <div className={styles.contentGridContainer} style={{ borderColor: colorMap[activeButton] }}>
         <div className={styles.contentGrid}>
