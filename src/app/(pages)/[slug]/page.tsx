@@ -10,7 +10,8 @@ import { ALL_CONTENT } from '../../_graphql/allContent'
 import { fetcher } from '../../_utilities/fetcher'
 import { generateMeta } from '../../_utilities/generateMeta'
 import styles from './styles.module.css'
-import { AllIcon } from "@/app/_icons/icons";
+
+import { AllIcon } from '@/app/_icons/icons'
 
 // Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
 // This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
@@ -25,7 +26,6 @@ export default async function Page({ params: { slug = 'home' } }) {
 
   return (
     <>
-      
       {/* Head Block*/}
       <div className={styles.headBlock}>
         <div className={styles.hubLogo}>

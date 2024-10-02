@@ -1,16 +1,16 @@
-import type { GlobalConfig } from "payload/types";
+import type { GlobalConfig } from 'payload/types'
 
-import link from "../fields/link";
+import link from '../fields/link'
 
 export const Socials: GlobalConfig = {
-  slug: "socials",
+  slug: 'socials',
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: "socials",
-      type: "array",
+      name: 'socials',
+      type: 'array',
       fields: [
         {
           name: 'name',
@@ -25,5 +25,4 @@ export const Socials: GlobalConfig = {
       ],
     },
   ],
-
-};
+}
