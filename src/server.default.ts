@@ -3,8 +3,6 @@ import express from 'express'
 import path from 'path'
 import payload from 'payload'
 
-import { seed } from './payload/seed'
-
 // This file is used to replace `server.ts` when ejecting i.e. `yarn eject`
 // See `../eject.ts` for exact details on how this file is used
 // See `./README.md#eject` for more information
@@ -29,11 +27,6 @@ const start = async (): Promise<void> => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
     },
   })
-
-  if (process.env.PAYLOAD_SEED === 'true') {
-    await seed(payload)
-    process.exit()
-  }
 
   app.listen(PORT, async () => {
     payload.logger.info(`App URL: ${process.env.PAYLOAD_PUBLIC_SERVER_URL}`)
