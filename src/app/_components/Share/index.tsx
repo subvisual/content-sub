@@ -13,10 +13,9 @@ import {
 import styles from "./styles.module.css";
 
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from "@/app/_icons/socialIcons";
-import { LinkIcon } from "@/app/_icons/icons";
+import { LinkIcon, ShareIcon } from "@/app/_icons/icons";
 
 export default function Share() {
-  const [url, setURL] = useState("");
 
   const copyURLToClipboard = () => {
     navigator.clipboard.writeText(document.URL);
@@ -36,21 +35,7 @@ export default function Share() {
         {/* ToDo: test navigator.share on local SSL */}
         <button className={styles.button} onClick={() => shareTo()}>
           <div>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2.66602 7.99967V13.333C2.66602 13.6866 2.80649 14.0258 3.05654 14.2758C3.30659 14.5259 3.64573 14.6663 3.99935 14.6663H11.9993C12.353 14.6663 12.6921 14.5259 12.9422 14.2758C13.1922 14.0258 13.3327 13.6866 13.3327 13.333V7.99967M10.666 3.99967L7.99935 1.33301M7.99935 1.33301L5.33268 3.99967M7.99935 1.33301V9.99967"
-                stroke="black"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            <ShareIcon width={'16'} height={'16'} />
             Share
           </div>
         </button>
