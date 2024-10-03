@@ -1,10 +1,7 @@
 'use client'
+
 import { useEffect, useState } from 'react'
-import DOMPurify from 'isomorphic-dompurify'
-
 import styles from './styles.module.css'
-
-import { sanitizeAndAddChapters } from '@/app/_utilities/sanitizeAndAddChapters'
 
 export default function BlogpostChapters({ chapters }) {
   const [visibleChapter, setVisibleChapter] = useState(null)

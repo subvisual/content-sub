@@ -1,44 +1,43 @@
-import { notFound } from "next/navigation";
+import { useEffect, useState } from 'react'
+import { notFound } from 'next/navigation'
 
-import { Blogpost } from "../../../../payload/payload-types";
-import { fetchDoc } from "../../../_api/fetchDoc";
-import BlogpostContent from "../../../_blocks/BlogpostContent";
-import { RelatedContent } from "../../../_blocks/RelatedContent";
-import { Subscribe } from "../../../_blocks/Subscribe";
-import BackButton from "../../../_components/BackButton";
-import ContentCard from "../../../_components/ContentCard";
-import PostSummary from "../../../_components/PostSummary";
+import { Blogpost } from '../../../../payload/payload-types'
+import { fetchDoc } from '../../../_api/fetchDoc'
+import BlogpostChapters from '../../../_blocks/BlogpostChapters'
+import BlogpostContent from '../../../_blocks/BlogpostContent'
+import { RelatedContent } from '../../../_blocks/RelatedContent'
+import { Subscribe } from '../../../_blocks/Subscribe'
+import BackButton from '../../../_components/BackButton'
+import ContentCard from '../../../_components/ContentCard'
+import PostSummary from '../../../_components/PostSummary'
+import Share from '../../../_components/Share'
+import styles from './styles.module.css'
 
-import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
-import Share from "../../../_components/Share";
-import CategoryPill from "@/app/_components/CategoryPill";
-import categories from "@/payload/collections/Categories";
-import BlogpostChapters from "../../../_blocks/BlogpostChapters";
-import Categories from "@/app/_components/Categories";
-import { getChapters, sanitizeAndAddChapters } from "@/app/_utilities/sanitizeAndAddChapters";
-
+import Categories from '@/app/_components/Categories'
+import CategoryPill from '@/app/_components/CategoryPill'
+import { getChapters, sanitizeAndAddChapters } from '@/app/_utilities/sanitizeAndAddChapters'
+import categories from '@/payload/collections/Categories'
 
 export default async function BlogpostPage({ params: { slug } }) {
   const blogpost: Blogpost | null = await fetchDoc({
-    collection: "blogposts",
+    collection: 'blogposts',
     slug,
-  });
+  })
 
   // TODO: implement a fetcher for related content to populate related cards
   if (!blogpost) {
-    notFound();
+    notFound()
   }
 
-  const { content_html, categories, relatedPosts } = blogpost;
-  const sanitizedContent = sanitizeAndAddChapters(content_html)
+  // instead of destructuring post multiple times, destructure just once here?
+  const { content_html, categories, relatedPosts } = blogpost
   const chapters = getChapters(content_html)
 
   return (
     <div>
       <div className={styles.container}>
         {/* Head Block*/}
-        <BackButton className={styles.backButton} color={"var(--soft-white-100)"} />
+        <BackButton className={styles.backButton} color={'var(--soft-white-100)'} />
         <PostSummary post={blogpost} />
       </div>
       <div className={styles.contentContainer}>
@@ -47,7 +46,6 @@ export default async function BlogpostPage({ params: { slug } }) {
 
         {/* Middle column: Content block */}
         <BlogpostContent post={blogpost} />
-
 
         {/* Right column: Social sharing & recommended */}
         <div className={styles.sharingAndCategories}>
@@ -64,5 +62,5 @@ export default async function BlogpostPage({ params: { slug } }) {
       <RelatedContent relatedContent={relatedPosts} />
       <Subscribe />
     </div>
-  );
+  )
 }

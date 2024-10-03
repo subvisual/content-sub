@@ -1,24 +1,30 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  grid-template-columns: repeat(2, 1fr);
-  width: 100%;
-  gap: 20px;
-  padding: 20px 50px;
+  display: none;
 }
 
-.container ul {
-  margin-top: 20px;
-  list-style: none;
-  padding: 0;
-}
+@media(min-width: 1024px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 20px;
+    padding: 20px 50px;
+  }
 
-.container li {
-  border-left: 4px solid;
-  padding: 10px 20px;
-}+
+  .container ul {
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+  }
 
-.navbar {
-  position: sticky;
-  top: 20px;
+  .container li {
+    border-left: 4px solid;
+    padding: 10px 20px;
+  }+
+
+   .navbar {
+     position: sticky;
+     top: 20px;
+   }
 }
