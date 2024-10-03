@@ -11,10 +11,11 @@ import PostSummary from "../../../_components/PostSummary";
 
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
-import Share from "@/app/_components/Share";
+import Share from "../../../_components/Share";
 import CategoryPill from "@/app/_components/CategoryPill";
 import categories from "@/payload/collections/Categories";
-import BlogpostChapters from "@/app/_components/BlogpostChapters";
+import BlogpostChapters from "../../../_blocks/BlogpostChapters";
+import Categories from "@/app/_components/Categories";
 
 
 export default async function BlogpostPage({ params: { slug } }) {
@@ -54,14 +55,8 @@ export default async function BlogpostPage({ params: { slug } }) {
         {/* Right column: Social sharing & recommended */}
         <div className={styles.sharingAndCategories}>
           <Share />
-          <div className={styles.categoriesContainer}>
-            <p className={styles.outline}>CATEGORY</p>
-            <div className={styles.categories}>
-              {categories.map((category) => (
-                <CategoryPill key={category.id} title={category.title} />
-              ))}
-            </div>
-          </div>
+          <Categories categories={categories}/>
+
 
           {/*<div className={styles.recommended}>*/}
           {/*  <h1>Recommended Block</h1>*/}

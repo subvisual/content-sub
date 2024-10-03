@@ -36,7 +36,6 @@
     padding: 0;
   }
 
-
   .mobileShare {
     display: none;
   }
@@ -53,9 +52,11 @@
   }
 
   .desktopCopyButton {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     gap: 5px;
+    cursor: pointer;
 
 
   }

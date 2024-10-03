@@ -22,8 +22,6 @@ export default function BlogpostContent({ post }: { post: Blogpost }) {
       .replace(/<p>\s*<\/p>/g, "")
   );
 
-  let x = document.getElementById('chapter1')
-
 
   const imageSource = getImage(featuredImage);
   console.log(imageSource)
