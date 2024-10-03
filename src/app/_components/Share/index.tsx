@@ -1,12 +1,12 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share'
 
 import styles from './styles.module.css'
 
 import { LinkIcon, ShareIcon } from '@/app/_icons/icons'
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '@/app/_icons/socialIcons'
-import { useEffect, useState } from "react";
 
 export default function Share() {
   const copyURLToClipboard = () => {
@@ -25,9 +25,10 @@ export default function Share() {
   useEffect(() => {
     setUrl(window.location.href)
 
-  return () => {
+    return () => {
       setUrl('')
-  }}, []);
+    }
+  }, [])
 
   return (
     <div className={styles.container}>
