@@ -4,7 +4,7 @@ import type { ContentTypeArrays } from '@/app/_interfaces/ContentTypeArrays'
 
 export async function fetcher(args: {
   query: string
-  variables?: Record<string, any>
+  variables?: Record<string, unknown>
 }): Promise<ContentTypeArrays> {
   const { query, variables } = args
 

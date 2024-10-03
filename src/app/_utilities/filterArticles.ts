@@ -1,5 +1,3 @@
-import type { ContentTypeArrays } from '../_interfaces/ContentTypeArrays'
-
 import type {
   Blogpost,
   CaseStudy,
@@ -24,11 +22,14 @@ export function filterArticles({ articles, filter = 'All' }: ArticleFilterProps)
   if (filter === 'All') {
     const keys = Object.keys(articles) as Array<keyof ArticleFilterProps['articles']>
 
-    return keys.flatMap(articleType =>
-      articles[articleType].map(article => ({
-        contentType: articleType,
-        content: article,
-      })),)
+    return keys.flatMap(
+      articleType =>
+        articles[articleType].map(article => ({
+          contentType: articleType,
+          content: article,
+        })),
+      undefined,
+    )
   }
 
   return articles[filter]?.map(article => ({
