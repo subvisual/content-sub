@@ -22,7 +22,7 @@ export default function PostSummary({ post }: { post: Blogpost }) {
 
       {/* Author info */}
       <div className={styles.authorInfo}>
-        <p classname={styles.outline}>WRITTEN BY</p>
+        <p className={styles.outline}>WRITTEN BY</p>
         <AuthorPill author={post.authors[0]} />
         Social Links
       </div>

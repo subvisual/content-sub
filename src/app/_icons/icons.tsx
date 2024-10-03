@@ -166,7 +166,7 @@ export function SpectaclesIcon({ x, y }) {
   )
 }
 
-export function ShareIcon({ x, y, width, height, color = 'var(--dark-rock-800)' }) {
+export function ShareIcon({ x, y, width = '24', height = '24', color = 'var(--dark-rock-800)' }) {
   return (
     <svg
       x={x}

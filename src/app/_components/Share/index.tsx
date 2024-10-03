@@ -1,33 +1,24 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
-import {
-  EmailShareButton,
-  FacebookShareButton,
-  FacebookShareCount,
-  LinkedinIcon,
-  LinkedinShareButton,
-  TwitterShareButton,
-} from "react-share";
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share'
 
-import styles from "./styles.module.css";
+import styles from './styles.module.css'
 
-import { FacebookIcon, LinkedInIcon, TwitterIcon } from "@/app/_icons/socialIcons";
-import { LinkIcon, ShareIcon } from "@/app/_icons/icons";
+import { LinkIcon, ShareIcon } from '@/app/_icons/icons'
+import { FacebookIcon, LinkedInIcon, TwitterIcon } from '@/app/_icons/socialIcons'
 
 export default function Share() {
-
   const copyURLToClipboard = () => {
-    navigator.clipboard.writeText(document.URL);
-  };
+    navigator.clipboard.writeText(document.URL)
+  }
 
   const shareTo = async () => {
     await navigator.share({
-      title: "cenas",
-      text: "mais cenas",
+      title: 'cenas',
+      text: 'mais cenas',
       url: window.location.href,
-    });
-  };
+    })
+  }
 
   return (
     <div className={styles.container}>
@@ -61,7 +52,7 @@ export default function Share() {
         </button>
       </div>
       <div className={styles.desktopShare}>
-        <p className={"outline"}>SHARE ARTICLE</p>
+        <p className={'outline'}>SHARE ARTICLE</p>
         <div className={styles.desktopShareBar}>
           <TwitterShareButton url={document.URL}>
             <TwitterIcon />
@@ -73,13 +64,11 @@ export default function Share() {
             <FacebookIcon />
           </FacebookShareButton>
         </div>
-        <div
-          className={styles.desktopCopyButton}
-          onClick={() => copyURLToClipboard()}>
+        <div className={styles.desktopCopyButton} onClick={() => copyURLToClipboard()}>
           <LinkIcon />
           Copy
         </div>
       </div>
     </div>
-  );
+  )
 }

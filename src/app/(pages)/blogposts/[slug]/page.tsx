@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { notFound } from 'next/navigation'
 
 import { Blogpost } from '../../../../payload/payload-types'
@@ -8,15 +7,12 @@ import BlogpostContent from '../../../_blocks/BlogpostContent'
 import { RelatedContent } from '../../../_blocks/RelatedContent'
 import { Subscribe } from '../../../_blocks/Subscribe'
 import BackButton from '../../../_components/BackButton'
-import ContentCard from '../../../_components/ContentCard'
+import Categories from '../../../_components/Categories'
 import PostSummary from '../../../_components/PostSummary'
+import RecommendedPosts from '../../../_components/RecommendedPosts'
 import Share from '../../../_components/Share'
+import { getChapters } from '../../../_utilities/sanitizeAndAddChapters'
 import styles from './styles.module.css'
-
-import Categories from '@/app/_components/Categories'
-import CategoryPill from '@/app/_components/CategoryPill'
-import { getChapters, sanitizeAndAddChapters } from '@/app/_utilities/sanitizeAndAddChapters'
-import categories from '@/payload/collections/Categories'
 
 export default async function BlogpostPage({ params: { slug } }) {
   const blogpost: Blogpost | null = await fetchDoc({
@@ -35,7 +31,7 @@ export default async function BlogpostPage({ params: { slug } }) {
 
   return (
     <div>
-      <div className={styles.container}>
+      <div className={styles.headContainer}>
         {/* Head Block*/}
         <BackButton className={styles.backButton} color={'var(--soft-white-100)'} />
         <PostSummary post={blogpost} />
@@ -51,12 +47,7 @@ export default async function BlogpostPage({ params: { slug } }) {
         <div className={styles.sharingAndCategories}>
           <Share />
           <Categories categories={categories} />
-
-          {/*<div className={styles.recommended}>*/}
-          {/*  <h1>Recommended Block</h1>*/}
-          {/*  <ContentCard contentType={"Blogpost"} content={blogpost} />*/}
-          {/*  <ContentCard contentType={"Blogpost"} content={blogpost} />*/}
-          {/*</div>*/}
+          <RecommendedPosts posts={relatedPosts} />
         </div>
       </div>
       <RelatedContent relatedContent={relatedPosts} />

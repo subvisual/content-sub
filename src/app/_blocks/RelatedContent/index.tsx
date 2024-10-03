@@ -1,7 +1,8 @@
 import Link from 'next/link'
 
 import styles from './styles.module.css'
-import ContentCard from "@/app/_components/ContentCard";
+
+import ContentCard from '@/app/_components/ContentCard'
 export function RelatedContent({ relatedContent }) {
   return (
     <div className={styles.container}>
