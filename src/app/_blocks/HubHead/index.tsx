@@ -7,7 +7,7 @@ export default function HubHead({ highlights }) {
   const { mainHighlight, secondaryHighlight } = highlights
 
   return (
-    <div className={styles.headBlock}>
+    <div className={styles.container}>
       <div className={styles.hubLogo}>
         <p>
           Content

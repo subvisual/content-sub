@@ -8,8 +8,8 @@ import {
   ChevronUpIcon,
   PodcastIcon,
   TalksIcon,
-} from '../../../_icons/icons'
-import { ContentTypeArrays } from '../../../_interfaces/ContentTypeArrays'
+} from '../../../../_icons/icons'
+import { ContentTypeArrays } from '../../../../_interfaces/ContentTypeArrays'
 import styles from './styles.module.css'
 
 const iconMap = {

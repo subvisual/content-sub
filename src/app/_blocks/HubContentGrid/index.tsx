@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import ContentCard from "../../_components/ContentCard";
-import ContentNavBar from "../../_components/ContentNavBar/ContentNavBar";
+import ContentNavBar from "@/app/_blocks/HubContentGrid/NavBar/ContentNavBar";
 import { ContentTypeArrays } from "../../_interfaces/ContentTypeArrays";
 import { filterArticles } from "../../_utilities/filterArticles";
 import styles from "./styles.module.css";
@@ -29,7 +29,6 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
 
   window.addEventListener("resize", () => {
     windowWidth = window.innerWidth;
-    console.log(windowWidth,'< updated!')
   })
 
 
@@ -47,7 +46,6 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
       {/* ToDo: add conditional management of border-top-right-radius based on dropdown toggle */}
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
       <div className={styles.contentGridContainer} style={{ borderColor: windowWidth >= 1024 ? colorMap[activeButton] : 'var(--dark-rock-800)' }}>
-        <h1>{windowWidth}</h1>
         <div className={styles.contentGrid}>
           {filteredArticles.map((article, i) => (
             <div className={styles.contentCard} key={i}>

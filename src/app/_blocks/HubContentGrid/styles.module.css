@@ -30,13 +30,6 @@
 
 }
 
-.contentCard {
-  padding: 50px 20px;
-  height: min-content;
-  border: 1px solid var(--dark-rock-800);
-  border-top: none;
-}
-
 @media(min-width: 1024px) {
   .contentGrid {
     grid-template-columns: repeat(3, 1fr);

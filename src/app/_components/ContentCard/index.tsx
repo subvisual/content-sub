@@ -15,32 +15,49 @@ interface ContentSummaryProps {
 }
 
 import styles from "./styles.module.css";
+import ArchiveButton from "@/app/_components/BlogPostArchiveButton";
+import FeaturedImage from "@/app/_components/FeaturedImage";
+import { HeadphonesIcon, MagnifyingGlass, PodcastIcon, SpectaclesIcon } from "@/app/_icons/icons";
+import { estimateReadTime } from "@/app/_utilities/estimateReadTime";
+
+const archiveMap = {
+  Blogposts: 'blogposts',
+  PodcastEpisodes: 'podcast-episodes',
+  CaseStudies: 'case-studies',
+  TalksAndRoundtables: 'talks-and-roundtables',
+}
 
 export default function ContentCard({ contentType, content }: ContentSummaryProps) {
   const { slug, title, summary, featuredImage, categories, publishedAt, authors } = content;
+
+  // todo: convert to a collection item property
+  const readTime = estimateReadTime(summary)
+
+
 
   return (
 
     <div className={styles.contentCard}>
       <Link href={`/${toKebabCase(contentType)}/${slug}`}>
-        <div>
-          {/*<EpisodeFeaturedImage src={getImage(featuredImage)} />*/}
-          <p style={{ fontSize: "14px", fontWeight: "bold" }}>{contentType}</p>
-          <h1 style={{ fontSize: "18px", margin: "10px 0" }}>{title}</h1>
-          <p style={{ fontSize: "16px", color: "#555" }}>{summary}</p>
-        </div>
-        <div>
+        <div className={styles.contentMetaContainer}>
+          <FeaturedImage src={featuredImage}/>
+          <ArchiveButton collection={archiveMap[contentType]}/>
+          <h6>{title}</h6>
+          <p>{summary}</p>
+
           {Array.isArray(categories) && categories.length > 0
             ? categories.map((category, i) => <CategoryPill title={category.title} />)
             : null}
-        </div>
-        <div>
-          <div>
-            {formatDateTime(publishedAt)} |{" "}
-            {contentType === "PodcastEpisodes" ? <span>Duration</span> : <span>Read Time</span>}
+
+          <div className={styles.dateAndDuration}>
+            {formatDateTime(publishedAt)}
+            {contentType === "PodcastEpisodes" ?
+              <span><HeadphonesIcon width={'20'}/> 1h</span> :
+              <span><SpectaclesIcon width={'20'} />{readTime}</span>}
           </div>
-        </div>
+
         <Authors authors={authors} />
+          </div>
       </Link>
     </div>
 

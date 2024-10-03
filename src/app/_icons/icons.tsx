@@ -147,7 +147,7 @@ export function TalksIcon({ x, y, width = '24', height = '24', fill = 'black' })
   )
 }
 
-export function SpectaclesIcon({ x, y, width = '32', height = '32', fill = 'black' }) {
+export function SpectaclesIcon({ x, y, width = '32', height = '32', fill = 'var(--dark-rock-800)' }) {
   return (
     <svg
       x={x}
@@ -408,13 +408,13 @@ export function BackFifteenIcon({ x, y }) {
   )
 }
 
-export function HeadphonesIcon({ x, y }) {
+export function HeadphonesIcon({ x, y, width = '24', height = '24' }) {
   return (
     <svg
       x={x}
       y={y}
-      width="24"
-      height="24"
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
