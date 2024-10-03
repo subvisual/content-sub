@@ -12,8 +12,6 @@ dotenv.config({
 const app = express()
 const PORT = process.env.PORT || 3000
 
-let a = 1
-
 const start = async (): Promise<void> => {
   await payload.init({
     secret: process.env.PAYLOAD_SECRET || '',
