@@ -43,9 +43,7 @@ export default async function BlogpostPage({ params: { slug } }) {
       </div>
       <div className={styles.contentContainer}>
         {/* Left column: Navigation */}
-        <div className={styles.chapters}>
-          <BlogpostChapters content={blogpost}/>
-        </div>
+        <BlogpostChapters content={blogpost} />
 
         {/* Middle column: Content block */}
         <div className={styles.content}>
@@ -55,7 +53,7 @@ export default async function BlogpostPage({ params: { slug } }) {
         {/* Right column: Social sharing & recommended */}
         <div className={styles.sharingAndCategories}>
           <Share />
-          <Categories categories={categories}/>
+          <Categories categories={categories} />
 
 
           {/*<div className={styles.recommended}>*/}
