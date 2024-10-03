@@ -12,3 +12,9 @@ export function sanitizeAndAddChapters(content_html: string) {
     .replace(/%nbsp;/g, " ")
     .replace(/<p>\s*<\/p>/g, "");
 }
+
+export function getChapters(content_html: string) {
+  const sanitizedContent = sanitizeAndAddChapters(content_html)
+  return [...sanitizedContent.matchAll(/<h[1-6] id="([^"]*)">(.*?)<\/h[1-6]>/g)]
+    .map(match => ({ id: match[1], title: match[2] }));
+}

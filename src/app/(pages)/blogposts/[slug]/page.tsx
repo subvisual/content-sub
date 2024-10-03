@@ -16,6 +16,7 @@ import CategoryPill from "@/app/_components/CategoryPill";
 import categories from "@/payload/collections/Categories";
 import BlogpostChapters from "../../../_blocks/BlogpostChapters";
 import Categories from "@/app/_components/Categories";
+import { getChapters, sanitizeAndAddChapters } from "@/app/_utilities/sanitizeAndAddChapters";
 
 
 export default async function BlogpostPage({ params: { slug } }) {
@@ -24,15 +25,14 @@ export default async function BlogpostPage({ params: { slug } }) {
     slug,
   });
 
-
   // TODO: implement a fetcher for related content to populate related cards
-
   if (!blogpost) {
     notFound();
   }
 
-  const { categories, relatedPosts } = blogpost;
-
+  const { content_html, categories, relatedPosts } = blogpost;
+  const sanitizedContent = sanitizeAndAddChapters(content_html)
+  const chapters = getChapters(content_html)
 
   return (
     <div>
@@ -43,18 +43,16 @@ export default async function BlogpostPage({ params: { slug } }) {
       </div>
       <div className={styles.contentContainer}>
         {/* Left column: Navigation */}
-        <BlogpostChapters content={blogpost} />
+        <BlogpostChapters chapters={chapters} />
 
         {/* Middle column: Content block */}
-        <div className={styles.content}>
-          <BlogpostContent post={blogpost} />
-        </div>
+        <BlogpostContent post={blogpost} />
+
 
         {/* Right column: Social sharing & recommended */}
         <div className={styles.sharingAndCategories}>
           <Share />
           <Categories categories={categories} />
-
 
           {/*<div className={styles.recommended}>*/}
           {/*  <h1>Recommended Block</h1>*/}
