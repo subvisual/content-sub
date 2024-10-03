@@ -1,30 +1,18 @@
 'use client'
 
-import DOMPurify from "isomorphic-dompurify";
+import DOMPurify from 'isomorphic-dompurify'
 
-import { Blogpost } from "../../../payload/payload-types";
-import EpisodeFeaturedImage from "../../_components/EpisodeFeaturedImage";
-import { getImage } from "@/app/_utilities/getImage";
-import styles from "./styles.module.css";
+import { Blogpost } from '../../../payload/payload-types'
+import EpisodeFeaturedImage from '../../_components/EpisodeFeaturedImage'
+import styles from './styles.module.css'
+
+import { getImage } from '@/app/_utilities/getImage'
+import { sanitizeAndAddChapters } from "@/app/_utilities/sanitizeAndAddChapters";
 
 export default function BlogpostContent({ post }: { post: Blogpost }) {
-  const { summary, content_html, featuredImage } = post;
-
-  let sectionCounter = 1
-
-  const sanitizedContent = (
-    DOMPurify.sanitize(content_html)
-      .replace(/<h[1-6]>/g, () => {
-        return `<h5 id="chapter${sectionCounter++}">`
-      })
-      .replace(/<\/h[1-6]>/g, '</h5>')
-      .replace(/%nbsp;/g, " ")
-      .replace(/<p>\s*<\/p>/g, "")
-  );
-
-
-  const imageSource = getImage(featuredImage);
-  console.log(imageSource)
+  const { summary, content_html, featuredImage } = post
+  const sanitizedContent = sanitizeAndAddChapters(content_html)
+  const imageSource = getImage(featuredImage)
 
   return (
     <div className={styles.container}>
@@ -32,5 +20,5 @@ export default function BlogpostContent({ post }: { post: Blogpost }) {
       <div className={styles.summary}>{summary}</div>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
     </div>
-  );
+  )
 }
