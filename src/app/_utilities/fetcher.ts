@@ -1,7 +1,11 @@
-import { GRAPHQL_API_URL } from "@/app/_api/shared";
+import { GRAPHQL_API_URL } from '../_api/shared'
 
-export async function fetcher(args: { query: string; variables?: Record<string, any> }) {
+import type { ContentTypeArrays } from '@/app/_interfaces/ContentTypeArrays'
 
+export async function fetcher(args: {
+  query: string
+  variables?: Record<string, any>
+}): Promise<ContentTypeArrays> {
   const { query, variables } = args
 
   try {
@@ -24,6 +28,6 @@ export async function fetcher(args: { query: string; variables?: Record<string, 
         return { Blogposts, PodcastEpisodes, CaseStudies, TalksAndRoundtables }
       })
   } catch (err: unknown) {
-    return []
+    return { Blogposts: [], CaseStudies: [], PodcastEpisodes: [], TalksAndRoundtables: [] }
   }
 }

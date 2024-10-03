@@ -1,17 +1,17 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import { Header } from "../../../payload/payload-types";
-import { fetchHeader } from "../../_api/fetchGlobals";
-import styles from "./styles.module.css";
+import { Header } from '../../../payload/payload-types'
+import { fetchHeader } from '../../_api/fetchGlobals'
+import DropDownIcon from './DropDownIcon'
+import styles from './styles.module.css'
 
-import DropDownIcon from "./DropDownIcon";
-import Logo from "@/app/_components/Header/Logo";
+import Logo from '@/app/_components/Header/Logo'
 
 export async function Header() {
-  let header: Header | null = null;
+  let header: Header | null = null
 
   try {
-    header = await fetchHeader();
+    header = await fetchHeader()
   } catch (error) {
     // When deploying this template on Payload Cloud, this page needs to build before the APIs are live
     // So swallow the error here and simply render the header without nav items if one occurs
@@ -19,13 +19,13 @@ export async function Header() {
     // console.error(error)
   }
 
-  const navItems = header?.navItems || [];
+  const navItems = header?.navItems || []
 
   return (
     <>
       <header className={styles.container}>
         <div>
-          <Logo/>
+          <Logo />
         </div>
 
         {/* TODO: Conditionally format Content Hub to reflect active link?*/}
@@ -35,14 +35,14 @@ export async function Header() {
               <Link key={i} href={link.url}>
                 {link.label}
               </Link>
-            );
+            )
           })}
-          <Link href={"mailto:contact@subvisual.com"} className={styles.contactUsPill}>
+          <Link href={'mailto:contact@subvisual.com'} className={styles.contactUsPill}>
             CONTACT US
           </Link>
         </nav>
         <DropDownIcon className={styles.dropDownIcon} />
       </header>
     </>
-  );
+  )
 }
