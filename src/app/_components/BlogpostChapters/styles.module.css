@@ -1,16 +1,24 @@
 .container {
   display: flex;
+  flex-direction: column;
   grid-template-columns: repeat(2, 1fr);
-  border: 1px solid black;
   width: 100%;
   text-align: left;
   gap: 20px;
+  padding: 20px;
 }
 
-.navbar {
-  background-color: #00A4FF;
-  width: 4px;
-  height: fit-content;
+.container ul {
+  list-style: none;
+  padding: 0;
 }
 
+.container li {
+  border-left: 4px solid;
+  padding: 10px 20px;
+}
+
+.content h2 [id*='chapter'] {
+  font-size: 10px;
+}
 
