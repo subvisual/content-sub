@@ -4,9 +4,10 @@
   position: relative;
   padding: 0;
   width: var(--content-width);
-  margin: -58px auto;
+  margin: auto auto -48px;
   flex-wrap: wrap;
-  z-index: 2;
+  z-index: 5;
+  font-size: 12px;
 }
 
 .button {
@@ -15,6 +16,7 @@
   padding: 0;
   width: fit-content;
   position: relative;
+  display: none;
 }
 
 .activeButton {
@@ -36,4 +38,15 @@
 
 .talksButton {
   margin-left: -80px;
+}
+
+@media (min-width: 1024px) {
+  .contentNav {
+    margin: auto auto -18px;
+    z-index: 0;
+  }
+
+  .button {
+    display: flex;
+  }
 }

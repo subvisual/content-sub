@@ -1,4 +1,9 @@
-import type { Blogpost, CaseStudy, PodcastEpisode, TalksAndRoundtable } from "@/payload/payload-types";
+import type {
+  Blogpost,
+  CaseStudy,
+  PodcastEpisode,
+  TalksAndRoundtable,
+} from '@/payload/payload-types'
 
 export interface ContentTypeArrays {
   Blogposts: Blogpost[]

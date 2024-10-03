@@ -9,10 +9,10 @@ import type {
 
 interface ArticleFilterProps {
   articles: {
-    Blogposts: Blogpost[],
-    PodcastEpisodes: PodcastEpisode[],
-    CaseStudies: CaseStudy[],
-    TalksAndRoundtables: TalksAndRoundtable[],
+    Blogposts: Blogpost[]
+    PodcastEpisodes: PodcastEpisode[]
+    CaseStudies: CaseStudy[]
+    TalksAndRoundtables: TalksAndRoundtable[]
   }
   filter: 'All' | 'Blogposts' | 'PodcastEpisodes' | 'TalksAndRoundtables' | 'CaseStudies'
 }
@@ -22,7 +22,6 @@ export function filterArticles({ articles, filter = 'All' }: ArticleFilterProps)
   content: Blogpost | PodcastEpisode | CaseStudy | TalksAndRoundtable
 }> {
   if (filter === 'All') {
-
     const keys = Object.keys(articles) as Array<keyof ArticleFilterProps['articles']>
 
     return keys.flatMap(articleType =>

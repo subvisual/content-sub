@@ -1,5 +1,6 @@
 import { GRAPHQL_API_URL } from '../_api/shared'
-import { ContentTypeArrays } from "@/app/_interfaces/ContentTypeArrays";
+
+import type { ContentTypeArrays } from '@/app/_interfaces/ContentTypeArrays'
 
 export async function fetcher(args: {
   query: string

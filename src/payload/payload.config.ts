@@ -1,7 +1,6 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-
 import dotenv from 'dotenv'
 import path from 'path'
 import { buildConfig } from 'payload/config'
