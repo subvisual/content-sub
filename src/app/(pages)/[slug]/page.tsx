@@ -10,8 +10,9 @@ import { ALL_CONTENT } from '../../_graphql/allContent'
 import { fetcher } from '../../_utilities/fetcher'
 import { generateMeta } from '../../_utilities/generateMeta'
 import styles from './styles.module.css'
-import HubHead from "@/app/_blocks/HubHead";
-import { fetchSettings } from "@/app/_api/fetchGlobals";
+
+import { fetchSettings } from '@/app/_api/fetchGlobals'
+import HubHead from '@/app/_blocks/HubHead'
 
 // Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
 // This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
@@ -25,11 +26,9 @@ export default async function Page({ params: { slug = 'home' } }) {
   const articles = await fetcher({ query: ALL_CONTENT })
   const highglights = await fetchSettings()
 
-
-
   return (
     <>
-      <HubHead highlights={highglights}/>
+      <HubHead highlights={highglights} />
 
       {/* Search Bar */}
       <SearchBar />

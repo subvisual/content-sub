@@ -1,6 +1,5 @@
+import { MagnifyingGlass } from '../../_icons/icons'
 import styles from './styles.module.css'
-
-import { MagnifyingGlass } from '@/app/_icons/icons'
 export default function SearchBar() {
   return (
     <div className={styles.searchBar}>

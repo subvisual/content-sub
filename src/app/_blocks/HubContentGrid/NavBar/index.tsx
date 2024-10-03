@@ -1,10 +1,9 @@
 'use client'
 
+import { ContentTypeArrays } from '../../../_interfaces/ContentTypeArrays'
 import { AllContent, Blogposts, CaseStudies, Podcasts, Talks } from './Buttons'
 import DropdownMenu from './DropdownMenu'
 import styles from './styles.module.css'
-
-import { ContentTypeArrays } from '@/app/_interfaces/ContentTypeArrays'
 
 export default function ContentNavBar({
   activeButton,

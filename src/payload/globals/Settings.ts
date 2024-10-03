@@ -23,6 +23,6 @@ export const Settings: GlobalConfig = {
       type: 'relationship',
       relationTo: 'blogposts',
       label: 'Secondary Highlight',
-    }
+    },
   ],
 }

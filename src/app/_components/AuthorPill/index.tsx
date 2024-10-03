@@ -1,8 +1,8 @@
+import styles from './styles.module.css'
+
 import { getImage } from '@/app/_utilities/getImage'
-import styles from "./styles.module.css";
 
 export default function AuthorPill({ author }) {
-
   const imageSource = getImage(author.featuredImage)
 
   return (
@@ -12,4 +12,3 @@ export default function AuthorPill({ author }) {
     </div>
   )
 }
-

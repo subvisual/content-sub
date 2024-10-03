@@ -1,3 +1,5 @@
+// TODO: create props for all the icons
+
 export function MagnifyingGlass({ x, y }) {
   return (
     <svg
@@ -147,7 +149,13 @@ export function TalksIcon({ x, y, width = '24', height = '24', fill = 'black' })
   )
 }
 
-export function SpectaclesIcon({ x, y, width = '32', height = '32', fill = 'var(--dark-rock-800)' }) {
+export function SpectaclesIcon({
+  x,
+  y,
+  width = '32',
+  height = '32',
+  fill = 'var(--dark-rock-800)',
+}) {
   return (
     <svg
       x={x}

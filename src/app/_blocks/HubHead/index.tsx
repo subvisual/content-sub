@@ -1,9 +1,7 @@
+import { Highlights } from './Highlights'
 import styles from './styles.module.css'
 
-import { Highlights } from "@/app/_blocks/HubHead/Highlights";
-
 export default function HubHead({ highlights }) {
-
   const { mainHighlight, secondaryHighlight } = highlights
 
   return (
@@ -16,7 +14,7 @@ export default function HubHead({ highlights }) {
         </p>
       </div>
       <Highlights main={true} content={mainHighlight} />
-      <Highlights main={false} content={secondaryHighlight}/>
+      <Highlights main={false} content={secondaryHighlight} />
     </div>
   )
 }

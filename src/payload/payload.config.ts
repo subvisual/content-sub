@@ -22,7 +22,6 @@ import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
 import { Socials } from './globals/Socials'
 
-
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
 })
