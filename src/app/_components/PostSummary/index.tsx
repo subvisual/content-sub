@@ -4,24 +4,27 @@ import { formatDateTime } from '../../_utilities/formatDateTime'
 import AuthorPill from '../AuthorPill'
 import ArchiveButton from '../BlogPostArchiveButton'
 
+import styles from './styles.module.css'
 export default function PostSummary({ post }: { post: Blogpost }) {
   const { title, publishedAt, content, authors } = post
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      {/* Left column */}
-      <div style={{ flex: 1 }}>
-        <ArchiveButton collection="blogposts" />
+    <div className={styles.gridContainer}>
+      {/* Post info */}
+      <div className={styles.leftColumn}>
+        <ArchiveButton collection="blogposts" color={'var(--soft-white-100)'} />
         <h5>{title}</h5>
-        <div>
-          {formatDateTime(publishedAt)} | {estimateReadTime('Placeholder')}
+        <div className={styles.postMeta}>
+          <span>{formatDateTime(publishedAt)}</span>
+          <span>{estimateReadTime('Placeholder')}</span>
         </div>
       </div>
 
-      {/* Right column */}
-      <div style={{ flex: 1, textAlign: 'right' }}>
-        <p style={{ fontSize: 20 }}>WRITTEN BY</p>
+      {/* Author info */}
+      <div className={styles.authorInfo}>
+        <p classname={styles.outline}>WRITTEN BY</p>
         <AuthorPill author={post.authors[0]} />
+        Social Links
       </div>
     </div>
   )

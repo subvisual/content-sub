@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid black;
+  width: 100%;
+  text-align: left;
+  gap: 20px;
+}
+
+.navbar {
+  background-color: #00A4FF;
+  width: 4px;
+  height: fit-content;
+}
+
+

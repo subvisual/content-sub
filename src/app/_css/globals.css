@@ -60,12 +60,16 @@
   margin: 0;
 }
 
+.outline {
+  letter-spacing: 0.1rem;
+}
+
 body {
   font-size: var(--size-14);
   text-rendering: optimizeLegibility;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: var(--colfax-regular);
+  font-family: var(--colfax);
 }
 
 img, picture, video, canvas, svg {

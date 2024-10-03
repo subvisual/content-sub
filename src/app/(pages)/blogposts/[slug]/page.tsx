@@ -1,79 +1,77 @@
-import { notFound } from 'next/navigation'
+import { notFound } from "next/navigation";
 
-import { Blogpost } from '../../../../payload/payload-types'
-import { fetchDoc } from '../../../_api/fetchDoc'
-import BlogpostContent from '../../../_blocks/Blogpost'
-import { RecommendedContent } from '../../../_blocks/RecommendedContent'
-import { Subscribe } from '../../../_blocks/Subscribe'
-import BackButton from '../../../_components/BackButton'
-import ContentCard from '../../../_components/ContentCard'
-import PostSummary from '../../../_components/PostSummary'
+import { Blogpost } from "../../../../payload/payload-types";
+import { fetchDoc } from "../../../_api/fetchDoc";
+import BlogpostContent from "../../../_blocks/BlogpostContent";
+import { RelatedContent } from "../../../_blocks/RelatedContent";
+import { Subscribe } from "../../../_blocks/Subscribe";
+import BackButton from "../../../_components/BackButton";
+import ContentCard from "../../../_components/ContentCard";
+import PostSummary from "../../../_components/PostSummary";
+
+import styles from "./styles.module.css";
+import { useEffect, useState } from "react";
+import Share from "@/app/_components/Share";
+import CategoryPill from "@/app/_components/CategoryPill";
+import categories from "@/payload/collections/Categories";
+import BlogpostChapters from "@/app/_components/BlogpostChapters";
+
 
 export default async function BlogpostPage({ params: { slug } }) {
   const blogpost: Blogpost | null = await fetchDoc({
-    collection: 'blogposts',
+    collection: "blogposts",
     slug,
-  })
+  });
+
 
   // TODO: implement a fetcher for related content to populate related cards
 
   if (!blogpost) {
-    notFound()
+    notFound();
   }
 
-  const { relatedPosts } = blogpost
+  const { categories, relatedPosts } = blogpost;
+
+
   return (
     <div>
-      <div style={{ background: 'purple' }}>
+      <div className={styles.container}>
         {/* Head Block*/}
-        <BackButton />
+        <BackButton className={styles.backButton} color={"var(--soft-white-100)"} />
         <PostSummary post={blogpost} />
       </div>
-      <div style={{ display: 'flex' }}>
+      <div className={styles.contentContainer}>
         {/* Left column: Navigation */}
-        <div
-          style={{
-            background: 'white',
-            color: 'black',
-            flex: '1',
-            padding: '10px',
-            borderRight: '1px solid black',
-          }}
-        >
-          <h1>Table of contents block</h1>
+        <div className={styles.chapters}>
+          <BlogpostChapters content={blogpost}/>
         </div>
 
         {/* Middle column: Content block */}
-        <div style={{ background: 'white', color: 'black', flex: '2', padding: '10px' }}>
+        <div className={styles.content}>
           <BlogpostContent post={blogpost} />
         </div>
 
         {/* Right column: Social sharing & recommended */}
-        <div
-          style={{
-            background: 'white',
-            color: 'black',
-            flex: '1',
-            padding: '10px',
-            borderLeft: '1px solid black',
-          }}
-        >
-          <div>
-            <h1>Share block goes here</h1>
-            <p>SocialMedia block with links</p>
+        <div className={styles.sharingAndCategories}>
+          <Share />
+          <div className={styles.categoriesContainer}>
+            <p className={styles.outline}>CATEGORY</p>
+            <div className={styles.categories}>
+              {categories.map((category) => (
+                <CategoryPill key={category.id} title={category.title} />
+              ))}
+            </div>
           </div>
-          <div>
-            <h1>Category block</h1>
-          </div>
-          <div>
-            <h1>Recommended Block</h1>
-            <ContentCard contentType={'Blogpost'} content={blogpost} />
-            <ContentCard contentType={'Blogpost'} content={blogpost} />
-          </div>
+
+          {/*<div className={styles.recommended}>*/}
+          {/*  <h1>Recommended Block</h1>*/}
+          {/*  <ContentCard contentType={"Blogpost"} content={blogpost} />*/}
+          {/*  <ContentCard contentType={"Blogpost"} content={blogpost} />*/}
+          {/*</div>*/}
         </div>
       </div>
-      <RecommendedContent relatedContent={relatedPosts} />
+      <RelatedContent relatedContent={relatedPosts} />
       <Subscribe />
     </div>
-  )
+  );
 }

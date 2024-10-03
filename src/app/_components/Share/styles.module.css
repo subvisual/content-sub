@@ -1,0 +1,62 @@
+.container {
+  padding: 20px;
+  margin: 20px auto;
+  color: var(--dark-rock-800);
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+
+}
+
+.button div {
+  display: flex;
+  align-content: center;
+  vertical-align: middle;
+  border: 1px solid var(--dark-rock-800);
+  border-radius: 100px;
+  padding: 8px 15px;
+  gap: 5px;
+  transition: opacity 0.5s ease;
+}
+
+.button div:hover {
+  opacity: 0.7;
+}
+
+.desktopShare {
+  grid-row: 1;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+
+  .container {
+    padding: 0;
+  }
+
+
+  .mobileShare {
+    display: none;
+  }
+
+  .desktopShare {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .desktopShareBar {
+    display: flex;
+    gap: 20px;
+  }
+
+  .desktopCopyButton {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+
+  }
+}
