@@ -7,7 +7,7 @@
   border-bottom-right-radius: 45px;
   border-bottom-left-radius: 45px;
   border-top-right-radius: 45px;
-  border: 1px solid;
+  border: 1px solid var(--dark-rock-800);
   border-top: none;
   overflow: hidden;
   z-index: 3;
@@ -36,7 +36,7 @@
   }
 
   .contentGridContainer {
-    border-top: 1px solid;
+    border-top: 1px solid var(--dynamic-color);
     border-radius: 25px;
     margin: 0 auto;
   }

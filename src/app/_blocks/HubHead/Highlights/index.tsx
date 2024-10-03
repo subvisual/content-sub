@@ -16,7 +16,7 @@ export function Highlights({ content, main }) {
       <h6> {title} </h6>
       <div className={styles.metadataContainer}>
         {/* TODO: is this a good approach for multi category items? */}
-        {categories.length > 1 ? (
+        {categories.length > 5 ? (
           <CategoryPill title={categories[0].title} />
         ) : (
           categories.map((category, i) => <CategoryPill key={i} title={category.title} />)

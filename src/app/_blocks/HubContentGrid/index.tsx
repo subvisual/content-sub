@@ -26,12 +26,6 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
 
   const [activeButton, setActiveButton] = useState<keyof ContentTypeArrays | 'All'>('All')
 
-  let windowWidth = window.innerWidth
-
-  window.addEventListener('resize', () => {
-    windowWidth = window.innerWidth
-  })
-
   const handleActiveButtonChange = (buttonName: keyof ContentTypeArrays) => {
     setActiveButton(buttonName)
   }
@@ -47,9 +41,7 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
       <div
         className={styles.contentGridContainer}
-        style={{
-          borderColor: windowWidth >= 1024 ? colorMap[activeButton] : 'var(--dark-rock-800)',
-        }}
+        style={{ '--dynamic-color': colorMap[activeButton] }}
       >
         <div className={styles.contentGrid}>
           {filteredArticles.map((article, i) => (
