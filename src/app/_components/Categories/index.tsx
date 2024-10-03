@@ -6,8 +6,8 @@ export default function Categories( {categories}) {
       <div className={styles.categoriesContainer}>
         <p className='outline'>CATEGORY</p>
         <div className={styles.categories}>
-          {categories.map((category) => (
-            <CategoryPill key={category.id} title={category.title} />
+          {categories.map((category, i) => (
+            <CategoryPill key={i} title={category.title} />
           ))}
         </div>
       </div>

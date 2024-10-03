@@ -7,8 +7,8 @@ export default function RecommendedPosts({ posts }) {
     <div className={styles.container}>
       <p className={styles.title}>Recommended</p>
 
-      {posts.map(post => (
-        <MiniContentCard post={post} />
+      {posts.map((post, i) => (
+        <MiniContentCard key={i} post={post} />
       ))}
     </div>
   )

@@ -12,7 +12,7 @@
 
 .button div {
   display: flex;
-  align-content: center;
+  align-items: center;
   vertical-align: middle;
   border: 1px solid var(--dark-rock-800);
   border-radius: 100px;
