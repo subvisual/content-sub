@@ -36,6 +36,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
             {formatDateTime(publishedAt)} |{' '}
             {contentType === 'PodcastEpisodes' ? <span>Duration</span> : <span>Read Time</span>}
           </div>
+
         </div>
         <Authors authors={authors} />
       </Link>
