@@ -10,7 +10,7 @@ import CategoryPill from '../CategoryPill'
 
 import styles from './styles.module.css'
 
-import ArchiveButton from '../BlogPostArchiveButton'
+import ArchiveButton from '../ArchiveButton'
 import FeaturedImage from '../FeaturedImage'
 import { HeadphonesIcon, SpectaclesIcon } from '../../_icons/icons'
 import { estimateReadTime } from '../../_utilities/estimateReadTime'
