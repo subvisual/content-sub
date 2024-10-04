@@ -1,0 +1,19 @@
+.slider {
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 100px;
+  border: none;
+  background-color: var(--soft-white-100);
+  width: 100%;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+.audio {
+  width: 100%;
+}
