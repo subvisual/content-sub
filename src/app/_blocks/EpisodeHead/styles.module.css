@@ -56,31 +56,6 @@
   border-radius: 10px;
 }
 
-.audioPlayer {
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-}
-
-.audioPlayer input[type="range"] {
-  -webkit-appearance: none;
-  height: 6px;
-  border-radius: 100px;
-  border: none;
-  background-color: var(--soft-white-100);
-  width: 100%;
-}
-
-/* is this really mandatory? */
-.audioPlayer input[type="range"]::-moz-range-thumb {
-  appearance: none;
-  height: 0;
-  width: 0;
-}
-
-.audioPlayer audio {
-  width: 100%;
-}
 
 
 @media (min-width: 1080px) {

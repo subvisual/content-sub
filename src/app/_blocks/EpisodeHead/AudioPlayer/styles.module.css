@@ -1,4 +1,10 @@
-.slider {
+.audioPlayer {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.audioPlayer input[type="range"] {
   -webkit-appearance: none;
   height: 6px;
   border-radius: 100px;
@@ -7,13 +13,13 @@
   width: 100%;
 }
 
-.slider::-webkit-slider-thumb {
+/* is this really mandatory? */
+.audioPlayer input[type="range"]::-moz-range-thumb {
   appearance: none;
-  width: 0;
   height: 0;
-  background: transparent;
+  width: 0;
 }
 
-.audio {
+.audioPlayer audio {
   width: 100%;
 }
