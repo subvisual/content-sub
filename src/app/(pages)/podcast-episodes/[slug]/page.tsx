@@ -28,12 +28,10 @@ export default async function PodcastEpisodesPage({ params: { slug } }) {
 
   return (
     <div>
-      <div>
         <EpisodeHead episode={episode} />
         <EpisodeContent episode={episode} />
         <RelatedContent relatedContent={relatedEpisodes} />
         <Subscribe />
-      </div>
     </div>
   )
 }
