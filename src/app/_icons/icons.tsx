@@ -1,4 +1,4 @@
-export function MagnifyingGlass({ x, y, width = '24', height = '24', stroke = 'black' }) {
+export function MagnifyingGlass({ x, y, width = "24", height = "24", stroke = "black" }) {
   return (
     <svg
       x={x}
@@ -16,10 +16,10 @@ export function MagnifyingGlass({ x, y, width = '24', height = '24', stroke = 'b
         strokeLinecap="round"
       />
     </svg>
-  )
+  );
 }
 
-export function AllIcon({ x, y, width = '24', height = '24', stroke = 'black' }) {
+export function AllIcon({ x, y, width = "24", height = "24", stroke = "black" }) {
   return (
     <svg
       x={x}
@@ -59,10 +59,10 @@ export function AllIcon({ x, y, width = '24', height = '24', stroke = 'black' })
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export function BlogpostIcon({ x, y, width = '24', height = '24', stroke = 'black' }) {
+export function BlogpostIcon({ x, y, width = "24", height = "24", stroke = "black" }) {
   return (
     <svg
       x={x}
@@ -81,10 +81,10 @@ export function BlogpostIcon({ x, y, width = '24', height = '24', stroke = 'blac
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export function PodcastIcon({ x, y, width = '24', height = '24', stroke = 'black' }) {
+export function PodcastIcon({ x, y, width = "24", height = "24", stroke = "black" }) {
   return (
     <svg
       x={x}
@@ -103,10 +103,10 @@ export function PodcastIcon({ x, y, width = '24', height = '24', stroke = 'black
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export function CaseStudiesIcon({ x, y, width = '24', height = '24', stroke = 'black' }) {
+export function CaseStudiesIcon({ x, y, width = "24", height = "24", stroke = "black" }) {
   return (
     <svg
       x={x}
@@ -125,10 +125,10 @@ export function CaseStudiesIcon({ x, y, width = '24', height = '24', stroke = 'b
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export function TalksIcon({ x, y, width = '24', height = '24', fill = 'black' }) {
+export function TalksIcon({ x, y, width = "24", height = "24", fill = "black" }) {
   return (
     <svg
       x={x}
@@ -144,7 +144,7 @@ export function TalksIcon({ x, y, width = '24', height = '24', fill = 'black' })
         fill={fill}
       />
     </svg>
-  )
+  );
 }
 
 export function SpectaclesIcon({ x, y }) {
@@ -163,10 +163,10 @@ export function SpectaclesIcon({ x, y }) {
         fill="black"
       />
     </svg>
-  )
+  );
 }
 
-export function ShareIcon({ x, y, width = '24', height = '24', color = 'var(--dark-rock-800)' }) {
+export function ShareIcon({ x, y, width = "24", height = "24", color = "var(--dark-rock-800)" }) {
   return (
     <svg
       x={x}
@@ -185,7 +185,7 @@ export function ShareIcon({ x, y, width = '24', height = '24', color = 'var(--da
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 export function XIcon({ x, y }) {
@@ -201,7 +201,7 @@ export function XIcon({ x, y }) {
     >
       <path d="M17 1L1 17M17 17L1 1" stroke="black" strokeWidth="2" strokeLinecap="round" />
     </svg>
-  )
+  );
 }
 
 export function ChevronUpIcon({ x, y }) {
@@ -223,7 +223,7 @@ export function ChevronUpIcon({ x, y }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 export function ChevronDownIcon({ x, y }) {
@@ -245,7 +245,7 @@ export function ChevronDownIcon({ x, y }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 export function RSSIcon({ x, y }) {
@@ -267,7 +267,7 @@ export function RSSIcon({ x, y }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 export function MuteIcon({ x, y }) {
@@ -289,7 +289,7 @@ export function MuteIcon({ x, y }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 export function LowerVolume({ x, y }) {
@@ -311,7 +311,7 @@ export function LowerVolume({ x, y }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 export function RaiseVolumeIcon({ x, y }) {
@@ -333,7 +333,7 @@ export function RaiseVolumeIcon({ x, y }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 export function PlayIcon({ x, y }) {
@@ -353,7 +353,7 @@ export function PlayIcon({ x, y }) {
         strokeWidth="2"
       />
     </svg>
-  )
+  );
 }
 
 export function MoveFifteenIcon({ x, y }) {
@@ -379,7 +379,7 @@ export function MoveFifteenIcon({ x, y }) {
         fill="black"
       />
     </svg>
-  )
+  );
 }
 
 export function BackFifteenIcon({ x, y }) {
@@ -405,7 +405,7 @@ export function BackFifteenIcon({ x, y }) {
         fill="black"
       />
     </svg>
-  )
+  );
 }
 
 export function HeadphonesIcon({ x, y }) {
@@ -426,10 +426,10 @@ export function HeadphonesIcon({ x, y }) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export function LinkIcon({ x, y, width = '24', height = '24', color = 'var(--dark-rock-800)' }) {
+export function LinkIcon({ x, y, width = "24", height = "24", color = "var(--dark-rock-800)" }) {
   return (
     <svg
       x={x}
@@ -448,5 +448,15 @@ export function LinkIcon({ x, y, width = '24', height = '24', color = 'var(--dar
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
+}
+
+export default function CodeIcon({ x, y, width = "24", height = "24", color = "var(--dark-rock-800)" }) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.1999 16.7999L2.3999 12L7.1999 7.19995M16.7999 7.19995L21.5999 12L16.7999 16.7999" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+
+  );
 }
