@@ -11,7 +11,7 @@ import { useEpisodeDuration } from '../../_utilities/useEpisodeDuration'
 import AudioPlayer from './AudioPlayer'
 import styles from './styles.module.css'
 
-import ArchiveButton from '@/app/_components/BlogPostArchiveButton'
+import ArchiveButton from '@/app/_components/ArchiveButton'
 import FeaturedImage from '@/app/_components/FeaturedImage'
 import { HeadphonesIcon } from '@/app/_icons/icons'
 
