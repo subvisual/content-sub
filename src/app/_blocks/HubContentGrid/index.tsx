@@ -5,9 +5,8 @@ import { useState } from 'react'
 import ContentCard from '../../_components/ContentCard'
 import { ContentTypeArrays } from '../../_interfaces/ContentTypeArrays'
 import { filterArticles } from '../../_utilities/filterArticles'
-import styles from './styles.module.css'
-
 import ContentNavBar from './NavBar'
+import styles from './styles.module.css'
 
 const colorMap = {
   All: 'var(--dark-rock-800)',

@@ -16,7 +16,7 @@ export function RelatedContent({ relatedContent }) {
       >
         {relatedContent.map((contentPiece, i) => (
           <div key={i} className={styles.contentCard}>
-            <ContentCard contentType={'Blogpost'} content={contentPiece} />
+            <ContentCard contentType={'Blogposts'} content={contentPiece} />
             <br />
             <Link href={`${contentPiece.slug}`}>{contentPiece.title}</Link>
           </div>

@@ -26,7 +26,7 @@ export function Highlights({ content, main }) {
         <span className={styles.readTime}>
           <SpectaclesIcon
             width={'32'}
-            fill={main ? 'var(--soft-white-100)' : 'var(--dark-rock-800)'}
+            color={main ? 'var(--soft-white-100)' : 'var(--dark-rock-800)'}
           />
           {estimateReadTime('Placeholder')}
         </span>
