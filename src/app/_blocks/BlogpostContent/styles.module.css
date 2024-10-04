@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+.featuredImage {
+  margin: auto;
+  border-radius: 45px;
+}
+
+.summary {
+  font-size: var(--size-18);
+  margin: 20px auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: justify;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+

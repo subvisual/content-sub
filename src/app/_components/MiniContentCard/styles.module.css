@@ -1,0 +1,15 @@
+ .miniCard {
+   display: flex;
+   flex-direction: column;
+   gap:20px;
+   padding: 30px;
+    border: 1px solid black;
+    border-radius: 45px;
+   font-size: var(--size-14);
+  }
+
+ .readTime {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+ }

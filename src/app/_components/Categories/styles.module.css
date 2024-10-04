@@ -1,0 +1,11 @@
+.categoriesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.categories {
+  display: flex;
+  gap: 20px;
+}
