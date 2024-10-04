@@ -1,7 +1,7 @@
 "use client";
 
 import { PodcastEpisode } from "../../../payload/payload-types";
-import AudioPlayer from "../../_components//AudioPlayer";
+import AudioPlayer from "./AudioPlayer";
 import BackButton from "../../_components/BackButton";
 import ContentTypePill from "../../_components/ContentTypePill";
 import EpisodeFeaturedImage from "../../_components/EpisodeFeaturedImage";
