@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import LinkedInIcon from '../../_icons/LinkedInIcon'
+import { LinkedInIcon } from '../../_icons/socialIcons'
 
 export default function SocialLinks({ socials }: { socials: string[] }) {
   return (
