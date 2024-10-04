@@ -2,6 +2,26 @@
   margin-top: 40px;
   display: flex;
   align-items: center;
+  align-content: center;
+  vertical-align: middle;
+  gap: 20px;
+}
+
+.audioPlayer span {
+  white-space: nowrap;
+  font-size: var(--size-12);
+  font-weight: bold;
+  padding: 0;
+
+}
+
+.audioPlayer button {
+  display: flex;
+  align-self: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: var(--soft-white-100);
 }
 
 .audioPlayer input[type="range"] {
