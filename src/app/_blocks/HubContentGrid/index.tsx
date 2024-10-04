@@ -3,10 +3,11 @@
 import { useState } from 'react'
 
 import ContentCard from '../../_components/ContentCard'
-import ContentNavBar from '../../_components/ContentNavBar/ContentNavBar'
 import { ContentTypeArrays } from '../../_interfaces/ContentTypeArrays'
 import { filterArticles } from '../../_utilities/filterArticles'
 import styles from './styles.module.css'
+
+import ContentNavBar from './NavBar'
 
 const colorMap = {
   All: 'var(--dark-rock-800)',
@@ -38,7 +39,10 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
     <>
       {/* ToDo: add conditional management of border-top-right-radius based on dropdown toggle */}
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
-      <div className={styles.contentGridContainer} style={{ borderColor: colorMap[activeButton] }}>
+      <div
+        className={styles.contentGridContainer}
+        style={{ '--dynamic-color': colorMap[activeButton] }}
+      >
         <div className={styles.contentGrid}>
           {filteredArticles.map((article, i) => (
             <div className={styles.contentCard} key={i}>

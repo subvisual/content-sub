@@ -1,0 +1,23 @@
+.contentCard {
+  padding: 30px 20px;
+  height: min-content;
+  border: 1px solid var(--dark-rock-800);
+}
+
+.contentMetaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dateAndDuration {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.dateAndDuration span {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}

@@ -28,28 +28,39 @@ query Footer {
 }
 `
 
-export const SETTINGS = `
-  Settings {
-    postsPage {
-      slug
-    }
-    projectsPage {
-      slug
-    }
-  }
-`
-
 export const SETTINGS_QUERY = `
 query Settings {
-  ${SETTINGS}
-}
-`
-
-export const SOCIALS = `
-  Socials {
-      name
-      link
+  Settings {
+    mainHighlight {
+      id
+      title
+      publishedAt
+      categories {
+        title
+      }
+      authors {
+        name
+        featuredImage {
+          filename
+        }
+      }
     }
+    secondaryHighlight {
+      id
+      title
+      publishedAt
+      categories {
+        title
+      }
+      authors {
+        name
+        featuredImage {
+          filename
+        }
+      }
+    }
+  }
+}
 `
 
 export const SOCIALS_QUERY = `

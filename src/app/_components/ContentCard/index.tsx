@@ -1,43 +1,68 @@
-import React from 'react'
+
 import Link from 'next/link'
 
 import { Blogpost, PodcastEpisode } from '../../../payload/payload-types'
 import { formatDateTime } from '../../_utilities/formatDateTime'
-import { getImage } from '../../_utilities/getImage'
+
 import { toKebabCase } from '../../_utilities/toKebabCase'
 import Authors from '../Authors'
 import CategoryPill from '../CategoryPill'
-import EpisodeFeaturedImage from '../EpisodeFeaturedImage'
+
+import styles from './styles.module.css'
+
+import ArchiveButton from '../BlogPostArchiveButton'
+import FeaturedImage from '../FeaturedImage'
+import { HeadphonesIcon, SpectaclesIcon } from '../../_icons/icons'
+import { estimateReadTime } from '../../_utilities/estimateReadTime'
+
 
 interface ContentSummaryProps {
   contentType: string
   content: Blogpost | PodcastEpisode // TODO: Extend to CaseStudy and TalksAndRoundTables once consistency is assured
 }
 
+const archiveMap = {
+  Blogposts: 'blogposts',
+  PodcastEpisodes: 'podcast-episodes',
+  CaseStudies: 'case-studies',
+  TalksAndRoundtables: 'talks-and-roundtables',
+}
+
 export default function ContentCard({ contentType, content }: ContentSummaryProps) {
   const { slug, title, summary, featuredImage, categories, publishedAt, authors } = content
 
+  // todo: convert to a collection item property
+  const readTime = estimateReadTime(summary)
+
   return (
-    <div>
+    <div className={styles.contentCard}>
       <Link href={`/${toKebabCase(contentType)}/${slug}`}>
-        <div>
-          {/*<EpisodeFeaturedImage src={getImage(featuredImage)} />*/}
-          <p style={{ fontSize: '14px', fontWeight: 'bold' }}>{contentType}</p>
-          <h1 style={{ fontSize: '18px', margin: '10px 0' }}>{title}</h1>
-          <p style={{ fontSize: '16px', color: '#555' }}>{summary}</p>
-        </div>
-        <div>
+        <div className={styles.contentMetaContainer}>
+          <FeaturedImage src={featuredImage} />
+          <ArchiveButton collection={archiveMap[contentType]} />
+          <h6>{title}</h6>
+          <p>{summary}</p>
+
           {Array.isArray(categories) && categories.length > 0
             ? categories.map((category, i) => <CategoryPill title={category.title} />)
             : null}
-        </div>
-        <div>
-          <div>
-            {formatDateTime(publishedAt)} |{' '}
-            {contentType === 'PodcastEpisodes' ? <span>Duration</span> : <span>Read Time</span>}
+
+          <div className={styles.dateAndDuration}>
+            {formatDateTime(publishedAt)}
+            {contentType === 'PodcastEpisodes' ? (
+              <span>
+                <HeadphonesIcon width={'20'} /> 1h
+              </span>
+            ) : (
+              <span>
+                <SpectaclesIcon width={'20'} />
+                {readTime}
+              </span>
+            )}
           </div>
+
+          <Authors authors={authors} />
         </div>
-        <Authors authors={authors} />
       </Link>
     </div>
   )
