@@ -67,6 +67,10 @@
   margin: 0;
 }
 
+.outline {
+  letter-spacing: 0.1rem;
+}
+
 body {
   max-width: 1728px;
   margin: 0 auto;
@@ -75,6 +79,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: var(--colfax);
+  color: var(--dark-rock-800);
 }
 
 img, picture, video, canvas, svg {

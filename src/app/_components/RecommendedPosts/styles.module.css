@@ -1,0 +1,19 @@
+
+.container {
+  display: none;
+}
+
+@media(min-width: 1024px) {
+.container {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+}

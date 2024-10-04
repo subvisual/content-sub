@@ -26,6 +26,19 @@ export const BLOGPOST = `
           id
           slug
           title
+          summary
+          authors {
+            name
+            featuredImage {
+              filename
+            }
+          }
+          categories {
+            title
+          }
+          featuredImage {
+            filename
+          }
         }
         publishedAt
         featuredImage {
