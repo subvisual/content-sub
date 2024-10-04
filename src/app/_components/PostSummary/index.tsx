@@ -2,7 +2,7 @@ import { Blogpost } from '../../../payload/payload-types'
 import { estimateReadTime } from '../../_utilities/estimateReadTime'
 import { formatDateTime } from '../../_utilities/formatDateTime'
 import AuthorPill from '../AuthorPill'
-import ArchiveButton from '../BlogPostArchiveButton'
+import ArchiveButton from '../ArchiveButton'
 import styles from './styles.module.css'
 export default function PostSummary({ post }: { post: Blogpost }) {
   const { title, publishedAt, content, authors } = post
