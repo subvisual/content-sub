@@ -10,15 +10,14 @@ import {
   TalksIcon,
 } from '../../../../_icons/icons'
 import { ContentTypeArrays } from '../../../../_interfaces/ContentTypeArrays'
-
 import styles from './styles.module.css'
 
 const iconMap = {
   All: <p>hello</p>,
   Blogposts: <BlogpostIcon width={'16'} color={'var(--soft-white-100)'} />,
-  PodcastEpisodes: <PodcastIcon width={'16'} color={'var(--soft-white-100)'}/>,
-  CaseStudies: <CaseStudiesIcon width={'16'} color={'var(--soft-white-100)'}/>,
-  TalksAndRoundtables: <TalksIcon width={'16'} color={'var(--soft-white-100)'}/>,
+  PodcastEpisodes: <PodcastIcon width={'16'} color={'var(--soft-white-100)'} />,
+  CaseStudies: <CaseStudiesIcon width={'16'} color={'var(--soft-white-100)'} />,
+  TalksAndRoundtables: <TalksIcon width={'16'} color={'var(--soft-white-100)'} />,
 }
 
 const labelMap = {
