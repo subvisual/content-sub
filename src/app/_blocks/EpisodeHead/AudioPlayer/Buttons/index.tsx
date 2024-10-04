@@ -3,24 +3,20 @@ export function PlayButton() {
     <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="27" cy="27" r="27" fill="white" />
     </svg>
-  );
+  )
 }
 
-<svg width="21" height="27" viewBox="0 0 21 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-</svg>
+;<svg
+  width="21"
+  height="27"
+  viewBox="0 0 21 27"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+></svg>
 
 export function MoveFifteenIcon() {
   return (
-    <svg
-
-
-      width="18"
-      height="19"
-      viewBox="0 0 18 19"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M15.4773 5C14.136 2.60879 11.629 1 8.75758 1C4.47319 1 1 4.58172 1 9C1 11.3894 2.01577 13.5341 3.62628 15M13.1212 6H17V2"
         stroke="black"
@@ -33,20 +29,12 @@ export function MoveFifteenIcon() {
         fill="black"
       />
     </svg>
-  );
+  )
 }
 
 export function BackFifteenIcon() {
   return (
-    <svg
-
-
-      width="19"
-      height="19"
-      viewBox="0 0 19 19"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M3.52267 5C4.86399 2.60879 7.37103 1 10.2424 1C14.5268 1 18 4.58172 18 9C18 11.3894 16.9842 13.5341 15.3737 15M5.87879 6H2V2"
         stroke="black"
@@ -59,5 +47,5 @@ export function BackFifteenIcon() {
         fill="black"
       />
     </svg>
-  );
+  )
 }
