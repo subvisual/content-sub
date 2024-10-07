@@ -1,85 +1,85 @@
-"use client";
+'use client'
 
-import styles from "./styles.module.css";
-import { AudioPauseButton, AudioPlayButton, BackFifteenIcon, MoveFifteenIcon, RaiseVolumeIcon, MuteIcon } from "@/app/_blocks/EpisodeHead/AudioPlayer/Buttons";
-import { useEffect, useRef, useState } from "react";
-import { useEpisodeDuration } from "@/app/_utilities/useEpisodeDuration";
+import { useEffect, useRef, useState } from 'react'
+
+import styles from './styles.module.css'
+
+import {
+  AudioPauseButton,
+  AudioPlayButton,
+  BackFifteenIcon,
+  MoveFifteenIcon,
+  MuteIcon,
+  RaiseVolumeIcon,
+} from '@/app/_blocks/EpisodeHead/AudioPlayer/Buttons'
+import formatDuration from '@/app/_blocks/EpisodeHead/AudioPlayer/Utilities/formatDuration'
 
 
-export default function AudioPlayer({ className, src, type }: { className: string, src: string, type: string }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isMuted, setIsMuted] = useState(false);
+export default function AudioPlayer({ src }: { src: string }) {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [isMuted, setIsMuted] = useState(false)
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    audioRef.current = new Audio(src);
-    const audio = audioRef.current;
+    audioRef.current = new Audio(src)
+    const audio = audioRef.current
 
-    const handleLoadedMetadata = () => setDuration(audio.duration);
-    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const handleLoadedMetadata = () => setDuration(audio.duration)
+    const handleTimeUpdate = () => setCurrentTime(audio.currentTime)
 
-    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
-    audio.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener('loadedmetadata', handleLoadedMetadata)
+    audio.addEventListener('timeupdate', handleTimeUpdate)
 
     return () => {
-      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      audio.removeEventListener("timeupdate", handleTimeUpdate);
-      audio.pause();
-      audioRef.current = null;
-    };
-  }, [src]);
-
-
-  const formatTime = (duration: number) => {
-    const minutes = Math.floor(duration / 60);
-    const remainingSeconds = Math.floor(duration % 60);
-
-    const formattedMinutes = String(minutes).padStart(2, "0");
-    const formattedSeconds = String(remainingSeconds).padStart(2, "0");
-
-    return `${formattedMinutes}:${formattedSeconds}`;
-  };
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
+      audio.removeEventListener('timeupdate', handleTimeUpdate)
+      audio.pause()
+      audioRef.current = null
+    }
+  }, [src])
 
   const togglePlayPause = () => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.pause();
+        audioRef.current.pause()
       } else {
-        audioRef.current.play();
+        audioRef.current.play()
       }
-      setIsPlaying(!isPlaying);
+      setIsPlaying(!isPlaying)
     }
-  };
+  }
 
   // slider
 
   const progressBarDynamicStyle = {
-    "--dynamic-gradient": `linear-gradient(to right, var(--dark-rock-800) ${currentTime / duration * 100}%, var(--soft-white-100) 0%)`,
-  };
+    '--dynamic-gradient': `linear-gradient(to right, var(--dark-rock-800) ${
+      (currentTime / duration) * 100
+    }%, var(--soft-white-100) 0%)`,
+  }
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const time = Number(e.target.value);
+    const time = Number(e.target.value)
     if (audioRef.current) {
-      audioRef.current.currentTime = time;
-      setCurrentTime(time);
+      audioRef.current.currentTime = time
+      setCurrentTime(time)
     }
-  };
+  }
 
   const skip = (seconds: number) => {
     if (audioRef.current) {
-      audioRef.current.currentTime += seconds;
+      audioRef.current.currentTime += seconds
     }
-  };
+  }
 
   const toggleMute = () => {
     if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      audioRef.current.muted = !isMuted
+      setIsMuted(!isMuted)
     }
-  };
+  }
 
   return (
     <div>
@@ -94,18 +94,24 @@ export default function AudioPlayer({ className, src, type }: { className: strin
           </button>
         )}
 
-        {isMuted ? (<button  onClick={toggleMute}>
-          <MuteIcon width={'120px'}/>
-        </button>) : (
-          <button  onClick={toggleMute}>
-            <RaiseVolumeIcon width={'120px'}/>
-          </button>)
-        }
+        {isMuted ? (
+          <button onClick={toggleMute}>
+            <MuteIcon width={'120px'} />
+          </button>
+        ) : (
+          <button onClick={toggleMute}>
+            <RaiseVolumeIcon width={'120px'} />
+          </button>
+        )}
 
-        <button  onClick={() => skip(-15)}>
-          <BackFifteenIcon width={'50px'}/>
+        <button onClick={() => skip(-15)}>
+          <BackFifteenIcon width={'50px'} />
         </button>
-        <div className={styles.duration}><span>{formatTime(currentTime)} / {formatTime(duration)}</span></div>
+        <div className={styles.duration}>
+          <span>
+            {formatDuration(currentTime)} / {formatDuration(duration)}
+          </span>
+        </div>
         <input
           className={styles.progressBar}
           style={progressBarDynamicStyle}
@@ -115,24 +121,26 @@ export default function AudioPlayer({ className, src, type }: { className: strin
           value={currentTime}
           onChange={handleSeek}
         />
-        <button  onClick={() => skip(15)}>
-          <MoveFifteenIcon width={'50px'}/>
+        <button onClick={() => skip(15)}>
+          <MoveFifteenIcon width={'50px'} />
         </button>
-
       </div>
       <div className={styles.mobileAudioPlayer}>
         {isPlaying ? (
           <button className={styles.playPauseButton} onClick={togglePlayPause}>
-            <AudioPauseButton width={'39px'}/>
+            <AudioPauseButton width={'39px'} />
           </button>
         ) : (
           <button className={styles.playPauseButton} onClick={togglePlayPause}>
-            <AudioPlayButton width={'39px'}/>
+            <AudioPlayButton width={'39px'} />
           </button>
         )}
 
-
-        <div className={styles.duration}><span>{formatTime(currentTime)} / {formatTime(duration)}</span></div>
+        <div className={styles.duration}>
+          <span>
+            {formatDuration(currentTime)} / {formatDuration(duration)}
+          </span>
+        </div>
         <input
           className={styles.progressBar}
           style={progressBarDynamicStyle}
@@ -143,26 +151,25 @@ export default function AudioPlayer({ className, src, type }: { className: strin
           onChange={handleSeek}
         />
 
-
         <div className={styles.mobileButtonContainer}>
-          {isMuted ? (<button className={styles.unmute} onClick={toggleMute}>
-            <MuteIcon />
-          </button>) : (
+          {isMuted ? (
+            <button className={styles.unmute} onClick={toggleMute}>
+              <MuteIcon />
+            </button>
+          ) : (
             <button className={styles.mute} onClick={toggleMute}>
-              <RaiseVolumeIcon width={'28'}/>
-            </button>)
-          }
+              <RaiseVolumeIcon width={'28'} />
+            </button>
+          )}
 
           <button className={styles.backFifteen} onClick={() => skip(-15)}>
-            <BackFifteenIcon width={'20'}/>
+            <BackFifteenIcon width={'20'} />
           </button>
           <button className={styles.moveFifteen} onClick={() => skip(15)}>
-            <MoveFifteenIcon width={'20'}/>
+            <MoveFifteenIcon width={'20'} />
           </button>
         </div>
-
-
       </div>
     </div>
-  );
+  )
 }
