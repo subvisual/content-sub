@@ -1,6 +1,6 @@
-export function AudioPlayButton() {
+export function AudioPlayButton({width = '80', height = '54'}) {
   return (
-    <svg width="80" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="27" cy="27" r="27" fill="white" />
       <path
         d="M39.3659 26.1794C41.3602 27.2908 41.3675 28.6889 39.3659 29.9454L23.9 40.3759C21.9567 41.4129 20.6369 40.8006 20.4984 38.5567L20.4328 16.7258C20.389 14.6588 22.0916 14.0748 23.7141 15.0658L39.3659 26.1794Z"
@@ -10,9 +10,9 @@ export function AudioPlayButton() {
   )
 }
 
-export function AudioPauseButton() {
+export function AudioPauseButton({width = '80', height = '54'}) {
   return (
-    <svg width="80" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="27" cy="27" r="27" fill="white" />
       <path
         d="M19.6667 40C21.6833 40 23.3333 38.3286 23.3333 36.2857V17.7143C23.3333 15.6714 21.6833 14 19.6667 14C17.65 14 16 15.6714 16 17.7143V36.2857C16 38.3286 17.65 40 19.6667 40ZM30.6667 17.7143V36.2857C30.6667 38.3286 32.3167 40 34.3333 40C36.35 40 38 38.3286 38 36.2857V17.7143C38 15.6714 36.35 14 34.3333 14C32.3167 14 30.6667 15.6714 30.6667 17.7143Z"
@@ -22,9 +22,9 @@ export function AudioPauseButton() {
   )
 }
 
-export function MoveFifteenIcon() {
+export function MoveFifteenIcon({width = '32', height = '32'}) {
   return (
-    <svg width="32" height="32" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M15.4773 5C14.136 2.60879 11.629 1 8.75758 1C4.47319 1 1 4.58172 1 9C1 11.3894 2.01577 13.5341 3.62628 15M13.1212 6H17V2"
         stroke="currentColor"
@@ -40,9 +40,9 @@ export function MoveFifteenIcon() {
   )
 }
 
-export function BackFifteenIcon() {
+export function BackFifteenIcon({width = '32', height = '32'}) {
   return (
-    <svg width="32" height="32" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M3.52267 5C4.86399 2.60879 7.37103 1 10.2424 1C14.5268 1 18 4.58172 18 9C18 11.3894 16.9842 13.5341 15.3737 15M5.87879 6H2V2"
         stroke="currentColor"
@@ -58,9 +58,9 @@ export function BackFifteenIcon() {
   )
 }
 
-export function RaiseVolumeIcon() {
+export function RaiseVolumeIcon({width = '50', height = '40'}) {
   return (
-    <svg width="50" height="40" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M19.6824 8.07941C21.2661 10.5939 21.4898 13.9404 19.9833 16.9018M16.3459 9.72406C17.6827 11.2866 17.8715 13.3662 16.5999 15.2065M12 6L7.58775 9.4884H3V14.5111L7.58775 14.5099L12 18V6Z"
         stroke="currentColor"
@@ -72,12 +72,12 @@ export function RaiseVolumeIcon() {
   )
 }
 
-export function MuteIcon() {
+export function MuteIcon({width = '50', height = '40'}) {
   return (
     <svg
 
-      width='50'
-      height='40'
+      width={width}
+      height={height}
       viewBox="0 0 24 26"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

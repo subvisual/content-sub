@@ -33,7 +33,6 @@ export default function AudioPlayer({ className, src, type }: { className: strin
   }, [src]);
 
 
-
   const formatTime = (duration: number) => {
     const minutes = Math.floor(duration / 60);
     const remainingSeconds = Math.floor(duration % 60);
@@ -57,6 +56,10 @@ export default function AudioPlayer({ className, src, type }: { className: strin
 
   // slider
 
+  const progressBarDynamicStyle = {
+    "--dynamic-gradient": `linear-gradient(to right, var(--dark-rock-800) ${currentTime / duration * 100}%, var(--soft-white-100) 0%)`,
+  };
+
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = Number(e.target.value);
     if (audioRef.current) {
@@ -73,45 +76,93 @@ export default function AudioPlayer({ className, src, type }: { className: strin
 
   const toggleMute = () => {
     if (audioRef.current) {
-      audioRef.current.muted = !isMuted
-      setIsMuted(!isMuted)
+      audioRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
     }
-  }
+  };
 
   return (
-    <div className={styles.audioPlayer}>
-      {isPlaying ? (
-        <button onClick={togglePlayPause}>
-          <AudioPauseButton />
-        </button>
-      ) : (
-        <button onClick={togglePlayPause}>
-          <AudioPlayButton />
-        </button>
-      )}
+    <div>
+      <div className={styles.desktopAudioPlayer}>
+        {isPlaying ? (
+          <button onClick={togglePlayPause}>
+            <AudioPauseButton width={'120px'} />
+          </button>
+        ) : (
+          <button onClick={togglePlayPause}>
+            <AudioPlayButton width={'120px'} />
+          </button>
+        )}
 
-      {isMuted ? (<button onClick={toggleMute}>
-        <MuteIcon />
-      </button> ) : (
-        <button onClick={toggleMute}>
-      <RaiseVolumeIcon />
-    </button>)
-}
+        {isMuted ? (<button  onClick={toggleMute}>
+          <MuteIcon width={'120px'}/>
+        </button>) : (
+          <button  onClick={toggleMute}>
+            <RaiseVolumeIcon width={'120px'}/>
+          </button>)
+        }
 
-      <button onClick={() => skip(-15)}>
-        <BackFifteenIcon />
-      </button>
-      <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
-      <input
-        type="range"
-        min={0}
-        max={duration}
-        value={currentTime}
-        onChange={handleSeek}
-      />
-      <button onClick={() => skip(15)}>
-        <MoveFifteenIcon />
-      </button>
+        <button  onClick={() => skip(-15)}>
+          <BackFifteenIcon width={'50px'}/>
+        </button>
+        <div className={styles.duration}><span>{formatTime(currentTime)} / {formatTime(duration)}</span></div>
+        <input
+          className={styles.progressBar}
+          style={progressBarDynamicStyle}
+          type="range"
+          min={0}
+          max={duration}
+          value={currentTime}
+          onChange={handleSeek}
+        />
+        <button  onClick={() => skip(15)}>
+          <MoveFifteenIcon width={'50px'}/>
+        </button>
+
+      </div>
+      <div className={styles.mobileAudioPlayer}>
+        {isPlaying ? (
+          <button className={styles.playPauseButton} onClick={togglePlayPause}>
+            <AudioPauseButton width={'39px'}/>
+          </button>
+        ) : (
+          <button className={styles.playPauseButton} onClick={togglePlayPause}>
+            <AudioPlayButton width={'39px'}/>
+          </button>
+        )}
+
+
+        <div className={styles.duration}><span>{formatTime(currentTime)} / {formatTime(duration)}</span></div>
+        <input
+          className={styles.progressBar}
+          style={progressBarDynamicStyle}
+          type="range"
+          min={0}
+          max={duration}
+          value={currentTime}
+          onChange={handleSeek}
+        />
+
+
+        <div className={styles.mobileButtonContainer}>
+          {isMuted ? (<button className={styles.unmute} onClick={toggleMute}>
+            <MuteIcon />
+          </button>) : (
+            <button className={styles.mute} onClick={toggleMute}>
+              <RaiseVolumeIcon width={'28'}/>
+            </button>)
+          }
+
+          <button className={styles.backFifteen} onClick={() => skip(-15)}>
+            <BackFifteenIcon width={'20'}/>
+          </button>
+          <button className={styles.moveFifteen} onClick={() => skip(15)}>
+            <MoveFifteenIcon width={'20'}/>
+          </button>
+        </div>
+
+
+      </div>
     </div>
   );
 }
