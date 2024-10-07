@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-import styles from './styles.module.css'
-
 import {
   AudioPauseButton,
   AudioPlayButton,
@@ -11,9 +9,9 @@ import {
   MoveFifteenIcon,
   MuteIcon,
   RaiseVolumeIcon,
-} from '@/app/_blocks/EpisodeHead/AudioPlayer/Buttons'
-import formatDuration from '@/app/_blocks/EpisodeHead/AudioPlayer/Utilities/formatDuration'
-
+} from './ButtonIcons'
+import styles from './styles.module.css'
+import formatDuration from './Utilities/formatDuration'
 
 export default function AudioPlayer({ src }: { src: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -24,8 +22,8 @@ export default function AudioPlayer({ src }: { src: string }) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    audioRef.current = new Audio(src)
-    const audio = audioRef.current
+    const audio = new Audio(src)
+    audioRef.current = audio
 
     const handleLoadedMetadata = () => setDuration(audio.duration)
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime)
@@ -43,21 +41,9 @@ export default function AudioPlayer({ src }: { src: string }) {
 
   const togglePlayPause = () => {
     if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause()
-      } else {
-        audioRef.current.play()
-      }
+      isPlaying ? audioRef.current.pause() : audioRef.current.play()
       setIsPlaying(!isPlaying)
     }
-  }
-
-  // slider
-
-  const progressBarDynamicStyle = {
-    '--dynamic-gradient': `linear-gradient(to right, var(--dark-rock-800) ${
-      (currentTime / duration) * 100
-    }%, var(--soft-white-100) 0%)`,
   }
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,32 +67,47 @@ export default function AudioPlayer({ src }: { src: string }) {
     }
   }
 
+  // Utility to generate the dynamic gradient for the progress bar
+  const progressBarStyle = {
+    '--dynamic-gradient': `linear-gradient(to right, var(--dark-rock-800) ${
+      (currentTime / duration) * 100
+    }%, var(--soft-white-100) 0%)`,
+  }
+
+  // Reusable Button components to reduce duplication
+  const PlayPauseButton = ({ className, width }: { className?: string; width?: string }) => (
+    <button className={className} onClick={togglePlayPause}>
+      {isPlaying ? <AudioPauseButton width={width} /> : <AudioPlayButton width={width} />}
+    </button>
+  )
+
+  const MuteUnmuteButton = ({ width }: { width: string }) => (
+    <button onClick={toggleMute}>
+      {isMuted ? <MuteIcon width={width} /> : <RaiseVolumeIcon width={width} />}
+    </button>
+  )
+
+  const SkipButton = ({
+    seconds,
+    Icon,
+    width,
+  }: {
+    seconds: number
+    Icon: React.FC<any>
+    width: string
+  }) => (
+    <button onClick={() => skip(seconds)}>
+      <Icon width={width} />
+    </button>
+  )
+
   return (
     <div>
+      {/* Desktop Player */}
       <div className={styles.desktopAudioPlayer}>
-        {isPlaying ? (
-          <button onClick={togglePlayPause}>
-            <AudioPauseButton width={'120px'} />
-          </button>
-        ) : (
-          <button onClick={togglePlayPause}>
-            <AudioPlayButton width={'120px'} />
-          </button>
-        )}
-
-        {isMuted ? (
-          <button onClick={toggleMute}>
-            <MuteIcon width={'120px'} />
-          </button>
-        ) : (
-          <button onClick={toggleMute}>
-            <RaiseVolumeIcon width={'120px'} />
-          </button>
-        )}
-
-        <button onClick={() => skip(-15)}>
-          <BackFifteenIcon width={'50px'} />
-        </button>
+        <PlayPauseButton width={'120px'} />
+        <MuteUnmuteButton width={'120px'} />
+        <SkipButton seconds={-15} Icon={BackFifteenIcon} width={'50px'} />
         <div className={styles.duration}>
           <span>
             {formatDuration(currentTime)} / {formatDuration(duration)}
@@ -114,28 +115,19 @@ export default function AudioPlayer({ src }: { src: string }) {
         </div>
         <input
           className={styles.progressBar}
-          style={progressBarDynamicStyle}
+          style={progressBarStyle}
           type="range"
           min={0}
           max={duration}
           value={currentTime}
           onChange={handleSeek}
         />
-        <button onClick={() => skip(15)}>
-          <MoveFifteenIcon width={'50px'} />
-        </button>
+        <SkipButton seconds={15} Icon={MoveFifteenIcon} width={'50px'} />
       </div>
-      <div className={styles.mobileAudioPlayer}>
-        {isPlaying ? (
-          <button className={styles.playPauseButton} onClick={togglePlayPause}>
-            <AudioPauseButton width={'39px'} />
-          </button>
-        ) : (
-          <button className={styles.playPauseButton} onClick={togglePlayPause}>
-            <AudioPlayButton width={'39px'} />
-          </button>
-        )}
 
+      {/* Mobile Player */}
+      <div className={styles.mobileAudioPlayer}>
+        <PlayPauseButton className={styles.playPauseButton} width={'50px'} />
         <div className={styles.duration}>
           <span>
             {formatDuration(currentTime)} / {formatDuration(duration)}
@@ -143,31 +135,17 @@ export default function AudioPlayer({ src }: { src: string }) {
         </div>
         <input
           className={styles.progressBar}
-          style={progressBarDynamicStyle}
+          style={progressBarStyle}
           type="range"
           min={0}
           max={duration}
           value={currentTime}
           onChange={handleSeek}
         />
-
         <div className={styles.mobileButtonContainer}>
-          {isMuted ? (
-            <button className={styles.unmute} onClick={toggleMute}>
-              <MuteIcon />
-            </button>
-          ) : (
-            <button className={styles.mute} onClick={toggleMute}>
-              <RaiseVolumeIcon width={'28'} />
-            </button>
-          )}
-
-          <button className={styles.backFifteen} onClick={() => skip(-15)}>
-            <BackFifteenIcon width={'20'} />
-          </button>
-          <button className={styles.moveFifteen} onClick={() => skip(15)}>
-            <MoveFifteenIcon width={'20'} />
-          </button>
+          <MuteUnmuteButton width={'28px'} />
+          <SkipButton seconds={-15} Icon={BackFifteenIcon} width={'20px'} />
+          <SkipButton seconds={15} Icon={MoveFifteenIcon} width={'20px'} />
         </div>
       </div>
     </div>
