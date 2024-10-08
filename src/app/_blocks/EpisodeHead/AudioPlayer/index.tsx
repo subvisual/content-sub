@@ -2,7 +2,7 @@
 
 const AudioPlayer: React.FC<{ src: string; type: string }> = ({ src, type }) => {
   return (
-    <div>
+    <div style={{width:'100%'}}>
       <audio controls style={{ width: '100%' }}>
         <source src={src} type={type} />
         Your browser does not support the audio element.

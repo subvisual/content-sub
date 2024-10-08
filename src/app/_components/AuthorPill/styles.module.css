@@ -4,6 +4,7 @@
   align-items: center;
   background-color: var(--soft-white-100);
   width: fit-content;
+  font-weight: bold;
   border-radius: 100px;
   padding: 5px 15px 5px 5px;
   color: var(--dark-rock-800);
@@ -27,4 +28,7 @@
   opacity: 0.5;
 }
 
-
+.socials {
+  display: flex;
+  gap: 16px;
+}

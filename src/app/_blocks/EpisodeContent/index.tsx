@@ -1,51 +1,40 @@
+import React from 'react'
+
 import { PodcastEpisode } from '../../../payload/payload-types'
+import styles from './styles.module.css'
+
+import Contributors from '@/app/_blocks/EpisodeContent/Contributors'
+import ListenOn from '@/app/_blocks/EpisodeContent/ListenOn'
+import RSSFeed from '@/app/_blocks/EpisodeContent/RSSFeed'
+import AuthorPill from '@/app/_components/AuthorPill'
+import Categories from '@/app/_components/Categories'
+import Share from '@/app/_components/Share'
 
 export default function EpisodeContent({ episode }: { episode: PodcastEpisode }) {
-  const { spotify, apple, summary, notes, categories } = episode
+  const { authors, spotify, apple, summary, notes, categories } = episode
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
-      {/* ListenOn Column */}
-      <div style={{ backgroundColor: 'white', color: '#403F4C', flex: '1' }}>
-        <div style={{ backgroundColor: 'white' }}>
-          <div>
-            <h1>ListenOn goes here</h1>
-            <span>Listen on:</span>
-            <p>
-              SpotifyIcon linking to{' '}
-              <a href={spotify} target="_blank" rel="noopener noreferrer">
-                Spotify
-              </a>
-            </p>
-            <p>
-              AppleIcon linking to{' '}
-              <a href={apple} target="_blank" rel="noopener noreferrer">
-                Apple Podcasts
-              </a>
-            </p>
-          </div>
-        </div>
+    <div className={styles.container}>
+      {/* ListenOn & Authors Column */}
+      <div className={styles.listenOnAndAuthors}>
+        <ListenOn className={styles.listenOn} spotify={spotify} apple={apple} />
+        <Contributors className={styles.contributors} authors={authors} />
       </div>
 
       {/* EpisodeContent Column */}
-      <div style={{ backgroundColor: 'white', color: '#403F4C', flex: '2' }}>
-        <h1>EpisodeContent block goes here</h1>
-        <h3>Episode Summary</h3>
+      <div className={styles.content}>
+        <p>Episode Summary</p>
         <span>{summary}</span>
-        <h3>Episode Notes</h3>
+        <p>Episode Notes</p>
         <span>{notes}</span>
       </div>
 
       {/* Share/Category Column */}
-      <div style={{ backgroundColor: '#F6F6F6', color: '#403F4C', flex: '1' }}>
-        <div>
-          <h1>Share block goes here</h1>
-          <p>SocialMedia block with links</p>
-        </div>
-        <div>
-          <h1>Category block</h1>
-          <p>A CategoryPill per category: {categories.map(cat => cat.title).join(' | ')}</p>
-        </div>
+      <div className={styles.sharingAndCategories}>
+        <hr/>
+        <Share />
+        <Categories categories={categories} />
+        <RSSFeed className={styles.RSSFeed} />
       </div>
     </div>
   )

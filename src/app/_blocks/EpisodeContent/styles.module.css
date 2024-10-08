@@ -1,0 +1,147 @@
+.container {
+    display: grid;
+  }
+
+  /* listenOn block */
+  .listenOnAndAuthors {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding: 16px;
+  }
+
+  .listenOn {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .listenOn span {
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+  }
+
+  .contributors {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* content block */
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+
+
+  }
+
+  .content p {
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 40px;
+  }
+
+  /* share block */
+  .sharingAndCategories {
+    display: flex;
+    flex-direction: column;
+    grid-row: 2 / 2;
+    padding: 16px;
+  }
+
+  .sharingAndCategories hr {
+    height: 0.5px;
+    border: none;
+    background-color: var(--dark-rock-800);
+
+  }
+
+  .RSSFeed {
+    padding-top: 40px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .RSSFeed p {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+
+@media (min-width: 1024px) {
+  .container {
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr 0.4fr;
+
+  }
+
+  /* listenOn block */
+  .listenOnAndAuthors {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 40px 40px 80px;
+    gap: 80px;
+  }
+
+  .listenOn {
+    grid-column: 1 / 1;
+
+  }
+
+  .listenOn {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .listenOn span {
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+  }
+
+  .contributors {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* content block */
+  .content {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2 / 2;
+  }
+
+  .content p {
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 40px;
+  }
+
+  /* share block */
+  .sharingAndCategories {
+    grid-column: 3 / 3;
+    grid-row: 1 / 1;
+  }
+
+  .sharingAndCategories hr {
+    display: none;
+  }
+
+  .RSSFeed {
+    border-top: 0.5px solid var(--dark-rock-800);
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .RSSFeed p {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+}

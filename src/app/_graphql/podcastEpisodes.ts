@@ -43,6 +43,15 @@ export const PODCAST_EPISODE = `
           id
           name
           role
+          featuredImage {
+            filename
+          }
+          linkedIn
+          gitHub
+          x
+          medium
+
+
         }
         featuredImage {
           ${MEDIA_FIELDS}
