@@ -1,8 +1,3 @@
-import { Metadata } from 'next'
-import { draftMode } from 'next/headers'
-
-import { Page } from '../../../payload/payload-types'
-import { fetchDoc } from '../../_api/fetchDoc'
 import HubContentGrid from '../../_blocks/HubContentGrid'
 import { Subscribe } from '../../_blocks/Subscribe'
 import SearchBar from '../../_components/SearchBar'
