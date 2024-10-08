@@ -37,12 +37,12 @@ const queryMap = {
   },
 }
 
-export const fetchDoc = async <T extends keyof Config['collections']>(args: {
-  collection: T
+export const fetchDoc = async <T>(args: {
+  collection: keyof Config['collections']
   slug?: string
   id?: string
   draft?: boolean
-}): Promise<Config['collections'][T]> => {
+}): Promise<T> => {
   const { collection, slug, draft } = args || {}
 
   if (!queryMap[collection]) throw new Error(`Collection ${collection} not found`)
