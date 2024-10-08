@@ -15,7 +15,7 @@ export async function fetcher(args: {
         'Content-Type': 'application/json',
       },
       cache: 'no-store',
-      body: JSON.stringify({        
+      body: JSON.stringify({
         query: query,
         ...(variables && { variables: variables }),
       }),
