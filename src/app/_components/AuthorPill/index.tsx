@@ -7,6 +7,7 @@ import { Socials } from '@/payload/globals/Socials'
 import { Author } from '@/payload/payload-types'
 
 export default function AuthorPill({ large = false, author }) {
+  console.log(author)
   const { name, featuredImage, linkedIn, x } = author
 
   /* unsure if this will be useful, as all names have same length in figma

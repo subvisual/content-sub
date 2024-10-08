@@ -19,7 +19,7 @@ import HubHead from '@/app/_blocks/HubHead'
 // But we also need to force Next.js to dynamically render this page on each request for preview mode to work
 // See https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic
 // If you are not using Payload Cloud then this line can be removed, see `../../../README.md#cache`
-export const dynamic = 'force-dynamic'
+
 
 export default async function Page({ params: { slug = 'home' } }) {
   const articles = await fetcher({ query: ALL_CONTENT })
@@ -38,24 +38,3 @@ export default async function Page({ params: { slug = 'home' } }) {
     </>
   )
 }
-
-// export async function generateMetadata({ params: { slug = 'home' } }): Promise<Metadata> {
-//   const { isEnabled: isDraftMode } = draftMode()
-//
-//   let page: Page | null = null
-//
-//   try {
-//     page = await fetchDoc<Page>({
-//       collection: 'pages',
-//       slug,
-//       draft: isDraftMode,
-//     })
-//   } catch (error) {
-//     // don't throw an error if the fetch fails
-//     // this is so that we can render static fallback pages for the demo
-//     // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
-//     // in production you may want to redirect to a 404  page or at least log the error somewhere
-//   }
-//
-//   return generateMeta({ doc: page })
-// }

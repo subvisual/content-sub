@@ -8,5 +8,6 @@ module.exports = {
     '@typescript-eslint/array-type': 'off',
     'import/extensions': 'off',
     'function-paren-newline': 'off',
+    'prettier/prettier': 'off',
   },
 }

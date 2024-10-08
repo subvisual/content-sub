@@ -8,6 +8,8 @@ import AuthorSummary from '../../../_components/AuthorSummary'
 import BackButton from '../../../_components/BackButton'
 import styles from './styles.module.css'
 
+export const dynamic = 'force-dynamic'
+
 export default async function ContributorPage({ params: { slug } }) {
   // TODO: update fetchDoc to include error handling instead of making it on-page
   const author = await fetchDoc({ collection: 'authors', slug })

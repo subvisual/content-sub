@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 
 import { fetchDoc } from '../../../_api/fetchDoc'
 
+export const dynamic = 'force-dynamic'
+
 export default async function CaseStudiesPage({ params: { slug } }) {
   let content = null
 
