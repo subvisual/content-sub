@@ -457,7 +457,7 @@ export function PlayIcon({
         strokeWidth="2"
       />
     </svg>
-  );
+  )
 }
 
 export function HeadphonesIcon({
@@ -512,15 +512,31 @@ export function LinkIcon({
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }
 
-export default function CodeIcon({ x, y, width = "24", height = "24", color = "var(--dark-rock-800)" }) {
+export default function CodeIcon({
+  x,
+  y,
+  width = '24',
+  height = '24',
+  color = 'var(--dark-rock-800)',
+}) {
   return (
-    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7.1999 16.7999L2.3999 12L7.1999 7.19995M16.7999 7.19995L21.5999 12L16.7999 16.7999" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.1999 16.7999L2.3999 12L7.1999 7.19995M16.7999 7.19995L21.5999 12L16.7999 16.7999"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </svg>
-
-
-  );
+  )
 }

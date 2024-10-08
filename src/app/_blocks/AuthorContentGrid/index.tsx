@@ -14,7 +14,7 @@ export default function AuthorContentGrid({
   content: {
     Blogposts: Blogpost[]
     PodcastEpisodes: PodcastEpisode[]
-    CasteStudies: CaseStudy[]
+    CaseStudies: CaseStudy[]
     TalksAndRoundtables: TalksAndRoundtable[]
   }
 }) {

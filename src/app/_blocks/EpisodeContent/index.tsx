@@ -31,7 +31,7 @@ export default function EpisodeContent({ episode }: { episode: PodcastEpisode })
 
       {/* Share/Category Column */}
       <div className={styles.sharingAndCategories}>
-        <hr/>
+        <hr />
         <Share />
         <Categories categories={categories} />
         <RSSFeed className={styles.RSSFeed} />

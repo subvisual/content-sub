@@ -40,23 +40,23 @@ export default async function Page({ params: { slug = 'home' } }) {
   )
 }
 
-export async function generateMetadata({ params: { slug = 'home' } }): Promise<Metadata> {
-  const { isEnabled: isDraftMode } = draftMode()
-
-  let page: Page | null = null
-
-  try {
-    page = await fetchDoc<Page>({
-      collection: 'pages',
-      slug,
-      draft: isDraftMode,
-    })
-  } catch (error) {
-    // don't throw an error if the fetch fails
-    // this is so that we can render static fallback pages for the demo
-    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
-    // in production you may want to redirect to a 404  page or at least log the error somewhere
-  }
-
-  return generateMeta({ doc: page })
-}
+// export async function generateMetadata({ params: { slug = 'home' } }): Promise<Metadata> {
+//   const { isEnabled: isDraftMode } = draftMode()
+//
+//   let page: Page | null = null
+//
+//   try {
+//     page = await fetchDoc<Page>({
+//       collection: 'pages',
+//       slug,
+//       draft: isDraftMode,
+//     })
+//   } catch (error) {
+//     // don't throw an error if the fetch fails
+//     // this is so that we can render static fallback pages for the demo
+//     // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
+//     // in production you may want to redirect to a 404  page or at least log the error somewhere
+//   }
+//
+//   return generateMeta({ doc: page })
+// }

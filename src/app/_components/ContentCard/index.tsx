@@ -1,20 +1,15 @@
-
 import Link from 'next/link'
 
 import { Blogpost, PodcastEpisode } from '../../../payload/payload-types'
-import { formatDateTime } from '../../_utilities/formatDateTime'
-
-import { toKebabCase } from '../../_utilities/toKebabCase'
-import Authors from '../Authors'
-import CategoryPill from '../CategoryPill'
-
-import styles from './styles.module.css'
-
-import ArchiveButton from '../ArchiveButton'
-import FeaturedImage from '../FeaturedImage'
 import { HeadphonesIcon, SpectaclesIcon } from '../../_icons/icons'
 import { estimateReadTime } from '../../_utilities/estimateReadTime'
-
+import { formatDateTime } from '../../_utilities/formatDateTime'
+import { toKebabCase } from '../../_utilities/toKebabCase'
+import ArchiveButton from '../ArchiveButton'
+import Authors from '../Authors'
+import CategoryPill from '../CategoryPill'
+import FeaturedImage from '../FeaturedImage'
+import styles from './styles.module.css'
 
 interface ContentSummaryProps {
   contentType: string
