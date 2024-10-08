@@ -39,7 +39,7 @@ export default function EpisodeHead({ episode }) {
         </div>
         {/* TODO Add conditionals later on: render only if it's a podcast episode */}
         <div className={styles.audioPlayer}>
-          <AudioPlayer className={styles.audioPlayer} src={audioFileSource} type={audioFileType} />
+          <AudioPlayer src={audioFileSource} type={audioFileType} />
         </div>
 
         {/* TODO: Second Column displays EpisodeFeaturedImage if ContentType is podcast */}

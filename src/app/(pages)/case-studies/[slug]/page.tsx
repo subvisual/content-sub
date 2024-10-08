@@ -11,9 +11,7 @@ export default async function CaseStudiesPage({ params: { slug } }) {
       collection: 'case-studies',
       slug,
     })
-  } catch (err) {
-    console.error(err)
-  }
+  } catch (err) {}
 
   if (!content) {
     notFound()

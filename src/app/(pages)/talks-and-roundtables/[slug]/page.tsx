@@ -10,9 +10,7 @@ export default async function TalksAndRoundTablesPage({ params: { slug } }) {
       collection: 'talks-and-roundtables',
       slug: slug,
     })
-  } catch (err) {
-    console.error(err)
-  }
+  } catch (err) {}
 
   if (!content) {
     notFound()

@@ -56,7 +56,7 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
-    media?: string | Media | null;
+    media?: Media | null;
   };
   layout: (
     | {
@@ -114,7 +114,7 @@ export interface Page {
     | {
         invertBackground?: boolean | null;
         position?: ('default' | 'fullscreen') | null;
-        media: string | Media;
+        media: Media;
         id?: string | null;
         blockName?: string | null;
         blockType: 'mediaBlock';
@@ -183,7 +183,7 @@ export interface User {
  */
 export interface Author {
   id: string;
-  featuredImage: string | Media;
+  featuredImage: Media;
   name: string;
   role: 'developer' | 'product-manager' | 'designer';
   bio: string;
@@ -206,8 +206,8 @@ export interface PodcastEpisode {
   title: string;
   summary: string;
   notes: string;
-  featuredImage: string | Media;
-  episodeFile: string | Media;
+  featuredImage: Media;
+  episodeFile: Media;
   spotify?: string | null;
   apple?: string | null;
   authors?: (string | Author)[] | null;
@@ -243,7 +243,7 @@ export interface Blogpost {
     [k: string]: unknown;
   };
   content_html?: string | null;
-  featuredImage: string | Media;
+  featuredImage: Media;
   authors?: (string | Author)[] | null;
   categories?: (string | Category)[] | null;
   relatedPosts?: (string | Blogpost)[] | null;
@@ -260,11 +260,12 @@ export interface Blogpost {
 export interface TalksAndRoundtable {
   id: string;
   title: string;
-  about: string;
+  summary: string;
   categories?: (string | Category)[] | null;
   url?: string | null;
   authors?: (string | Author)[] | null;
   publishedAt?: string | null;
+  featuredImage: Media;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -280,6 +281,8 @@ export interface CaseStudy {
   summary?: string | null;
   authors?: (string | Author)[] | null;
   categories?: (string | Category)[] | null;
+  publishedAt?: string | null;
+  featuredImage: Media;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -325,9 +328,8 @@ export interface PayloadMigration {
  */
 export interface Settings {
   id: string;
-  postsPage?: (string | null) | Page;
-  projectsPage?: (string | null) | Page;
-  podcastEpisodesPage?: (string | null) | Page;
+  mainHighlight?: (string | null) | Blogpost;
+  secondaryHighlight?: (string | null) | Blogpost;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

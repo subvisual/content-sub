@@ -13,10 +13,18 @@ export function sanitizeAndAddChapters(content_html: string) {
     .replace(/<p>\s*<\/p>/g, '')
 }
 
-export function getChapters(content_html: string) {
+export function getChapters(content_html: string): { id: string; title: string }[] {
   const sanitizedContent = sanitizeAndAddChapters(content_html)
-  return [...sanitizedContent.matchAll(/<h[1-6] id="([^"]*)">(.*?)<\/h[1-6]>/g)].map(match => ({
-    id: match[1],
-    title: match[2],
-  }))
+  const regex = /<h[1-6] id="([^"]*)">(.*?)<\/h[1-6]>/g
+  const chapters: { id: string; title: string }[] = []
+  let match: RegExpExecArray | null
+
+  while ((match = regex.exec(sanitizedContent)) !== null) {
+    chapters.push({
+      id: match[1],
+      title: match[2],
+    })
+  }
+
+  return chapters
 }

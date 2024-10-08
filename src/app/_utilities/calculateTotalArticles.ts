@@ -3,12 +3,12 @@ import type {
   CaseStudy,
   PodcastEpisode,
   TalksAndRoundtable,
-} from '../../../payload/payload-types'
+} from '../../payload/payload-types'
 
 export function calculateTotalArticles(content: {
   Blogposts: Blogpost[]
   PodcastEpisodes: PodcastEpisode[]
-  CasteStudies: CaseStudy[]
+  CaseStudies: CaseStudy[]
   TalksAndRoundtables: TalksAndRoundtable[]
 }): number {
   return Object.values(content).filter(

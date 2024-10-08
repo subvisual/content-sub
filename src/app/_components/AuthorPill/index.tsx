@@ -6,7 +6,7 @@ import { getImage } from '@/app/_utilities/getImage'
 import { Socials } from '@/payload/globals/Socials'
 import { Author } from '@/payload/payload-types'
 
-export default function AuthorPill({ large = false, author }: { large: boolean; author: Author }) {
+export default function AuthorPill({ large = false, author }) {
   const { name, featuredImage, linkedIn, x } = author
 
   /* unsure if this will be useful, as all names have same length in figma

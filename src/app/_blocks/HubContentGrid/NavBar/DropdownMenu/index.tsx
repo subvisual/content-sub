@@ -33,7 +33,7 @@ export default function DropdownMenu({
   onActiveButtonChange,
 }: {
   activeButton: string
-  onActiveButtonChange: () => void
+  onActiveButtonChange: (arg: string) => void
 }) {
   const [isDropdownActive, setIsDropdownActive] = useState<boolean>(false)
   const [buttonLabel, setButtonLabel] = useState('All')

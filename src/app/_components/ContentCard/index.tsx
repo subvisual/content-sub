@@ -1,6 +1,12 @@
 import Link from 'next/link'
 
-import { Blogpost, PodcastEpisode } from '../../../payload/payload-types'
+import {
+  Blogpost,
+  CaseStudy,
+  Category,
+  PodcastEpisode,
+  TalksAndRoundtable,
+} from '../../../payload/payload-types'
 import { HeadphonesIcon, SpectaclesIcon } from '../../_icons/icons'
 import { estimateReadTime } from '../../_utilities/estimateReadTime'
 import { formatDateTime } from '../../_utilities/formatDateTime'
@@ -13,7 +19,7 @@ import styles from './styles.module.css'
 
 interface ContentSummaryProps {
   contentType: string
-  content: Blogpost | PodcastEpisode // TODO: Extend to CaseStudy and TalksAndRoundTables once consistency is assured
+  content: Blogpost | PodcastEpisode | CaseStudy | TalksAndRoundtable // TODO: Extend to CaseStudy and TalksAndRoundTables once consistency is assured
 }
 
 const archiveMap = {
@@ -39,7 +45,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
           <p>{summary}</p>
 
           {Array.isArray(categories) && categories.length > 0
-            ? categories.map((category, i) => <CategoryPill title={category.title} />)
+            ? categories.map((category: Category, i) => <CategoryPill title={category.title} />)
             : null}
 
           <div className={styles.dateAndDuration}>

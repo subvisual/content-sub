@@ -44,6 +44,36 @@ export const CaseStudies: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    {
+      name: 'publishedAt',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
+      },
+      hooks: {
+        beforeChange: [
+          ({ siblingData, value }) => {
+            if (siblingData._status === 'published' && !value) {
+              return new Date()
+            }
+            return value
+          },
+        ],
+      },
+    },
+    {
+      name: 'featuredImage',
+      label: 'Featured Image',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
     slugField(),
   ],
 }

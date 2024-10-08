@@ -8,7 +8,6 @@ import { Subscribe } from '../../_blocks/Subscribe'
 import SearchBar from '../../_components/SearchBar'
 import { ALL_CONTENT } from '../../_graphql/allContent'
 import { fetcher } from '../../_utilities/fetcher'
-import { generateMeta } from '../../_utilities/generateMeta'
 import styles from './styles.module.css'
 
 import { fetchSettings } from '@/app/_api/fetchGlobals'

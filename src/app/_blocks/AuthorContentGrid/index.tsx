@@ -29,7 +29,8 @@ export default function AuthorContentGrid({
             <div key={i} className={styles.contentCard}>
               <ContentCard contentType={key} content={contentPiece} />
             </div>
-          )),)}
+          )),
+        )}
       </div>
     </div>
   )
