@@ -6,7 +6,6 @@ import AuthorPill from '../AuthorPill'
 import styles from './styles.module.css'
 export default function PostSummary({ post }: { post: Blogpost }) {
   const { title, publishedAt, content, authors } = post
-  console.log(post)
 
   return (
     <div className={styles.gridContainer}>
