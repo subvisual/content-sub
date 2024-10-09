@@ -16,19 +16,23 @@ import HubHead from '@/app/_blocks/HubHead'
 // If you are not using Payload Cloud then this line can be removed, see `../../../README.md#cache`
 
 export default async function Page({ params: { slug = 'home' } }) {
-  const articles = await fetcher({ query: ALL_CONTENT })
-  const highglights = await fetchSettings()
+  // const articles = await fetcher({ query: ALL_CONTENT })
+  // const highglights = await fetchSettings()
 
   return (
-    <>
-      <HubHead highlights={highglights} />
+    // <>
+    //   <HubHead highlights={highglights} />
+    //
+    //   {/* Search Bar */}
+    //   <SearchBar />
+    //
+    //   {/* Content Grid */}
+    //   <HubContentGrid articles={articles} />
+    //   <Subscribe />
+    // </>
 
-      {/* Search Bar */}
-      <SearchBar />
-
-      {/* Content Grid */}
-      <HubContentGrid articles={articles} />
-      <Subscribe />
-    </>
+    <div>
+      <h5>Hello Payload 3.0</h5>
+    </div>
   )
 }

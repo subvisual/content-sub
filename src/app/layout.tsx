@@ -16,10 +16,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         {/* @ts-expect-error */}
-        <Header />
+        {/*<Header />*/}
         {children}
         {/* @ts-expect-error */}
-        <Footer />
+        {/*<Footer />*/}
       </body>
     </html>
   )
