@@ -5,15 +5,15 @@ import dotenv from 'dotenv'
 import path from 'path'
 import { buildConfig } from 'payload/config'
 
-import { Authors } from './collections/Authors'
-import { BlogPosts } from './collections/BlogPosts'
-import { CaseStudies } from './collections/CaseStudies'
+import { Authors } from '../collections/Authors'
+import { Blogposts } from './collections/Blogposts'
+import { CaseStudies } from '../collections/CaseStudies'
 // Collections go here
 import Categories from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
-import { PodcastEpisodes } from './collections/PodcastEpisodes'
-import { TalksAndRoundtables } from './collections/TalksAndRoundtables'
+import { Podcasts } from '../collections/Podcasts'
+import { TalksAndRoundtables } from '../collections/TalksAndRoundtables'
 import Users from './collections/Users'
 import BeforeDashboard from './components/BeforeDashboard'
 import BeforeLogin from './components/BeforeLogin'
@@ -66,8 +66,8 @@ export default buildConfig({
     Categories,
     Users,
     Authors,
-    PodcastEpisodes,
-    BlogPosts,
+    Podcasts,
+    Blogposts,
     TalksAndRoundtables,
     CaseStudies,
   ],

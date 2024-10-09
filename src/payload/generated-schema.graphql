@@ -26,7 +26,7 @@ type Query {
   versionAuthor(id: String): AuthorVersion
   versionsAuthors(where: versionsAuthor_where, limit: Int, page: Int, sort: String): versionsAuthors
   PodcastEpisode(id: String!, draft: Boolean): PodcastEpisode
-  PodcastEpisodes(draft: Boolean, where: PodcastEpisode_where, limit: Int, page: Int, sort: String): PodcastEpisodes
+  Podcasts(draft: Boolean, where: PodcastEpisode_where, limit: Int, page: Int, sort: String): Podcasts
   countPodcastEpisodes(draft: Boolean, where: PodcastEpisode_where): countPodcastEpisodes
   docAccessPodcastEpisode(id: String!): podcast_episodesDocAccess
   versionPodcastEpisode(id: String): PodcastEpisodeVersion
@@ -4759,7 +4759,7 @@ enum PodcastEpisode__status {
   published
 }
 
-type PodcastEpisodes {
+type Podcasts {
   docs: [PodcastEpisode]
   hasNextPage: Boolean
   hasPrevPage: Boolean
