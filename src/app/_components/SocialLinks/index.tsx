@@ -7,7 +7,7 @@ export default function SocialLinks({ socials }: { socials: string[] }) {
     <div style={{ marginTop: '10px' }}>
       {socials.map((link, i) => (
         <Link href={link} key={i}>
-          <LinkedInIcon size={32} />
+          <LinkedInIcon />
         </Link>
       ))}
     </div>

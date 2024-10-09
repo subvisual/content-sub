@@ -1,10 +1,10 @@
 import { BlogpostIcon, CaseStudiesIcon, PodcastIcon, TalksIcon } from '@/app/_icons/icons'
 
 const iconMap = {
-  blogposts: <BlogpostIcon width={'20'} color={"currentColor"}/>,
-  'podcast-episodes': <PodcastIcon width={'20'} color={"currentColor"}/>,
-  'case-studies': <CaseStudiesIcon width={'20'} color={"currentColor"}/>,
-  'talks-and-roundtables': <TalksIcon width={'20'} color={"currentColor"}/>,
+  blogposts: <BlogpostIcon width={'20'} color={'currentColor'} />,
+  'podcast-episodes': <PodcastIcon width={'20'} color={'currentColor'} />,
+  'case-studies': <CaseStudiesIcon width={'20'} color={'currentColor'} />,
+  'talks-and-roundtables': <TalksIcon width={'20'} color={'currentColor'} />,
 }
 
 import styles from './styles.module.css'

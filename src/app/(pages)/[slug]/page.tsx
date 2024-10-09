@@ -1,14 +1,8 @@
-import { Metadata } from 'next'
-import { draftMode } from 'next/headers'
-
-import { Page } from '../../../payload/payload-types'
-import { fetchDoc } from '../../_api/fetchDoc'
 import HubContentGrid from '../../_blocks/HubContentGrid'
 import { Subscribe } from '../../_blocks/Subscribe'
 import SearchBar from '../../_components/SearchBar'
 import { ALL_CONTENT } from '../../_graphql/allContent'
 import { fetcher } from '../../_utilities/fetcher'
-import { generateMeta } from '../../_utilities/generateMeta'
 import styles from './styles.module.css'
 
 import { fetchSettings } from '@/app/_api/fetchGlobals'
@@ -38,25 +32,4 @@ export default async function Page({ params: { slug = 'home' } }) {
       <Subscribe />
     </>
   )
-}
-
-export async function generateMetadata({ params: { slug = 'home' } }): Promise<Metadata> {
-  const { isEnabled: isDraftMode } = draftMode()
-
-  let page: Page | null = null
-
-  try {
-    page = await fetchDoc<Page>({
-      collection: 'pages',
-      slug,
-      draft: isDraftMode,
-    })
-  } catch (error) {
-    // don't throw an error if the fetch fails
-    // this is so that we can render static fallback pages for the demo
-    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
-    // in production you may want to redirect to a 404  page or at least log the error somewhere
-  }
-
-  return generateMeta({ doc: page })
 }

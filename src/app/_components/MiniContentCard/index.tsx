@@ -1,6 +1,6 @@
+import ArchiveButton from '../ArchiveButton'
 import styles from './styles.module.css'
 
-import ArchiveButton from '../ArchiveButton'
 import CategoryPill from '@/app/_components/CategoryPill'
 import { formatDateTime } from '@/app/_utilities/formatDateTime'
 

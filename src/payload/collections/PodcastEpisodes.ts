@@ -87,6 +87,7 @@ export const PodcastEpisodes: CollectionConfig = {
       type: 'relationship',
       relationTo: 'authors',
       hasMany: true,
+      required: true,
     },
     {
       name: 'categories',
