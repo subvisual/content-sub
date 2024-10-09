@@ -6,7 +6,7 @@ export function Subscribe() {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <img
+        <Image width={'10'} height={'10'}
           className={styles.image}
           src={'/subscribe-card-image.png'}
           alt={'subscribe card image'}
