@@ -33,15 +33,17 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
   const { slug, title, summary, featuredImage, categories, publishedAt, authors } = content
 
   // todo: convert to a collection item property
-  const readTime = estimateReadTime(summary)
+  const readTime = estimateReadTime('herpaderpa')
 
   return (
     <div className={styles.contentCard}>
+      {/*<pre>{JSON.stringify(content,null, 2)}</pre>*/}
+
       <Link href={`/${toKebabCase(contentType)}/${slug}`}>
         <div className={styles.contentMetaContainer}>
           <FeaturedImage src={featuredImage} />
-          <ArchiveButton collection={archiveMap[contentType]} />
-          <h6>{title}</h6>
+          {/*<ArchiveButton collection={archiveMap[contentType]} />*/}
+          <h6>{title} </h6>
           <p>{summary}</p>
 
           {Array.isArray(categories) && categories.length > 0
@@ -62,7 +64,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
             )}
           </div>
 
-          <Authors authors={authors} />
+          {/*<Authors authors={authors} />*/}
         </div>
       </Link>
     </div>
