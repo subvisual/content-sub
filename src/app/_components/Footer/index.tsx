@@ -4,6 +4,8 @@ import { fetchGlobals } from "@/app/_utilities/contentFetchers";
 
 export async function Footer() {
   const footer = await fetchGlobals('footer')
+
+  // @ts-ignore
   const navItems = footer?.navItems || []
 
   return (
@@ -23,7 +25,7 @@ export async function Footer() {
         </div>
         <div>
           {/* TODO: Update fetchGlobals to include socials and then update here. */}
-          <p className={styles.title}>We're Social</p>
+          <p className={styles.title}>We&#39;re Social</p>
           {['Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md'].map((item, i) => {
             return <span style={{ marginRight: '20px' }}>{item}</span>
           })}

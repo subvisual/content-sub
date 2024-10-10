@@ -7,6 +7,8 @@ import { fetchGlobals } from "@/app/_utilities/contentFetchers";
 export async function Header() {
 
   const header = await fetchGlobals('header')
+
+  // @ts-ignore
   const navItems = header?.navItems || []
 
   return (

@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function ContributorPage({ params: paramsPromise }) {
   const { slug } = await paramsPromise
-  const author: Author = await fetchContentBySlug({ slug: slug, type: 'authors' })
+  const author = await fetchContentBySlug({ slug: slug, type: 'authors' })
   const contentFromAuthor = await fetchContentFromAuthor(author)
 
   return (

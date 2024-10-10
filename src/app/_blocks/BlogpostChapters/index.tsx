@@ -34,7 +34,7 @@ export default function BlogpostChapters({ chapters }) {
         <p className={`outline ${styles.title}`}>CHAPTER</p>
         <ul>
           {chapters.map((chapter, i) => (
-            <a href={`#${chapter.id}`}>
+            <a key={i} href={`#${chapter.id}`}>
               <li
                 style={{
                   borderColor:

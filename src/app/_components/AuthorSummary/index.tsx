@@ -1,15 +1,15 @@
 import React from 'react'
 
-import { Author } from '../../../payload/payload-types'
 import FeaturedImage from '../FeaturedImage'
 import SocialLinks from '../SocialLinks'
 import styles from './styles.module.css'
+import { Author } from "@/payload-types";
 
-export default function AuthorSummary({ author }: { author: Author }) {
+export default function AuthorSummary({ author }) {
   const { name, role, bio, linkedIn, gitHub, medium, x, featuredImage } = author
 
   // TODO: Convert this to an array with names in collection config
-  const socials: string[] = [linkedIn, gitHub, medium, x].filter(Boolean)
+  const socials = [linkedIn, gitHub, medium, x].filter(Boolean)
 
   return (
     <div className={styles.gridContainer}>

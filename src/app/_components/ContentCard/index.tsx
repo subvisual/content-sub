@@ -4,9 +4,9 @@ import {
   Blogpost,
   CaseStudy,
   Category,
-  PodcastEpisode,
+  Podcast,
   TalksAndRoundtable,
-} from '../../../payload/payload-types'
+} from '@/payload-types'
 import { HeadphonesIcon, SpectaclesIcon } from '../../_icons/icons'
 import { estimateReadTime } from '../../_utilities/estimateReadTime'
 import { formatDateTime } from '../../_utilities/formatDateTime'
@@ -19,7 +19,7 @@ import styles from './styles.module.css'
 
 interface ContentSummaryProps {
   contentType: string
-  content: Blogpost | PodcastEpisode | CaseStudy | TalksAndRoundtable // TODO: Extend to CaseStudy and TalksAndRoundTables once consistency is assured
+  content: Blogpost | Podcast | CaseStudy | TalksAndRoundtable // TODO: Extend to CaseStudy and TalksAndRoundTables once consistency is assured
 }
 
 const archiveMap = {

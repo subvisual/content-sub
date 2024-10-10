@@ -2,10 +2,10 @@ import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
 import type { Author, Config, Media } from "@/payload-types";
 import { notFound } from "next/navigation";
-import { getPayload } from "payload";
+import { CollectionSlug, getPayload } from "payload";
 
 interface FetcherArgs {
-  collection?: keyof Config["collections"],
+  collection?: CollectionSlug,
   limit?: number,
   depth?: number,
   draft?: boolean,
@@ -15,7 +15,10 @@ interface FetcherArgs {
 
 async function fetcher({ collection, limit = 10, depth = 1, draft = false, overrideAccess = false, query }: FetcherArgs) {
   const payload = await getPayloadHMR({ config: configPromise });
+  // @ts-ignore
+
   return await payload.find({
+    // @ts-ignore
     collection,
     limit,
     depth,
@@ -25,7 +28,7 @@ async function fetcher({ collection, limit = 10, depth = 1, draft = false, overr
   });
 }
 
-export async function fetchContentBySlug({ slug, type }: { slug: string, type: keyof Config["collections"] }) {
+export async function fetchContentBySlug({ slug, type }: { slug: string, type: CollectionSlug }) {
 
   if (!slug || !type) {
     throw new Error("Must input slug and/or type.");
@@ -45,7 +48,7 @@ export async function fetchContentBySlug({ slug, type }: { slug: string, type: k
 }
 
 
-export async function fetchContentFromAuthor(author: Author) {
+export async function fetchContentFromAuthor(author) {
 
   const query = { authors: { in: author.id } };
 
@@ -77,7 +80,7 @@ export async function fetchContentFromAuthor(author: Author) {
   };
 }
 
-export async function fetchAllContentByType(type: keyof Config["collections"]) {
+export async function fetchAllContentByType(type: CollectionSlug) {
   return await fetcher({
     collection: type,
     limit: 100,
@@ -98,10 +101,10 @@ export async function fetchMediaByID(id) {
   return await fetcher({
     collection: "media",
     query: query,
-  }).then((res: { docs: Media[] }) => {
+  }).then(res => {
     return res.docs[0];
   })
-    .then(res => {
+    .then((res: Media) => {
       return { filename: res.filename, mimeType: res.mimeType };
     });
 }

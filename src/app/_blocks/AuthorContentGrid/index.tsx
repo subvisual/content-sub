@@ -3,21 +3,13 @@ import {
   CaseStudy,
   Podcast,
   TalksAndRoundtable,
-} from '@/payload-types'
-import ContentCard from '../../_components/ContentCard'
-import { calculateTotalArticles } from '../../_utilities/calculateTotalArticles'
-import styles from './styles.module.css'
+} from "@/payload-types";
+import ContentCard from "../../_components/ContentCard";
+import { calculateTotalArticles } from "../../_utilities/calculateTotalArticles";
+import styles from "./styles.module.css";
 
-export default function AuthorContentGrid({
-  content,
-}: {
-  content: {
-    Blogposts: Blogpost[]
-    PodcastEpisodes: Podcast[]
-    CaseStudies: CaseStudy[]
-    TalksAndRoundtables: TalksAndRoundtable[]
-  }
-}) {
+export default function AuthorContentGrid({content}) {
+
   return (
     <div className={styles.gridContainer}>
       <div className={styles.articleCounter}>
@@ -33,5 +25,5 @@ export default function AuthorContentGrid({
         )}
       </div>
     </div>
-  )
+  );
 }

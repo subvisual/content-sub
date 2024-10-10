@@ -23,7 +23,7 @@ const iconMap = {
 const labelMap = {
   All: 'All',
   Blogposts: 'Blogposts',
-  PodcastEpisodes: 'Podcasts',
+  Podcasts: 'Podcasts',
   CaseStudies: 'Case Studies',
   TalksAndRoundtables: 'Talks & Roundtables',
 }
@@ -33,7 +33,7 @@ export default function DropdownMenu({
   onActiveButtonChange,
 }: {
   activeButton: string
-  onActiveButtonChange: () => void
+  onActiveButtonChange: (buttonName: string) => void
 }) {
   const [isDropdownActive, setIsDropdownActive] = useState<boolean>(false)
   const [buttonLabel, setButtonLabel] = useState('All')
@@ -73,7 +73,7 @@ export default function DropdownMenu({
               <li onClick={() => handleButtonClick('Blogposts')}>
                 {iconMap['Blogposts']} Blogposts
               </li>
-              <li onClick={() => handleButtonClick('PodcastEpisodes')}>
+              <li onClick={() => handleButtonClick('Podcasts')}>
                 {iconMap['PodcastEpisodes']} Podcasts
               </li>
               <li onClick={() => handleButtonClick('CaseStudies')}>
