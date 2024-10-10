@@ -18,7 +18,7 @@ import config from "@payload-config";
 // See https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic
 // If you are not using Payload Cloud then this line can be removed, see `../../../README.md#cache`
 
-export default async function Page({ params: { slug = "home" } }) {
+export default async function Page() {
   // const articles = await fetcher({ query: ALL_CONTENT })
   // const highglights = await fetchSettings()
   const payload = await getPayloadHMR({ config });
@@ -27,28 +27,19 @@ export default async function Page({ params: { slug = "home" } }) {
     Blogposts: await payload.find({collection: "blogposts"})
   }
   return (
-    <>
-      {/*<HubHead highlights={highglights} />*/}
+    <div>
+      {/*<HubHead highlights={highglights} />
 
-      {/* Search Bar */}
+       Search Bar
       <SearchBar />
 
-      {/*<pre>{JSON.stringify(articles, null, 2)}</pre>*/}
+      <pre>{JSON.stringify(articles, null, 2)}</pre>
 
-      {/* Content Grid */}
+       Content Grid
       <HubContentGrid articles={articles} />
-      <Subscribe />
-    </>
+      <Subscribe />*/}
+    </div>
 
-    // <div>
-    //   <h5>Hello Payload 3.0</h5>
-    //   {blogs.docs.map((post) => {
-    //     return (
-    //       <pre>{JSON.stringify(post, null, 2)}</pre>
-    //     )
-    //   })}
-    //
-    //
-    // </div>
+
   );
 }
