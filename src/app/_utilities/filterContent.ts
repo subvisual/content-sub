@@ -8,15 +8,15 @@ import type {
 interface ArticleFilterProps {
   articles: {
     Blogposts: Blogpost[]
-    PodcastEpisodes: Podcast[]
+    Podcasts: Podcast[]
     CaseStudies: CaseStudy[]
     TalksAndRoundtables: TalksAndRoundtable[]
   }
-  filter: 'All' | 'Blogposts' | 'PodcastEpisodes' | 'TalksAndRoundtables' | 'CaseStudies'
+  filter: 'All' | 'Blogposts' | 'Podcasts' | 'TalksAndRoundtables' | 'CaseStudies'
 }
 
 export function filterContent({ articles, filter = 'All' }: ArticleFilterProps): Array<{
-  contentType: 'Blogposts' | 'PodcastEpisodes' | 'CaseStudies' | 'TalksAndRoundtables'
+  contentType: 'Blogposts' | 'Podcasts' | 'CaseStudies' | 'TalksAndRoundtables'
   content: Blogpost | Podcast | CaseStudy | TalksAndRoundtable
 }> {
   if (filter === 'All') {

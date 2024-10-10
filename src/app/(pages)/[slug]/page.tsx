@@ -9,6 +9,8 @@ export default async function Page() {
   const content = {
     Blogposts: await fetchAllContentByType("blogposts"),
     Podcasts: await fetchAllContentByType("podcasts"),
+    CaseStudies: await fetchAllContentByType("case-studies"),
+    TalksAndRoundtables: await fetchAllContentByType("talks-and-roundtables"),
   };
 
 
@@ -23,7 +25,6 @@ export default async function Page() {
       {/* Search Bar*/}
       {/*<SearchBar />*/}
 
-      {/*<pre>{JSON.stringify(articles, null, 2)}</pre>*/}
 
       {/* Content Grid*/}
       <HubContentGrid content={content} />

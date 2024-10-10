@@ -48,16 +48,16 @@ export default function ContentNavBar({
       </button>
       <button
         className={`${styles.button} ${styles.podcastsButton} ${
-          activeButton === 'PodcastEpisodes' ? styles.activeButton : ''
+          activeButton === 'Podcasts' ? styles.activeButton : ''
         } `}
-        onClick={() => handleButtonClick('PodcastEpisodes')}
+        onClick={() => handleButtonClick('Podcasts')}
       >
         <Podcasts
           fill={
-            activeButton === 'PodcastEpisodes' ? 'var(--soft-white-100)' : 'var(--sub-purple-600'
+            activeButton === 'Podcasts' ? 'var(--soft-white-100)' : 'var(--sub-purple-600'
           }
           textColor={
-            activeButton === 'PodcastEpisodes' ? 'var(--dark-rock-800)' : 'var(--soft-white-100)'
+            activeButton === 'Podcasts' ? 'var(--dark-rock-800)' : 'var(--soft-white-100)'
           }
         />
       </button>

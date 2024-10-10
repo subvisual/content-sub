@@ -7,7 +7,7 @@ import type {
 
 export interface ContentTypeArrays {
   Blogposts: Blogpost[]
-  PodcastEpisodes: Podcast[]
+  Podcasts: Podcast[]
   CaseStudies: CaseStudy[]
   TalksAndRoundtables: TalksAndRoundtable[]
 }

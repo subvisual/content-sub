@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 const colorMap = {
   All: "var(--dark-rock-800)",
   Blogposts: "var(--sub-blue-600)",
-  PodcastEpisodes: "var(--sub-purple-600)",
+  Podcasts: "var(--sub-purple-600)",
   CaseStudies: "var(--sub-orange-800)",
   TalksAndRoundtables: "var(--sub-purple-300)",
 };
@@ -34,7 +34,7 @@ export default function HubContentGrid({ content }) {
     "--dynamic-color": colorMap[activeButton],
   };
 
-  const filteredContent = filterContent({ articles: content });
+  const filteredContent = filterContent({ articles: content, filter: activeButton });
 
   return (
     <div>
