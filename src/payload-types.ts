@@ -35,6 +35,7 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'homepage-settings': HomepageSetting;
   };
   locale: null;
   user: User & {
@@ -879,6 +880,17 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage-settings".
+ */
+export interface HomepageSetting {
+  id: string;
+  mainHighlight?: (string | null) | Blogpost;
+  secondaryHighlight?: (string | null) | Blogpost;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

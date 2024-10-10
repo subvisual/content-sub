@@ -1,10 +1,12 @@
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
-import type { Config } from '@/payload-types'
+import type { Config } from "@/payload-types";
 
 const payload = await getPayloadHMR({ config: configPromise });
 
+
 export async function fetchContentBySlug({ slug, type }) {
+
 
   if (!slug || !type) {
     throw new Error("Must input slug and/or type.");
@@ -24,6 +26,7 @@ export async function fetchContentBySlug({ slug, type }) {
 };
 
 export async function fetchAllContentByType(type) {
+
   try {
     return await payload.find({
       collection: type,
@@ -37,8 +40,23 @@ export async function fetchAllContentByType(type) {
   }
 }
 
-export async function fetchGlobals(slug: keyof Config['globals']) {
+export async function fetchGlobals(slug: keyof Config["globals"], depth: number = 0) {
+
   return await payload.findGlobal({
     slug: slug,
-  })
+    depth: depth,
+  });
+}
+
+export async function fetchMediaByID(id) {
+
+  return await payload.find({
+    collection: "media",
+    limit: 1,
+    where: { id: { equals: id } },
+  }).then(res => res.docs[0])
+    .then(res => {
+      return { filename: res.filename, mimeType: res.mimeType };
+    })
+
 }

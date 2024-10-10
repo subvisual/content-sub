@@ -40,6 +40,7 @@ import { Authors } from "@/collections/Authors";
 import { CaseStudies } from "@/collections/CaseStudies";
 import { Podcasts } from "@/collections/Podcasts";
 import { TalksAndRoundtables } from "@/collections/TalksAndRoundtables";
+import { HomePageSettings } from "@/Globals/HubHighlights/config";
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -138,7 +139,7 @@ export default buildConfig({
       path: '/seed',
     },
   ],
-  globals: [Header, Footer],
+  globals: [Header, Footer, HomePageSettings],
   plugins: [
     redirectsPlugin({
       collections: ['pages', 'posts'],

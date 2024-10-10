@@ -1,7 +1,7 @@
 import { Highlights } from './Highlights'
 import styles from './styles.module.css'
 
-export default function HubHead({ highlights }) {
+export default async function HubHead({ highlights }) {
   const { mainHighlight, secondaryHighlight } = highlights
 
   return (

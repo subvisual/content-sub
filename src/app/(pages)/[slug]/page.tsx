@@ -1,40 +1,24 @@
-import { fetchAllContentByType } from "@/app/_utilities/contentFetchers";
+import { fetchAllContentByType, fetchAllMedia, fetchContentBySlug, fetchGlobals, fetchMediaByID } from "@/app/_utilities/contentFetchers";
 import { filterContent } from "@/app/_utilities/filterContent";
 import HubContentGrid from "@/app/_blocks/HubContentGrid";
 import HubHead from "@/app/_blocks/HubHead";
+import { getImage } from "@/app/_utilities/getImage";
 
 export default async function Page() {
-
 
   const content = {
     Blogposts: await fetchAllContentByType("blogposts"),
     Podcasts: await fetchAllContentByType("podcasts"),
   };
 
-  const filtered = filterContent({ articles: content });
 
-  console.log(content);
-
-
-
+  const highlights = await fetchGlobals("homepage-settings", 3);
 
   return (
 
     <div>
-      {/*<pre>{JSON.stringify(await fetchContentBySlug({ slug: 'socorro', type: "blogposts" }), null, 2)}</pre>*/}
-      {/*<pre>{JSON.stringify(filtered*/}
-      {/*  , null, 2)}</pre>*/}
 
-      {/*{Object.keys(content).map(docs => (*/}
-      {/*  docs.map(doc => (*/}
-      {/*      <pre>{JSON.stringify(doc.title, null, 2)}</pre>*/}
-      {/*    ),*/}
-      {/*  )*/}
-
-      {/*))}*/}
-
-
-      {/*<HubHead highlights={highglights} />*/}
+      <HubHead highlights={highlights} />
 
       {/* Search Bar*/}
       {/*<SearchBar />*/}
