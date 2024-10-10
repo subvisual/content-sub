@@ -14,3 +14,4 @@ node_modules
 /src/app/(pages)/test-page/
 
 .netlify
+tsconfig.tsbuildinfo
