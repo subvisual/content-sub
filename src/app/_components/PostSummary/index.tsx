@@ -1,4 +1,4 @@
-import { Blogpost } from '../../../payload/payload-types'
+import { Blogpost } from '@/payload-types'
 import { estimateReadTime } from '../../_utilities/estimateReadTime'
 import { formatDateTime } from '../../_utilities/formatDateTime'
 import ArchiveButton from '../ArchiveButton'

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 
 export default function BlogpostChapters({ chapters }) {
-  const [visibleChapter, setVisibleChapter] = useState(null)
+  const [visibleChapter, setVisibleChapter] = useState('')
 
   useEffect(() => {
     const observer = new IntersectionObserver(

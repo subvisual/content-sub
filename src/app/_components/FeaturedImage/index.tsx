@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { getImage } from '../../_utilities/getImage'
 import styles from './styles.module.css'
 
-import { Media } from '@/payload/payload-types'
+import { Media } from '@/payload-types'
 
 export default function FeaturedImage({ src, className }: { className?: string; src: Media }) {
   return (

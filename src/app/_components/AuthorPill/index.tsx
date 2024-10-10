@@ -3,8 +3,7 @@ import styles from './styles.module.css'
 import FeaturedImage from '@/app/_components/FeaturedImage'
 import { LinkedInIcon, TwitterIcon } from '@/app/_icons/socialIcons'
 import { getImage } from '@/app/_utilities/getImage'
-import { Socials } from '@/payload/globals/Socials'
-import { Author } from '@/payload/payload-types'
+import { Author } from '@/payload-types'
 
 export default function AuthorPill({ large = false, author }) {
 
