@@ -1,6 +1,7 @@
 import { fetchAllContentByType } from "@/app/_utilities/contentFetchers";
 import { filterContent } from "@/app/_utilities/filterContent";
 import HubContentGrid from "@/app/_blocks/HubContentGrid";
+import HubHead from "@/app/_blocks/HubHead";
 
 export default async function Page() {
 
@@ -13,6 +14,8 @@ export default async function Page() {
   const filtered = filterContent({ articles: content });
 
   console.log(content);
+
+
 
 
   return (

@@ -1,5 +1,6 @@
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
+import type { Config } from '@/payload-types'
 
 const payload = await getPayloadHMR({ config: configPromise });
 
@@ -34,4 +35,10 @@ export async function fetchAllContentByType(type) {
   } catch (err) {
     throw new Error(err);
   }
+}
+
+export async function fetchGlobals(slug: keyof Config['globals']) {
+  return await payload.findGlobal({
+    slug: slug,
+  })
 }
