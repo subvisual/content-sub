@@ -13,11 +13,11 @@ import { ContentTypeArrays } from '../../../../_interfaces/ContentTypeArrays'
 import styles from './styles.module.css'
 
 const iconMap = {
-  All: <p>hello</p>,
-  Blogposts: <BlogpostIcon width={'16'} color={'var(--soft-white-100)'} />,
-  PodcastEpisodes: <PodcastIcon width={'16'} color={'var(--soft-white-100)'} />,
-  CaseStudies: <CaseStudiesIcon width={'16'} color={'var(--soft-white-100)'} />,
-  TalksAndRoundtables: <TalksIcon width={'16'} color={'var(--soft-white-100)'} />,
+  All: <AllIcon width={'16'} color={'currentColor'} />,
+  Blogposts: <BlogpostIcon width={'16'} color={'currentColor'} />,
+  PodcastEpisodes: <PodcastIcon width={'16'} color={'currentColor'} />,
+  CaseStudies: <CaseStudiesIcon width={'16'} color={'currentColor'} />,
+  TalksAndRoundtables: <TalksIcon width={'16'} color={'currentColor'} />,
 }
 
 const labelMap = {
@@ -33,7 +33,7 @@ export default function DropdownMenu({
   onActiveButtonChange,
 }: {
   activeButton: string
-  onActiveButtonChange: (arg: string) => void
+  onActiveButtonChange: () => void
 }) {
   const [isDropdownActive, setIsDropdownActive] = useState<boolean>(false)
   const [buttonLabel, setButtonLabel] = useState('All')

@@ -1,16 +1,22 @@
 interface IconProperties {
+  x?: string
+  y?: number
   width?: string
   height?: string
   color?: string
 }
 
 export function MagnifyingGlass({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -28,12 +34,16 @@ export function MagnifyingGlass({
 }
 
 export function AllIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -73,12 +83,16 @@ export function AllIcon({
 }
 
 export function BlogpostIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -97,12 +111,16 @@ export function BlogpostIcon({
 }
 
 export function PodcastIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -121,12 +139,16 @@ export function PodcastIcon({
 }
 
 export function CaseStudiesIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -145,12 +167,16 @@ export function CaseStudiesIcon({
 }
 
 export function TalksIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -166,12 +192,16 @@ export function TalksIcon({
 }
 
 export function SpectaclesIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -187,12 +217,16 @@ export function SpectaclesIcon({
 }
 
 export function ShareIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -211,12 +245,16 @@ export function ShareIcon({
 }
 
 export function XIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 18 18"
@@ -229,12 +267,16 @@ export function XIcon({
 }
 
 export function ChevronUpIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -253,12 +295,16 @@ export function ChevronUpIcon({
 }
 
 export function ChevronDownIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -277,12 +323,16 @@ export function ChevronDownIcon({
 }
 
 export function RSSIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -301,12 +351,16 @@ export function RSSIcon({
 }
 
 export function MuteIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -325,12 +379,16 @@ export function MuteIcon({
 }
 
 export function LowerVolume({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -348,37 +406,19 @@ export function LowerVolume({
   )
 }
 
-export function RaiseVolumeIcon({
-  width = '24',
-  height = '24',
-  color = 'var(--dark-rock-800)',
-}: IconProperties) {
-  return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M19.6824 8.07941C21.2661 10.5939 21.4898 13.9404 19.9833 16.9018M16.3459 9.72406C17.6827 11.2866 17.8715 13.3662 16.5999 15.2065M12 6L7.58775 9.4884H3V14.5111L7.58775 14.5099L12 18V6Z"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
+
 
 export function PlayIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -391,16 +431,20 @@ export function PlayIcon({
         strokeWidth="2"
       />
     </svg>
-  )
+  );
 }
 
 export function HeadphonesIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -418,12 +462,16 @@ export function HeadphonesIcon({
 }
 
 export function LinkIcon({
+  x,
+  y,
   width = '24',
   height = '24',
   color = 'var(--dark-rock-800)',
 }: IconProperties) {
   return (
     <svg
+      x={x}
+      y={y}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -438,25 +486,15 @@ export function LinkIcon({
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export default function CodeIcon({ width = '24', height = '24', color = 'var(--dark-rock-800)' }) {
+export default function CodeIcon({ x, y, width = "24", height = "24", color = "var(--dark-rock-800)" }) {
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M7.1999 16.7999L2.3999 12L7.1999 7.19995M16.7999 7.19995L21.5999 12L16.7999 16.7999"
-        stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.1999 16.7999L2.3999 12L7.1999 7.19995M16.7999 7.19995L21.5999 12L16.7999 16.7999" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
-  )
+
+
+  );
 }
