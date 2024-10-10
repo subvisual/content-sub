@@ -1,21 +1,11 @@
 import Link from 'next/link'
-
-import { Footer } from '../../../payload/payload-types'
-import { fetchFooter } from '../../_api/fetchGlobals'
 import styles from './styles.module.css'
+import { fetchGlobals } from "@/app/_utilities/contentFetchers";
 
 export async function Footer() {
-  let footer: Footer | null = null
+  const footer = await fetchGlobals('footer')
 
-  try {
-    footer = await fetchFooter()
-  } catch (error) {
-    // When deploying this template on Payload Cloud, this page needs to build before the APIs are live
-    // So swallow the error here and simply render the footer without nav items if one occurs
-    // in production you may want to redirect to a 404  page or at least log the error somewhere
-    // console.error(error)
-  }
-
+  // @ts-ignore
   const navItems = footer?.navItems || []
 
   return (
@@ -35,7 +25,7 @@ export async function Footer() {
         </div>
         <div>
           {/* TODO: Update fetchGlobals to include socials and then update here. */}
-          <p className={styles.title}>We're Social</p>
+          <p className={styles.title}>We&#39;re Social</p>
           {['Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md'].map((item, i) => {
             return <span style={{ marginRight: '20px' }}>{item}</span>
           })}

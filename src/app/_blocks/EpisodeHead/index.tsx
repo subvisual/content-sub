@@ -17,7 +17,7 @@ export default function EpisodeHead({ episode }) {
   // TODO: convert into conditional logic based on ContentType
 
   // Initial undefined state
-  const { audioFileSource, audioFileType } = getAudio(episodeFile)
+  // const { audioFileSource, audioFileType } = getAudio(episodeFile)
 
   return (
     <div className={styles.container}>
@@ -33,13 +33,13 @@ export default function EpisodeHead({ episode }) {
             {formatDateTime(publishedAt)}
             <span>
               <HeadphonesIcon width={'14'} height={'14'} color={'var(--soft-white-100)'} />
-              {useEpisodeDuration(audioFileSource)}
+              {/*{useEpisodeDuration(audioFileSource)}*/}
             </span>
           </p>
         </div>
         {/* TODO Add conditionals later on: render only if it's a podcast episode */}
         <div className={styles.audioPlayer}>
-          <AudioPlayer src={audioFileSource} type={audioFileType} />
+          {/*<AudioPlayer src={audioFileSource} type={audioFileType} />*/}
         </div>
 
         {/* TODO: Second Column displays EpisodeFeaturedImage if ContentType is podcast */}

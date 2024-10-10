@@ -12,3 +12,6 @@ node_modules
 
 # TEMP
 /src/app/(pages)/test-page/
+
+.netlify
+tsconfig.tsbuildinfo

@@ -1,4 +1,4 @@
-export const formatDateTime = (timestamp: string): string => {
+export const formatDateTime = (timestamp): string => {
   const now = new Date()
   let date = now
   if (timestamp) date = new Date(timestamp)

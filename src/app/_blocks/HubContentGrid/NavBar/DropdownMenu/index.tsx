@@ -13,17 +13,17 @@ import { ContentTypeArrays } from '../../../../_interfaces/ContentTypeArrays'
 import styles from './styles.module.css'
 
 const iconMap = {
-  All: <p>hello</p>,
-  Blogposts: <BlogpostIcon width={'16'} color={'var(--soft-white-100)'} />,
-  PodcastEpisodes: <PodcastIcon width={'16'} color={'var(--soft-white-100)'} />,
-  CaseStudies: <CaseStudiesIcon width={'16'} color={'var(--soft-white-100)'} />,
-  TalksAndRoundtables: <TalksIcon width={'16'} color={'var(--soft-white-100)'} />,
+  All: <AllIcon width={'16'} color={'currentColor'} />,
+  Blogposts: <BlogpostIcon width={'16'} color={'currentColor'} />,
+  PodcastEpisodes: <PodcastIcon width={'16'} color={'currentColor'} />,
+  CaseStudies: <CaseStudiesIcon width={'16'} color={'currentColor'} />,
+  TalksAndRoundtables: <TalksIcon width={'16'} color={'currentColor'} />,
 }
 
 const labelMap = {
   All: 'All',
   Blogposts: 'Blogposts',
-  PodcastEpisodes: 'Podcasts',
+  Podcasts: 'Podcasts',
   CaseStudies: 'Case Studies',
   TalksAndRoundtables: 'Talks & Roundtables',
 }
@@ -33,7 +33,7 @@ export default function DropdownMenu({
   onActiveButtonChange,
 }: {
   activeButton: string
-  onActiveButtonChange: (arg: string) => void
+  onActiveButtonChange: (buttonName: string) => void
 }) {
   const [isDropdownActive, setIsDropdownActive] = useState<boolean>(false)
   const [buttonLabel, setButtonLabel] = useState('All')
@@ -73,7 +73,7 @@ export default function DropdownMenu({
               <li onClick={() => handleButtonClick('Blogposts')}>
                 {iconMap['Blogposts']} Blogposts
               </li>
-              <li onClick={() => handleButtonClick('PodcastEpisodes')}>
+              <li onClick={() => handleButtonClick('Podcasts')}>
                 {iconMap['PodcastEpisodes']} Podcasts
               </li>
               <li onClick={() => handleButtonClick('CaseStudies')}>

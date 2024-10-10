@@ -1,11 +1,11 @@
-import { notFound } from 'next/navigation'
-
-import { fetchDoc } from '../../../_api/fetchDoc'
+// import { notFound } from 'next/navigation'
+//
+// import { fetchDoc } from '../../../_api/fetchDoc'
 
 export const dynamic = 'force-dynamic'
 
-export default async function TalksAndRoundTablesPage({ params: { slug } }) {
-  let content = null
+export default async function TalksAndRoundTablesPage() {
+ /* let content = null
 
   try {
     content = await fetchDoc({
@@ -17,11 +17,11 @@ export default async function TalksAndRoundTablesPage({ params: { slug } }) {
   if (!content) {
     notFound()
   }
-
+*/
   return (
     <div>
-      Hello, world!
-      <pre>{JSON.stringify(content, null, 2)}</pre>
+      {/*Hello, world!
+      <pre>{JSON.stringify(content, null, 2)}</pre>*/}
     </div>
   )
 }

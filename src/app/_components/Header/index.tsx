@@ -1,24 +1,14 @@
 import Link from 'next/link'
-
-import { Header } from '../../../payload/payload-types'
-import { fetchHeader } from '../../_api/fetchGlobals'
 import DropDownIcon from './DropDownIcon'
 import styles from './styles.module.css'
-
 import Logo from '@/app/_components/Header/Logo'
+import { fetchGlobals } from "@/app/_utilities/contentFetchers";
 
 export async function Header() {
-  let header: Header | null = null
 
-  try {
-    header = await fetchHeader()
-  } catch (error) {
-    // When deploying this template on Payload Cloud, this page needs to build before the APIs are live
-    // So swallow the error here and simply render the header without nav items if one occurs
-    // in production you may want to redirect to a 404  page or at least log the error somewhere
-    // console.error(error)
-  }
+  const header = await fetchGlobals('header')
 
+  // @ts-ignore
   const navItems = header?.navItems || []
 
   return (
