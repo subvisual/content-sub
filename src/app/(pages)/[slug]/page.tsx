@@ -1,8 +1,7 @@
-import { fetchAllContentByType, fetchAllMedia, fetchContentBySlug, fetchGlobals, fetchMediaByID } from "@/app/_utilities/contentFetchers";
-import { filterContent } from "@/app/_utilities/filterContent";
+import { fetchAllContentByType, fetchGlobals } from "@/app/_utilities/contentFetchers";
 import HubContentGrid from "@/app/_blocks/HubContentGrid";
 import HubHead from "@/app/_blocks/HubHead";
-import { getImage } from "@/app/_utilities/getImage";
+import SearchBar from "@/app/_components/SearchBar";
 
 export default async function Page() {
 
@@ -23,12 +22,12 @@ export default async function Page() {
       <HubHead highlights={highlights} />
 
       {/* Search Bar*/}
-      {/*<SearchBar />*/}
+      <SearchBar />
 
 
       {/* Content Grid*/}
       <HubContentGrid content={content} />
-      {/*<Subscribe />*/}
+
     </div>
 
 
