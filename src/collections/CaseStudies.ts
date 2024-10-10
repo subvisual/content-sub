@@ -1,7 +1,5 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
-import { admins } from '../payload/access/admins'
-import { adminsOrPublished } from '../payload/access/adminsOrPublished'
 import { slugField } from '@/fields/slug'
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
 import { authenticated } from "@/access/authenticated";

@@ -1,8 +1,6 @@
 import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from '@payloadcms/richtext-lexical'
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
-import { admins } from '../access/admins'
-import { adminsOrPublished } from '../access/adminsOrPublished'
 import { slugField } from '@/fields/slug'
 import { authenticated } from "@/access/authenticated";
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
@@ -31,12 +29,6 @@ export const Blogposts: CollectionConfig = {
       type: 'textarea',
       required: true,
       maxLength: 250,
-      admin: {
-        description: ({ path, value }) =>
-          `${
-            typeof value === 'string' ? 250 - value.length : '250'
-          } characters left (field: ${path})`,
-      },
     },
     {
       name: 'content',

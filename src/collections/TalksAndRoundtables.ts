@@ -1,7 +1,5 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
-import { admins } from '../payload/access/admins'
-import { adminsOrPublished } from '../payload/access/adminsOrPublished'
 import { slugField } from '@/fields/slug'
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
 import { authenticated } from "@/access/authenticated";
@@ -30,12 +28,6 @@ export const TalksAndRoundtables: CollectionConfig = {
       type: 'textarea',
       required: true,
       maxLength: 250,
-      admin: {
-        description: ({ path, value }) =>
-          `${
-            typeof value === 'string' ? 250 - value.length : '250'
-          } characters left (field: ${path})`,
-      },
     },
     {
       name: 'categories',

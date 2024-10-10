@@ -1,10 +1,9 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
-import { admins } from '../payload/access/admins'
-import { anyone } from '../payload/access/anyone'
+import { anyone } from '@/access/anyone'
 import { slugField } from '@/fields/slug'
 
-import { populatePublishedAt } from '../payload/hooks/populatePublishedAt'
+import { populatePublishedAt } from '@/hooks/populatePublishedAt'
 import { authenticated } from "@/access/authenticated";
 
 export const Authors: CollectionConfig = {
@@ -66,12 +65,6 @@ export const Authors: CollectionConfig = {
       type: 'textarea',
       maxLength: 250,
       required: true,
-      admin: {
-        description: ({ path, value }) =>
-          `${
-            typeof value === 'string' ? 250 - value.length : '250'
-          } characters left (field: ${path})`,
-      },
     },
     {
       type: 'row',
