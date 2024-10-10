@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import ContentCard from "../../_components/ContentCard";
 import { ContentTypeArrays } from "../../_interfaces/ContentTypeArrays";
-import { filterArticles } from "../../_utilities/filterArticles";
+import { filterContent } from "../../_utilities/filterContent";
 import ContentNavBar from "./NavBar";
 import styles from "./styles.module.css";
 
@@ -20,7 +20,7 @@ interface HubContentGridProps {
   articles: ContentTypeArrays;
 }
 
-export default function HubContentGrid({ articles }) {
+export default function HubContentGrid({ content }) {
   // todo: fix rendering when there is no content
 
   const [activeButton, setActiveButton] = useState<keyof ContentTypeArrays | "All">("All");
@@ -29,34 +29,25 @@ export default function HubContentGrid({ articles }) {
     setActiveButton(buttonName);
   };
 
-  const filter = articles["Blogposts"].docs;
 
   const dynamicColor = {
     "--dynamic-color": colorMap[activeButton],
   };
 
+  const filteredContent = filterContent({ articles: content });
+
   return (
     <div>
-
-    {filter.map((i) => (
-      <div key={i}>Cenas aqui!</div>
-    ))}
-
-
-    {/*<pre>{*/}
-    {/*    JSON.stringify(filter, null, 2)*/}
-    {/*  }</pre>*/}
-
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
-       TODO: fix dynamic color
+      {/*   TODO: fix dynamic color*/}
       <div className={styles.contentGridContainer}>
         <div className={styles.contentGrid}>
-          {filter.map((article, i) => (
-            <div className={styles.contentCard} key={i}>
+          {filteredContent.map((article, i) => (
+            <div className={styles.contentCard}>
               <ContentCard
-                key={article.content.id}
+
                 contentType={article.contentType}
-                content={article}
+                content={article.content}
               />
             </div>
           ))}

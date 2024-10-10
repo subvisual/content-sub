@@ -1,25 +1,46 @@
-
+import { fetchAllContentByType } from "@/app/_utilities/contentFetchers";
+import { filterContent } from "@/app/_utilities/filterContent";
+import HubContentGrid from "@/app/_blocks/HubContentGrid";
 
 export default async function Page() {
-  // // const articles = await fetcher({ query: ALL_CONTENT })
-  // // const highglights = await fetchSettings()
-  // const payload = await getPayloadHMR({ config });
-  //
-  // const articles = {
-  //   Blogposts: await payload.find({collection: "blogposts"})
-  // }
+
+
+  const content = {
+    Blogposts: await fetchAllContentByType("blogposts"),
+    Podcasts: await fetchAllContentByType("podcasts"),
+  };
+
+  const filtered = filterContent({ articles: content });
+
+  console.log(content);
+
+
   return (
+
     <div>
-      {/*<HubHead highlights={highglights} />
+      {/*<pre>{JSON.stringify(await fetchContentBySlug({ slug: 'socorro', type: "blogposts" }), null, 2)}</pre>*/}
+      {/*<pre>{JSON.stringify(filtered*/}
+      {/*  , null, 2)}</pre>*/}
 
-       Search Bar
-      <SearchBar />
+      {/*{Object.keys(content).map(docs => (*/}
+      {/*  docs.map(doc => (*/}
+      {/*      <pre>{JSON.stringify(doc.title, null, 2)}</pre>*/}
+      {/*    ),*/}
+      {/*  )*/}
 
-      <pre>{JSON.stringify(articles, null, 2)}</pre>
+      {/*))}*/}
 
-       Content Grid
-      <HubContentGrid articles={articles} />
-      <Subscribe />*/}
+
+      {/*<HubHead highlights={highglights} />*/}
+
+      {/* Search Bar*/}
+      {/*<SearchBar />*/}
+
+      {/*<pre>{JSON.stringify(articles, null, 2)}</pre>*/}
+
+      {/* Content Grid*/}
+      <HubContentGrid content={content} />
+      {/*<Subscribe />*/}
     </div>
 
 

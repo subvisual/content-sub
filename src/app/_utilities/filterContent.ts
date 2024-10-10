@@ -1,28 +1,28 @@
 import type {
   Blogpost,
   CaseStudy,
-  PodcastEpisode,
+  Podcast,
   TalksAndRoundtable,
-} from '@/payload/payload-types'
+} from '@/payload-types'
 
 interface ArticleFilterProps {
   articles: {
     Blogposts: Blogpost[]
-    PodcastEpisodes: PodcastEpisode[]
+    PodcastEpisodes: Podcast[]
     CaseStudies: CaseStudy[]
     TalksAndRoundtables: TalksAndRoundtable[]
   }
   filter: 'All' | 'Blogposts' | 'PodcastEpisodes' | 'TalksAndRoundtables' | 'CaseStudies'
 }
 
-export function filterArticles({ articles, filter = 'All' }: ArticleFilterProps): Array<{
+export function filterContent({ articles, filter = 'All' }: ArticleFilterProps): Array<{
   contentType: 'Blogposts' | 'PodcastEpisodes' | 'CaseStudies' | 'TalksAndRoundtables'
-  content: Blogpost | PodcastEpisode | CaseStudy | TalksAndRoundtable
+  content: Blogpost | Podcast | CaseStudy | TalksAndRoundtable
 }> {
   if (filter === 'All') {
-    const keys = Object.keys(articles) as Array<keyof ArticleFilterProps['articles']>
 
-    return keys.flatMap(
+
+    return Object.keys(articles).flatMap(
       articleType =>
         articles[articleType].map(article => ({
           contentType: articleType,
