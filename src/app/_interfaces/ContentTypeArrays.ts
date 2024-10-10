@@ -1,13 +1,13 @@
 import type {
   Blogpost,
   CaseStudy,
-  PodcastEpisode,
+  Podcast,
   TalksAndRoundtable,
-} from '@/payload/payload-types'
+} from '@/payload-types'
 
 export interface ContentTypeArrays {
   Blogposts: Blogpost[]
-  PodcastEpisodes: PodcastEpisode[]
+  PodcastEpisodes: Podcast[]
   CaseStudies: CaseStudy[]
   TalksAndRoundtables: TalksAndRoundtable[]
 }

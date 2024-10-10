@@ -1,9 +1,9 @@
 import {
   Blogpost,
   CaseStudy,
-  PodcastEpisode,
+  Podcast,
   TalksAndRoundtable,
-} from '../../../payload/payload-types'
+} from '@/payload-types'
 import ContentCard from '../../_components/ContentCard'
 import { calculateTotalArticles } from '../../_utilities/calculateTotalArticles'
 import styles from './styles.module.css'
@@ -13,7 +13,7 @@ export default function AuthorContentGrid({
 }: {
   content: {
     Blogposts: Blogpost[]
-    PodcastEpisodes: PodcastEpisode[]
+    PodcastEpisodes: Podcast[]
     CaseStudies: CaseStudy[]
     TalksAndRoundtables: TalksAndRoundtable[]
   }

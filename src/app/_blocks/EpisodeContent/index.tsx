@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { PodcastEpisode } from '../../../payload/payload-types'
+import { Podcast } from '@/payload-types'
 import styles from './styles.module.css'
 
 import Contributors from '@/app/_blocks/EpisodeContent/Contributors'
@@ -10,7 +10,7 @@ import AuthorPill from '@/app/_components/AuthorPill'
 import Categories from '@/app/_components/Categories'
 import Share from '@/app/_components/Share'
 
-export default function EpisodeContent({ episode }: { episode: PodcastEpisode }) {
+export default function EpisodeContent({ episode }: { episode: Podcast }) {
   const { authors, spotify, apple, summary, notes, categories } = episode
 
   return (

@@ -1,6 +1,6 @@
 'use client'
 
-import { Blogpost } from '../../../payload/payload-types'
+import { Blogpost } from '@/payload-types'
 import FeaturedImage from '../../_components/FeaturedImage'
 import { sanitizeAndAddChapters } from '../../_utilities/sanitizeAndAddChapters'
 import styles from './styles.module.css'

@@ -1,15 +1,15 @@
-import HubContentGrid from "../../_blocks/HubContentGrid";
-import { Subscribe } from "../../_blocks/Subscribe";
-import SearchBar from "../../_components/SearchBar";
-import { ALL_CONTENT } from "../../_graphql/allContent";
-import { fetcher } from "../../_utilities/fetcher";
-import styles from "./styles.module.css";
-
-import { fetchSettings } from "@/app/_api/fetchGlobals";
-import HubHead from "@/app/_blocks/HubHead";
-
-import { getPayloadHMR } from "@payloadcms/next/utilities";
-import config from "@payload-config";
+// import HubContentGrid from "../../_blocks/HubContentGrid";
+// import { Subscribe } from "../../_blocks/Subscribe";
+// import SearchBar from "../../_components/SearchBar";
+// import { ALL_CONTENT } from "../../_graphql/allContent";
+// import { fetcher } from "../../_utilities/fetcher";
+// import styles from "./styles.module.css";
+//
+// import { fetchSettings } from "@/app/_api/fetchGlobals";
+// import HubHead from "@/app/_blocks/HubHead";
+//
+// import { getPayloadHMR } from "@payloadcms/next/utilities";
+// import config from "@payload-config";
 
 // Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
 // This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
@@ -19,13 +19,13 @@ import config from "@payload-config";
 // If you are not using Payload Cloud then this line can be removed, see `../../../README.md#cache`
 
 export default async function Page() {
-  // const articles = await fetcher({ query: ALL_CONTENT })
-  // const highglights = await fetchSettings()
-  const payload = await getPayloadHMR({ config });
-
-  const articles = {
-    Blogposts: await payload.find({collection: "blogposts"})
-  }
+  // // const articles = await fetcher({ query: ALL_CONTENT })
+  // // const highglights = await fetchSettings()
+  // const payload = await getPayloadHMR({ config });
+  //
+  // const articles = {
+  //   Blogposts: await payload.find({collection: "blogposts"})
+  // }
   return (
     <div>
       {/*<HubHead highlights={highglights} />
