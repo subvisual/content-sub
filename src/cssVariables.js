@@ -1,4 +1,5 @@
 // Keep these in sync with the CSS variables in the `_css` directory
+// CSS Variables used by Payload
 
 const cssVariables = {
   breakpoints: {
