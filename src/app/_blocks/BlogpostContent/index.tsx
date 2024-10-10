@@ -2,7 +2,6 @@
 
 import { Blogpost } from '@/payload-types'
 import FeaturedImage from '../../_components/FeaturedImage'
-import { sanitizeAndAddChapters } from '../../_utilities/sanitizeAndAddChapters'
 import styles from './styles.module.css'
 
 export default function BlogpostContent({ post }: { post: Blogpost }) {
