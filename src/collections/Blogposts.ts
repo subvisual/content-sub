@@ -71,7 +71,8 @@ export const Blogposts: CollectionConfig = {
       },
     },
     {
-      name: 'relatedPosts',
+      name: 'related',
+      label: 'Related Posts',
       type: 'relationship',
       relationTo: 'blogposts',
       hasMany: true,

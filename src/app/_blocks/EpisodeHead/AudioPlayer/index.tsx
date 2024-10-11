@@ -18,7 +18,7 @@ interface CSSDynamicVars {
   [key: string]: string;
 }
 
-export default function AudioPlayer({ src }: { src: string }) {
+export default function AudioPlayer({ src }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);

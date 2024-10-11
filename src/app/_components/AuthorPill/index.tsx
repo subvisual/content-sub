@@ -24,7 +24,6 @@ const dynamicVars = {
 
   return (
     <>
-      <p>{typeof featuredImage}</p>
       <div className={styles.authorPill}>
         <FeaturedImage className={styles.authorImage} src={featuredImage} />
         {name}

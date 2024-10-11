@@ -47,7 +47,7 @@ export default async function BlogpostPage({ params: paramsPromise }) {
         </div>
       </div>
       {// @ts-ignore
-        blogpost.relatedPosts?.length > 0 && <RelatedContent relatedContent={blogpost.relatedPosts} />
+        blogpost.relatedPosts?.length > 0 && <RelatedContent content={blogpost} />
       }
       <Subscribe />
 

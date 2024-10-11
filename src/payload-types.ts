@@ -594,7 +594,7 @@ export interface Blogpost {
   featuredImage: string | Media;
   authors: (string | Author)[];
   categories?: (string | Category)[] | null;
-  relatedPosts?: (string | Blogpost)[] | null;
+  related?: (string | Blogpost)[] | null;
   publishedAt?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
@@ -617,7 +617,7 @@ export interface Podcast {
   apple?: string | null;
   authors: (string | Author)[];
   categories?: (string | Category)[] | null;
-  relatedEpisodes?: (string | Podcast)[] | null;
+  related?: (string | Podcast)[] | null;
   publishedAt?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;

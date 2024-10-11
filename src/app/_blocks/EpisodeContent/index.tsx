@@ -10,7 +10,7 @@ import AuthorPill from '@/app/_components/AuthorPill'
 import Categories from '@/app/_components/Categories'
 import Share from '@/app/_components/Share'
 
-export default function EpisodeContent({ episode }: { episode: Podcast }) {
+export default function EpisodeContent({ episode }) {
   const { authors, spotify, apple, summary, notes, categories } = episode
 
   return (

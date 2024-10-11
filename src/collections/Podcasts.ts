@@ -100,7 +100,8 @@ export const Podcasts: CollectionConfig = {
       },
     },
     {
-      name: 'relatedEpisodes',
+      name: 'related',
+      label: 'Related Episodes',
       type: 'relationship',
       relationTo: 'podcasts',
       hasMany: true,

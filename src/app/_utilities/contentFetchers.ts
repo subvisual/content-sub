@@ -15,7 +15,6 @@ interface FetcherArgs {
 
 async function fetcher({ collection, limit = 10, depth = 1, draft = false, overrideAccess = false, query }: FetcherArgs) {
   const payload = await getPayloadHMR({ config: configPromise });
-  // @ts-ignore
 
   return await payload.find({
     // @ts-ignore
