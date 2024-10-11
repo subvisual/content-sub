@@ -14,7 +14,7 @@ export default function AuthorSummary({ author }) {
   return (
     <div className={styles.gridContainer}>
       <div className={styles.authorInfoCard}>
-        <FeaturedImage className={styles.featuredImage} src={featuredImage} />
+        {featuredImage && <FeaturedImage className={styles.featuredImage} src={featuredImage} />}
         <div className={styles.authorInfo}>
           <h5>{name}</h5>
           <p>{role}</p>

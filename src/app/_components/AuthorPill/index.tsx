@@ -9,6 +9,7 @@ import { fetchMediaByID } from "@/app/_utilities/contentFetchers";
 export default async function AuthorPill({ large = false, author }) {
 
   const { name, featuredImage, linkedIn, x } = author;
+  console.log(`Author pill passing down ${featuredImage} to FeaturedImage`)
 
   const test = await fetchMediaByID("66ed88055946c64a204c9357");
 
@@ -25,7 +26,7 @@ const dynamicVars = {
     <>
       <div className={styles.authorPill}>
         <div className={styles.authorImage}>
-          <FeaturedImage src={featuredImage} />
+          {featuredImage && <FeaturedImage src={featuredImage} />}
         </div>
         {name}
       </div>

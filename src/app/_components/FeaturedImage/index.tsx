@@ -6,7 +6,8 @@ import styles from "./styles.module.css";
 import { Media } from "@/payload-types";
 import { fetchMediaByID } from "@/app/_utilities/contentFetchers";
 
-export default function FeaturedImage({ src, className }: { className?: string; src: string | Media }) {
+export default function FeaturedImage({ src, className }: { className?: string; src: Media }) {
+
 
   const imageSource = getImage(src);
 

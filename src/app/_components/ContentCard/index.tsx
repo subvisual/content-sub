@@ -34,6 +34,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
 
   // todo: convert to a collection item property
   const readTime = estimateReadTime('herpaderpa')
+  console.log(`ContentCard passing down ${featuredImage} to FeaturedImage`)
 
   return (
     <div className={styles.contentCard}>
@@ -43,7 +44,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
         <div className={styles.contentMetaContainer}>
           <div className={styles.imageContainer}>
           {/*  @ts-ignore */}
-          <FeaturedImage src={featuredImage} />
+            {featuredImage && <FeaturedImage src={featuredImage} />}
             </div>
           {/*<ArchiveButton collection={archiveMap[contentType]} />*/}
           <h6>{title} </h6>

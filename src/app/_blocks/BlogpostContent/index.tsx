@@ -9,7 +9,7 @@ export default function BlogpostContent({ blogpost }) {
   const { summary, featuredImage } = blogpost
   return (
     <div className={styles.container}>
-      <FeaturedImage className={styles.featuredImage} src={featuredImage} />
+      {featuredImage && <FeaturedImage className={styles.featuredImage} src={featuredImage} />}
       <div className={styles.summary}>{summary}</div>
       <RichText content={blogpost.content}/>
     </div>
