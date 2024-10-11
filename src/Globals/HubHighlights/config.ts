@@ -1,6 +1,4 @@
 import type { GlobalConfig } from "payload";
-import { link } from "@/fields/link";
-import { revalidateFooter } from "@/Footer/hooks/revalidateFooter";
 
 export const HomePageSettings: GlobalConfig = {
     slug: "homepage-settings",
