@@ -14,7 +14,7 @@ export default function AuthorContentGrid({
   content: {
     Blogposts: Blogpost[]
     PodcastEpisodes: PodcastEpisode[]
-    CasteStudies: CaseStudy[]
+    CaseStudies: CaseStudy[]
     TalksAndRoundtables: TalksAndRoundtable[]
   }
 }) {
@@ -29,7 +29,8 @@ export default function AuthorContentGrid({
             <div key={i} className={styles.contentCard}>
               <ContentCard contentType={key} content={contentPiece} />
             </div>
-          )),)}
+          )),
+        )}
       </div>
     </div>
   )

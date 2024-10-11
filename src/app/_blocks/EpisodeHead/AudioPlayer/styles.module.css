@@ -1,0 +1,138 @@
+.mobileAudioPlayer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+.mobileAudioPlayer .duration {
+  display: inline-block;
+  width: 75px;
+}
+
+.mobileAudioPlayer span {
+  white-space: nowrap;
+  font-size: var(--size-12);
+  font-weight: bold;
+  padding: 0;
+}
+
+.mobileAudioPlayer input[type="range"] {
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 100px;
+  border: none;
+  background: var(--dynamic-gradient);
+  width: 100%;
+  cursor: pointer;
+}
+
+/* is this really mandatory? */
+.mobileAudioPlayer input[type="range"]::-moz-range-thumb {
+  appearance: none;
+  height: 0;
+  width: 0;
+  border: none;
+
+}
+
+.mobileAudioPlayer audio {
+  width: 100%;
+}
+
+.mobileAudioPlayer button {
+  display: flex;
+  align-self: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: var(--soft-white-100);
+  cursor: pointer;
+}
+
+.playPauseButton {
+  align-self: flex-start !important;
+  padding: 0;
+  margin: 0;
+}
+
+.mobileButtonContainer {
+  display: flex;
+  gap: 20px;
+  }
+
+.moveFifteen {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 40px;
+}
+
+
+.desktopAudioPlayer {
+  display: none;
+}
+
+
+@media (min-width: 1024px) {
+
+  .desktopAudioPlayer {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+    gap: 20px;
+  }
+
+  .mobileAudioPlayer {
+    display: none;
+  }
+
+  .desktopAudioPlayer .duration {
+    display: inline-block;
+    width: 75px;
+  }
+
+  .desktopAudioPlayer span {
+    white-space: nowrap;
+    font-size: var(--size-12);
+    font-weight: bold;
+    padding: 0;
+
+  }
+
+  .desktopAudioPlayer button {
+    display: flex;
+    align-self: center;
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: var(--soft-white-100);
+    cursor: pointer;
+  }
+
+  .desktopAudioPlayer input[type="range"] {
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 100px;
+    border: none;
+    background: var(--dynamic-gradient);
+    width: 100%;
+    cursor: pointer;
+  }
+
+  /* is this really mandatory? */
+  .desktopAudioPlayer input[type="range"]::-moz-range-thumb {
+    appearance: none;
+    height: 0;
+    width: 0;
+    border: none;
+
+  }
+
+  .desktopAudioPlayer audio {
+    width: 100%;
+  }
+
+}

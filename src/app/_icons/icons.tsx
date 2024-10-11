@@ -406,33 +406,7 @@ export function LowerVolume({
   )
 }
 
-export function RaiseVolumeIcon({
-  x,
-  y,
-  width = '24',
-  height = '24',
-  color = 'var(--dark-rock-800)',
-}: IconProperties) {
-  return (
-    <svg
-      x={x}
-      y={y}
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M19.6824 8.07941C21.2661 10.5939 21.4898 13.9404 19.9833 16.9018M16.3459 9.72406C17.6827 11.2866 17.8715 13.3662 16.5999 15.2065M12 6L7.58775 9.4884H3V14.5111L7.58775 14.5099L12 18V6Z"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
+
 
 export function PlayIcon({
   x,
@@ -457,71 +431,7 @@ export function PlayIcon({
         strokeWidth="2"
       />
     </svg>
-  )
-}
-
-export function MoveFifteenIcon({
-  x,
-  y,
-  width = '24',
-  height = '24',
-  color = 'var(--dark-rock-800)',
-}: IconProperties) {
-  return (
-    <svg
-      x={x}
-      y={y}
-      width={width}
-      height={height}
-      viewBox="0 0 18 19"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M15.4773 5C14.136 2.60879 11.629 1 8.75758 1C4.47319 1 1 4.58172 1 9C1 11.3894 2.01577 13.5341 3.62628 15M13.1212 6H17V2"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M7.87706 18V11.28L6.08906 11.94V10.476L8.16506 9.6H9.53306V18H7.87706ZM14.1957 18.168C12.7197 18.168 11.3997 17.364 11.1837 15.768H12.7557C12.8997 16.392 13.4157 16.824 14.1957 16.824C15.1797 16.824 15.7797 16.164 15.7797 15.264C15.7797 14.412 15.1917 13.74 14.2437 13.74C13.5717 13.74 13.1037 14.04 12.8517 14.472H11.3277L12.1197 9.6H16.6197V10.92H13.4277L13.0797 12.936C13.4397 12.6 14.0037 12.408 14.6637 12.408C16.2237 12.408 17.3997 13.5 17.3997 15.216C17.3997 16.86 16.0797 18.168 14.1957 18.168Z"
-        fill={color}
-      />
-    </svg>
-  )
-}
-
-export function BackFifteenIcon({
-  x,
-  y,
-  width = '24',
-  height = '24',
-  color = 'var(--dark-rock-800)',
-}: IconProperties) {
-  return (
-    <svg
-      x={x}
-      y={y}
-      width={width}
-      height={height}
-      viewBox="0 0 19 19"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M3.52267 5C4.86399 2.60879 7.37103 1 10.2424 1C14.5268 1 18 4.58172 18 9C18 11.3894 16.9842 13.5341 15.3737 15M5.87879 6H2V2"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M2.87706 18V11.28L1.08906 11.94V10.476L3.16506 9.6H4.53306V18H2.87706ZM9.19572 18.168C7.71972 18.168 6.39972 17.364 6.18372 15.768H7.75572C7.89972 16.392 8.41572 16.824 9.19572 16.824C10.1797 16.824 10.7797 16.164 10.7797 15.264C10.7797 14.412 10.1917 13.74 9.24372 13.74C8.57172 13.74 8.10372 14.04 7.85172 14.472H6.32772L7.11972 9.6H11.6197V10.92H8.42772L8.07972 12.936C8.43972 12.6 9.00372 12.408 9.66372 12.408C11.2237 12.408 12.3997 13.5 12.3997 15.216C12.3997 16.86 11.0797 18.168 9.19572 18.168Z"
-        fill={color}
-      />
-    </svg>
-  )
+  );
 }
 
 export function HeadphonesIcon({
@@ -576,5 +486,15 @@ export function LinkIcon({
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
+}
+
+export default function CodeIcon({ x, y, width = "24", height = "24", color = "var(--dark-rock-800)" }) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.1999 16.7999L2.3999 12L7.1999 7.19995M16.7999 7.19995L21.5999 12L16.7999 16.7999" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+
+  );
 }

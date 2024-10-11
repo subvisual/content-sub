@@ -1,0 +1,30 @@
+.contentContainer {
+  display: grid;
+  grid-template-rows: 2fr;
+  font-family: var(--colfax);
+  padding-bottom: 40px;
+}
+
+.sharingAndCategories {
+  grid-row-start: 1;
+}
+
+@media (min-width: 1080px) {
+
+
+  .contentContainer {
+    width: calc(100% - 40px);
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 0.3fr 0.6fr 0.3fr;
+  }
+
+  .sharingAndCategories {
+    justify-content: left;
+    padding-left: 40px;
+    grid-column: 3 / 3;
+  }
+
+}
+
+

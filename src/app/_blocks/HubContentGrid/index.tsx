@@ -34,14 +34,15 @@ export default function HubContentGrid({ articles }: HubContentGridProps) {
     filter: activeButton,
   })
 
+  const dynamicColor = {
+    '--dynamic-color': colorMap[activeButton],
+  }
+
   return (
     <>
-      {/* ToDo: add conditional management of border-top-right-radius based on dropdown toggle */}
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
-      <div
-        className={styles.contentGridContainer}
-        style={{ '--dynamic-color': colorMap[activeButton] }}
-      >
+      {/* TODO: fix dynamic color */}
+      <div className={styles.contentGridContainer}>
         <div className={styles.contentGrid}>
           {filteredArticles.map((article, i) => (
             <div className={styles.contentCard} key={i}>
