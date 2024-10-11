@@ -9,7 +9,6 @@ export default function BlogpostChapters() {
   const [chapters, setChapters] = useState<string[]>([]);
   // TODO: Fix chapter navigator
   useEffect(() => {
-    // Function to extract headings and match them with chapters
     const extractHeadings = () => {
       // Query all headings in the DOM (e.g., h1, h2, h3...)
       const chapterList: string[] = [];

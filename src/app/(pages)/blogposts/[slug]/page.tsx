@@ -1,7 +1,4 @@
-// import { notFound } from 'next/navigation'
-//
-// import { Blogpost } from '../../../../payload/payload-types'
-// import { fetchDoc } from '../../../_api/fetchDoc'
+
 import BlogpostChapters from "../../../_blocks/BlogpostChapters";
 import BlogpostContent from "../../../_blocks/BlogpostContent";
 import { RelatedContent } from "../../../_blocks/RelatedContent";
@@ -11,12 +8,10 @@ import Categories from "../../../_components/Categories";
 import PostSummary from "../../../_components/PostSummary";
 import RecommendedPosts from "../../../_components/RecommendedPosts";
 import Share from "../../../_components/Share";
-// import { getChapters } from '../../../_utilities/sanitizeAndAddChapters'
 import styles from "./styles.module.css";
 
 
 import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
-import categories from "@/collections/Categories";
 import { Blogpost } from "@/payload-types";
 
 export default async function BlogpostPage({ params: paramsPromise }) {
