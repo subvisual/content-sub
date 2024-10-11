@@ -21,7 +21,7 @@ jobs:
           node-version: 22
       
       - name: Install Node.js dependencies
-        run: npm install
+        run: npm install --force
 
       - name: Run linters
         run: npm run lint
