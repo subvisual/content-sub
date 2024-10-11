@@ -1,6 +1,6 @@
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
-import type { Author, Config, Media } from "@/payload-types";
+import type { Author, Blogpost, CaseStudy, Config, Media, Podcast, TalksAndRoundtable } from "@/payload-types";
 import { notFound } from "next/navigation";
 import { CollectionSlug, getPayload } from "payload";
 
@@ -28,7 +28,7 @@ async function fetcher({ collection, limit = 10, depth = 1, draft = false, overr
   });
 }
 
-export async function fetchContentBySlug({ slug, type, depth }: { slug: string, type: CollectionSlug, depth?: number }) {
+export async function fetchContentBySlug({ slug, type, depth }: { slug: string, type: CollectionSlug, depth?: number })   {
 
   if (!slug || !type) {
     throw new Error("Must input slug and/or type.");
