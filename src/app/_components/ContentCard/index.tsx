@@ -34,7 +34,6 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
 
   // todo: convert to a collection item property
   const readTime = estimateReadTime('herpaderpa')
-  console.log(`ContentCard passing down ${featuredImage} to FeaturedImage`)
 
   return (
     <div className={styles.contentCard}>

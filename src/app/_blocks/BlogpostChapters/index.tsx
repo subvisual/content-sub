@@ -24,7 +24,6 @@ export default function BlogpostChapters() {
   }, []);
 
 
-  console.log(chapters);
   return (
     <div className={styles.container}>
       {/*{<pre>{JSON.stringify(chapters, null, 2)}</pre>}*/}
