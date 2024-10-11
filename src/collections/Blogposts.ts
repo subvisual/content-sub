@@ -45,7 +45,6 @@ export const Blogposts: CollectionConfig = {
       label: 'Featured Image',
       type: 'upload',
       relationTo: 'media',
-      required: true,
       admin: {
         position: 'sidebar',
       },

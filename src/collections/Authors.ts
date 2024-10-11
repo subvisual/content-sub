@@ -40,25 +40,8 @@ export const Authors: CollectionConfig = {
     },
     {
       name: 'role',
-      type: 'select',
+      type: 'text',
       required: true,
-      admin: {
-        isClearable: true,
-      },
-      options: [
-        {
-          label: 'Developer',
-          value: 'developer',
-        },
-        {
-          label: 'Product Manager',
-          value: 'product-manager',
-        },
-        {
-          label: 'Designer',
-          value: 'designer',
-        },
-      ],
     },
     {
       name: 'bio',

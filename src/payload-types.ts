@@ -554,7 +554,7 @@ export interface Author {
   id: string;
   featuredImage: string | Media;
   name: string;
-  role: 'developer' | 'product-manager' | 'designer';
+  role: string;
   bio: string;
   linkedIn?: string | null;
   x?: string | null;
@@ -591,7 +591,7 @@ export interface Blogpost {
     [k: string]: unknown;
   };
   content_html?: string | null;
-  featuredImage: string | Media;
+  featuredImage?: (string | null) | Media;
   authors: (string | Author)[];
   categories?: (string | Category)[] | null;
   related?: (string | Blogpost)[] | null;
@@ -611,7 +611,7 @@ export interface Podcast {
   title: string;
   summary: string;
   notes: string;
-  featuredImage: string | Media;
+  featuredImage?: (string | null) | Media;
   episodeFile: string | Media;
   spotify?: string | null;
   apple?: string | null;
