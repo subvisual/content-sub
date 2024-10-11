@@ -6,8 +6,6 @@ import EpisodeHead from '../../../_blocks/EpisodeHead'
 import { RelatedContent } from '../../../_blocks/RelatedContent'
 import { Subscribe } from '../../../_blocks/Subscribe'
 
-export const dynamic = 'force-dynamic'
-
 export default async function PodcastEpisodesPage({ params: { slug } }) {
   const episode = await fetchDoc({
     collection: 'podcast-episodes',
