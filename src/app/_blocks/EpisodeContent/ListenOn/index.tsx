@@ -7,13 +7,13 @@ export default function ListenOn({ className, spotify, apple }) {
       <p>Listen on:</p>
 
       <span>
-        {' '}
-        <a href={spotify} target="_blank" rel="noopener noreferrer">
+
+        { spotify && <a href={spotify} target="_blank" rel="noopener noreferrer">
           <SpotifyIcon />
-        </a>
-        <a href={apple} target="_blank" rel="noopener noreferrer">
+        </a>}
+        { apple && <a href={apple} target="_blank" rel="noopener noreferrer">
           <ApplePodcastIcon />
-        </a>
+        </a>}
       </span>
     </div>
   )
