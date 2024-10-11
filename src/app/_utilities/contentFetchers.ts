@@ -28,7 +28,7 @@ async function fetcher({ collection, limit = 10, depth = 1, draft = false, overr
   });
 }
 
-export async function fetchContentBySlug({ slug, type }: { slug: string, type: CollectionSlug }) {
+export async function fetchContentBySlug({ slug, type, depth }: { slug: string, type: CollectionSlug, depth?: number }) {
 
   if (!slug || !type) {
     throw new Error("Must input slug and/or type.");
@@ -38,6 +38,7 @@ export async function fetchContentBySlug({ slug, type }: { slug: string, type: C
 
   return await fetcher({
     collection: type,
+    depth: depth,
     query: query,
   }).then(res => {
     if (res.docs.length < 1) {
