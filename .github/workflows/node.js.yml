@@ -20,11 +20,8 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install Yarn
-        run: corepack enable
-
-      - name: Install dependencies using Yarn
-        run: yarn install
+      - name: Install Node.js dependencies
+        run: npm install
 
       - name: Run linters
-        run: yarn lint
+        run: npm run lint
