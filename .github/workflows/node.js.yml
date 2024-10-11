@@ -1,6 +1,6 @@
 name: Lint
 
-on: 
+on:
   push:
     branches: ["main"]
   pull_request:
@@ -19,9 +19,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      
-      - name: Install Node.js dependencies
-        run: npm install
+
+      - name: Install Yarn
+        run: corepack enable
+
+      - name: Install dependencies using Yarn
+        run: yarn install
 
       - name: Run linters
-        run: npm run lint
+        run: yarn lint
