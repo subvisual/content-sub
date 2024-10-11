@@ -28,7 +28,6 @@ export const Authors: CollectionConfig = {
       label: 'Picture',
       type: 'upload',
       relationTo: 'media',
-      required: true,
       admin: {
         position: 'sidebar',
       },

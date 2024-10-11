@@ -552,7 +552,7 @@ export interface Form {
  */
 export interface Author {
   id: string;
-  featuredImage: string | Media;
+  featuredImage?: (string | null) | Media;
   name: string;
   role: string;
   bio: string;
