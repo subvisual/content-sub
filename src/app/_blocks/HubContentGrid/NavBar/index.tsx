@@ -61,12 +61,16 @@ export default function ContentNavBar({
           }
         />
       </button>
-      <button
+
+      {/* TODO: Re-enable once content exists */}
+
+      {/*<button
         className={`${styles.button} ${styles.caseStudiesButton} ${
           activeButton === 'CaseStudies' ? styles.activeButton : ''
         } `}
         onClick={() => handleButtonClick('CaseStudies')} // Use the correct name
       >
+
         <CaseStudies
           fill={activeButton === 'CaseStudies' ? 'var(--soft-white-100)' : 'var(--sub-orange-800'}
           textColor={
@@ -92,7 +96,7 @@ export default function ContentNavBar({
               : 'var(--soft-white-100)'
           }
         />
-      </button>
+      </button>*/}
     </div>
   )
 }

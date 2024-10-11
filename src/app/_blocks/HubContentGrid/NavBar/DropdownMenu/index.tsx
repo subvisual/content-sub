@@ -76,12 +76,14 @@ export default function DropdownMenu({
               <li onClick={() => handleButtonClick('Podcasts')}>
                 {iconMap['PodcastEpisodes']} Podcasts
               </li>
-              <li onClick={() => handleButtonClick('CaseStudies')}>
+
+              {/* TODO : Renable once pages are styled */}
+         {/*     <li onClick={() => handleButtonClick('CaseStudies')}>
                 {iconMap['CaseStudies']} Case Studies
               </li>
               <li onClick={() => handleButtonClick('TalksAndRoundtables')}>
                 {iconMap['TalksAndRoundtables']} Talks & Roundtables
-              </li>
+              </li>*/}
             </ul>
           </div>
         </div>
