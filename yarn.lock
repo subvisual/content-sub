@@ -3914,7 +3914,7 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.12.tgz#12bb1e2be27293c1406acb6af1c3f3a1481d98c6"
   integrity sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==
 
-"@types/react-dom@npm:types-react-dom@19.0.0-rc.1":
+"@types/react-dom@npm:types-react-dom@rc":
   version "19.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/types-react-dom/-/types-react-dom-19.0.0-rc.1.tgz#1d544d02c5df2a82d87c2eff979afa2e21a8317a"
   integrity sha512-VSLZJl8VXCD0fAWp7DUTFUDCcZ8DVXOQmjhJMD03odgeFmu14ZQJHCXeETm3BEAhJqfgJaFkLnGkQv88sRx0fQ==
@@ -3936,7 +3936,7 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/react@npm:types-react@19.0.0-rc.1":
+"@types/react@npm:types-react@rc":
   version "19.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/types-react/-/types-react-19.0.0-rc.1.tgz#576d1a702f6d0cc5b24813a293913e5cbfeaa647"
   integrity sha512-RshndUfqTW6K3STLPis8BtAYCGOkMbtvYsi90gmVNDZBXUyUc5juf2PE9LfS/JmOlUIRO8cWTS/1MTnmhjDqyQ==
@@ -7279,7 +7279,7 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-lexical@0.18.0:
+lexical@0.18.0, lexical@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/lexical/-/lexical-0.18.0.tgz#70dc89d8baf348b623d223c564616916a86118ce"
   integrity sha512-3K/B0RpzjoW+Wj2E455wWXxkqxqK8UgdIiuqkOqdOsoSSo5mCkHOU6eVw7Nlmlr1MFvAMzGmz4RPn8NZaLQ2Mw==
@@ -8754,12 +8754,12 @@ react-dom@18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-dom@19.0.0-rc-3edc000d-20240926:
-  version "19.0.0-rc-3edc000d-20240926"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.0.0-rc-3edc000d-20240926.tgz#c84be7947a3358b28c57e23594d0f79b0bd5945a"
-  integrity sha512-0nEYp9I8IF5GZQOJdKSPhkwVFgBmYFiFJOzw5xfPD1USj/Wf8Z7lpruV7WStKD4uxbtfLamDMGZTRkSby7eAwQ==
+react-dom@^19.0.0-rc-09111202-20241011:
+  version "19.0.0-rc-09111202-20241011"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.0.0-rc-09111202-20241011.tgz#e02570e8e6314bf1a7b98d8d7b2f7816c3314174"
+  integrity sha512-iGX/aJR6YjAHHUtmPNf2YmR8e2pYmlRL28tR/PO6VdIGBqNzzLMNnTEcgjlPPQ0rXBjI0IL7SJnOFYWmk3ZGjw==
   dependencies:
-    scheduler "0.25.0-rc-3edc000d-20240926"
+    scheduler "0.25.0-rc-09111202-20241011"
 
 react-error-boundary@4.0.13:
   version "4.0.13"
@@ -8863,10 +8863,10 @@ react@18.2.0:
   dependencies:
     loose-envify "^1.1.0"
 
-react@19.0.0-rc-3edc000d-20240926:
-  version "19.0.0-rc-3edc000d-20240926"
-  resolved "https://registry.yarnpkg.com/react/-/react-19.0.0-rc-3edc000d-20240926.tgz#a3f60bfea3d21f64b40ab836509ff01f6bce7c4e"
-  integrity sha512-twH/qd0P8clqn+Z5hAxDi+3nh9pJv3zV9kzhjpbwBW/FlCimK7ypfAoElMIm5QnkhBX/YtkSj1Th49ZcRhjpGA==
+react@^19.0.0-rc-09111202-20241011:
+  version "19.0.0-rc-09111202-20241011"
+  resolved "https://registry.yarnpkg.com/react/-/react-19.0.0-rc-09111202-20241011.tgz#bee6e5c313953e54352e9195ab85d542d82d1174"
+  integrity sha512-kAz5u4PAPQJI2VJzUrYC/p82CoPcl/KD7i1tHe+nu3RezaAvHGCZY339bLFMBzY91jnJoo07JQZ6UsqivtQ2vQ==
 
 read-cache@^1.0.0:
   version "1.0.0"
@@ -9153,10 +9153,10 @@ scheduler@0.0.0-experimental-3edc000d-20240926:
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-experimental-3edc000d-20240926.tgz#796f4853ca909d7db3f532094270b0dd2919d5cc"
   integrity sha512-360BMNajOhMyrirau0pzWVgeakvrfjbfdqHnX2K+tSGTmn6tBN+6K5NhhaebqeXXWyCU3rl5FApjgF2GN0W5JA==
 
-scheduler@0.25.0-rc-3edc000d-20240926:
-  version "0.25.0-rc-3edc000d-20240926"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.25.0-rc-3edc000d-20240926.tgz#8616da99a4a450b3e9a4be2717569b059fc46089"
-  integrity sha512-qAWyPrLLFM96Py4gnrFQLhYDrHkVXGw3P/hPrR3E6b5rriPeAA1a8YZBWlqH8Eehbc9waTih/WyDSyuwkxWWMw==
+scheduler@0.25.0-rc-09111202-20241011:
+  version "0.25.0-rc-09111202-20241011"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.25.0-rc-09111202-20241011.tgz#c90b2cef5c2aa9692c8c9854f1b030e6e5a0554b"
+  integrity sha512-XIsordE2/I3s52ujwT5PZIxHMQca8L2ca6Gu3o0YHXDVTYucwXQW6m8/2fVKqfzoJRH1ne7/49M7/5Wick8qOA==
 
 scheduler@^0.23.0:
   version "0.23.2"
