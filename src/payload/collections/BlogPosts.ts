@@ -60,6 +60,7 @@ export const BlogPosts: CollectionConfig = {
       name: 'authors',
       type: 'relationship',
       relationTo: 'authors',
+      required: true,
       hasMany: true,
       admin: {
         position: 'sidebar',

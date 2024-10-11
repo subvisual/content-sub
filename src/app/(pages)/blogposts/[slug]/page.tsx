@@ -14,6 +14,7 @@ import Share from '../../../_components/Share'
 import { getChapters } from '../../../_utilities/sanitizeAndAddChapters'
 import styles from './styles.module.css'
 
+
 export default async function BlogpostPage({ params: { slug } }) {
   const blogpost: Blogpost | null = await fetchDoc({
     collection: 'blogposts',

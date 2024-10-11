@@ -4,7 +4,7 @@ import Link from 'next/link'
 import BackArrow from '../../_icons/BackArrow'
 import styles from './styles.module.css'
 
-export default function BackButton({ className, color }) {
+export default function BackButton({ className, color }: { className?: string; color?: string }) {
   return (
     <>
       <Link className={className} href="/">

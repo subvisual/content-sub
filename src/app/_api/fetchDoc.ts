@@ -37,12 +37,12 @@ const queryMap = {
   },
 }
 
-export const fetchDoc = async <T extends keyof Config['collections']>(args: {
-  collection: T
+export const fetchDoc = async (args: {
+  collection: keyof Config['collections']
   slug?: string
   id?: string
   draft?: boolean
-}): Promise<Config['collections'][T]> => {
+}) => {
   const { collection, slug, draft } = args || {}
 
   if (!queryMap[collection]) throw new Error(`Collection ${collection} not found`)
@@ -55,7 +55,7 @@ export const fetchDoc = async <T extends keyof Config['collections']>(args: {
   }
 
   try {
-    const doc: T = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
+    const doc = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

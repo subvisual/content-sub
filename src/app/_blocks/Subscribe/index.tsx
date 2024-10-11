@@ -1,10 +1,16 @@
+import Image from 'next/image'
+
 import styles from './styles.module.css'
 
 export function Subscribe() {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <img className={styles.image} src={'/subscribe-card-image.png'} />
+        <Image width={'10'} height={'10'}
+          className={styles.image}
+          src={'/subscribe-card-image.png'}
+          alt={'subscribe card image'}
+        />
       </div>
       <div className={styles.CTABlock}>
         <h5>

@@ -24,7 +24,7 @@ export const TalksAndRoundtables: CollectionConfig = {
       required: true,
     },
     {
-      name: 'about',
+      name: 'summary',
       type: 'textarea',
       required: true,
       maxLength: 250,
@@ -75,6 +75,16 @@ export const TalksAndRoundtables: CollectionConfig = {
             return value
           },
         ],
+      },
+    },
+    {
+      name: 'featuredImage',
+      label: 'Featured Image',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+      admin: {
+        position: 'sidebar',
       },
     },
     slugField(),
