@@ -15,3 +15,5 @@ node_modules
 
 .netlify
 tsconfig.tsbuildinfo
+*.mp3
+*.png

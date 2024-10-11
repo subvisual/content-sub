@@ -1,17 +1,16 @@
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
-import FeaturedImage from '@/app/_components/FeaturedImage'
-import { LinkedInIcon, TwitterIcon } from '@/app/_icons/socialIcons'
-import { getImage } from '@/app/_utilities/getImage'
-import { Author } from '@/payload-types'
+import FeaturedImage from "@/app/_components/FeaturedImage";
+import { LinkedInIcon, TwitterIcon } from "@/app/_icons/socialIcons";
+import { getImage } from "@/app/_utilities/getImage";
+import { Author } from "@/payload-types";
 import { fetchMediaByID } from "@/app/_utilities/contentFetchers";
 
 export default async function AuthorPill({ large = false, author }) {
 
-  const { name, featuredImage, linkedIn, x } = author
+  const { name, featuredImage, linkedIn, x } = author;
 
-  const test = await fetchMediaByID( "66ed88055946c64a204c9357" )
-
+  const test = await fetchMediaByID("66ed88055946c64a204c9357");
 
 
   /* unsure if this will be useful, as all names have same length in figma
@@ -25,7 +24,9 @@ const dynamicVars = {
   return (
     <>
       <div className={styles.authorPill}>
-        <FeaturedImage className={styles.authorImage} src={featuredImage} />
+        <div className={styles.authorImage}>
+          <FeaturedImage src={featuredImage} />
+        </div>
         {name}
       </div>
 
@@ -44,5 +45,5 @@ const dynamicVars = {
         </div>
       )}
     </>
-  )
+  );
 }
