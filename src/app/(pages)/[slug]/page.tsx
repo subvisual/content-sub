@@ -17,11 +17,14 @@ import HubHead from '@/app/_blocks/HubHead'
 
 export default async function Page({ params: { slug = 'home' } }) {
   const articles = await fetcher({ query: ALL_CONTENT })
-  const highglights = await fetchSettings()
+  const highlights = await fetchSettings()
+
+  console.log(articles)
+  console.log(highlights);
 
   return (
     <>
-      <HubHead highlights={highglights} />
+      <HubHead highlights={highlights} />
 
       {/* Search Bar */}
       <SearchBar />

@@ -19,7 +19,7 @@ export function Highlights({ content, main }) {
 
   const { title, publishedAt, categories, authors } = content;
 
-
+  console.log(content === placeholder);
   return (
     <>
 
