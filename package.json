@@ -101,11 +101,5 @@
   "overrides": {
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-  },
-  "resolutions": {
-    "@lexical/react/react": "18.3.1",
-    "@lexical/react/react-dom": "18.3.1",
-    "@payloadcms/richtext-lexical/react": "18.3.1",
-    "lexical/react": "18.3.1"
   }
 }
