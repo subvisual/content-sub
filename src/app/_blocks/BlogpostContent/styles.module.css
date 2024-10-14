@@ -4,6 +4,9 @@
 }
 
 .featuredImage {
+  position: relative;
+  width: 80%px;
+  height: 340px;
   margin: auto;
   border-radius: 45px;
 }

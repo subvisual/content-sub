@@ -1,18 +1,22 @@
 'use client'
 
-import { PodcastEpisode } from '../../../payload/payload-types'
-import ArchiveButton from '../../_components/ArchiveButton'
 import BackButton from '../../_components/BackButton'
-import FeaturedImage from '../../_components/FeaturedImage'
-import { HeadphonesIcon } from '../../_icons/icons'
 import { formatDateTime } from '../../_utilities/formatDateTime'
 import { getAudio } from '../../_utilities/getAudio'
 import { useEpisodeDuration } from '../../_utilities/useEpisodeDuration'
 import AudioPlayer from './AudioPlayer'
 import styles from './styles.module.css'
 
-export default function EpisodeHead({ episode }: { episode: PodcastEpisode }) {
+import ArchiveButton from '@/app/_components/ArchiveButton'
+import FeaturedImage from '@/app/_components/FeaturedImage'
+import { HeadphonesIcon } from '@/app/_icons/icons'
+
+export default function EpisodeHead({ episode }) {
   const { title, episodeFile, publishedAt, featuredImage } = episode
+
+  // TODO: convert into conditional logic based on ContentType
+
+  // Initial undefined state
   const { audioFileSource, audioFileType } = getAudio(episodeFile)
 
   return (
@@ -20,7 +24,7 @@ export default function EpisodeHead({ episode }: { episode: PodcastEpisode }) {
       <BackButton className={styles.backButton} color={'var(--soft-white-100)'} />
 
       <div className={styles.metadataContainer}>
-        {/* Metadata */}
+        {/* First Column */}
         <div className={styles.metadata}>
           <ArchiveButton collection={'podcast-episodes'} color={'var(--soft-white-100)'} />
           <h5>{title}</h5>
@@ -29,19 +33,19 @@ export default function EpisodeHead({ episode }: { episode: PodcastEpisode }) {
             {formatDateTime(publishedAt)}
             <span>
               <HeadphonesIcon width={'14'} height={'14'} color={'var(--soft-white-100)'} />
-              {useEpisodeDuration(audioFileSource)}
+              {/*{useEpisodeDuration(audioFileSource)}*/}
             </span>
           </p>
         </div>
-
-        {/* Audio player */}
+        {/* TODO Add conditionals later on: render only if it's a podcast episode */}
         <div className={styles.audioPlayer}>
-          <AudioPlayer className={styles.audioPlayer} src={audioFileSource} type={audioFileType} />
+          {/*// @ts-ignore*/}
+          <AudioPlayer src={audioFileSource} type={audioFileType} />
         </div>
 
-        {/* Featured Image */}
+        {/* TODO: Second Column displays EpisodeFeaturedImage if ContentType is podcast */}
         <div className={styles.featuredImageContainer}>
-          <FeaturedImage className={styles.featuredImage} src={featuredImage} />
+          {featuredImage && <FeaturedImage className={styles.featuredImage} src={featuredImage} />}
         </div>
       </div>
     </div>

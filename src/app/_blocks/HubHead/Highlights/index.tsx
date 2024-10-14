@@ -12,14 +12,13 @@ const placeholder = {
   authors: "Placeholder",
 };
 
-export function Highlights({ content, main }) {
+export async function Highlights({ content, main }) {
   if (!content) {
     content = placeholder;
   }
 
   const { title, publishedAt, categories, authors } = content;
 
-  console.log(content === placeholder);
   return (
     <>
 
@@ -32,7 +31,7 @@ export function Highlights({ content, main }) {
           <>
             <div className={styles.metadataContainer}>
               {/* TODO: is this a good approach for multi category items? */}
-              {categories.length > 5 ? (
+              {categories.length > 2 ? (
                 <CategoryPill title={categories[0].title} />
               ) : (
                 categories.map((category, i) => <CategoryPill key={i} title={category.title} />)

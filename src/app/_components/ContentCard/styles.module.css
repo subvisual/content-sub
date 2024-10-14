@@ -21,3 +21,17 @@
   gap: 5px;
   align-items: center;
 }
+
+.imageContainer {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: auto;
+}
+
+@media (min-width: 1024px) {
+  .imageContainer {
+    width: 340px;
+    height: 340px;
+  }
+}

@@ -4,9 +4,9 @@ import {
   Blogpost,
   CaseStudy,
   Category,
-  PodcastEpisode,
+  Podcast,
   TalksAndRoundtable,
-} from '../../../payload/payload-types'
+} from '@/payload-types'
 import { HeadphonesIcon, SpectaclesIcon } from '../../_icons/icons'
 import { estimateReadTime } from '../../_utilities/estimateReadTime'
 import { formatDateTime } from '../../_utilities/formatDateTime'
@@ -19,7 +19,7 @@ import styles from './styles.module.css'
 
 interface ContentSummaryProps {
   contentType: string
-  content: Blogpost | PodcastEpisode | CaseStudy | TalksAndRoundtable // TODO: Extend to CaseStudy and TalksAndRoundTables once consistency is assured
+  content: Blogpost | Podcast | CaseStudy | TalksAndRoundtable // TODO: Extend to CaseStudy and TalksAndRoundTables once consistency is assured
 }
 
 const archiveMap = {
@@ -33,15 +33,20 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
   const { slug, title, summary, featuredImage, categories, publishedAt, authors } = content
 
   // todo: convert to a collection item property
-  const readTime = estimateReadTime(summary)
+  const readTime = estimateReadTime('herpaderpa')
 
   return (
     <div className={styles.contentCard}>
+      {/*<pre>{JSON.stringify(content,null, 2)}</pre>*/}
+
       <Link href={`/${toKebabCase(contentType)}/${slug}`}>
         <div className={styles.contentMetaContainer}>
-          <FeaturedImage src={featuredImage} />
-          <ArchiveButton collection={archiveMap[contentType]} />
-          <h6>{title}</h6>
+          <div className={styles.imageContainer}>
+          {/*  @ts-ignore */}
+            {featuredImage && <FeaturedImage src={featuredImage} />}
+            </div>
+          {/*<ArchiveButton collection={archiveMap[contentType]} />*/}
+          <h6>{title} </h6>
           <p>{summary}</p>
 
           {Array.isArray(categories) && categories.length > 0
@@ -62,7 +67,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
             )}
           </div>
 
-          <Authors authors={authors} />
+          {/*<Authors authors={authors} />*/}
         </div>
       </Link>
     </div>

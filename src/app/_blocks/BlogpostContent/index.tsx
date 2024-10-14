@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { Blogpost } from '../../../payload/payload-types'
-import FeaturedImage from '../../_components/FeaturedImage'
-import { sanitizeAndAddChapters } from '../../_utilities/sanitizeAndAddChapters'
-import styles from './styles.module.css'
+import { Blogpost } from "@/payload-types";
+import FeaturedImage from "../../_components/FeaturedImage";
+import styles from "./styles.module.css";
+import RichText from "@/components/RichText";
 
-export default function BlogpostContent({ post }: { post: Blogpost }) {
-  const { summary, content_html, featuredImage } = post
-  const sanitizedContent = sanitizeAndAddChapters(content_html)
-
+export default function BlogpostContent({ blogpost }) {
+  const { summary, featuredImage } = blogpost;
   return (
     <div className={styles.container}>
-      <FeaturedImage className={styles.featuredImage} src={featuredImage} />
+      <div className={styles.featuredImage}>
+        {featuredImage && <FeaturedImage src={featuredImage} />}
+      </div>
       <div className={styles.summary}>{summary}</div>
-      <div className={styles.content} dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+      <RichText content={blogpost.content} />
     </div>
-  )
+  );
 }
