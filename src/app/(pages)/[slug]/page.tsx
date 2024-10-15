@@ -3,6 +3,8 @@ import HubContentGrid from "@/app/_blocks/HubContentGrid";
 import HubHead from "@/app/_blocks/HubHead";
 import SearchBar from "@/app/_components/SearchBar";
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 export default async function Page() {
 
   const content = {
