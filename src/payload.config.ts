@@ -38,7 +38,7 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { Blogposts } from "@/collections/Blogposts/Blogposts";
 import { Authors } from "@/collections/Authors";
 import { CaseStudies } from "@/collections/CaseStudies";
-import { Podcasts } from "@/collections/Podcasts";
+import { Podcasts } from "@/collections/Podcasts/Podcasts";
 import { TalksAndRoundtables } from "@/collections/TalksAndRoundtables";
 import { HomePageSettings } from "@/Globals/HubHighlights/config";
 

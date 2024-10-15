@@ -4,6 +4,7 @@ import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '@/hooks/populatePublishedAt'
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
 import { authenticated } from "@/access/authenticated";
+import { revalidatePodcast } from "@/collections/Podcasts/hooks";
 
 // TODO: Add preview;
 
@@ -15,6 +16,7 @@ export const Podcasts: CollectionConfig = {
   },
   hooks: {
     beforeChange: [populatePublishedAt],
+    afterChange: [revalidatePodcast],
   },
   versions: { drafts: true },
   access: {
