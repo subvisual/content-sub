@@ -35,7 +35,7 @@ import { Page, Post } from 'src/payload-types'
 
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
-import { Blogposts } from "@/collections/Blogposts";
+import { Blogposts } from "@/collections/Blogposts/Blogposts";
 import { Authors } from "@/collections/Authors";
 import { CaseStudies } from "@/collections/CaseStudies";
 import { Podcasts } from "@/collections/Podcasts";

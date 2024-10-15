@@ -4,12 +4,16 @@ import type { CollectionConfig } from 'payload'
 import { slugField } from '@/fields/slug'
 import { authenticated } from "@/access/authenticated";
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
+import { revalidatePost } from "@/collections/Blogposts/hooks";
 
 export const Blogposts: CollectionConfig = {
   slug: 'blogposts',
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
+  },
+  hooks: {
+    afterChange: [revalidatePost]
   },
   versions: { drafts: true },
   access: {
