@@ -14,8 +14,9 @@ export default function BlogpostContent({ blogpost }) {
       </div>
         )}
       <div className={styles.summary}>{summary}</div>
-      <div><RichText content={blogpost.content} /></div>
+      <div className={styles.content}>
+        <RichText content={blogpost.content} />
+      </div>
     </div>
   );
 }
-g
