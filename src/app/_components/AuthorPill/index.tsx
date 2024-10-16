@@ -22,7 +22,7 @@ const dynamicVars = {
 */
 
   return (
-    <>
+    <a href={`./authors/${author.slug}`}>
       <div className={styles.authorPill}>
         <div className={styles.authorImage}>
           {featuredImage && <FeaturedImage src={featuredImage.url} />}
@@ -44,6 +44,6 @@ const dynamicVars = {
           )}
         </div>
       )}
-    </>
+    </a>
   );
 }
