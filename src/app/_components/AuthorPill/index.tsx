@@ -25,7 +25,7 @@ const dynamicVars = {
     <>
       <div className={styles.authorPill}>
         <div className={styles.authorImage}>
-          {featuredImage && <FeaturedImage src={featuredImage} />}
+          {featuredImage && <FeaturedImage src={featuredImage.url} />}
         </div>
         {name}
       </div>

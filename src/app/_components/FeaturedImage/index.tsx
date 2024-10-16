@@ -9,14 +9,15 @@ import { fetchMediaByID } from "@/app/_utilities/contentFetchers";
 export default function FeaturedImage({ src, className }: { className?: string; src: Media }) {
 
 
-  const imageSource = getImage(src);
+  // const imageSource = getImage(src);
+  // console.log('src is:',src)
 
 
   return (
 
       <Image fill={true}
              className={className ? className : styles.featuredImage}
-             src={imageSource} alt={"alt info"}
+             src={src} alt={"alt info"}
 
       />
 

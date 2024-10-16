@@ -61,6 +61,7 @@
 }
 
 .featuredImage {
+  position: relative;
   width: max(120px, 294px);
   aspect-ratio: 1 / 1;
   border-radius: 10px;
