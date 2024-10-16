@@ -17,7 +17,9 @@ export default function FeaturedImage({ src, className }: { className?: string; 
 
       <Image fill={true}
              className={className ? className : styles.featuredImage}
-             src={src} alt={"alt info"}
+             // @ts-ignore
+             src={src}
+             alt={"alt info"}
 
       />
 
