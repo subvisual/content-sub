@@ -17,10 +17,11 @@ export default function EpisodeHead({ episode }) {
   // TODO: convert into conditional logic based on ContentType
 
   // Initial undefined state
-  const { audioFileSource, audioFileType } = getAudio(episodeFile)
+  // const { audioFileSource, audioFileType } = getAudio(episodeFile)
 
   return (
     <div className={styles.container}>
+      {/*{<pre>{JSON.stringify(episode.episodeFile, null, 2)}</pre>}*/}
       <BackButton className={styles.backButton} color={'var(--soft-white-100)'} />
 
       <div className={styles.metadataContainer}>
@@ -40,12 +41,12 @@ export default function EpisodeHead({ episode }) {
         {/* TODO Add conditionals later on: render only if it's a podcast episode */}
         <div className={styles.audioPlayer}>
           {/*// @ts-ignore*/}
-          <AudioPlayer src={audioFileSource} type={audioFileType} />
+          <AudioPlayer src={episode.episodeFile.url} type={episode.episodeFile.mimeType} />
         </div>
 
         {/* TODO: Second Column displays EpisodeFeaturedImage if ContentType is podcast */}
-        <div className={styles.featuredImageContainer}>
-          {featuredImage && <FeaturedImage className={styles.featuredImage} src={featuredImage} />}
+        <div className={styles.featuredImage}>
+          {featuredImage && <FeaturedImage className={styles.featuredImage} src={featuredImage.url} />}
         </div>
       </div>
     </div>

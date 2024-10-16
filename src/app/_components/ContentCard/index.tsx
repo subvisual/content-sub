@@ -43,7 +43,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
         <div className={styles.contentMetaContainer}>
           <div className={styles.imageContainer}>
           {/*  @ts-ignore */}
-            {featuredImage && <FeaturedImage src={featuredImage} />}
+            {featuredImage && <FeaturedImage src={featuredImage.url} />}
             </div>
           {/*<ArchiveButton collection={archiveMap[contentType]} />*/}
           <h6>{title} </h6>

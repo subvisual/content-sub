@@ -1,22 +1,16 @@
 import Image from "next/image";
-
-import { getImage } from "../../_utilities/getImage";
 import styles from "./styles.module.css";
-
 import { Media } from "@/payload-types";
-import { fetchMediaByID } from "@/app/_utilities/contentFetchers";
 
 export default function FeaturedImage({ src, className }: { className?: string; src: Media }) {
-
-
-  const imageSource = getImage(src);
-
 
   return (
 
       <Image fill={true}
              className={className ? className : styles.featuredImage}
-             src={imageSource} alt={"alt info"}
+             // @ts-ignore
+             src={src}
+             alt={"alt info"}
 
       />
 

@@ -41,6 +41,8 @@ import { CaseStudies } from "@/collections/CaseStudies";
 import { Podcasts } from "@/collections/Podcasts/Podcasts";
 import { TalksAndRoundtables } from "@/collections/TalksAndRoundtables";
 import { HomePageSettings } from "@/Globals/HubHighlights/config";
+import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
+import { testAdapt } from "@/collections/Media/storageAdapter";
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -205,7 +207,20 @@ export default buildConfig({
         },
       },
     }),
-    payloadCloudPlugin(), // storage-adapter-placeholder
+    cloudStoragePlugin({
+      enabled: true,
+      collections: {
+        media: {
+          disableLocalStorage: true,
+          adapter: testAdapt,
+          generateFileURL: (args) => {
+            const url = `${process.env.CDN_DOMAIN}/${args.filename}`
+            return url
+          }
+        }
+      }
+
+    }),// storage-adapter-placeholder
   ],
   secret: process.env.PAYLOAD_SECRET!,
   sharp,

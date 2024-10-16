@@ -4,5 +4,3 @@ export const dynamic = 'auto'
 export const revalidate = 10
 
 export default PageTemplate
-
-// export { generateMetadata }
