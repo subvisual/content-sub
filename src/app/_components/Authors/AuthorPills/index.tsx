@@ -2,11 +2,12 @@ import styles from "@/app/_components/Authors/AuthorPills/styles.module.css";
 import FeaturedImage from "@/app/_components/FeaturedImage";
 import React from "react";
 import { LinkedInIcon, TwitterIcon } from "@/app/_icons/socialIcons";
+import Link from "next/link";
 
 export function AuthorPill({ large = false, author }) {
   const { name, featuredImage, linkedIn, x } = author;
   return (
-    <>
+    <Link href={`./authors/${author.slug}`}>
       <div className={styles.authorPill}>
         <div className={styles.authorImage}>
           {featuredImage && <FeaturedImage src={featuredImage.url} />}
@@ -28,7 +29,7 @@ export function AuthorPill({ large = false, author }) {
           )}
         </div>
       )}
-    </>
+    </Link>
   );
 }
 
