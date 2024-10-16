@@ -1,15 +1,22 @@
-import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from '@payloadcms/richtext-lexical'
 import type { CollectionConfig } from 'payload'
 
 import { slugField } from '@/fields/slug'
-import { authenticated } from "@/access/authenticated";
+import { populatePublishedAt } from '@/hooks/populatePublishedAt'
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
+import { authenticated } from "@/access/authenticated";
+import { revalidatePodcast } from "@/collections/Podcasts/hooks";
 
-export const Blogposts: CollectionConfig = {
-  slug: 'blogposts',
+// TODO: Add preview;
+
+export const Podcasts: CollectionConfig = {
+  slug: 'podcasts',
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
+  },
+  hooks: {
+    beforeChange: [populatePublishedAt],
+    afterChange: [revalidatePodcast],
   },
   versions: { drafts: true },
   access: {
@@ -26,20 +33,16 @@ export const Blogposts: CollectionConfig = {
     },
     {
       name: 'summary',
+      label: 'Episode Summary',
       type: 'textarea',
       required: true,
-      maxLength: 250,
     },
     {
-      name: 'content',
-      label: 'Content',
-      type: 'richText',
+      name: 'notes',
+      label: 'Episode Notes',
+      type: 'textarea',
       required: true,
-      editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [...defaultFeatures, HTMLConverterFeature({})],
-      }),
     },
-    lexicalHTML('content', { name: 'content_html' }),
     {
       name: 'featuredImage',
       label: 'Featured Image',
@@ -50,14 +53,42 @@ export const Blogposts: CollectionConfig = {
       },
     },
     {
-      name: 'authors',
-      type: 'relationship',
-      relationTo: 'authors',
+      name: 'episodeFile',
+      label: 'Episode File',
+      type: 'upload',
+      relationTo: 'media',
       required: true,
-      hasMany: true,
       admin: {
         position: 'sidebar',
       },
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'spotify',
+          label: 'Spotify CMSLink',
+          type: 'text',
+          admin: {
+            width: '50%',
+          },
+        },
+        {
+          name: 'apple',
+          label: 'Apple Podcasts CMSLink',
+          type: 'text',
+          admin: {
+            width: '50%',
+          },
+        },
+      ],
+    },
+    {
+      name: 'authors',
+      type: 'relationship',
+      relationTo: 'authors',
+      hasMany: true,
+      required: true,
     },
     {
       name: 'categories',
@@ -71,10 +102,17 @@ export const Blogposts: CollectionConfig = {
     },
     {
       name: 'related',
-      label: 'Related Posts',
+      label: 'Related Episodes',
       type: 'relationship',
-      relationTo: 'blogposts',
+      relationTo: 'podcasts',
       hasMany: true,
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
     },
     {
       name: 'publishedAt',
@@ -97,6 +135,5 @@ export const Blogposts: CollectionConfig = {
       },
     },
     ...slugField(),
-
   ],
 }
