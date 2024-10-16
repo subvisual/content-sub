@@ -42,10 +42,12 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
 
 
       <div className={styles.contentMetaContainer}>
-        <div className={styles.imageContainer}>
-          {/*  @ts-ignore */}
-          {featuredImage && <FeaturedImage src={featuredImage.url} />}
-        </div>
+        {featuredImage && (
+          <div className={styles.imageContainer}>
+            {/*  @ts-ignore */}
+            <FeaturedImage src={featuredImage.url} />
+          </div>
+        )}
         {/*<ArchiveButton collection={archiveMap[contentType]} />*/}
         <Link href={`/${toKebabCase(contentType)}/${slug}`}>
           <h6>{title} </h6>
