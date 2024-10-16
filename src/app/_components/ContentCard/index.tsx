@@ -12,10 +12,11 @@ import { estimateReadTime } from '../../_utilities/estimateReadTime'
 import { formatDateTime } from '../../_utilities/formatDateTime'
 import { toKebabCase } from '../../_utilities/toKebabCase'
 import ArchiveButton from '../ArchiveButton'
-import Authors from '../Authors'
+
 import CategoryPill from '../CategoryPill'
 import FeaturedImage from '../FeaturedImage'
 import styles from './styles.module.css'
+import Authors from '@/app/_components/Authors'
 
 interface ContentSummaryProps {
   contentType: string
@@ -35,9 +36,9 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
   // todo: convert to a collection item property
   const readTime = estimateReadTime('herpaderpa')
 
+
   return (
     <div className={styles.contentCard}>
-      {/*<pre>{JSON.stringify(content,null, 2)}</pre>*/}
 
       <Link href={`/${toKebabCase(contentType)}/${slug}`}>
         <div className={styles.contentMetaContainer}>
@@ -66,8 +67,7 @@ export default function ContentCard({ contentType, content }: ContentSummaryProp
               </span>
             )}
           </div>
-
-          {/*<Authors authors={authors} />*/}
+          <Authors authors={authors} />
         </div>
       </Link>
     </div>

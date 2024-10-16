@@ -1,9 +1,10 @@
-import AuthorPill from "../../../_components/AuthorPill";
+
 import CategoryPill from "../../../_components/CategoryPill";
 import { SpectaclesIcon } from "../../../_icons/icons";
 import { estimateReadTime } from "../../../_utilities/estimateReadTime";
 import { formatDateTime } from "../../../_utilities/formatDateTime";
 import styles from "./styles.module.css";
+import Authors from "@/app/_components/Authors";
 
 const placeholder = {
   title: "Placeholder",
@@ -46,7 +47,7 @@ export async function Highlights({ content, main }) {
                 {estimateReadTime("Placeholder")}
         </span>
             </div>
-            <AuthorPill author={authors[0]} />
+            <Authors authors={authors} />
           </>
         )
         }
