@@ -5,8 +5,8 @@ const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 })
 
-const owner = 'subvisual'
-const repo = 'content-sub'
+const owner = process.env.GITHUB_REPO_OWNER
+const repo = process.env.GITHUB_REPO
 const comitter = {
   name: 'payload admin dashboard',
   email: 'payload@admin.dashboard',
