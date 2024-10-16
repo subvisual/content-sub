@@ -11,8 +11,6 @@ const nextConfig = {
     remotePatterns: [
       ...[CDN_DOMAIN /* 'https://example.com' */].map((item) => {
         const url = new URL(item)
-        // console.log('URL IS:',url)
-
         return {
           hostname: url.hostname,
           protocol: url.protocol.replace(':', ''),

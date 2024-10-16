@@ -215,7 +215,6 @@ export default buildConfig({
           adapter: testAdapt,
           generateFileURL: (args) => {
             const url = `${process.env.CDN_DOMAIN}/${args.filename}`
-            console.log('url is now:',url)
             return url
           }
         }
