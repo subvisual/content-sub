@@ -7,7 +7,7 @@ import Link from "next/link";
 export function AuthorPill({ large = false, author }) {
   const { name, featuredImage, linkedIn, x } = author;
   return (
-    <Link href={`./authors/${author.slug}`}>
+    <Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/authors/${author.slug}`}>
       <div className={styles.authorPill}>
         <div className={styles.authorImage}>
           {featuredImage && <FeaturedImage src={featuredImage.url} />}
