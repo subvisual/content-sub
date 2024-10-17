@@ -43,6 +43,7 @@ import { TalksAndRoundtables } from "@/collections/TalksAndRoundtables";
 import { HomePageSettings } from "@/Globals/HubHighlights/config";
 import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
 import { testAdapt } from "@/collections/Media/storageAdapter";
+import { Socials } from "@/collections/Globals/Socials/config";
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -141,7 +142,7 @@ export default buildConfig({
       path: '/seed',
     },
   ],
-  globals: [Header, Footer, HomePageSettings],
+  globals: [Header, Footer, Socials, HomePageSettings],
   plugins: [
     redirectsPlugin({
       collections: ['pages', 'posts'],
