@@ -170,6 +170,7 @@ export default buildConfig({
       collections: ['categories'],
     }),
     seoPlugin({
+      collections: ['media'],
       generateTitle,
       generateURL,
     }),
