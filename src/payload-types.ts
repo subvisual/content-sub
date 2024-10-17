@@ -561,10 +561,32 @@ export interface Author {
   authorName: string;
   role: string;
   bio: string;
-  linkedIn?: string | null;
-  x?: string | null;
-  gitHub?: string | null;
-  medium?: string | null;
+  Socials?: {
+    linkedIn?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    x?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    github?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    medium?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   publishedAt?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
