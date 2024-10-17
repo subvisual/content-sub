@@ -674,7 +674,7 @@ export interface TalksAndRoundtable {
   url?: string | null;
   authors?: (string | Author)[] | null;
   publishedAt?: string | null;
-  featuredImage: string | Media;
+  featuredImage?: (string | null) | Media;
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
