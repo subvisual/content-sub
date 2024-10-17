@@ -1,19 +1,26 @@
-import Link from 'next/link'
-import DropDownIcon from './DropDownIcon'
-import styles from './styles.module.css'
-import Logo from '@/app/_components/Header/Logo'
+import Link from "next/link";
+import DropDownIcon from "./DropDownIcon";
+import styles from "./styles.module.css";
+import Logo from "@/app/_components/Header/Logo";
 import { fetchGlobals } from "@/app/_utilities/contentFetchers";
 
-export async function Header() {
+const defaultStyle = {
+  '--dynamic-background': "transparent",
+  '--dynamic-color': "var(--dark-rock-800)",
+  '--dynamic-width': '100%'
+};
 
-  const header = await fetchGlobals('header')
+export async function Header({ style = defaultStyle }) {
+
+  const header = await fetchGlobals("header");
 
   // @ts-ignore
-  const navItems = header?.navItems || []
+  const navItems = header?.navItems || [];
 
   return (
     <>
-      <header className={styles.container}>
+      {/* @ts-ignore */}
+      <header className={styles.container} style={style}>
         <div>
           <Logo />
         </div>
@@ -25,14 +32,16 @@ export async function Header() {
               <Link key={i} href={link.url}>
                 {link.label}
               </Link>
-            )
+            );
           })}
-          <Link href={'mailto:contact@subvisual.com'} className={styles.contactUsPill}>
+          <Link href={"mailto:contact@subvisual.com"} className={styles.contactUsPill}>
             CONTACT US
           </Link>
         </nav>
-        <DropDownIcon className={styles.dropDownIcon} />
+        <div className={styles.dropDownIcon}>
+          <DropDownIcon />
+        </div>
       </header>
     </>
-  )
+  );
 }

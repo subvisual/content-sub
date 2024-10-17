@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  siteName: 'Payload Website Template',
-  title: 'Payload Website Template',
-  description: 'An open-source website built with Payload and Next.js.',
+  siteName: 'Subvisual Content Hub',
+  title: 'Subvisual Content Hub',
+  description: 'The place where you can find and peruse all content produced by Subvisual.',
   images: [
     {
-      url: 'https://payloadcms.com/images/og-image.jpg',
+      url: 'https://raw.githubusercontent.com/subvisual/content-sub/refs/heads/main/public/media/subhub-opengraph-card.png',
     },
   ],
 }

@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.container span {
+  margin-right: 20px;
+}
+
 .footer {
   display: grid;
   grid-template-columns: 1fr;

@@ -1,4 +1,4 @@
-import AuthorPill from '@/app/_components/AuthorPill'
+import { AuthorPill } from '@/app/_components/Authors/AuthorPills'
 
 export default function Contributors({ className, authors }) {
   return (

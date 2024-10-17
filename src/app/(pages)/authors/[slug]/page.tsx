@@ -5,10 +5,18 @@ import AuthorSummary from '../../../_components/AuthorSummary'
 import BackButton from '../../../_components/BackButton'
 import styles from './styles.module.css'
 
+import { Header } from "../../../_components/Header";
 import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
 import { Author } from "@/payload-types";
+import { Metadata } from "next";
 
 export const dynamic = 'force-dynamic'
+
+const headerStyle = {
+  '--dynamic-background': 'var(--sub-purple-50)',
+  '--dynamic-color': 'var(--dark-rock-800)',
+  '--dynamic-width': 'calc(100% - 40px)',
+}
 
 export default async function ContributorPage({ params: paramsPromise }) {
   const { slug } = await paramsPromise
@@ -17,6 +25,7 @@ export default async function ContributorPage({ params: paramsPromise }) {
 
   return (
     <div>
+      <Header style={headerStyle}/>
       <div className={styles.container}>
         <BackButton className={styles.backButton} />
         <AuthorSummary author={author} />
@@ -26,4 +35,17 @@ export default async function ContributorPage({ params: paramsPromise }) {
 
     </div>
   )
+}
+
+export async function generateMetadata({ params: paramsPromise}): Promise<Metadata> {
+  const { slug } = await paramsPromise
+  const author = await fetchContentBySlug({
+    slug: slug,
+    type: "authors",
+  })
+
+  return {
+    // @ts-ignore
+    title: `Subvisual | ${author.name}`
+  }
 }

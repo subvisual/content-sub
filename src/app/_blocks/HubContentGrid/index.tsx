@@ -36,8 +36,10 @@ export default function HubContentGrid({ content }) {
 
   const filteredContent = filterContent({ articles: content, filter: activeButton });
 
+
   return (
     <div>
+      {/*{<pre>{JSON.stringify(filteredContent, null, 2)}</pre>}*/}
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
       {/*   TODO: fix dynamic color*/}
       <div className={styles.contentGridContainer}>
