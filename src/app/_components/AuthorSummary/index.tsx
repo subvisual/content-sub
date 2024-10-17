@@ -6,10 +6,10 @@ import styles from "./styles.module.css";
 import { Author } from "@/payload-types";
 
 export default function AuthorSummary({ author }) {
-  const { name, role, bio, linkedIn, gitHub, medium, x, featuredImage } = author;
+  const { name, role, bio, linkedIn, gitHub, medium, x, featuredImage, socials } = author;
 
   // TODO: Convert this to an array with names in collection config
-  const socials = [linkedIn, gitHub, medium, x].filter(Boolean);
+
 
   return (
     <div className={styles.gridContainer}>
@@ -22,6 +22,7 @@ export default function AuthorSummary({ author }) {
         <div className={styles.authorInfo}>
           <h5>{name}</h5>
           <p>{role}</p>
+          {/*<pre>{JSON.stringify(author, null, 2)}</pre>}*/}
           <SocialLinks socials={socials} />
         </div>
       </div>

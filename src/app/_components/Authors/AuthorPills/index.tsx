@@ -4,7 +4,7 @@ import React from "react";
 import { LinkedInIcon, TwitterIcon } from "@/app/_icons/socialIcons";
 import Link from "next/link";
 
-export function AuthorPill({ large = false, author }) {
+export function AuthorPill({ author }) {
   const { name, featuredImage, linkedIn, x } = author;
   return (
     <Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/authors/${author.slug}`}>
@@ -14,21 +14,6 @@ export function AuthorPill({ large = false, author }) {
         </div>
         {name}
       </div>
-
-      {large && (
-        <div className={styles.socials}>
-          {linkedIn && (
-            <a href={linkedIn}>
-              <LinkedInIcon />
-            </a>
-          )}
-          {x && (
-            <a href={x}>
-              <TwitterIcon />
-            </a>
-          )}
-        </div>
-      )}
     </Link>
   );
 }

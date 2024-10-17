@@ -5,6 +5,7 @@ import ArchiveButton from "../ArchiveButton";
 
 import styles from "./styles.module.css";
 import Authors from '@/app/_components/Authors'
+import SocialLinks from "@/app/_components/SocialLinks";
 
 export default function PostSummary({ post }) {
   const { title, publishedAt, content, authors } = post;
@@ -25,7 +26,7 @@ export default function PostSummary({ post }) {
       <div className={styles.authorInfo}>
         <p className={styles.outline}>WRITTEN BY</p>
         <Authors authors={authors} />
-        Social Links
+        { authors.length === 1 && <SocialLinks socials={authors[0].socials}/>}
       </div>
     </div>
   );

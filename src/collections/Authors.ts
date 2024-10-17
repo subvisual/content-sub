@@ -52,7 +52,8 @@ export const Authors: CollectionConfig = {
     },
     {
       type: "group",
-      name: "Socials",
+      name: "socials",
+      label: 'Socials',
       fields: [
         {
           name: 'linkedIn',

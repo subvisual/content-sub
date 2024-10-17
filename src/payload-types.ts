@@ -561,7 +561,7 @@ export interface Author {
   authorName: string;
   role: string;
   bio: string;
-  Socials?: {
+  socials?: {
     linkedIn?:
       | {
           url?: string | null;
