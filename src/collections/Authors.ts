@@ -9,8 +9,8 @@ import { authenticated } from "@/access/authenticated";
 export const Authors: CollectionConfig = {
   slug: 'authors',
   admin: {
-    useAsTitle: 'name',
-    defaultColumns: ['name', 'role', 'slug'],
+    useAsTitle: 'authorName',
+    defaultColumns: ['authorName', 'role', 'slug'],
   },
   hooks: {
     beforeChange: [populatePublishedAt],
@@ -33,7 +33,8 @@ export const Authors: CollectionConfig = {
       },
     },
     {
-      name: 'name',
+      name: 'authorName',
+      label: 'Name',
       type: 'text',
       required: true,
     },
@@ -109,6 +110,6 @@ export const Authors: CollectionConfig = {
         ],
       },
     },
-    ...slugField(),
+    ...slugField('authorName'),
   ],
 }
