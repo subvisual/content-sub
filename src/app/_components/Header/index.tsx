@@ -19,6 +19,7 @@ export async function Header({ style = defaultStyle }) {
 
   return (
     <>
+      {/* @ts-ignore */}
       <header className={styles.container} style={style}>
         <div>
           <Logo />
