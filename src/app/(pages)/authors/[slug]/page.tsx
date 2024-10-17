@@ -12,8 +12,9 @@ import { Author } from "@/payload-types";
 export const dynamic = 'force-dynamic'
 
 const headerStyle = {
-  backgroundColor: 'var(--sub-purple-50)',
-  color: 'var(--dark-rock-800)'
+  '--dynamic-background': 'var(--sub-purple-50)',
+  '--dynamic-color': 'var(--dark-rock-800)',
+  '--dynamic-width': 'calc(100% - 40px)',
 }
 
 export default async function ContributorPage({ params: paramsPromise }) {

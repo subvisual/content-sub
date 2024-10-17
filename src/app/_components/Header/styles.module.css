@@ -22,6 +22,12 @@
   padding: 60px 20px 20px 20px;
   font-size: 20px;
   justify-content: space-between;
+  background-color: var(--dynamic-background);
+  color: var(--dynamic-color);
+}
+
+.container a {
+  color: var(--dynamic-color);
 }
 
 .navbar {
@@ -38,6 +44,7 @@
 @media (min-width: 1080px) {
 
   .container {
+    width: var(--dynamic-width);
     padding: 20px 40px 20px 80px;
     margin: auto;
   }

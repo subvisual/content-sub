@@ -5,8 +5,9 @@ import Logo from "@/app/_components/Header/Logo";
 import { fetchGlobals } from "@/app/_utilities/contentFetchers";
 
 const defaultStyle = {
-  backgroundColor: "transparent",
-  color: "var(--dark-rock-800)",
+  '--dynamic-background': "transparent",
+  '--dynamic-color': "var(--dark-rock-800)",
+  '--dynamic-width': '100%'
 };
 
 export async function Header({ style = defaultStyle }) {
@@ -27,12 +28,12 @@ export async function Header({ style = defaultStyle }) {
         <nav className={styles.navbar}>
           {navItems.map(({ link }, i) => {
             return (
-              <Link key={i} href={link.url} style={{color: style.color}}>
+              <Link key={i} href={link.url}>
                 {link.label}
               </Link>
             );
           })}
-          <Link href={"mailto:contact@subvisual.com"} className={styles.contactUsPill} style={{color: style.color}}>
+          <Link href={"mailto:contact@subvisual.com"} className={styles.contactUsPill}>
             CONTACT US
           </Link>
         </nav>

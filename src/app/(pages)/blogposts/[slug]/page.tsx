@@ -16,8 +16,9 @@ import { Blogpost } from "@/payload-types";
 import { Header } from "@/app/_components/Header";
 
 const headerStyle = {
-  backgroundColor: 'var(--sub-purple-400)',
-  color: 'var(--soft-white-100)'
+  '--dynamic-background': 'var(--sub-purple-400)',
+  '--dynamic-color': 'var(--soft-white-100)',
+  '--dynamic-width': 'calc(100% - 40px)',
 }
 
 export default async function BlogpostPage({ params: paramsPromise }) {

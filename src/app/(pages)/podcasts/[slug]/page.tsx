@@ -11,9 +11,11 @@ import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
 export const dynamic = 'force-dynamic'
 
 const headerStyle = {
-  backgroundColor: 'var(--sub-purple-400)',
-  color: 'var(--soft-white-100)'
+  '--dynamic-background': 'var(--sub-purple-400)',
+  '--dynamic-color': 'var(--soft-white-100)',
+  '--dynamic-width': 'calc(100% - 40px)',
 }
+
 export default async function PodcastEpisodesPage({params: paramsPromise}) {
   const { slug } = await paramsPromise
 
