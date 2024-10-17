@@ -8,6 +8,7 @@ import styles from './styles.module.css'
 import { Header } from "../../../_components/Header";
 import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
 import { Author } from "@/payload-types";
+import { Metadata } from "next";
 
 export const dynamic = 'force-dynamic'
 
@@ -34,4 +35,17 @@ export default async function ContributorPage({ params: paramsPromise }) {
 
     </div>
   )
+}
+
+export async function generateMetadata({ params: paramsPromise}): Promise<Metadata> {
+  const { slug } = await paramsPromise
+  const author = await fetchContentBySlug({
+    slug: slug,
+    type: "authors",
+  })
+
+  return {
+    // @ts-ignore
+    title: `Subvisual | ${author.name}`
+  }
 }
