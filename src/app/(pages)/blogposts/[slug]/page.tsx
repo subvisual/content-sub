@@ -13,6 +13,12 @@ import styles from "./styles.module.css";
 
 import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
 import { Blogpost } from "@/payload-types";
+import { Header } from "@/app/_components/Header";
+
+const headerStyle = {
+  backgroundColor: 'var(--sub-purple-400)',
+  color: 'var(--soft-white-100)'
+}
 
 export default async function BlogpostPage({ params: paramsPromise }) {
   const { slug } = await paramsPromise;
@@ -25,6 +31,7 @@ export default async function BlogpostPage({ params: paramsPromise }) {
 
   return (
     <div>
+      <Header style={headerStyle}/>
       <div className={styles.headContainer}>
         <BackButton className={styles.backButton} color={"var(--soft-white-100)"} />
         <PostSummary post={blogpost} />

@@ -2,6 +2,7 @@ import { fetchAllContentByType, fetchGlobals } from "@/app/_utilities/contentFet
 import HubContentGrid from "@/app/_blocks/HubContentGrid";
 import HubHead from "@/app/_blocks/HubHead";
 import SearchBar from "@/app/_components/SearchBar";
+import { Header } from "@/app/_components/Header";
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -20,6 +21,7 @@ export default async function Page() {
   return (
 
     <div>
+      <Header />
 
       <HubHead highlights={highlights} />
 
