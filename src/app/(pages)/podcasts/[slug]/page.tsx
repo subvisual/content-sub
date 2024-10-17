@@ -33,7 +33,8 @@ export default async function PodcastEpisodesPage({params: paramsPromise}) {
       <Header style={headerStyle} />
       <EpisodeHead episode={episode} />
       <EpisodeContent episode={episode} />
-      <RelatedContent content={episode} />
+      {/* @ts-ignore */}
+      {episode.related?.length > 0 && <RelatedContent content={episode} />}
       <Subscribe />
     </div>
   )
