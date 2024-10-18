@@ -15,6 +15,7 @@ import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
 import { Blogpost } from "@/payload-types";
 import { Header } from "@/app/_components/Header";
 import { Metadata } from "next";
+import { generateMeta } from "@/utilities/generateMeta";
 
 const headerStyle = {
   '--dynamic-background': 'var(--sub-purple-400)',
@@ -68,13 +69,11 @@ export default async function BlogpostPage({ params: paramsPromise }) {
 
 export async function generateMetadata({ params: paramsPromise}): Promise<Metadata> {
   const { slug } = await paramsPromise
-  const blogpost = await fetchContentBySlug({
+  const post = await fetchContentBySlug({
     slug: slug,
     type: "blogposts",
   })
+  // @ts-ignore
+  return generateMeta({doc: post})
 
-  return {
-    // @ts-ignore
-    title: `Subvisual | ${blogpost.title}`
-  }
 }
