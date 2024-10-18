@@ -171,7 +171,6 @@ export default buildConfig({
       collections: ['categories'],
     }),
     seoPlugin({
-      collections: ['authors', 'blogposts', 'podcasts', 'case-studies', 'talks-and-roundtables'],
       generateTitle,
       generateURL,
     }),
