@@ -1,12 +1,15 @@
-import Link from 'next/link'
-import styles from './styles.module.css'
+import Link from "next/link";
+import styles from "./styles.module.css";
 import { fetchGlobals } from "@/app/_utilities/contentFetchers";
 
 export async function Footer() {
-  const footer = await fetchGlobals('footer')
+  const footer = await fetchGlobals("footer");
+  // @ts-ignore
+  const navItems = footer?.navItems || [];
 
   // @ts-ignore
-  const navItems = footer?.navItems || []
+  const socials = await fetchGlobals("socials").then(res => res.navItems);
+
 
   return (
     <div className={styles.container}>
@@ -19,20 +22,26 @@ export async function Footer() {
                 <Link className={styles.link} key={i} href={link.url}>
                   {link.label}
                 </Link>
-              )
+              );
             })}
           </div>
         </div>
         <div>
           {/* TODO: Update fetchGlobals to include socials and then update here. */}
           <p className={styles.title}>We&#39;re Social</p>
-          {['Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md', 'Md'].map((item, i) => {
-            return <span style={{ marginRight: '20px' }}>{item}</span>
-          })}
+          {
+            socials.map((item) => (
+              <span>
+            <Link href={item.link.url} target={"_blank"} rel={"noopener noreferrer"}>
+            {item.link.label}
+          </Link>
+          </span>
+            ))
+          }
         </div>
         <div>
           <p className={styles.title}>Contact Us</p>
-          <a href={'mailto:contact@subvisual.com'}>
+          <a href={"mailto:contact@subvisual.com"}>
             <p>contact@subvisual.com</p>
           </a>
         </div>
@@ -46,5 +55,5 @@ export async function Footer() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

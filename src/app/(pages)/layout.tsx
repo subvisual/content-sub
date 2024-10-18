@@ -11,11 +11,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="https://cdn.prod.website-files.com/60fec5603634b635fcde315a/616efcb7df44b813d76f2e1e_favicon.png" sizes="32x32" />
+        <link rel="icon" href="https://raw.githubusercontent.com/subvisual/content-sub/refs/heads/main/public/media/sublogo.png" type="image/svg+xml" />
       </head>
       <body>
-        <Header />
+        {/*<Header />*/}
         {children}
         <Footer />
       </body>
@@ -25,9 +25,5 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'https://payloadcms.com'),
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@payloadcms',
-  },
   openGraph: mergeOpenGraph(),
 }

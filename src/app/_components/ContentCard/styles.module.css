@@ -10,6 +10,15 @@
   gap: 20px;
 }
 
+.contentMetaContainer h6 {
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+.contentMetaContainer h6:hover {
+  text-decoration: underline;
+}
+
 .dateAndDuration {
   display: flex;
   gap: 20px;

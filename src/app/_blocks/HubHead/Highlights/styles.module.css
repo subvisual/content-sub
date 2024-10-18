@@ -7,11 +7,19 @@
   padding: 30px 20px;
 }
 
+.highlights h6 {
+  text-transform: none;
+  transition: text-decoration 0.3s ease;
+}
+
+.highlights h6:hover {
+  text-decoration: underline;
+}
+
 .overline {
   font-size: var(--size-16);
   font-weight: 400;
   letter-spacing: 0.15rem;
-
 }
 
 .mainHighlight {
@@ -19,48 +27,41 @@
   color: var(--soft-white-100);
 }
 
+.mainHighlight a {
+  color: inherit; /* Keeps anchor color consistent with parent */
+}
+
 .secondaryHighlight {
   display: none;
 }
 
+/* Metadata container */
 .metadataContainer {
   display: flex;
+  flex-direction: column;
   gap: 30px;
-  align-items: center;
 }
 
 .readTime {
   display: flex;
-  flex-direction: row;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
 }
 
+.readTime svg {
+  margin-left: 20px;
+}
 
-/* Author pill*/
-
-.authorPill {
+.categories {
   display: flex;
   gap: 10px;
-  align-items: center;
-  background-color: var(--soft-white-100);
-  width: fit-content;
-  border-radius: 100px;
-  padding: 5px 15px 5px 5px;
-  color: var(--dark-rock-800);
-  font-size: var(--size-12);
-  font-family: var(--colfax);
 }
 
-.authorImage {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-}
-
+/* Responsive styles for larger screens */
 @media (min-width: 1024px) {
 
-  .mainHighlight {
+  .mainHighlight,
+  .secondaryHighlight {
     grid-column: 2;
   }
 
@@ -70,6 +71,5 @@
     gap: 20px;
     border-radius: 45px;
     border: 1px solid var(--dark-rock-800);
-    grid-column: 2;
   }
 }

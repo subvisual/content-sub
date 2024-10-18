@@ -8,7 +8,7 @@ export function Subscribe() {
       <div className={styles.imageContainer}>
         <Image width={'10'} height={'10'}
           className={styles.image}
-          src={'/subscribe-card-image.png'}
+          src={'https://raw.githubusercontent.com/subvisual/content-sub/refs/heads/main/public/media/subscribe-card-image.png'}
           alt={'subscribe card image'}
         />
       </div>

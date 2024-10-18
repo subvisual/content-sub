@@ -6,7 +6,7 @@ import styles from './styles.module.css'
 import Contributors from '@/app/_blocks/EpisodeContent/Contributors'
 import ListenOn from '@/app/_blocks/EpisodeContent/ListenOn'
 import RSSFeed from '@/app/_blocks/EpisodeContent/RSSFeed'
-import AuthorPill from '@/app/_components/AuthorPill'
+
 import Categories from '@/app/_components/Categories'
 import Share from '@/app/_components/Share'
 
