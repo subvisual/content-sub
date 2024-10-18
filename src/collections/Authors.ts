@@ -21,14 +21,6 @@ export const Authors: CollectionConfig = {
           slug: typeof data?.slug === "string" ? data.slug : "",
           collection: "authors",
         });
-
-        console.log(`
-        PATH IS
-
-        ${path}
-
-        `)
-
         return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
       },
     },
