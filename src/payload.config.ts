@@ -1,7 +1,5 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-
-import { payloadCloudPlugin } from '@payloadcms/plugin-cloud'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
@@ -23,18 +21,12 @@ import { fileURLToPath } from 'url'
 
 import Categories from './collections/Categories'
 import { Media } from './collections/Media'
-import { Pages } from './collections/Pages'
-import { Posts } from './collections/Posts'
 import Users from './collections/Users'
-import { seedHandler } from './endpoints/seedHandler'
 import { Footer } from '@/Globals/Footer/config'
 import { Header } from '@/Globals/Header/config'
 import { revalidateRedirects } from './hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
-import { Author, Blogpost, CaseStudy, Page, Podcast, Post, TalksAndRoundtable } from "src/payload-types";
-
-import { searchFields } from '@/search/fieldOverrides'
-import { beforeSyncWithSearch } from '@/search/beforeSync'
+import { Author, Blogpost, CaseStudy, Podcast, TalksAndRoundtable } from "src/payload-types";
 import { Blogposts } from "@/collections/Blogposts";
 import { Authors } from "@/collections/Authors";
 import { CaseStudies } from "@/collections/CaseStudies";
@@ -134,15 +126,6 @@ export default buildConfig({
   collections: [Media, Categories, Users, Authors, Blogposts, Podcasts, TalksAndRoundtables, CaseStudies],
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  endpoints: [
-    // The seed endpoint is used to populate the database with some example data
-    // You should delete this endpoint before deploying your site to production
-    {
-      handler: seedHandler,
-      method: 'get',
-      path: '/seed',
-    },
-  ],
   globals: [Header, Footer, Socials, HomePageSettings],
   plugins: [
     redirectsPlugin({

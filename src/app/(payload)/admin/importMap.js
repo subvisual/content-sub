@@ -7,12 +7,12 @@ import { UnderlineFeatureClient as UnderlineFeatureClient_5 } from '@payloadcms/
 import { BoldFeatureClient as BoldFeatureClient_6 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_7 } from '@payloadcms/richtext-lexical/client'
 import { LinkFeatureClient as LinkFeatureClient_8 } from '@payloadcms/richtext-lexical/client'
-import { OverviewComponent as OverviewComponent_9 } from '@payloadcms/plugin-seo/client'
-import { MetaTitleComponent as MetaTitleComponent_10 } from '@payloadcms/plugin-seo/client'
-import { MetaDescriptionComponent as MetaDescriptionComponent_11 } from '@payloadcms/plugin-seo/client'
-import { PreviewComponent as PreviewComponent_12 } from '@payloadcms/plugin-seo/client'
-import { SlugComponent as SlugComponent_13 } from '@/fields/slug/SlugComponent'
-import { MetaImageComponent as MetaImageComponent_14 } from '@payloadcms/plugin-seo/client'
+import { SlugComponent as SlugComponent_9 } from '@/fields/slug/SlugComponent'
+import { OverviewComponent as OverviewComponent_10 } from '@payloadcms/plugin-seo/client'
+import { MetaTitleComponent as MetaTitleComponent_11 } from '@payloadcms/plugin-seo/client'
+import { MetaImageComponent as MetaImageComponent_12 } from '@payloadcms/plugin-seo/client'
+import { MetaDescriptionComponent as MetaDescriptionComponent_13 } from '@payloadcms/plugin-seo/client'
+import { PreviewComponent as PreviewComponent_14 } from '@payloadcms/plugin-seo/client'
 import { HorizontalRuleFeatureClient as HorizontalRuleFeatureClient_15 } from '@payloadcms/richtext-lexical/client'
 import { UploadFeatureClient as UploadFeatureClient_16 } from '@payloadcms/richtext-lexical/client'
 import { BlockquoteFeatureClient as BlockquoteFeatureClient_17 } from '@payloadcms/richtext-lexical/client'
@@ -41,12 +41,12 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_6,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_7,
   "@payloadcms/richtext-lexical/client#LinkFeatureClient": LinkFeatureClient_8,
-  "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_9,
-  "@payloadcms/plugin-seo/client#MetaTitleComponent": MetaTitleComponent_10,
-  "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_11,
-  "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_12,
-  "@/fields/slug/SlugComponent#SlugComponent": SlugComponent_13,
-  "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_14,
+  "@/fields/slug/SlugComponent#SlugComponent": SlugComponent_9,
+  "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_10,
+  "@payloadcms/plugin-seo/client#MetaTitleComponent": MetaTitleComponent_11,
+  "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_12,
+  "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_13,
+  "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_14,
   "@payloadcms/richtext-lexical/client#HorizontalRuleFeatureClient": HorizontalRuleFeatureClient_15,
   "@payloadcms/richtext-lexical/client#UploadFeatureClient": UploadFeatureClient_16,
   "@payloadcms/richtext-lexical/client#BlockquoteFeatureClient": BlockquoteFeatureClient_17,
