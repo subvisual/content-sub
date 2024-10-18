@@ -1,5 +1,22 @@
-.authorPill {
+/* General Styles */
+.authorImage {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  transition: 0.5s ease;
+}
+
+.socials {
   display: flex;
+  gap: 16px;
+}
+
+/* Author Pills */
+.authorPill,
+.twoAuthorPill {
+  display: flex;
+  position: relative;
   gap: 10px;
   align-items: center;
   background-color: var(--soft-white-100);
@@ -13,23 +30,25 @@
   transition: 0.5s ease;
 }
 
-.authorImage {
-  position: relative;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  transition: 0.5s ease;
-}
-
-.authorPill:hover {
+.authorPill:hover,
+.twoAuthorPill:hover {
   color: #C1C1C1;
 }
 
-.authorPill:hover .authorImage {
+.authorPill:hover .authorImage,
+.twoAuthorPill:hover .authorImage {
   opacity: 0.5;
 }
 
-.socials {
-  display: flex;
-  gap: 16px;
+/* Multiple Authors */
+.authorTwo,
+.authorThree {
+  margin-left: -20px;
+}
+
+@media (min-width: 1024px) {
+  .authorImage {
+    position: relative;
+  }
+
 }
