@@ -6,19 +6,46 @@ import { slugField } from "@/fields/slug";
 import { populatePublishedAt } from "@/hooks/populatePublishedAt";
 import { authenticated } from "@/access/authenticated";
 import { link } from "@/fields/link";
+import { generatePreviewPath } from "@/utilities/generatePreviewPath";
+import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
+import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from "@payloadcms/plugin-seo/fields";
 
 export const Authors: CollectionConfig = {
   slug: "authors",
   admin: {
     useAsTitle: "authorName",
     defaultColumns: ["authorName", "role", "slug"],
+    livePreview: {
+      url: ({ data }) => {
+        const path = generatePreviewPath({
+          slug: typeof data?.slug === "string" ? data.slug : "",
+          collection: "authors",
+        });
+
+        console.log(`
+        PATH IS
+
+        ${path}
+
+        `)
+
+        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
+      },
+    },
+    preview: (data) => {
+      const path = generatePreviewPath({
+        slug: typeof data?.slug === "string" ? data.slug : "",
+        collection: "authors",
+      });
+      return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
+    },
   },
   hooks: {
     beforeChange: [populatePublishedAt],
   },
   versions: { drafts: true },
   access: {
-    read: anyone,
+    read: authenticatedOrPublished,
     update: anyone,
     create: authenticated,
     delete: authenticated,
@@ -123,5 +150,36 @@ export const Authors: CollectionConfig = {
       },
     },
     ...slugField("authorName"),
+    {
+      name: "meta",
+      type: "group",
+      label: "SEO",
+      admin: {
+        position: "sidebar",
+      },
+      fields: [
+        OverviewField({
+          titlePath: "meta.title",
+          descriptionPath: "meta.description",
+          imagePath: "meta.image",
+        }),
+        MetaTitleField({
+          hasGenerateFn: true,
+        }),
+        MetaImageField({
+          relationTo: "media",
+        }),
+
+        MetaDescriptionField({}),
+        PreviewField({
+          // if the `generateUrl` function is configured
+          hasGenerateFn: true,
+
+          // field paths to match the target field for data
+          titlePath: "meta.title",
+          descriptionPath: "meta.description",
+        }),
+      ],
+    },
   ],
 };
