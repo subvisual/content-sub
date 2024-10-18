@@ -17,6 +17,7 @@ import CategoryPill from "../CategoryPill";
 import FeaturedImage from "../FeaturedImage";
 import styles from "./styles.module.css";
 import Authors from "@/app/_components/Authors";
+import { AuthorPill } from "@/app/_components/AuthorPill";
 
 interface ContentSummaryProps {
   contentType: string;
@@ -76,7 +77,7 @@ export default function ContentCard({ contentType, content, rounded }: ContentSu
               </span>
           )}
         </div>
-        <Authors authors={authors} />
+        <AuthorPill authors={authors} />
       </div>
 
     </div>
