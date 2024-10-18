@@ -1,7 +1,5 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-
-import { payloadCloudPlugin } from '@payloadcms/plugin-cloud'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
@@ -23,18 +21,12 @@ import { fileURLToPath } from 'url'
 
 import Categories from './collections/Categories'
 import { Media } from './collections/Media'
-import { Pages } from './collections/Pages'
-import { Posts } from './collections/Posts'
 import Users from './collections/Users'
-import { seedHandler } from './endpoints/seedHandler'
 import { Footer } from '@/Globals/Footer/config'
 import { Header } from '@/Globals/Header/config'
 import { revalidateRedirects } from './hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
-import { Page, Post } from 'src/payload-types'
-
-import { searchFields } from '@/search/fieldOverrides'
-import { beforeSyncWithSearch } from '@/search/beforeSync'
+import { Author, Blogpost, CaseStudy, Podcast, TalksAndRoundtable } from "src/payload-types";
 import { Blogposts } from "@/collections/Blogposts";
 import { Authors } from "@/collections/Authors";
 import { CaseStudies } from "@/collections/CaseStudies";
@@ -48,11 +40,12 @@ import { Socials } from "@/collections/Globals/Socials/config";
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+const generateTitle: GenerateTitle<Blogpost | Podcast | Author | CaseStudy | TalksAndRoundtable> = ({ doc }) => {
+  // @ts-ignore
+  return doc?.title ? `Subvisual | ${doc.title}` : 'Payload Website Template'
 }
 
-const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
+const generateURL: GenerateURL<Blogpost | Podcast | Author | CaseStudy | TalksAndRoundtable> = ({ doc }) => {
   return doc?.slug
     ? `${process.env.NEXT_PUBLIC_SERVER_URL!}/${doc.slug}`
     : process.env.NEXT_PUBLIC_SERVER_URL!
@@ -103,7 +96,7 @@ export default buildConfig({
         BoldFeature(),
         ItalicFeature(),
         LinkFeature({
-          enabledCollections: ['pages', 'posts'],
+          enabledCollections: ['blogposts', 'podcasts', 'case-studies', 'talks-and-roundtables'],
           fields: ({ defaultFields }) => {
             const defaultFieldsWithoutUrl = defaultFields.filter((field) => {
               if ('name' in field && field.name === 'url') return false
@@ -130,22 +123,13 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Authors, Blogposts, Podcasts, TalksAndRoundtables, CaseStudies],
+  collections: [Media, Categories, Users, Authors, Blogposts, Podcasts, TalksAndRoundtables, CaseStudies],
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
-  endpoints: [
-    // The seed endpoint is used to populate the database with some example data
-    // You should delete this endpoint before deploying your site to production
-    {
-      handler: seedHandler,
-      method: 'get',
-      path: '/seed',
-    },
-  ],
   globals: [Header, Footer, Socials, HomePageSettings],
   plugins: [
     redirectsPlugin({
-      collections: ['pages', 'posts'],
+      collections: ['authors', 'blogposts', 'podcasts', 'talks-and-roundtables', 'case-studies'],
       overrides: {
         // @ts-expect-error
         fields: ({ defaultFields }) => {
@@ -199,15 +183,16 @@ export default buildConfig({
         },
       },
     }),
-    searchPlugin({
-      collections: ['posts'],
-      beforeSync: beforeSyncWithSearch,
-      searchOverrides: {
-        fields: ({ defaultFields }) => {
-          return [...defaultFields, ...searchFields]
-        },
-      },
-    }),
+    // Disabling for the time being
+    // searchPlugin({
+    //   collections: ['blogposts', 'podcasts', 'talks-and-roundtables', 'authors', 'case-studies'],
+    //   beforeSync: beforeSyncWithSearch,
+    //   searchOverrides: {
+    //     fields: ({ defaultFields }) => {
+    //       return [...defaultFields, ...searchFields]
+    //     },
+    //   },
+    // }),
     cloudStoragePlugin({
       enabled: true,
       collections: {

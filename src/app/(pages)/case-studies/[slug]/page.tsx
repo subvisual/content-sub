@@ -3,6 +3,10 @@
 //
 // import { fetchDoc } from '../../../_api/fetchDoc'
 
+import { Metadata } from "next";
+import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
+import { generateMeta } from "@/utilities/generateMeta";
+
 export const dynamic = 'force-dynamic'
 
 export default async function CaseStudiesPage() {
@@ -24,4 +28,14 @@ export default async function CaseStudiesPage() {
       {/*<pre>{JSON.stringify(content, null, 2)}</pre>*/}
     </div>
   )
+}
+
+export async function generateMetadata({ params: paramsPromise}): Promise<Metadata> {
+  const { slug } = await paramsPromise
+  const caseStudy = await fetchContentBySlug({
+    slug: slug,
+    type: "podcasts",
+  })
+  // @ts-ignore
+  return generateMeta({doc: caseStudy})
 }

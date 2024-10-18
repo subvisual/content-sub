@@ -16,12 +16,12 @@ import ArchiveButton from "../ArchiveButton";
 import CategoryPill from "../CategoryPill";
 import FeaturedImage from "../FeaturedImage";
 import styles from "./styles.module.css";
-import Authors from "@/app/_components/Authors";
 import { AuthorPill } from "@/app/_components/AuthorPill";
 
 interface ContentSummaryProps {
   contentType: string;
-  content: Blogpost | Podcast | CaseStudy | TalksAndRoundtable; // TODO: Extend to CaseStudy and TalksAndRoundTables once consistency is assured
+  content: Blogpost | Podcast | CaseStudy | TalksAndRoundtable;
+  rounded: boolean;
 }
 
 const archiveMap = {
@@ -31,17 +31,19 @@ const archiveMap = {
   TalksAndRoundtables: "talks-and-roundtables",
 };
 
-export default function ContentCard({ contentType, content }: ContentSummaryProps) {
+export default function ContentCard({ contentType, content, rounded }: ContentSummaryProps) {
   const { slug, title, summary, featuredImage, categories, publishedAt, authors } = content;
+  const borderStyle = {
+    '--dynamic-border': rounded ? '45px' : ''
+  }
 
   // todo: convert to a collection item property
   const readTime = estimateReadTime("herpaderpa");
 
 
   return (
-    <div className={styles.contentCard}>
-
-
+    // @ts-ignore
+    <div className={styles.contentCard} style={borderStyle}>
       <div className={styles.contentMetaContainer}>
         <Link href={`/${toKebabCase(contentType)}/${slug}`}>
         {featuredImage && (

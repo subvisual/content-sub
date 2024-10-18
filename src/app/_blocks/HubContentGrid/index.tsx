@@ -46,11 +46,7 @@ export default function HubContentGrid({ content }) {
         <div className={styles.contentGrid}>
           {filteredContent.map((article, i) => (
             <div className={styles.contentCard}>
-              <ContentCard
-
-                contentType={article.contentType}
-                content={article.content}
-              />
+              <ContentCard contentType={article.contentType} content={article.content} rounded={false} />
             </div>
           ))}
         </div>

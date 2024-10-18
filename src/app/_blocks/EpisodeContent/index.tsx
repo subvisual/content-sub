@@ -33,7 +33,7 @@ export default function EpisodeContent({ episode }) {
       <div className={styles.sharingAndCategories}>
         <hr/>
         <Share />
-        <Categories categories={categories} />
+        {categories && <Categories categories={categories} />}
         <RSSFeed className={styles.RSSFeed} />
       </div>
     </div>

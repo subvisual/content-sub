@@ -9,6 +9,7 @@ import { Header } from "../../../_components/Header";
 import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
 import { Author } from "@/payload-types";
 import { Metadata } from "next";
+import { generateMeta } from "@/utilities/generateMeta";
 
 export const dynamic = 'force-dynamic'
 
@@ -43,9 +44,7 @@ export async function generateMetadata({ params: paramsPromise}): Promise<Metada
     slug: slug,
     type: "authors",
   })
+  // @ts-ignore
+  return generateMeta({doc: author})
 
-  return {
-    // @ts-ignore
-    title: `Subvisual | ${author.name}`
-  }
 }

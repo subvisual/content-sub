@@ -2,6 +2,10 @@
 //
 // import { fetchDoc } from '../../../_api/fetchDoc'
 
+import { Metadata } from "next";
+import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
+import { generateMeta } from "@/utilities/generateMeta";
+
 export const dynamic = 'force-dynamic'
 
 export default async function TalksAndRoundTablesPage() {
@@ -24,4 +28,14 @@ export default async function TalksAndRoundTablesPage() {
       <pre>{JSON.stringify(content, null, 2)}</pre>*/}
     </div>
   )
+}
+
+export async function generateMetadata({ params: paramsPromise}): Promise<Metadata> {
+  const { slug } = await paramsPromise
+  const talk = await fetchContentBySlug({
+    slug: slug,
+    type: "talks-and-roundtables",
+  })
+  // @ts-ignore
+  return generateMeta({doc: talk})
 }

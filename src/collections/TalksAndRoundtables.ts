@@ -27,7 +27,6 @@ export const TalksAndRoundtables: CollectionConfig = {
       name: 'summary',
       type: 'textarea',
       required: true,
-      maxLength: 250,
     },
     {
       name: 'categories',
@@ -76,7 +75,6 @@ export const TalksAndRoundtables: CollectionConfig = {
       label: 'Featured Image',
       type: 'upload',
       relationTo: 'media',
-      required: true,
       admin: {
         position: 'sidebar',
       },
