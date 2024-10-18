@@ -5,6 +5,7 @@ import ArchiveButton from "../ArchiveButton";
 
 import styles from "./styles.module.css";
 import Authors from '@/app/_components/Authors'
+import { AuthorPill } from "@/app/_components/AuthorPill";
 
 export default function PostSummary({ post }) {
   const { title, publishedAt, content, authors } = post;
@@ -24,7 +25,7 @@ export default function PostSummary({ post }) {
       {/* Author info */}
       <div className={styles.authorInfo}>
         <p className={styles.outline}>WRITTEN BY</p>
-        <Authors authors={authors} />
+        <AuthorPill authors={authors} />
         Social Links
       </div>
     </div>
