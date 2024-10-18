@@ -4,7 +4,6 @@ import { formatDateTime } from "../../_utilities/formatDateTime";
 import ArchiveButton from "../ArchiveButton";
 
 import styles from "./styles.module.css";
-import Authors from '@/app/_components/Authors'
 import SocialLinks from "@/app/_components/SocialLinks";
 import { AuthorPill } from "@/app/_components/AuthorPill";
 
