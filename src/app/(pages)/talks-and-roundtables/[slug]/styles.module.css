@@ -39,8 +39,11 @@
 }
 
 .sharingAndCategories {
+  display: flex;
+  flex-direction: column;
   grid-row-start: 2;
-
+  padding-left: 20px;
+  gap: 30px;
 }
 
 .videoPlayer {
@@ -101,9 +104,14 @@
   }
 
   .sharingAndCategories {
+    display: flex;
+    flex-direction: column;
     justify-content: left;
     padding-left: 40px;
+    padding-top: 40px;
+    gap: 40px;
     grid-column: 3 / 3;
+    grid-row: 1 / 1;
   }
 
 

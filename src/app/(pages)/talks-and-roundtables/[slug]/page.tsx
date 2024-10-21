@@ -31,8 +31,10 @@ export default async function TalksAndRoundTablesPage({ params: paramsPromise })
       <div className={styles.headContainer}>
         <BackButton color={"var(--soft-white-100)"} />
         <ArchiveButton collection={"talks-and-roundtables"} color={"var(--soft-white-100)"} />
+        {/* @ts-ignore */}
         <h5>{talk.title}</h5>
         <p>
+          {/* @ts-ignore */}
           {formatDateTime(talk.publishedAt)}
           <span>Duration in mins</span>
         </p>
@@ -42,9 +44,10 @@ export default async function TalksAndRoundTablesPage({ params: paramsPromise })
 
         {/* Contributors column*/}
         <div className={styles.contributors}>
-          <p className={'overline'}>
+          <p className={"overline"}>
             CONTRIBUTORS
           </p>
+          {/* @ts-ignore */}
           {talk.authors.map((author) => (
             <>
               <AuthorPill author={author} />
@@ -69,13 +72,16 @@ export default async function TalksAndRoundTablesPage({ params: paramsPromise })
             ></iframe>
           )}
           <h5>About</h5>
+          {/* @ts-ignore */}
           <p>{talk.summary}</p>
         </div>
 
         {/*  Share & categories column */}
         <div className={styles.sharingAndCategories}>
           <Share />
+          {/* @ts-ignore */}
           {talk.categories.length > 0 && (
+            // @ts-ignore
             <Categories categories={talk.categories} />
           )}
         </div>
