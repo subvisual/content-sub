@@ -1,4 +1,4 @@
-import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from "@payloadcms/richtext-lexical";
+import { BlocksFeature, FixedToolbarFeature, HeadingFeature, HorizontalRuleFeature, HTMLConverterFeature, InlineToolbarFeature, lexicalEditor, lexicalHTML } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 
 import { slugField } from "@/fields/slug";
@@ -14,6 +14,8 @@ import {
   PreviewField,
 } from "@payloadcms/plugin-seo/fields";
 import { generatePreviewPath } from "@/utilities/generatePreviewPath";
+import { Banner } from "@payloadcms/ui/elements/Banner";
+import { Code } from "@/blocks/Code/config";
 
 export const Blogposts: CollectionConfig = {
   slug: "blogposts",
@@ -73,7 +75,14 @@ export const Blogposts: CollectionConfig = {
       type: "richText",
       required: true,
       editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [...defaultFeatures, HTMLConverterFeature({})],
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          HeadingFeature({ enabledHeadingSizes: ["h1", "h2", "h3", "h4"] }),
+          BlocksFeature({ blocks: [Code] }),
+          FixedToolbarFeature(),
+          InlineToolbarFeature(),
+          HorizontalRuleFeature(),
+          HTMLConverterFeature({})],
       }),
     },
     lexicalHTML("content", { name: "content_html" }),
