@@ -4,3 +4,16 @@
   line-height: 2em;
 }
 
+.rich-text-lexical h1 {
+  font-size: var(--size-40);
+}
+
+.rich-text-lexical h2,
+.rich-text-lexical h3,
+.rich-text-lexical h4,
+.rich-text-lexical h5,
+.rich-text-lexical h6 {
+  font-size: var(--size-28);
+
+}
+
