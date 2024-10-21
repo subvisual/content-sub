@@ -21,7 +21,7 @@ export function RelatedContent({ content }) {
           >
             {content.related.map((contentPiece, i) => (
               <div style={{width: '400px'}}>
-                <ContentCard contentType={"Blogposts"} content={contentPiece} rounded={true} />
+                <ContentCard contentType={"Blogposts"} content={contentPiece} rounded />
               </div>
             ))}
           </div>

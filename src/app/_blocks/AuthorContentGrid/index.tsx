@@ -18,7 +18,7 @@ export default function AuthorContentGrid({ content }) {
       <div className={styles.contentGrid}>
         {Object.keys(content).map(key =>
           content[key].map((contentPiece, i) => (
-            <ContentCard contentType={key} content={contentPiece} rounded={true}/>
+            <ContentCard contentType={key} content={contentPiece} rounded/>
           )),
         )}
       </div>
