@@ -35,14 +35,15 @@ import { Page, Post } from 'src/payload-types'
 
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
-import { Blogposts } from "@/collections/Blogposts/Blogposts";
+import { Blogposts } from "@/collections/Blogposts";
 import { Authors } from "@/collections/Authors";
 import { CaseStudies } from "@/collections/CaseStudies";
-import { Podcasts } from "@/collections/Podcasts/Podcasts";
+import { Podcasts } from "@/collections/Podcasts";
 import { TalksAndRoundtables } from "@/collections/TalksAndRoundtables";
 import { HomePageSettings } from "@/Globals/HubHighlights/config";
 import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
 import { testAdapt } from "@/collections/Media/storageAdapter";
+import { Socials } from "@/collections/Globals/Socials/config";
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -141,7 +142,7 @@ export default buildConfig({
       path: '/seed',
     },
   ],
-  globals: [Header, Footer, HomePageSettings],
+  globals: [Header, Footer, Socials, HomePageSettings],
   plugins: [
     redirectsPlugin({
       collections: ['pages', 'posts'],
