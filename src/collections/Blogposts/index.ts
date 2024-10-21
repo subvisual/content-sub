@@ -67,7 +67,7 @@ export const Blogposts: CollectionConfig = {
       name: "summary",
       type: "textarea",
       required: true,
-      maxLength: 250,
+      maxLength: 1000,
     },
     {
       name: "content",
