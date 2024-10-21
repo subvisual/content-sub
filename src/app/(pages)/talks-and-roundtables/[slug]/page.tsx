@@ -1,27 +1,20 @@
-// import { notFound } from 'next/navigation'
-//
-// import { fetchDoc } from '../../../_api/fetchDoc'
+import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
 
 export const dynamic = 'force-dynamic'
 
-export default async function TalksAndRoundTablesPage() {
- /* let content = null
 
-  try {
-    content = await fetchDoc({
-      collection: 'talks-and-roundtables',
-      slug: slug,
-    })
-  } catch (err) {}
 
-  if (!content) {
-    notFound()
-  }
-*/
+export default async function TalksAndRoundTablesPage({params : paramsPromise}) {
+  const { slug } = await paramsPromise
+  const talk = await fetchContentBySlug({
+    slug: slug,
+    type: 'talks-and-roundtables',
+  })
+
+
   return (
     <div>
-      {/*Hello, world!
-      <pre>{JSON.stringify(content, null, 2)}</pre>*/}
+      {/*<pre>{JSON.stringify(talk, null, 2)}</pre>*!/*/}
     </div>
   )
 }
