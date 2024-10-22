@@ -10,13 +10,13 @@ export const HomePageSettings: GlobalConfig = {
         name: "mainHighlight",
         label: "Main Highlight",
         type: "relationship",
-        relationTo: "blogposts",
+        relationTo: ["blogposts", 'podcasts', 'talks-and-roundtables'],
       },
       {
         name: "secondaryHighlight",
         label: "Secondary Highlight",
         type: "relationship",
-        relationTo: "blogposts",
+        relationTo: ["blogposts", 'podcasts', 'talks-and-roundtables'],
       },
     ],
   }
