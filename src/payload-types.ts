@@ -466,8 +466,32 @@ export interface Social {
  */
 export interface HomepageSetting {
   id: string;
-  mainHighlight?: (string | null) | Blogpost;
-  secondaryHighlight?: (string | null) | Blogpost;
+  mainHighlight?:
+    | ({
+        relationTo: 'blogposts';
+        value: string | Blogpost;
+      } | null)
+    | ({
+        relationTo: 'podcasts';
+        value: string | Podcast;
+      } | null)
+    | ({
+        relationTo: 'talks-and-roundtables';
+        value: string | TalksAndRoundtable;
+      } | null);
+  secondaryHighlight?:
+    | ({
+        relationTo: 'blogposts';
+        value: string | Blogpost;
+      } | null)
+    | ({
+        relationTo: 'podcasts';
+        value: string | Podcast;
+      } | null)
+    | ({
+        relationTo: 'talks-and-roundtables';
+        value: string | TalksAndRoundtable;
+      } | null);
   updatedAt?: string | null;
   createdAt?: string | null;
 }
