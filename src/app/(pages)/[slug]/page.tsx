@@ -29,7 +29,7 @@ export default async function Page() {
       <HubHead highlights={highlights} />
 
       {/* Search Bar*/}
-      <SearchBar />
+      <SearchBar currentContent={content}/>
 
 
       {/* Content Grid*/}
