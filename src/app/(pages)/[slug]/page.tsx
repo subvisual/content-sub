@@ -29,7 +29,7 @@ export default async function Page() {
       <HubHead highlights={highlights} />
 
       {/* Search Bar*/}
-      <SearchBar currentContent={content}/>
+      <SearchBar currentContent={content} highlights={highlights}/>
 
 
       {/* Content Grid*/}
@@ -37,24 +37,4 @@ export default async function Page() {
 
     </div>
   );
-}
-
-export function generateMetadata(): Metadata {
-  return {
-    title: 'Styleguide Page',
-    description: 'A guide to various styles in our application.',
-    openGraph: {
-      title: 'Styleguide Open Graph Title',
-      description: 'This is the Open Graph description for the Styleguide page.',
-      url: 'https://example.com/styleguide',
-      images: [
-        {
-          url: 'https://example.com/og-image.jpg',
-          width: 800,
-          height: 600,
-          alt: 'Og Image Alt Text',
-        },
-      ],
-    },
-  };
 }
