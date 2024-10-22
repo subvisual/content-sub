@@ -16,8 +16,8 @@ import { Header } from "@/app/_components/Header";
 export const dynamic = "force-dynamic";
 
 const headerStyle = {
-  '--dynamic-background': 'var(--sub-purple-50)',
-  '--dynamic-color': 'var(--dark-rock-800)',
+  '--dynamic-background': 'var(--sub-purple-400)',
+  '--dynamic-color': 'var(--soft-white-100)',
   '--dynamic-width': 'calc(100% - 40px)',
 }
 
