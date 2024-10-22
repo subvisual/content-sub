@@ -49,13 +49,20 @@ const fuseOptions = {
   ],
 };
 
-export default function SearchBar({ currentContent }) {
+export default function SearchBar({ currentContent, highlights }) {
 
   const [filteredContent, setFilteredContent] = useState(filterContent({ articles: currentContent, filter: "All" }));
 
   const [isActive, setIsActive] = useState(false);
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
+  const mostRecent = filteredContent.sort((a, b) =>
+    // @ts-ignore
+    b.content.publishedAt - a.content.publishedAt)
+    .slice(0, 3)
+    .map(article => article.content.title);
+
 
   const dynamicBorder = {
     "--dynamic-border-radius": isActive ? "0px" : "100px",
@@ -79,7 +86,6 @@ export default function SearchBar({ currentContent }) {
 
   return (
     <div className={styles.container}>
-      {/*{<pre>{JSON.stringify(filteredContent, null, 2)}</pre>}*/}
       <div className={styles.searchBar} style={dynamicBorder}>
         <MagnifyingGlass />
         <input
@@ -96,19 +102,44 @@ export default function SearchBar({ currentContent }) {
 
         <div className={styles.searchSuggestions}>
           <p>Suggestions</p>
-          <p>To be populated with latest content</p>
+          {mostRecent && mostRecent.map((article) => (
+            <p onClick={() => setQuery(article)}>{article}</p>
+
+          ))}
 
         </div>
-        <p>Results</p>
-        <div className={styles.searchResults}>
-          {searchResults.map((item, i) => (
-            <MicroContentCard article={item.item} />
-          ))}
-        </div>
+
+
+        {/*
+        Render results if and only if there are search results to show
+        Otherwise render the highlights as mini cards and the most recent
+        contents as search term suggestions
+        */}
+        {searchResults.length > 0 ? (
+          <>
+            <p>Results</p>
+            <div className={styles.searchResults}>
+
+              {searchResults.map((item, i) => (
+                <MicroContentCard article={item.item} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <p>Recommended</p>
+            {/*<MicroContentCard article={highlights['mainHighlight']} />*/}
+
+
+          </>
+        )
+
+        }
 
 
       </div>
     </div>
 
-  );
+  )
+    ;
 }
