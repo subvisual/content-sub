@@ -77,7 +77,7 @@ export default function ContentNavBar({
             activeButton === 'CaseStudies' ? 'var(--dark-rock-800)' : 'var(--soft-white-100)'
           }
         />
-      </button>
+      </button>*/}
       <button
         className={`${styles.button} ${styles.talksButton} ${
           activeButton === 'TalksAndRoundtables' ? styles.activeButton : ''
@@ -96,7 +96,7 @@ export default function ContentNavBar({
               : 'var(--soft-white-100)'
           }
         />
-      </button>*/}
+      </button>
     </div>
   )
 }

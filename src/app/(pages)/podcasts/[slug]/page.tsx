@@ -8,6 +8,7 @@ import { Subscribe } from '../../../_blocks/Subscribe'
 import { Header } from '@/app/_components/Header'
 import { fetchContentBySlug } from "@/app/_utilities/contentFetchers";
 import { Metadata } from "next";
+import { generateMeta } from "@/utilities/generateMeta";
 
 export const dynamic = 'force-dynamic'
 
@@ -33,7 +34,8 @@ export default async function PodcastEpisodesPage({params: paramsPromise}) {
       <Header style={headerStyle} />
       <EpisodeHead episode={episode} />
       <EpisodeContent episode={episode} />
-      <RelatedContent content={episode} />
+      {/* @ts-ignore */}
+      {episode.related?.length > 0 && <RelatedContent content={episode} />}
       <Subscribe />
     </div>
   )
@@ -41,14 +43,10 @@ export default async function PodcastEpisodesPage({params: paramsPromise}) {
 
 export async function generateMetadata({ params: paramsPromise}): Promise<Metadata> {
   const { slug } = await paramsPromise
-  const podcast = await fetchContentBySlug({
+  const episode = await fetchContentBySlug({
     slug: slug,
     type: "podcasts",
   })
-
-  return {
-    // @ts-ignore
-    title: `Subvisual | ${podcast.title}`,
-
-  }
+  // @ts-ignore
+  return generateMeta({doc: episode})
 }

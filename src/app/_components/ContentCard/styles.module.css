@@ -2,6 +2,7 @@
   padding: 30px 20px;
   height: min-content;
   border: 1px solid var(--dark-rock-800);
+  border-radius: var(--dynamic-border);
 }
 
 .contentMetaContainer {

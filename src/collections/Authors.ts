@@ -1,114 +1,177 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload";
 
-import { anyone } from '@/access/anyone'
-import { slugField } from '@/fields/slug'
+import { anyone } from "@/access/anyone";
+import { slugField } from "@/fields/slug";
 
-import { populatePublishedAt } from '@/hooks/populatePublishedAt'
+import { populatePublishedAt } from "@/hooks/populatePublishedAt";
 import { authenticated } from "@/access/authenticated";
+import { link } from "@/fields/link";
+import { generatePreviewPath } from "@/utilities/generatePreviewPath";
+import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
+import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from "@payloadcms/plugin-seo/fields";
 
 export const Authors: CollectionConfig = {
-  slug: 'authors',
+  slug: "authors",
   admin: {
-    useAsTitle: 'name',
-    defaultColumns: ['name', 'role', 'slug'],
+    useAsTitle: "authorName",
+    defaultColumns: ["authorName", "role", "slug"],
+    livePreview: {
+      url: ({ data }) => {
+        const path = generatePreviewPath({
+          slug: typeof data?.slug === "string" ? data.slug : "",
+          collection: "authors",
+        });
+        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
+      },
+    },
+    preview: (data) => {
+      const path = generatePreviewPath({
+        slug: typeof data?.slug === "string" ? data.slug : "",
+        collection: "authors",
+      });
+      return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
+    },
   },
   hooks: {
     beforeChange: [populatePublishedAt],
   },
   versions: { drafts: true },
   access: {
-    read: anyone,
+    read: authenticatedOrPublished,
     update: anyone,
     create: authenticated,
     delete: authenticated,
   },
   fields: [
     {
-      name: 'featuredImage',
-      label: 'Picture',
-      type: 'upload',
-      relationTo: 'media',
+      name: "featuredImage",
+      label: "Picture",
+      type: "upload",
+      relationTo: "media",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
     },
     {
-      name: 'name',
-      type: 'text',
+      name: "authorName",
+      label: "Name",
+      type: "text",
       required: true,
     },
     {
-      name: 'role',
-      type: 'text',
+      name: "role",
+      type: "text",
       required: true,
     },
     {
-      name: 'bio',
-      type: 'textarea',
+      name: "bio",
+      type: "textarea",
       maxLength: 250,
       required: true,
     },
     {
-      type: 'row',
+      type: "group",
+      name: "socials",
+      label: 'Socials',
       fields: [
         {
           name: 'linkedIn',
-          label: 'LinkedIn Username',
-          type: 'text',
-          maxLength: 30,
-          admin: {
-            width: '25%',
-          },
+          label: 'LinkedIn',
+          type: "array",
+          fields: [
+            {
+              name: "url",
+              type: "text",
+            },
+          ],
+          maxRows: 1,
         },
         {
-          name: 'x',
-          label: 'X Username',
-          type: 'text',
-          maxLength: 30,
-          admin: {
-            width: '25%',
-          },
+          name: "x",
+          type: "array",
+          fields: [
+            {
+              name: "url",
+              type: "text",
+            },
+          ],
+          maxRows: 1,
         },
         {
-          name: 'gitHub',
-          label: 'GitHub Username',
-          type: 'text',
-          maxLength: 30,
-          admin: {
-            width: '25%',
-          },
+          name: "github",
+          type: "array",
+          fields: [
+            {
+              name: "url",
+              type: "text",
+            },
+          ],
+          maxRows: 1,
         },
         {
-          name: 'medium',
-          label: 'Medium Username',
-          type: 'text',
-          maxLength: 30,
-          admin: {
-            width: '25%',
-          },
+          name: "medium",
+          type: "array",
+          fields: [
+            {
+              name: "url",
+              type: "text",
+            },
+          ],
+          maxRows: 1,
         },
       ],
     },
     {
-      name: 'publishedAt',
-      type: 'date',
+      name: "publishedAt",
+      type: "date",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
         date: {
-          pickerAppearance: 'dayAndTime',
+          pickerAppearance: "dayAndTime",
         },
       },
       hooks: {
         beforeChange: [
           ({ siblingData, value }) => {
-            if (siblingData._status === 'published' && !value) {
-              return new Date()
+            if (siblingData._status === "published" && !value) {
+              return new Date();
             }
-            return value
+            return value;
           },
         ],
       },
     },
-    ...slugField(),
+    ...slugField("authorName"),
+    {
+      name: "meta",
+      type: "group",
+      label: "SEO",
+      admin: {
+        position: "sidebar",
+      },
+      fields: [
+        OverviewField({
+          titlePath: "meta.title",
+          descriptionPath: "meta.description",
+          imagePath: "meta.image",
+        }),
+        MetaTitleField({
+          hasGenerateFn: true,
+        }),
+        MetaImageField({
+          relationTo: "media",
+        }),
+
+        MetaDescriptionField({}),
+        PreviewField({
+          // if the `generateUrl` function is configured
+          hasGenerateFn: true,
+
+          // field paths to match the target field for data
+          titlePath: "meta.title",
+          descriptionPath: "meta.description",
+        }),
+      ],
+    },
   ],
-}
+};

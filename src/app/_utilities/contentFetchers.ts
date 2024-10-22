@@ -3,6 +3,7 @@ import configPromise from "@payload-config";
 import type { Author, Blogpost, CaseStudy, Config, Media, Podcast, TalksAndRoundtable } from "@/payload-types";
 import { notFound } from "next/navigation";
 import { CollectionSlug, getPayload } from "payload";
+import { draftMode } from "next/headers";
 
 interface FetcherArgs {
   collection?: CollectionSlug,
@@ -33,10 +34,15 @@ export async function fetchContentBySlug({ slug, type, depth }: { slug: string, 
     throw new Error("Must input slug and/or type.");
   }
 
+  const { isEnabled: draft } = await draftMode()
+
   const query = { slug: { equals: slug } };
 
   return await fetcher({
     collection: type,
+    draft: draft,
+    overrideAccess: draft,
+    limit: 1,
     depth: depth,
     query: query,
   }).then(res => {

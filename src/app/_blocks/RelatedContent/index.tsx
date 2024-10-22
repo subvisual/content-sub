@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import ContentCard from "@/app/_components/ContentCard";
 
 export function RelatedContent({ content }) {
+
   return (
     <div className={styles.container}>
 
@@ -19,10 +20,8 @@ export function RelatedContent({ content }) {
             }}
           >
             {content.related.map((contentPiece, i) => (
-              <div key={i} className={styles.contentCard}>
-                <ContentCard contentType={"Blogposts"} content={contentPiece} />
-                <br />
-                <Link href={`${contentPiece.slug}`}>{contentPiece.title}</Link>
+              <div style={{width: '400px'}}>
+                <ContentCard contentType={"Blogposts"} content={contentPiece} rounded />
               </div>
             ))}
           </div>
