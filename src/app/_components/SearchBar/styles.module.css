@@ -36,15 +36,13 @@
 }
 
 .searchResults {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
   gap: 40px;
 }
 
-.searchResults div {
-  width: 200px;
-  height: 200px;
-  border: 1px solid green;
-}
+
 
 @media (min-width: 1024px) {
   .searchBar {
@@ -63,8 +61,5 @@
     border-bottom-right-radius: 100px;
     width: 836px;
     margin: auto;
-
-
-
   }
 }
