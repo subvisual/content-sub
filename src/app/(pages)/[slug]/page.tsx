@@ -18,8 +18,8 @@ export default async function Page() {
     TalksAndRoundtables: await fetchAllContentByType("talks-and-roundtables"),
   };
 
-
   const highlights = await fetchGlobals("homepage-settings", 3);
+  const categories = await fetchAllContentByType('categories').then(res => res.map(item => item.title))
 
   return (
 
@@ -29,7 +29,7 @@ export default async function Page() {
       <HubHead highlights={highlights} />
 
       {/* Search Bar*/}
-      <SearchBar currentContent={content} highlights={highlights}/>
+      <SearchBar currentContent={content} highlights={highlights} categories={categories}/>
 
 
       {/* Content Grid*/}

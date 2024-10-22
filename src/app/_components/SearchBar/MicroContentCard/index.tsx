@@ -1,11 +1,12 @@
 import Link from "next/link";
 import styles from "./styles.module.css";
 import FeaturedImage from "@/app/_components/FeaturedImage";
+import ArchiveButton from "@/app/_components/ArchiveButton";
 
 export default function MicroContentCard({ article }) {
 
-  const { contentType, content } = article;
-  const { title, slug, featuredImage } = content;
+  const contentType = article['contentType'] || article['relationTo']
+  const { title, slug, featuredImage } = article['content'] || article['value'] || article;
 
 
   return (
@@ -17,7 +18,7 @@ export default function MicroContentCard({ article }) {
         </div>
       )}
       <div className={styles.summary}>
-        <h6>{contentType}</h6>
+        <ArchiveButton collection={contentType}/>
         <p>{title}</p>
         <Link href={`${contentType.toLowerCase()}/${slug}`}><p>Read more...</p></Link>
       </div>

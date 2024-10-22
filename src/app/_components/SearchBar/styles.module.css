@@ -38,10 +38,21 @@
 .searchResults {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
   gap: 40px;
 }
 
+.recommendedTopics {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.mostRecent {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
 
 
 @media (min-width: 1024px) {
