@@ -5,20 +5,25 @@ import ArchiveButton from "@/app/_components/ArchiveButton";
 import { formatDateTime } from "@/app/_utilities/formatDateTime";
 import Share from "@/app/_components/Share";
 import Categories from "@/app/_components/Categories";
-import AuthorPill from "@/app/_components/AuthorPill";
 import styles from "./styles.module.css";
-import SocialLinks from "@/app/_components/SocialLinks";
 import { Subscribe } from "@/app/_blocks/Subscribe";
+import Contributors from "@/app/_blocks/EpisodeContent/Contributors";
+import { TalksAndRoundtable } from "@/payload-types";
+import { Metadata } from "next";
+import { generateMeta } from "@/utilities/generateMeta";
 
 export const dynamic = "force-dynamic";
 
 export default async function TalksAndRoundTablesPage({ params: paramsPromise }) {
   const { slug } = await paramsPromise;
 
-  const talk = await fetchContentBySlug({
+  // @ts-expect-error
+  const talk: TalksAndRoundtable = await fetchContentBySlug({
     slug: slug,
     type: "talks-and-roundtables",
   });
+
+  const { title, authors, summary, url, publishedAt, categories } = talk;
 
   // move this to the collection / store in db?
   // @ts-ignore
@@ -26,16 +31,15 @@ export default async function TalksAndRoundTablesPage({ params: paramsPromise })
 
   return (
     <div>
-      {/*{<pre>{JSON.stringify(talk, null, 2)}</pre>}*/}
       {/* Head Block */}
       <div className={styles.headContainer}>
         <BackButton color={"var(--soft-white-100)"} />
         <ArchiveButton collection={"talks-and-roundtables"} color={"var(--soft-white-100)"} />
         {/* @ts-ignore */}
-        <h5>{talk.title}</h5>
+        <h5>{title}</h5>
         <p>
           {/* @ts-ignore */}
-          {formatDateTime(talk.publishedAt)}
+          {formatDateTime(publishedAt)}
           <span>Duration in mins</span>
         </p>
 
@@ -43,18 +47,10 @@ export default async function TalksAndRoundTablesPage({ params: paramsPromise })
       <div className={styles.contentContainer}>
 
         {/* Contributors column*/}
-        <div className={styles.contributors}>
-          <p className={"overline"}>
-            CONTRIBUTORS
-          </p>
+        <div>
+          <Contributors className={styles.contributors} authors={authors} />
           {/* @ts-ignore */}
-          {talk.authors.map((author) => (
-            <>
-              <AuthorPill author={author} />
-              {/* TODO: Enable once most recent PR hits main */}
-              {/*<SocialLinks socials={author.socials} />*/}
-            </>
-          ))}
+
         </div>
 
         {/* Content column */}
@@ -73,31 +69,31 @@ export default async function TalksAndRoundTablesPage({ params: paramsPromise })
           )}
           <h5>About</h5>
           {/* @ts-ignore */}
-          <p>{talk.summary}</p>
+          <p>{summary}</p>
         </div>
 
         {/*  Share & categories column */}
         <div className={styles.sharingAndCategories}>
           <Share />
           {/* @ts-ignore */}
-          {talk.categories.length > 0 && (
+          {categories.length > 0 && (
             // @ts-ignore
-            <Categories categories={talk.categories} />
+            <Categories categories={categories} />
           )}
         </div>
       </div>
       <Subscribe />
 
     </div>
-  )
+  );
 }
 
-export async function generateMetadata({ params: paramsPromise}): Promise<Metadata> {
-  const { slug } = await paramsPromise
+export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
+  const { slug } = await paramsPromise;
   const talk = await fetchContentBySlug({
     slug: slug,
     type: "talks-and-roundtables",
-  })
+  });
   // @ts-ignore
-  return generateMeta({doc: talk})
+  return generateMeta({ doc: talk });
 }
