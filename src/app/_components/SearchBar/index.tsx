@@ -4,6 +4,9 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import { filterContent } from "@/app/_utilities/filterContent";
 import Fuse from "fuse.js";
+import ArchiveButton from "@/app/_components/ArchiveButton";
+import Link from "next/link";
+import MicroContentCard from "@/app/_components/SearchBar/MicroContentCard";
 
 // setup Fuse.js search options and weights
 const fuseOptions = {
@@ -13,34 +16,34 @@ const fuseOptions = {
   threshold: 0.1,
   keys: [
     {
-      name: 'content.title',
+      name: "content.title",
       weight: 0.3,
     },
     {
-      name: 'contentType',
+      name: "contentType",
       weight: 0.3,
     },
     {
-      name: 'content.summary',
+      name: "content.summary",
       weight: 0.3,
     },
     {
-      name: 'content.authors.name',
+      name: "content.authors.name",
       weight: 0.3,
     },
     // parses varying levels of lexical text nodes
     // use this instead of content_html to avoid using high distance
     // values which in turn dilute search result quality
     {
-      name: 'content.content.root.children.text',
+      name: "content.content.root.children.text",
       weight: 0.3,
     },
     {
-      name: 'content.content.root.children.children.text',
+      name: "content.content.root.children.children.text",
       weight: 0.3,
     },
     {
-      name: 'content.content.root.children.children.children.text',
+      name: "content.content.root.children.children.children.text",
       weight: 0.3,
     },
   ],
@@ -64,10 +67,10 @@ export default function SearchBar({ currentContent }) {
   };
 
   useEffect(() => {
-    const fuseSearch = new Fuse(filteredContent, fuseOptions)
+    const fuseSearch = new Fuse(filteredContent, fuseOptions);
     const debouncedSearch = setTimeout(() => {
-      setSearchResults(fuseSearch.search(query).slice(0,3))
-    }, 300)
+      setSearchResults(fuseSearch.search(query).slice(0, 3));
+    }, 300);
   }, [query]);
 
   function handleChange(e) {
@@ -93,23 +96,14 @@ export default function SearchBar({ currentContent }) {
 
         <div className={styles.searchSuggestions}>
           <p>Suggestions</p>
-          <p>{query}</p>
-          <p>Suggestion 2</p>
-          <p>Suggestion 3</p>
+          <p>To be populated with latest content</p>
+
         </div>
         <p>Results</p>
         <div className={styles.searchResults}>
-          {/*{<pre>{JSON.stringify(searchResults, null, 2)}</pre>}*/}
-
-
           {searchResults.map((item, i) => (
-            <div>
-              <p>{item.item.contentType}</p>
-              <p>{item.item.content["title"]}</p>
-              <p>{item.score}</p>
-            </div>
+            <MicroContentCard article={item.item} />
           ))}
-
         </div>
 
 
