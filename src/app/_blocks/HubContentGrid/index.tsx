@@ -36,19 +36,17 @@ export default function HubContentGrid({ content }) {
 
   const filteredContent = filterContent({ articles: content, filter: activeButton });
 
+
   return (
     <div>
+      {/*{<pre>{JSON.stringify(filteredContent, null, 2)}</pre>}*/}
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
       {/*   TODO: fix dynamic color*/}
       <div className={styles.contentGridContainer}>
         <div className={styles.contentGrid}>
           {filteredContent.map((article, i) => (
             <div className={styles.contentCard}>
-              <ContentCard
-
-                contentType={article.contentType}
-                content={article.content}
-              />
+              <ContentCard contentType={article.contentType} content={article.content} rounded={false} />
             </div>
           ))}
         </div>

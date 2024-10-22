@@ -1,49 +1,63 @@
-import styles from "./styles.module.css";
-
+import styles from './styles.module.css';
 import FeaturedImage from "@/app/_components/FeaturedImage";
+import React from "react";
 import { LinkedInIcon, TwitterIcon } from "@/app/_icons/socialIcons";
-import { getImage } from "@/app/_utilities/getImage";
-import { Author } from "@/payload-types";
-import { fetchMediaByID } from "@/app/_utilities/contentFetchers";
-
-export default async function AuthorPill({ large = false, author }) {
-
-  const { name, featuredImage, linkedIn, x } = author;
-
-  const test = await fetchMediaByID("66ed88055946c64a204c9357");
+import Link from "next/link";
 
 
-  /* unsure if this will be useful, as all names have same length in figma
+export function AuthorPill({ authors }) {
 
-const dynamicVars = {
-  '--dynamic-font-weight': large ? 'bold' : 'normal',
-  '--dynamic-width': large ? '100%' : 'fit-content',
-}
-*/
+  if (authors.length === 1) {
 
-  return (
-    <>
-      <div className={styles.authorPill}>
-        <div className={styles.authorImage}>
-          {featuredImage && <FeaturedImage src={featuredImage.url} />}
+    const author = Array.isArray(authors) ? authors[0] : authors
+    const { name, slug, featuredImage } = author;
+    return (
+      <Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/authors/${slug}`}>
+        <div className={styles.authorPill}>
+          <div className={styles.authorImage}>
+            {featuredImage && <FeaturedImage src={featuredImage.url} />}
+          </div>
+          {name}
         </div>
-        {name}
+      </Link>
+    );
+  }
+
+  if (authors.length === 2) {
+    const authorOne = authors[0];
+    const authorTwo = authors[1];
+
+    return (
+      <div className={styles.twoAuthorPill}>
+        <div className={`${styles.authorImage} ${styles.authorOne}`}>
+          <FeaturedImage src={authorOne.featuredImage.url} />
+        </div>
+        <div className={`${styles.authorImage} ${styles.authorTwo}`}>
+          <FeaturedImage src={authorTwo.featuredImage.url} />
+        </div>
+        {`${authorOne.name.split(" ")[0]} & ${authorTwo.name.split(" ")[0]}`}
       </div>
+    );
 
-      {large && (
-        <div className={styles.socials}>
-          {linkedIn && (
-            <a href={linkedIn}>
-              <LinkedInIcon />
-            </a>
-          )}
-          {x && (
-            <a href={x}>
-              <TwitterIcon />
-            </a>
-          )}
+  }
+
+  if (authors.length > 2) {
+    const authorOne = authors[0];
+    const authorTwo = authors[1];
+    const authorThree = authors[2];
+    return (
+      <div className={styles.twoAuthorPill}>
+        <div className={`${styles.authorImage} ${styles.authorOne}`}>
+          <FeaturedImage src={authorOne.featuredImage.url} />
         </div>
-      )}
-    </>
-  );
+        <div className={`${styles.authorImage} ${styles.authorTwo}`}>
+          <FeaturedImage src={authorTwo.featuredImage.url} />
+        </div>
+        <div className={`${styles.authorImage} ${styles.authorThree}`}>
+          <FeaturedImage src={authorThree.featuredImage.url} />
+        </div>
+        Various authors
+      </div>
+    );
+  }
 }

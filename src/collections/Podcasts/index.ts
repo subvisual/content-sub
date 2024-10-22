@@ -1,51 +1,77 @@
 import type { CollectionConfig } from "payload";
 
-import { anyone } from "@/access/anyone";
 import { slugField } from "@/fields/slug";
-
 import { populatePublishedAt } from "@/hooks/populatePublishedAt";
-import { authenticated } from "@/access/authenticated";
-import { link } from "@/fields/link";
-import { generatePreviewPath } from "@/utilities/generatePreviewPath";
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
+import { authenticated } from "@/access/authenticated";
+import { revalidatePodcast } from "@/collections/Podcasts/hooks";
 import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from "@payloadcms/plugin-seo/fields";
+import { generatePreviewPath } from "@/utilities/generatePreviewPath";
 
-export const Authors: CollectionConfig = {
-  slug: "authors",
+// TODO: Add preview;
+
+export const Podcasts: CollectionConfig = {
+  slug: "podcasts",
   admin: {
-    useAsTitle: "authorName",
-    defaultColumns: ["authorName", "role", "slug"],
+    useAsTitle: "title",
+    defaultColumns: ["title", "slug", "updatedAt"],
     livePreview: {
       url: ({ data }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === "string" ? data.slug : "",
-          collection: "authors",
+          collection: "podcasts",
         });
+
         return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
       },
     },
     preview: (data) => {
       const path = generatePreviewPath({
         slug: typeof data?.slug === "string" ? data.slug : "",
-        collection: "authors",
+        collection: "podcasts",
       });
       return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
     },
   },
   hooks: {
     beforeChange: [populatePublishedAt],
+    afterChange: [revalidatePodcast],
   },
-  versions: { drafts: true },
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 100,
+      },
+    },
+    maxPerDoc: 50,
+  },
   access: {
     read: authenticatedOrPublished,
-    update: anyone,
+    update: authenticated,
     create: authenticated,
     delete: authenticated,
   },
   fields: [
     {
+      name: "title",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "summary",
+      label: "Episode Summary",
+      type: "textarea",
+      required: true,
+    },
+    {
+      name: "notes",
+      label: "Episode Notes",
+      type: "textarea",
+      required: true,
+    },
+    {
       name: "featuredImage",
-      label: "Picture",
+      label: "Featured Image",
       type: "upload",
       relationTo: "media",
       admin: {
@@ -53,73 +79,67 @@ export const Authors: CollectionConfig = {
       },
     },
     {
-      name: "authorName",
-      label: "Name",
-      type: "text",
+      name: "episodeFile",
+      label: "Episode File",
+      type: "upload",
+      relationTo: "media",
       required: true,
+      admin: {
+        position: "sidebar",
+      },
     },
     {
-      name: "role",
-      type: "text",
-      required: true,
-    },
-    {
-      name: "bio",
-      type: "textarea",
-      maxLength: 250,
-      required: true,
-    },
-    {
-      type: "group",
-      name: "socials",
-      label: 'Socials',
+      type: "row",
       fields: [
         {
-          name: 'linkedIn',
-          label: 'LinkedIn',
-          type: "array",
-          fields: [
-            {
-              name: "url",
-              type: "text",
-            },
-          ],
-          maxRows: 1,
+          name: "spotify",
+          label: "Spotify CMSLink",
+          type: "text",
+          admin: {
+            width: "50%",
+          },
         },
         {
-          name: "x",
-          type: "array",
-          fields: [
-            {
-              name: "url",
-              type: "text",
-            },
-          ],
-          maxRows: 1,
-        },
-        {
-          name: "github",
-          type: "array",
-          fields: [
-            {
-              name: "url",
-              type: "text",
-            },
-          ],
-          maxRows: 1,
-        },
-        {
-          name: "medium",
-          type: "array",
-          fields: [
-            {
-              name: "url",
-              type: "text",
-            },
-          ],
-          maxRows: 1,
+          name: "apple",
+          label: "Apple Podcasts CMSLink",
+          type: "text",
+          admin: {
+            width: "50%",
+          },
         },
       ],
+    },
+    {
+      name: "authors",
+      type: "relationship",
+      relationTo: "authors",
+      hasMany: true,
+      required: true,
+    },
+    {
+      name: "categories",
+      label: "Categories",
+      type: "relationship",
+      relationTo: "categories",
+      hasMany: true,
+      required: true,
+      admin: {
+        position: "sidebar",
+      },
+    },
+    {
+      name: "related",
+      label: "Related Episodes",
+      type: "relationship",
+      relationTo: "podcasts",
+      hasMany: true,
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        };
+      },
     },
     {
       name: "publishedAt",
@@ -141,7 +161,7 @@ export const Authors: CollectionConfig = {
         ],
       },
     },
-    ...slugField("authorName"),
+    ...slugField(),
     {
       name: "meta",
       type: "group",

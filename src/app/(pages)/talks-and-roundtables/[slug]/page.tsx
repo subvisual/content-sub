@@ -89,5 +89,15 @@ export default async function TalksAndRoundTablesPage({ params: paramsPromise })
       <Subscribe />
 
     </div>
-  );
+  )
+}
+
+export async function generateMetadata({ params: paramsPromise}): Promise<Metadata> {
+  const { slug } = await paramsPromise
+  const talk = await fetchContentBySlug({
+    slug: slug,
+    type: "talks-and-roundtables",
+  })
+  // @ts-ignore
+  return generateMeta({doc: talk})
 }

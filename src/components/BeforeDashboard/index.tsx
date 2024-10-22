@@ -1,74 +1,42 @@
 import { Banner } from '@payloadcms/ui/elements/Banner'
-import React from 'react'
+import styles from './styles.module.css'
 
-import { SeedButton } from './SeedButton'
-import './index.scss'
-
-const baseClass = 'before-dashboard'
-
-const BeforeDashboard: React.FC = () => {
-  return (
-    <div className={baseClass}>
-      <Banner className={`${baseClass}__banner`} type="success">
-        <h4>Welcome to your dashboard!</h4>
-      </Banner>
-      Here&apos;s what to do next:
-      <ul className={`${baseClass}__instructions`}>
-        <li>
-          <SeedButton />
-          {' with a few pages, posts, and projects to jump-start your new site, then '}
-          <a href="/" target="_blank">
-            visit your website
-          </a>
-          {' to see the results.'}
-        </li>
-        <li>
-          If you created this repo using Payload Cloud, head over to GitHub and clone it to your
-          local machine. It will be under the <i>GitHub Scope</i> that you selected when creating
-          this project.
-        </li>
-        <li>
-          {'Modify your '}
-          <a
-            href="https://payloadcms.com/docs/configuration/collections"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            collections
-          </a>
-          {' and add more '}
-          <a
-            href="https://payloadcms.com/docs/fields/overview"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            fields
-          </a>
-          {' as needed. If you are new to Payload, we also recommend you check out the '}
-          <a
-            href="https://payloadcms.com/docs/getting-started/what-is-payload"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Getting Started
-          </a>
-          {' docs.'}
-        </li>
-        <li>
-          Commit and push your changes to the repository to trigger a redeployment of your project.
-        </li>
-      </ul>
-      {'Pro Tip: This block is a '}
-      <a
-        href="https://payloadcms.com/docs/admin/components#base-component-overrides"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        custom component
-      </a>
-      , you can remove it at any time by updating your <strong>payload.config</strong>.
-    </div>
-  )
+const linkProps = {
+  target:"_blank",
+  rel:"noopener noreferrer"
 }
 
-export default BeforeDashboard
+const repoLink = 'https://github.com/subvisual/content-sub/tree/main/public/media'
+const loomLink = 'https://www.loom.com/share/32ad2349f0d743f0aaf72b02314396e1?sid=367067d4-1051-430f-9583-e56ad28e6a94'
+
+export default function BeforeDashboard() {
+  return (
+    <div className={styles.container}>
+      <Banner type="success">
+        <h4>Welcome to the dashboard!</h4>
+      </Banner>
+      <h4>This is where you can create / delete / update content that will appear on the Content Hub</h4>
+      <br/>
+      <h4>You can find a quick tutorial / demonstration of the plaftorm <a href={loomLink} {...linkProps}>here</a>.</h4>
+      <br/>
+      <h3>Noteworthy:</h3>
+      <ul>
+        <li>
+          Media you create is automacatically pushed and stored to <a href={repoLink} {...linkProps}>Github</a>
+        </li>
+        <li>
+          Homepage Settings defines what content is displayed on the top of the Content Hub homepage, do not forget
+          to <a href={'./admin/globals/homepage-settings'} {...linkProps}>set them up</a>.
+        </li>
+        <li>
+          The Footer and Banner include the navigation links to different Subvisual pages. They are pre-set but can be changed on
+          the <a href={'./admin/globals/header'} {...linkProps}>Header</a> and <a href={'./admin/globals/footer'} {...linkProps}>Footer</a> settings.
+        </li>
+        <li>
+          The same thing applies to <a href={'./admin/globals/socials'} {...linkProps}>Socials</a>.
+        </li>
+      </ul>
+    </div>
+)
+}
+

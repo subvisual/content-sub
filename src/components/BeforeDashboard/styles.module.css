@@ -1,0 +1,9 @@
+.container ul {
+  list-style: decimal;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.container ul li {
+  margin-bottom: 5px;
+}
