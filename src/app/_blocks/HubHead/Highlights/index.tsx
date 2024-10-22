@@ -5,6 +5,7 @@ import { formatDateTime } from "../../../_utilities/formatDateTime";
 import styles from "./styles.module.css";
 import { AuthorPill } from '@/app/_components/AuthorPill'
 import Link from "next/link";
+import ArchiveButton from "@/app/_components/ArchiveButton";
 
 const placeholder = {
   title: "Placeholder",
@@ -18,8 +19,8 @@ export async function Highlights({ content, main }) {
     content = placeholder;
   }
 
-  const { title, publishedAt, categories, authors } = content;
-
+  const { title, publishedAt, categories, authors, slug } = content.value;
+  const contentType = content.relationTo
   return (
     <>
 
@@ -27,8 +28,8 @@ export async function Highlights({ content, main }) {
         className={`${styles.highlights} ${main ? styles.mainHighlight : styles.secondaryHighlight}`}
       >
         <p className={styles.overline}> HIGHLIGHTS </p>
-        {/* TODO: Adapt to other types of content as well */}
-        <Link href={`./blogposts/${content.slug}`}>
+        <ArchiveButton color={main ? 'var(--soft-white-100)' : 'var(--dark-rock-800)'} collection={contentType}/>
+        <Link href={`./${contentType}/${slug}`}>
           <h6> {title} </h6>
         </Link>
         {content === placeholder ? (<h5>Please setup the highlights</h5>) : (
