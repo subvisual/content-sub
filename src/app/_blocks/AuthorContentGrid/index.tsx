@@ -8,7 +8,7 @@ import ContentCard from "../../_components/ContentCard";
 import { calculateTotalArticles } from "../../_utilities/calculateTotalArticles";
 import styles from "./styles.module.css";
 
-export default function AuthorContentGrid({content}) {
+export default function AuthorContentGrid({ content }) {
 
   return (
     <div className={styles.gridContainer}>
@@ -18,9 +18,7 @@ export default function AuthorContentGrid({content}) {
       <div className={styles.contentGrid}>
         {Object.keys(content).map(key =>
           content[key].map((contentPiece, i) => (
-            <div key={i} className={styles.contentCard}>
-              <ContentCard contentType={key} content={contentPiece} />
-            </div>
+            <ContentCard contentType={key} content={contentPiece} rounded/>
           )),
         )}
       </div>

@@ -36,7 +36,7 @@ export async function Highlights({ content, main }) {
             <div className={styles.metadataContainer}>
 
               <span className={styles.categories}>
-              {categories.map((category, i) => <CategoryPill key={i} title={category.title} />)}
+              {categories && categories.map((category, i) => <CategoryPill key={i} title={category.title} />)}
               </span>
 
 

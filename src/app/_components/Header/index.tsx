@@ -5,9 +5,9 @@ import Logo from "@/app/_components/Header/Logo";
 import { fetchGlobals } from "@/app/_utilities/contentFetchers";
 
 const defaultStyle = {
-  '--dynamic-background': "transparent",
-  '--dynamic-color': "var(--dark-rock-800)",
-  '--dynamic-width': '100%'
+  "--dynamic-background": "transparent",
+  "--dynamic-color": "var(--dark-rock-800)",
+  "--dynamic-width": "100%",
 };
 
 export async function Header({ style = defaultStyle }) {
@@ -22,7 +22,7 @@ export async function Header({ style = defaultStyle }) {
       {/* @ts-ignore */}
       <header className={styles.container} style={style}>
         <div>
-          <Logo />
+          <Link href={"/"}><Logo /></Link>
         </div>
 
         {/* TODO: Conditionally format Content Hub to reflect active link?*/}

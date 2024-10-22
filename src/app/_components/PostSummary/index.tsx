@@ -4,7 +4,7 @@ import { formatDateTime } from "../../_utilities/formatDateTime";
 import ArchiveButton from "../ArchiveButton";
 
 import styles from "./styles.module.css";
-import Authors from '@/app/_components/Authors'
+import SocialLinks from "@/app/_components/SocialLinks";
 import { AuthorPill } from "@/app/_components/AuthorPill";
 
 export default function PostSummary({ post }) {
@@ -26,7 +26,7 @@ export default function PostSummary({ post }) {
       <div className={styles.authorInfo}>
         <p className={styles.outline}>WRITTEN BY</p>
         <AuthorPill authors={authors} />
-        Social Links
+        { authors.length === 1 && <SocialLinks socials={authors[0].socials}/>}
       </div>
     </div>
   );
