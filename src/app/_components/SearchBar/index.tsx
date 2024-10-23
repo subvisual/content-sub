@@ -1,11 +1,12 @@
 "use client";
 import { CloseIcon, MagnifyingGlass } from "../../_icons/icons";
 import styles from "./styles.module.css";
-import { useEffect, useRef, useState } from "react";
+import { DetailedHTMLProps, Ref, useEffect, useRef, useState } from "react";
 import { filterContent } from "@/app/_utilities/filterContent";
 import Fuse from "fuse.js";
 import MicroContentCard from "src/app/_components/SearchBar/Components/MicroContentCard";
 import CategoryPill from "@/app/_components/CategoryPill";
+import { Blogpost, CaseStudy, Podcast, TalksAndRoundtable } from "@/payload-types";
 
 // Setup Fuse.js search options and weights
 const fuseOptions = {
@@ -24,18 +25,28 @@ const fuseOptions = {
   ],
 };
 
+interface SearchResults {
+  item: {
+    contentType: string,
+    content: Blogpost | Podcast | TalksAndRoundtable | CaseStudy
+  };
+}
+
 
 export default function SearchBar({ currentContent, highlights, categories }) {
   const [filteredContent, setFilteredContent] = useState(filterContent({ articles: currentContent, filter: "All" }));
   const [isActive, setIsActive] = useState(false);
   const [query, setQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<Array<SearchResults>>([]);
 
   const mostRecent = filteredContent
+    // Given Payload type structure for dates which only considers
+    // string | null | undefined a TS error is expected
+    // @ts-expect-error
     .sort((a, b) => new Date(b.content.publishedAt) - new Date(a.content.publishedAt))
     .slice(0, 3);
 
-  const dynamicStyles = {
+  const dynamicStyles: DetailedHTMLProps<any, any> = {
     "--dynamic-border-radius": isActive ? "0px" : "100px",
     "--dynamic-border-color": isActive ? "1px solid var(--soft-white-100)" : "1px solid var(--dark-rock-800)",
     "--dynamic-position": isActive ? "fixed" : "relative",
@@ -54,7 +65,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
     setQuery(e.target.value);
   }
 
-  const searchBoxRef = useRef(null);
+  const searchBoxRef: Ref<any> = useRef(null);
 
   useEffect(() => {
     const handleClickoutside = (e) => {
@@ -78,6 +89,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
 
   return (
     <div className={styles.container}>
+      {/*<pre>{JSON.stringify(searchResults, null, 2)}</pre>*/}
       <div className={styles.searchContainer} style={dynamicStyles}>
 
         <div className={styles.searchBar} style={dynamicStyles}>
@@ -127,6 +139,8 @@ export default function SearchBar({ currentContent, highlights, categories }) {
               <div className={styles.searchSuggestions}>
                 <p>Suggestions</p>
                 {mostRecent.map((article, i) => (
+                  // Expect Typescript errors given the types that title can assume
+                  // @ts-expect-error
                   <p key={i} onClick={() => setQuery(article.content.title)}>
                     {article.content.title}
                   </p>
@@ -135,8 +149,8 @@ export default function SearchBar({ currentContent, highlights, categories }) {
 
               <p>Results</p>
               <div className={styles.searchResults}>
-                {searchResults.map((item, i) => (
-                  <MicroContentCard key={i} article={item.item} />
+                {searchResults.map((article, i) => (
+                  <MicroContentCard key={i} article={article.item} />
                 ))}
               </div>
             </>
@@ -145,6 +159,8 @@ export default function SearchBar({ currentContent, highlights, categories }) {
               <div className={styles.searchSuggestions}>
                 <p>Suggestions</p>
                 {mostRecent.map((article, i) => (
+                  // Expect Typescript errors given the types that title can assume
+                  // @ts-expect-error
                   <p key={i} onClick={() => setQuery(article.content.title)}>
                     {article.content.title}
                   </p>

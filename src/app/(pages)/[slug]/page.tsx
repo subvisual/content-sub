@@ -4,6 +4,7 @@ import HubHead from "@/app/_blocks/HubHead";
 import SearchBar from "@/app/_components/SearchBar";
 import { Header } from "@/app/_components/Header";
 import { Metadata } from "next";
+import { Category } from "@/payload-types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -19,7 +20,8 @@ export default async function Page() {
   };
 
   const highlights = await fetchGlobals("homepage-settings", 3);
-  const categories = await fetchAllContentByType('categories').then(res => res.map(item => item.title))
+  const categories = await fetchAllContentByType('categories').then((res: Category[]) => res.map((item: Category) => item.title))
+
 
   return (
 
