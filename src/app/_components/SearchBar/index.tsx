@@ -1,10 +1,10 @@
 "use client";
-import { MagnifyingGlass } from "../../_icons/icons";
+import { CloseIcon, MagnifyingGlass } from "../../_icons/icons";
 import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { filterContent } from "@/app/_utilities/filterContent";
 import Fuse from "fuse.js";
-import MicroContentCard from "@/app/_components/SearchBar/MicroContentCard";
+import MicroContentCard from "src/app/_components/SearchBar/Components/MicroContentCard";
 import CategoryPill from "@/app/_components/CategoryPill";
 
 // Setup Fuse.js search options and weights
@@ -24,6 +24,7 @@ const fuseOptions = {
   ],
 };
 
+
 export default function SearchBar({ currentContent, highlights, categories }) {
   const [filteredContent, setFilteredContent] = useState(filterContent({ articles: currentContent, filter: "All" }));
   const [isActive, setIsActive] = useState(false);
@@ -34,13 +35,10 @@ export default function SearchBar({ currentContent, highlights, categories }) {
     .sort((a, b) => new Date(b.content.publishedAt) - new Date(a.content.publishedAt))
     .slice(0, 3);
 
-  const dynamicBorder = {
+  const dynamicStyles = {
     "--dynamic-border-radius": isActive ? "0px" : "100px",
     "--dynamic-border-color": isActive ? "1px solid var(--soft-white-100)" : "1px solid var(--dark-rock-800)",
-  };
-
-  const dynamicDisplay = {
-    "--dynamic-display": isActive ? "flex" : "none",
+    "--dynamic-position": isActive ? "fixed" : "relative",
   };
 
   useEffect(() => {
@@ -56,77 +54,111 @@ export default function SearchBar({ currentContent, highlights, categories }) {
     setQuery(e.target.value);
   }
 
+  const searchBoxRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickoutside = (e) => {
+      console.log("event triggered");
+      console.log(e.target);
+      if (e.target.id === "searchInput" || e.target.id === "searchBox") {
+        return;
+      }
+
+      if (searchBoxRef.current && !searchBoxRef.current.contains(e.target)) {
+        setIsActive(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickoutside);
+    return () => {
+      document.removeEventListener("click", handleClickoutside);
+    };
+  }, []);
+
+
   return (
-    <div className={styles.container} onFocus={() => setIsActive(!isActive)} onBlur={() => setIsActive(!isActive)}>
-      <div className={styles.searchBar} style={dynamicBorder} >
-        <MagnifyingGlass />
-        <input
-          className={styles.searchInput}
-          placeholder="What are you looking for?"
+    <div className={styles.container}>
+      <div className={styles.searchContainer} style={dynamicStyles}>
 
-          // onBlur={() => setIsActive(false)}
-          onChange={handleChange}
-          value={query}
-        />
-      </div>
+        <div className={styles.searchBar} style={dynamicStyles}>
+          <MagnifyingGlass />
+          <input
+            className={styles.searchInput}
+            placeholder="What are you looking for?"
+            onClick={() => setIsActive(true)}
+            onChange={handleChange}
+            value={query}
+            id={"searchInput"}
+          />
 
-      {/* Search box */}
-      <div className={styles.searchBox} style={dynamicDisplay}>
-        {query.length < 1 && (
-          <div>
-            <p>Recommended topics</p>
-            <div className={styles.recommendedTopics}>
-              {categories.map((category, i) => (
-                <CategoryPill key={i} title={category} />
-              ))}
-            </div>
+          {isActive && (
+            <button onClick={() => setIsActive(false)}><CloseIcon /></button>
+          )}
 
-            <p style={{ marginTop: "20px" }}>Suggestions</p>
-            <div className={styles.mostRecent}>
-              {mostRecent.map((article, i) => (
-                <MicroContentCard key={i} article={article} />
-              ))}
-            </div>
-          </div>
-        )}
+        </div>
 
-        {/* Render results if there are search results */}
-        {query.length >= 1 && (searchResults.length ? (
-          <>
-            <div className={styles.searchSuggestions}>
-              <p>Suggestions</p>
-              {mostRecent.map((article, i) => (
-                <p key={i} onClick={() => setQuery(article.content.title)}>
-                  {article.content.title}
-                </p>
-              ))}
-            </div>
+        {/* Search box */}
+        {isActive && (<div
+          className={styles.searchBox}
+          id={"searchBox"}
+          ref={searchBoxRef}
+        >
+          {query.length < 1 && (
+            <div>
+              <p>Recommended topics</p>
+              <div className={styles.recommendedTopics}>
+                {categories.map((category, i) => (
+                  <CategoryPill key={i} title={category} />
+                ))}
+              </div>
 
-            <p>Results</p>
-            <div className={styles.searchResults}>
-              {searchResults.map((item, i) => (
-                <MicroContentCard key={i} article={item.item} />
-              ))}
+              <p style={{ marginTop: "20px" }}>Suggestions</p>
+              <div className={styles.mostRecent}>
+                {mostRecent.map((article, i) => (
+                  <MicroContentCard key={i} article={article} />
+                ))}
+              </div>
             </div>
-          </>
-        ) : (
-          <>
-            <div className={styles.searchSuggestions}>
-              <p>Suggestions</p>
-              {mostRecent.map((article, i) => (
-                <p key={i} onClick={() => setQuery(article.content.title)}>
-                  {article.content.title}
-                </p>
-              ))}
-            </div>
+          )}
 
-            <p>Recommended</p>
-            <div className={styles.searchResults}>
-              <MicroContentCard article={highlights.mainHighlight} />
-              <MicroContentCard article={highlights.secondaryHighlight} />
-            </div>
-          </>
-        ))}
+          {/* Render results if there are search results */}
+          {query.length >= 1 && (searchResults.length ? (
+            <>
+              <div className={styles.searchSuggestions}>
+                <p>Suggestions</p>
+                {mostRecent.map((article, i) => (
+                  <p key={i} onClick={() => setQuery(article.content.title)}>
+                    {article.content.title}
+                  </p>
+                ))}
+              </div>
+
+              <p>Results</p>
+              <div className={styles.searchResults}>
+                {searchResults.map((item, i) => (
+                  <MicroContentCard key={i} article={item.item} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className={styles.searchSuggestions}>
+                <p>Suggestions</p>
+                {mostRecent.map((article, i) => (
+                  <p key={i} onClick={() => setQuery(article.content.title)}>
+                    {article.content.title}
+                  </p>
+                ))}
+              </div>
+
+              <p>Recommended</p>
+              <div className={styles.searchResults}>
+                <MicroContentCard article={highlights.mainHighlight} />
+                <MicroContentCard article={highlights.secondaryHighlight} />
+              </div>
+            </>
+          ))}
+        </div>)}
       </div>
     </div>
   );
