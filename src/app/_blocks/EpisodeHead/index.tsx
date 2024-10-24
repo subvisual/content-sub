@@ -46,7 +46,7 @@ export default function EpisodeHead({ episode }) {
 
         {/* TODO: Second Column displays EpisodeFeaturedImage if ContentType is podcast */}
         <div className={styles.featuredImage}>
-          {featuredImage && <FeaturedImage className={styles.featuredImage} src={featuredImage.url} />}
+          {featuredImage && <FeaturedImage src={featuredImage.url} />}
         </div>
       </div>
     </div>

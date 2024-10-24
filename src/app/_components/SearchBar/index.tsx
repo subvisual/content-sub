@@ -56,6 +56,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
     "--dynamic-border-radius": isActive ? "0px" : "25px",
     "--dynamic-border-color": isActive ? "1px solid var(--soft-white-100)" : "1px solid var(--dark-rock-800)",
     "--dynamic-position": isActive ? "fixed" : "relative",
+    '--dynamic-height': isActive ? '80vh' : 'auto',
   } as React.CSSProperties
 
   useEffect(() => {
@@ -101,52 +102,48 @@ export default function SearchBar({ currentContent, highlights, categories }) {
     setActiveFilter(false);
   }
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.searchContainer} style={dynamicStyles} ref={searchBoxRef}>
-
-        {isActive && <div className={styles.closeButtonContainer}>
+ return (
+  <div className={styles.container}>
+    <div className={styles.searchContainer} style={dynamicStyles} ref={searchBoxRef}>
+      {isActive && (
+        <div className={styles.closeButtonContainer}>
           <button onClick={() => {
-            setIsActive(false)
-            setActiveCategory('')
+            setIsActive(false);
+            setActiveCategory('');
             setActiveFilter(false);
-          }}><CloseButton /></button>
-        </div>}
-
-
-        <div className={styles.searchBar} style={dynamicStyles}>
-          <MagnifyingGlass width={"34px"} height={"34px"} />
-          <input
-            className={styles.searchInput}
-            placeholder="What are you looking for?"
-            onClick={() => setIsActive(true)}
-            onChange={handleChange}
-            value={query}
-            id={"searchInput"}
-          />
-
-          {isActive && (
-            <button className={styles.closeIcon} onClick={() => setIsActive(false)}><CloseIcon /></button>
-          )}
-
+          }}>
+            <CloseButton />
+          </button>
         </div>
+      )}
 
-        {/* Search box */}
-        {isActive && (<div
-          className={styles.searchBox}
-          id={"searchBox"}
+      <div className={styles.searchBar} style={dynamicStyles}>
+        <MagnifyingGlass width={"34px"} height={"34px"} />
+        <input
+          className={styles.searchInput}
+          placeholder="What are you looking for?"
+          onClick={() => setIsActive(true)}
+          onChange={handleChange}
+          value={query}
+          id="searchInput"
+        />
+        {isActive && (
+          <button className={styles.closeIcon} onClick={() => setIsActive(false)}>
+            <CloseIcon />
+          </button>
+        )}
+      </div>
 
-        >
-          {query.length < 1 && (
-            <div>
+      {isActive && (
+        <div className={styles.searchBox} id="searchBox">
+          {query.length < 1 ? (
+            <>
               <p>Recommended topics</p>
               <div className={styles.recommendedTopics}>
-                {/* Temporarily adding autofill search with category title
-                    TODO: also change active content filter to category title */}
                 {categories.map((category, i) => (
-                  <button onClick={(e) => handleCategoryClick(e)}>
+                  <button key={i} onClick={(e) => handleCategoryClick(e)}>
                     <CategoryPill
-                      id={'categoryPill'}
+                      id="categoryPill"
                       title={category}
                       selected={activeFilter && activeCategory === category}
                       setActiveFilter={setActiveFilter}
@@ -159,7 +156,6 @@ export default function SearchBar({ currentContent, highlights, categories }) {
               {activeFilter ? (
                 <>
                   <p>Results</p>
-                  {console.log(activeFilter)}
                   <div className={styles.searchResults}>
                     {searchResults.map((article, i) => (
                       <MicroContentCard key={i} article={article.item} />
@@ -176,52 +172,55 @@ export default function SearchBar({ currentContent, highlights, categories }) {
                   </div>
                 </>
               )}
-            </div>
-          )}
-
-          {/* Render results if there are search results */}
-          {query.length >= 1 && (searchResults.length ? (
-            <>
-              <div className={styles.searchSuggestions}>
-                <p>Suggestions</p>
-                {mostRecent.map((article, i) => (
-                  // Expect Typescript errors given the types that title can assume
-                  // @ts-expect-error
-                  <p key={i} onClick={() => setQuery(article.content.title)}>
-                    {article.content.title}
-                  </p>
-                ))}
-              </div>
-
-              <p>Results</p>
-              <div className={styles.searchResults}>
-                {searchResults.map((article, i) => (
-                  <MicroContentCard key={i} article={article.item} />
-                ))}
-              </div>
             </>
           ) : (
             <>
-              <div className={styles.searchSuggestions}>
-                <p>Suggestions</p>
-                {mostRecent.map((article, i) => (
-                  // Expect Typescript errors given the types that title can assume
-                  // @ts-expect-error
-                  <p key={i} onClick={() => setQuery(article.content.title)}>
-                    {article.content.title}
-                  </p>
-                ))}
-              </div>
+              {searchResults.length ? (
+                <>
+                  <div className={styles.searchSuggestions}>
+                    <p>Suggestions</p>
+                    {mostRecent.map((article, i) => (
+                      // Expect Typescript errors given the types that title can assume
+                      // @ts-expect-error
+                      <p key={i} onClick={() => setQuery(article.content.title)}>
+                        {article.content.title}
+                      </p>
+                    ))}
+                  </div>
 
-              <p>Recommended</p>
-              <div className={styles.searchResults}>
-                <MicroContentCard article={highlights.mainHighlight} />
-                <MicroContentCard article={highlights.secondaryHighlight} />
-              </div>
+                  <p>Results</p>
+                  <div className={styles.searchResults}>
+                    {searchResults.map((article, i) => (
+                      <MicroContentCard key={i} article={article.item} />
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={styles.searchSuggestions}>
+                    <p>Suggestions</p>
+                    {mostRecent.map((article, i) => (
+                      // Expect Typescript errors given the types that title can assume
+                      // @ts-expect-error
+                      <p key={i} onClick={() => setQuery(article.content.title)}>
+                        {article.content.title}
+                      </p>
+                    ))}
+                  </div>
+
+                  <p>Recommended</p>
+                  <div className={styles.searchResults}>
+                    <MicroContentCard article={highlights.mainHighlight} />
+                    <MicroContentCard article={highlights.secondaryHighlight} />
+                  </div>
+                </>
+              )}
             </>
-          ))}
-        </div>)}
-      </div>
+          )}
+        </div>
+      )}
     </div>
-  );
+  </div>
+);
+
 }

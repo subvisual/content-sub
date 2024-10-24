@@ -5,7 +5,9 @@
   border-radius: 25px;
   padding: 20px;
   column-gap: 15px;
+  width: 320px;
 }
+
 
 .container a {
   color: var(--sub-purple-600);
@@ -23,4 +25,40 @@
 
 .summary {
   grid-column: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+
+
+@media(min-width: 1024px){
+.container {
+  display: grid;
+  flex-direction: column;
+  border: 1px solid var(--dark-rock-800);
+  border-radius: 25px;
+  padding: 20px;
+  column-gap: 15px;
+}
+
+.container a {
+  color: var(--sub-purple-600);
+  font-weight: bold;
+  font-size: var(--size-16);
+}
+
+
+.featuredImage {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  align-self: center;
+  grid-column: 1;
+}
+
+.summary {
+  grid-column: 2;
+}
+
 }

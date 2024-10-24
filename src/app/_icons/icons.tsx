@@ -1,4 +1,5 @@
 interface IconProperties {
+  id?: string,
   x?: string;
   y?: string;
   width?: string;
@@ -498,10 +499,10 @@ export default function CodeIcon({ x, y, width = "24", height = "24", color = "v
   );
 }
 
-export function CloseIcon({ x, y, width = "24", height = "24", color = "var(--dark-rock-800)" }: IconProperties) {
+export function CloseIcon({ id, x, y, width = "24", height = "24", color = "var(--dark-rock-800)" }: IconProperties) {
   return (
-    <svg x={x} y={y} width={width} height={height} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17 1L1 17M17 17L1 1" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <svg id={id} x={x} y={y} width={width} height={height} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path id={id} d="M17 1L1 17M17 17L1 1" stroke={color} strokeWidth="2" strokeLinecap="round" />
     </svg>
 
   );

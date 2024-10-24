@@ -15,7 +15,7 @@ export function AuthorPill({ authors }) {
       <Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/authors/${slug}`}>
         <div className={styles.authorPill}>
           <div className={styles.authorImage}>
-            {featuredImage && <FeaturedImage src={featuredImage.url} />}
+            {featuredImage && <FeaturedImage radius={'50%'} src={featuredImage.url} />}
           </div>
           {name}
         </div>
@@ -30,10 +30,10 @@ export function AuthorPill({ authors }) {
     return (
       <div className={styles.twoAuthorPill}>
         <div className={`${styles.authorImage} ${styles.authorOne}`}>
-          <FeaturedImage src={authorOne.featuredImage.url} />
+          <FeaturedImage radius={'50%'} src={authorOne.featuredImage.url} />
         </div>
         <div className={`${styles.authorImage} ${styles.authorTwo}`}>
-          <FeaturedImage src={authorTwo.featuredImage.url} />
+          <FeaturedImage radius={'50%'} src={authorTwo.featuredImage.url} />
         </div>
         {`${authorOne.name.split(" ")[0]} & ${authorTwo.name.split(" ")[0]}`}
       </div>
@@ -48,13 +48,13 @@ export function AuthorPill({ authors }) {
     return (
       <div className={styles.twoAuthorPill}>
         <div className={`${styles.authorImage} ${styles.authorOne}`}>
-          <FeaturedImage src={authorOne.featuredImage.url} />
+          <FeaturedImage radius={'50%'} src={authorOne.featuredImage.url} />
         </div>
         <div className={`${styles.authorImage} ${styles.authorTwo}`}>
-          <FeaturedImage src={authorTwo.featuredImage.url} />
+          <FeaturedImage radius={'50%'} src={authorTwo.featuredImage.url} />
         </div>
         <div className={`${styles.authorImage} ${styles.authorThree}`}>
-          <FeaturedImage src={authorThree.featuredImage.url} />
+          <FeaturedImage radius={'50%'} src={authorThree.featuredImage.url} />
         </div>
         Various authors
       </div>
