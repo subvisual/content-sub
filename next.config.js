@@ -7,6 +7,11 @@ const CDN_DOMAIN = process.env.CDN_DOMAIN || 'http://localhost:3000'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: {
+      allowedOrigins: [process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'],
+    }
+  },
   images: {
     remotePatterns: [
       ...[CDN_DOMAIN /* 'https://example.com' */].map((item) => {

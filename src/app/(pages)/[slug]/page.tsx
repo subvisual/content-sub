@@ -4,6 +4,7 @@ import HubHead from "@/app/_blocks/HubHead";
 import SearchBar from "@/app/_components/SearchBar";
 import { Header } from "@/app/_components/Header";
 import { Metadata } from "next";
+import { Category } from "@/payload-types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -18,8 +19,9 @@ export default async function Page() {
     TalksAndRoundtables: await fetchAllContentByType("talks-and-roundtables"),
   };
 
-
   const highlights = await fetchGlobals("homepage-settings", 3);
+  const categories = await fetchAllContentByType('categories').then((res: Category[]) => res.map((item: Category) => item.title))
+
 
   return (
 
@@ -29,7 +31,7 @@ export default async function Page() {
       <HubHead highlights={highlights} />
 
       {/* Search Bar*/}
-      <SearchBar />
+      <SearchBar currentContent={content} highlights={highlights} categories={categories}/>
 
 
       {/* Content Grid*/}
@@ -37,24 +39,4 @@ export default async function Page() {
 
     </div>
   );
-}
-
-export function generateMetadata(): Metadata {
-  return {
-    title: 'Styleguide Page',
-    description: 'A guide to various styles in our application.',
-    openGraph: {
-      title: 'Styleguide Open Graph Title',
-      description: 'This is the Open Graph description for the Styleguide page.',
-      url: 'https://example.com/styleguide',
-      images: [
-        {
-          url: 'https://example.com/og-image.jpg',
-          width: 800,
-          height: 600,
-          alt: 'Og Image Alt Text',
-        },
-      ],
-    },
-  };
 }

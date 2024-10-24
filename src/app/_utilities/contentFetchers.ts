@@ -89,7 +89,7 @@ export async function fetchContentFromAuthor(author) {
 export async function fetchAllContentByType(type: CollectionSlug) {
   return await fetcher({
     collection: type,
-    limit: 100,
+    limit: 30,
     depth: 3,
   }).then(res => res.docs);
 }

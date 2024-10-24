@@ -1,8 +1,11 @@
 .categoryPill {
+  display: flex;
+  gap: 20px;
   color: var(--sub-blue-800);
-  background-color: var(--sub-blue-100);
+  background-color: var(--dynamic-color);
   height: 28px;
   padding: 4px 20px;
+  align-items: center;
   border-radius: 100px;
   font-family: var(--colfax);
   font-weight: bold;

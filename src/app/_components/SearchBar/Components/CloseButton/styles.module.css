@@ -1,0 +1,8 @@
+.closeButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: var(--size-16);
+  gap: 16px;
+}
+
