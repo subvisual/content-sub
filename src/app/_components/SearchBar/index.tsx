@@ -1,7 +1,7 @@
 "use client";
 import { CloseIcon, MagnifyingGlass } from "../../_icons/icons";
 import styles from "./styles.module.css";
-import { DetailedHTMLProps, Ref, useEffect, useRef, useState } from "react";
+import React, { DetailedHTMLProps, Ref, useEffect, useRef, useState } from "react";
 import { filterContent } from "../../_utilities/filterContent";
 import Fuse from "fuse.js";
 import MicroContentCard from "./Components/MicroContentCard";
@@ -42,6 +42,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
   const [searchResults, setSearchResults] = useState<Array<SearchResults>>([]);
   const fuseSearch = new Fuse(filteredContent, fuseOptions);
   const [activeFilter, setActiveFilter] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('');
 
   const mostRecent = filteredContent
     // Given Payload type structure for dates which only considers
@@ -55,7 +56,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
     "--dynamic-border-radius": isActive ? "0px" : "25px",
     "--dynamic-border-color": isActive ? "1px solid var(--soft-white-100)" : "1px solid var(--dark-rock-800)",
     "--dynamic-position": isActive ? "fixed" : "relative",
-  };
+  } as React.CSSProperties
 
   useEffect(() => {
     const debouncedSearch = setTimeout(() => {
@@ -73,6 +74,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
 
   useEffect(() => {
     const handleClickoutside = (e) => {
+      console.log(e.target)
       if (e.target.id === "searchInput" || e.target.id === "searchBox" || e.target.id === "categoryPill") {
         return;
       }
@@ -90,19 +92,25 @@ export default function SearchBar({ currentContent, highlights, categories }) {
 
   function handleCategoryClick(e) {
     const title = e.target.innerText;
-    console.log(title)
     setActiveFilter(true);
-    setSearchResults(fuseSearch.search(title).slice(0, 3));
+    setActiveCategory(title)
+    setSearchResults(fuseSearch.search(title ?? '').slice(0, 3));
+  }
 
+  function handleFilterChange() {
+    setActiveFilter(false);
   }
 
   return (
     <div className={styles.container}>
-      {/*<pre>{JSON.stringify(searchResults, null, 2)}</pre>*/}
       <div className={styles.searchContainer} style={dynamicStyles} ref={searchBoxRef}>
 
         {isActive && <div className={styles.closeButtonContainer}>
-          <button onClick={() => setIsActive(false)}><CloseButton /></button>
+          <button onClick={() => {
+            setIsActive(false)
+            setActiveCategory('')
+            setActiveFilter(false);
+          }}><CloseButton /></button>
         </div>}
 
 
@@ -136,8 +144,14 @@ export default function SearchBar({ currentContent, highlights, categories }) {
                 {/* Temporarily adding autofill search with category title
                     TODO: also change active content filter to category title */}
                 {categories.map((category, i) => (
-                  <button id={category.title} onClick={(e) => handleCategoryClick(e)}>
-                    <CategoryPill id={"categoryPill"} key={i} title={category} />
+                  <button onClick={(e) => handleCategoryClick(e)}>
+                    <CategoryPill
+                      id={'categoryPill'}
+                      title={category}
+                      selected={activeFilter && activeCategory === category}
+                      setActiveFilter={setActiveFilter}
+                      setActiveCategory={setActiveCategory}
+                    />
                   </button>
                 ))}
               </div>
@@ -145,7 +159,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
               {activeFilter ? (
                 <>
                   <p>Results</p>
-
+                  {console.log(activeFilter)}
                   <div className={styles.searchResults}>
                     {searchResults.map((article, i) => (
                       <MicroContentCard key={i} article={article.item} />
