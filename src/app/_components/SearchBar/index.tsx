@@ -2,11 +2,12 @@
 import { CloseIcon, MagnifyingGlass } from "../../_icons/icons";
 import styles from "./styles.module.css";
 import { DetailedHTMLProps, Ref, useEffect, useRef, useState } from "react";
-import { filterContent } from "@/app/_utilities/filterContent";
+import { filterContent } from "../../_utilities/filterContent";
 import Fuse from "fuse.js";
-import MicroContentCard from "src/app/_components/SearchBar/Components/MicroContentCard";
-import CategoryPill from "@/app/_components/CategoryPill";
+import MicroContentCard from "./Components/MicroContentCard";
+import CategoryPill from "../../_components/CategoryPill";
 import { Blogpost, CaseStudy, Podcast, TalksAndRoundtable } from "@/payload-types";
+import CloseButton from "@/app/_components/SearchBar/Components/CloseButton";
 
 // Setup Fuse.js search options and weights
 const fuseOptions = {
@@ -19,6 +20,7 @@ const fuseOptions = {
     { name: "contentType", weight: 0.3 },
     { name: "content.summary", weight: 0.3 },
     { name: "content.authors.name", weight: 0.3 },
+    { name: "content.categories.title", weight: 0.3 },
     { name: "content.content.root.children.text", weight: 0.3 },
     { name: "content.content.root.children.children.text", weight: 0.3 },
     { name: "content.content.root.children.children.children.text", weight: 0.3 },
@@ -38,6 +40,8 @@ export default function SearchBar({ currentContent, highlights, categories }) {
   const [isActive, setIsActive] = useState(false);
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Array<SearchResults>>([]);
+  const fuseSearch = new Fuse(filteredContent, fuseOptions);
+  const [activeFilter, setActiveFilter] = useState(false);
 
   const mostRecent = filteredContent
     // Given Payload type structure for dates which only considers
@@ -47,13 +51,13 @@ export default function SearchBar({ currentContent, highlights, categories }) {
     .slice(0, 3);
 
   const dynamicStyles: DetailedHTMLProps<any, any> = {
-    "--dynamic-border-radius": isActive ? "0px" : "100px",
+    "--dynamic-border-width": isActive ? "0 0 1px" : "1px",
+    "--dynamic-border-radius": isActive ? "0px" : "25px",
     "--dynamic-border-color": isActive ? "1px solid var(--soft-white-100)" : "1px solid var(--dark-rock-800)",
     "--dynamic-position": isActive ? "fixed" : "relative",
   };
 
   useEffect(() => {
-    const fuseSearch = new Fuse(filteredContent, fuseOptions);
     const debouncedSearch = setTimeout(() => {
       setSearchResults(fuseSearch.search(query).slice(0, 3));
     }, 300);
@@ -69,9 +73,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
 
   useEffect(() => {
     const handleClickoutside = (e) => {
-      console.log("event triggered");
-      console.log(e.target);
-      if (e.target.id === "searchInput" || e.target.id === "searchBox") {
+      if (e.target.id === "searchInput" || e.target.id === "searchBox" || e.target.id === "categoryPill") {
         return;
       }
 
@@ -86,14 +88,26 @@ export default function SearchBar({ currentContent, highlights, categories }) {
     };
   }, []);
 
+  function handleCategoryClick(e) {
+    const title = e.target.innerText;
+    console.log(title)
+    setActiveFilter(true);
+    setSearchResults(fuseSearch.search(title).slice(0, 3));
+
+  }
 
   return (
     <div className={styles.container}>
       {/*<pre>{JSON.stringify(searchResults, null, 2)}</pre>*/}
-      <div className={styles.searchContainer} style={dynamicStyles}>
+      <div className={styles.searchContainer} style={dynamicStyles} ref={searchBoxRef}>
+
+        {isActive && <div className={styles.closeButtonContainer}>
+          <button onClick={() => setIsActive(false)}><CloseButton /></button>
+        </div>}
+
 
         <div className={styles.searchBar} style={dynamicStyles}>
-          <MagnifyingGlass />
+          <MagnifyingGlass width={"34px"} height={"34px"} />
           <input
             className={styles.searchInput}
             placeholder="What are you looking for?"
@@ -104,7 +118,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
           />
 
           {isActive && (
-            <button onClick={() => setIsActive(false)}><CloseIcon /></button>
+            <button className={styles.closeIcon} onClick={() => setIsActive(false)}><CloseIcon /></button>
           )}
 
         </div>
@@ -113,23 +127,41 @@ export default function SearchBar({ currentContent, highlights, categories }) {
         {isActive && (<div
           className={styles.searchBox}
           id={"searchBox"}
-          ref={searchBoxRef}
+
         >
           {query.length < 1 && (
             <div>
               <p>Recommended topics</p>
               <div className={styles.recommendedTopics}>
+                {/* Temporarily adding autofill search with category title
+                    TODO: also change active content filter to category title */}
                 {categories.map((category, i) => (
-                  <CategoryPill key={i} title={category} />
+                  <button id={category.title} onClick={(e) => handleCategoryClick(e)}>
+                    <CategoryPill id={"categoryPill"} key={i} title={category} />
+                  </button>
                 ))}
               </div>
 
-              <p style={{ marginTop: "20px" }}>Suggestions</p>
-              <div className={styles.mostRecent}>
-                {mostRecent.map((article, i) => (
-                  <MicroContentCard key={i} article={article} />
-                ))}
-              </div>
+              {activeFilter ? (
+                <>
+                  <p>Results</p>
+
+                  <div className={styles.searchResults}>
+                    {searchResults.map((article, i) => (
+                      <MicroContentCard key={i} article={article.item} />
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p style={{ marginTop: "20px" }}>Suggestions</p>
+                  <div className={styles.mostRecent}>
+                    {mostRecent.map((article, i) => (
+                      <MicroContentCard key={i} article={article} />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           )}
 
