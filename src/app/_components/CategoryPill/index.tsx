@@ -22,7 +22,7 @@ export default function CategoryPill({ title, id, selected = false, setActiveFil
 
   return (
     enableLink ? (
-      <Link href={`categories/${toKebabCase(title)}`}>
+      <Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/categories/${toKebabCase(title)}`}>
 
         <div id={id} className={styles.categoryPill} style={dynamicStyle}>
           {title}
