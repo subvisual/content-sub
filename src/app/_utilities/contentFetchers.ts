@@ -54,7 +54,7 @@ export async function fetchContentBySlug({ slug, type, depth }: { slug: string, 
 }
 
 
-export async function fetchContentFromAuthorOrCategory({ type, target }: { type: string, target: Author | Category }) {
+export async function fetchContentFromAuthorOrCategory({ type, target }: { type: 'author' | 'category', target: Author | Category }) {
   let query = {}
 
   if (type === "author") {

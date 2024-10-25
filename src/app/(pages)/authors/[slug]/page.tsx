@@ -1,5 +1,5 @@
 import { fetchContentFromAuthorOrCategory } from '@/app/_utilities/contentFetchers'
-import AuthorContentGrid from '../../../_blocks/AuthorContentGrid'
+import ContentGrid from '../../../_blocks/ContentGrid'
 import { Subscribe } from '../../../_blocks/Subscribe'
 import AuthorSummary from '../../../_components/AuthorSummary'
 import BackButton from '../../../_components/BackButton'
@@ -26,7 +26,7 @@ export default async function ContributorPage({ params: paramsPromise }) {
   // Given payload typing structure an error is expected as we're passing multiple possible types
   // to a function that only accepts 2 (Authors | Categories).
   // @ts-expect-error
-  const contentFromAuthor = await fetchContentFromAuthorOrCategory({ type: 'authors', target: author })
+  const contentFromAuthor = await fetchContentFromAuthorOrCategory({ type: 'author', target: author })
 
   return (
     <div>
@@ -35,7 +35,7 @@ export default async function ContributorPage({ params: paramsPromise }) {
         <BackButton className={styles.backButton} />
         <AuthorSummary author={author} />
       </div>
-      <AuthorContentGrid content={contentFromAuthor} />
+      <ContentGrid content={contentFromAuthor} />
       <Subscribe />
 
     </div>
