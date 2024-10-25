@@ -26,7 +26,7 @@ export default function HubContentGrid({ content }) {
   };
 
 
-  const dynamicColor = {
+  const dynamicStyles = {
     "--dynamic-color": colorMap[activeButton],
   } as React.CSSProperties
 
@@ -36,7 +36,7 @@ export default function HubContentGrid({ content }) {
   return (
     <div>
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
-      <div className={styles.contentGridContainer} style={dynamicColor}>
+      <div className={styles.contentGridContainer} style={dynamicStyles}>
         <div className={styles.contentGrid}>
           {filteredContent.map((article, i) => (
             <div className={styles.contentCard}>

@@ -8,6 +8,7 @@ const iconMap = {
 }
 
 import styles from './styles.module.css'
+import Link from "next/link";
 
 function formatTitle(text: string) {
   return text
@@ -24,10 +25,10 @@ interface ArchiveButtonProps {
 
 export default function ArchiveButton({ collection, color }: ArchiveButtonProps) {
   return (
-    <a href={`/${collection}`} style={{ color: color || 'var(--dark-rock-800)' }}>
+    <Link href={`/${collection}`} style={{ color: color || 'var(--dark-rock-800)' }}>
       <h6 className={styles.container}>
         {iconMap[collection]} {formatTitle(collection)}
       </h6>
-    </a>
+    </Link>
   )
 }
