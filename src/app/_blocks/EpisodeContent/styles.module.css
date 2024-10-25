@@ -48,6 +48,7 @@
     flex-direction: column;
     grid-row: 2 / 2;
     padding: 16px;
+    row-gap: 20px;
   }
 
   .sharingAndCategories hr {

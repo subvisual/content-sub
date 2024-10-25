@@ -2,7 +2,7 @@ import { BlogpostIcon, CaseStudiesIcon, PodcastIcon, TalksIcon } from '@/app/_ic
 
 const iconMap = {
   blogposts: <BlogpostIcon width={'20'} color={"currentColor"}/>,
-  'podcast-episodes': <PodcastIcon width={'20'} color={"currentColor"}/>,
+  'podcasts': <PodcastIcon width={'20'} color={"currentColor"}/>,
   'case-studies': <CaseStudiesIcon width={'20'} color={"currentColor"}/>,
   'talks-and-roundtables': <TalksIcon width={'20'} color={"currentColor"}/>,
 }
@@ -18,7 +18,7 @@ function formatTitle(text: string) {
 }
 
 interface ArchiveButtonProps {
-  collection: 'blogposts' | 'podcast-episodes' | 'case-studies' | 'talks-and-roundtables'
+  collection: 'blogposts' | 'podcasts' | 'case-studies' | 'talks-and-roundtables'
   color?: string
 }
 

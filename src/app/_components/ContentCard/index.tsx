@@ -26,7 +26,7 @@ interface ContentSummaryProps {
 
 const archiveMap = {
   Blogposts: "blogposts",
-  PodcastEpisodes: "podcast-episodes",
+  Podcasts: "podcasts",
   CaseStudies: "case-studies",
   TalksAndRoundtables: "talks-and-roundtables",
 };
@@ -34,25 +34,24 @@ const archiveMap = {
 export default function ContentCard({ contentType, content, rounded }: ContentSummaryProps) {
   const { slug, title, summary, featuredImage, categories, publishedAt, authors } = content;
   const borderStyle = {
-    '--dynamic-border': rounded ? '45px' : ''
-  }
+    "--dynamic-border": rounded ? "45px" : "",
+  };
 
   // todo: convert to a collection item property
-  const readTime = estimateReadTime("herpaderpa");
-
+  const readTime = contentType === 'Blogposts' ? estimateReadTime(content.content_html) : ''
 
   return (
     // @ts-ignore
     <div className={styles.contentCard} style={borderStyle}>
       <div className={styles.contentMetaContainer}>
         <Link href={`/${toKebabCase(contentType)}/${slug}`}>
-        {featuredImage && (
-          <div className={styles.imageContainer}>
-            {/*  @ts-ignore */}
-            <FeaturedImage src={featuredImage.url} />
-          </div>
-        )}
-        {/*<ArchiveButton collection={archiveMap[contentType]} />*/}
+          {featuredImage && (
+            <div className={styles.imageContainer}>
+              {/*  @ts-ignore */}
+              <FeaturedImage src={featuredImage.url} />
+            </div>
+          )}
+          <ArchiveButton collection={archiveMap[contentType]} />
 
           <h6>{title} </h6>
 
@@ -65,11 +64,12 @@ export default function ContentCard({ contentType, content, rounded }: ContentSu
 
         <div className={styles.dateAndDuration}>
           {formatDateTime(publishedAt)}
-          {contentType === "PodcastEpisodes" ? (
+          {contentType === "Podcasts" && (
             <span>
                 <HeadphonesIcon width={"20"} /> 1h
               </span>
-          ) : (
+          )}
+          {contentType === "Blogposts" && (
             <span>
                 <SpectaclesIcon width={"20"} />
               {readTime}

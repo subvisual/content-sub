@@ -1,5 +1,4 @@
 .gridContainer {
-  padding-bottom: 40px;
   display: grid;
   color: var(--dark-rock-800);
   grid-template-rows: 1fr 1fr;

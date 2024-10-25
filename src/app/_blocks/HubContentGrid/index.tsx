@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 import ContentCard from "../../_components/ContentCard";
 import { ContentTypeArrays } from "../../_interfaces/ContentTypeArrays";
@@ -16,10 +16,6 @@ const colorMap = {
   TalksAndRoundtables: "var(--sub-purple-300)",
 };
 
-interface HubContentGridProps {
-  articles: ContentTypeArrays;
-}
-
 export default function HubContentGrid({ content }) {
   // todo: fix rendering when there is no content
 
@@ -32,17 +28,15 @@ export default function HubContentGrid({ content }) {
 
   const dynamicColor = {
     "--dynamic-color": colorMap[activeButton],
-  };
+  } as React.CSSProperties
 
   const filteredContent = filterContent({ articles: content, filter: activeButton });
 
 
   return (
     <div>
-      {/*{<pre>{JSON.stringify(filteredContent, null, 2)}</pre>}*/}
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
-      {/*   TODO: fix dynamic color*/}
-      <div className={styles.contentGridContainer}>
+      <div className={styles.contentGridContainer} style={dynamicColor}>
         <div className={styles.contentGrid}>
           {filteredContent.map((article, i) => (
             <div className={styles.contentCard}>
