@@ -32,7 +32,7 @@ import { Authors } from "@/collections/Authors";
 import { CaseStudies } from "@/collections/CaseStudies";
 import { Podcasts } from "@/collections/Podcasts";
 import { TalksAndRoundtables } from "@/collections/TalksAndRoundtables";
-import { HomePageSettings } from "@/Globals/HubHighlights/config";
+import { HomePageSettings } from "@/Globals/HomepageSettings/config";
 import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
 import { testAdapt } from "@/collections/Media/storageAdapter";
 import { Socials } from "@/collections/Globals/Socials/config";

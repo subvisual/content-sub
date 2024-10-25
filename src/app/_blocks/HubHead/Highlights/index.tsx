@@ -14,7 +14,7 @@ const placeholder = {
   authors: "Placeholder",
 };
 
-export async function Highlights({ content, main }) {
+export function Highlights({ content, main }) {
   if (!content) {
     content = placeholder;
   }

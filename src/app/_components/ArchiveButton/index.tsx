@@ -25,9 +25,9 @@ interface ArchiveButtonProps {
 export default function ArchiveButton({ collection, color }: ArchiveButtonProps) {
   return (
     <a href={`/${collection}`} style={{ color: color || 'var(--dark-rock-800)' }}>
-      <div className={styles.container}>
+      <h6 className={styles.container}>
         {iconMap[collection]} {formatTitle(collection)}
-      </div>
+      </h6>
     </a>
   )
 }

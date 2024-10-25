@@ -11,8 +11,15 @@ import Contributors from "@/app/_blocks/EpisodeContent/Contributors";
 import { TalksAndRoundtable } from "@/payload-types";
 import { Metadata } from "next";
 import { generateMeta } from "@/utilities/generateMeta";
+import { Header } from "@/app/_components/Header";
 
 export const dynamic = "force-dynamic";
+
+const headerStyle = {
+  '--dynamic-background': 'var(--sub-purple-400)',
+  '--dynamic-color': 'var(--soft-white-100)',
+  '--dynamic-width': 'calc(100% - 40px)',
+}
 
 export default async function TalksAndRoundTablesPage({ params: paramsPromise }) {
   const { slug } = await paramsPromise;
@@ -30,7 +37,9 @@ export default async function TalksAndRoundTablesPage({ params: paramsPromise })
   const videoID = getVideoId(talk.url);
 
   return (
+
     <div>
+      <Header style={headerStyle}/>
       {/* Head Block */}
       <div className={styles.headContainer}>
         <BackButton color={"var(--soft-white-100)"} />

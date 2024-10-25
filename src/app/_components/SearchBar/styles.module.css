@@ -1,21 +1,53 @@
 /* Search bar */
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+}
+
+.closeButtonContainer {
+  display: flex;
+  padding: 40px;
+  justify-content: flex-end;
+}
+
+.closeIcon {
+  display: none;
+}
+
+.searchContainer {
+  position: var(--dynamic-position);
+  inset: 0;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 99;
+  padding-top: 20px;
+  height: 100%;
+  background: white;
+  overflow: scroll;
+}
 
 .searchBar {
   display: flex;
-  margin: 40px auto;
-  border-radius: 100px;
-  border: 1px solid var(--dark-rock-800);
-  width: 328px;
+  border-width: var(--dynamic-border-width);
+  border-style: solid;
+  border-color: var(--dark-rock-800);
+  border-radius: var(--dynamic-border-radius);
   overflow: hidden;
-  padding: 10px 10px 10px 20px;
+  padding: 10px 40px 10px 20px;
   gap: 10px;
   align-items: center;
+  background: white;
+  width: 90%;
+  margin: auto;
+
 }
 
 .searchInput {
   display: flex;
   border: none;
   width: 100%;
+  text-overflow: ellipsis;
 }
 
 .searchInput:focus,
@@ -24,9 +56,88 @@
   outline: none;
 }
 
+
+.searchBox {
+  display: flex;
+  background: white;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+  width: 100%;
+  overflow: scroll;
+}
+
+.searchSuggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.searchResults {
+  display: grid;
+  gap: 40px;
+}
+
+.recommendedTopics {
+  display: flex;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.mostRecent {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+
 @media (min-width: 1024px) {
-  .searchBar {
-    width: 836px;
-    margin: 80px auto;
+
+  .closeButtonContainer {
+    display: none;
   }
+
+  .closeIcon {
+    display: flex;
+  }
+
+  .searchContainer {
+    width: 836px;
+    margin: auto;
+    height: var(--dynamic-height);
+    background: transparent;
+  }
+
+  .searchBar {
+    border-radius: 25px 25px var(--dynamic-border-radius) var(--dynamic-border-radius);
+    border: 1px solid var(--dark-rock-800);
+    border-bottom: var(--dynamic-border-color);
+    width: 836px;
+  }
+
+  .searchBox {
+    gap: 40px;
+    border: 1px solid var(--dark-rock-800);
+    border-top: none;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding: 40px;
+    width: 836px;
+  }
+
+  .searchResults {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .recommendedTopics {
+    margin-top: 20px;
+  }
+
+  .mostRecent {
+    grid-template-columns: 1fr 1fr;
+ }
+
 }
