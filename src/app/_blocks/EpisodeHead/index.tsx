@@ -27,7 +27,7 @@ export default function EpisodeHead({ episode }) {
       <div className={styles.metadataContainer}>
         {/* First Column */}
         <div className={styles.metadata}>
-          <ArchiveButton collection={'podcast-episodes'} color={'var(--soft-white-100)'} />
+          <ArchiveButton collection={'podcasts'} color={'var(--soft-white-100)'} />
           <h5>{title}</h5>
           <h6>episode.podcastName property</h6>
           <p>

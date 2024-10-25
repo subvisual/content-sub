@@ -27,8 +27,8 @@
   border-left: 2px solid var(--dark-rock-800);
   background-color: white;
   margin-top: -8px;
-  margin-bottom: -40px;
   padding-top: 6px;
+  overflow: hidden;
 }
 
 .dropdownMenuContainer::after {

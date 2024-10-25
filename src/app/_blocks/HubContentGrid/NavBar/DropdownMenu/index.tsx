@@ -80,10 +80,10 @@ export default function DropdownMenu({
               {/* TODO : Renable once pages are styled */}
          {/*     <li onClick={() => handleButtonClick('CaseStudies')}>
                 {iconMap['CaseStudies']} Case Studies
-              </li>
+              </li>*/}
               <li onClick={() => handleButtonClick('TalksAndRoundtables')}>
                 {iconMap['TalksAndRoundtables']} Talks & Roundtables
-              </li>*/}
+              </li>
             </ul>
           </div>
         </div>

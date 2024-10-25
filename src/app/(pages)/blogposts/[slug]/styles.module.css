@@ -25,10 +25,14 @@
 }
 
 .sharingAndCategories {
+  display: flex;
+  flex-direction: column;
   grid-row-start: 1;
+  padding: 20px;
+  gap: 20px;
 }
 
-@media (min-width: 1080px) {
+@media (min-width: 1024px) {
 
   .headContainer {
     width: calc(100% - 40px);

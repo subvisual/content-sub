@@ -17,8 +17,6 @@ export default function ContentNavBar({
   }
 
   return (
-    // todo: make whole button clickable?
-
     <div className={styles.contentNav}>
       <DropdownMenu activeButton={activeButton} onActiveButtonChange={handleButtonClick} />
 
