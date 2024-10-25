@@ -1,24 +1,21 @@
-import {
-  Blogpost,
-  CaseStudy,
-  Podcast,
-  TalksAndRoundtable,
-} from "@/payload-types";
 import ContentCard from "../../_components/ContentCard";
 import { calculateTotalArticles } from "../../_utilities/calculateTotalArticles";
 import styles from "./styles.module.css";
 
-export default function AuthorContentGrid({ content }) {
+export default function ContentGrid({ content, showCount = true }) {
 
   return (
     <div className={styles.gridContainer}>
-      <div className={styles.articleCounter}>
-        <b>{calculateTotalArticles(content)}</b> Articles
-      </div>
+
+      {showCount && (
+        <div className={styles.articleCounter}>
+          <b>{calculateTotalArticles(content)}</b> Articles
+        </div>
+      )}
       <div className={styles.contentGrid}>
         {Object.keys(content).map(key =>
           content[key].map((contentPiece, i) => (
-            <ContentCard contentType={key} content={contentPiece} rounded/>
+            <ContentCard contentType={key} content={contentPiece} rounded />
           )),
         )}
       </div>

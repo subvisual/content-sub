@@ -172,6 +172,7 @@ export default function SearchBar({ currentContent, highlights, categories }) {
                         selected={filtering && activeCategory === category}
                         setActiveFilter={setFiltering}
                         setActiveCategory={setActiveCategory}
+                        enableLink={false}
                       />
                     </button>
                   ))}

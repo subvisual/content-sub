@@ -11,7 +11,11 @@ export function calculateTotalArticles(content: {
   CaseStudies: CaseStudy[]
   TalksAndRoundtables: TalksAndRoundtable[]
 }): number {
-  return Object.values(content).filter(
-    innerArray => Array.isArray(innerArray) && innerArray.length > 0,
-  ).length
+  let contentCount = 0
+  for (const type in content) {
+    if (content[type].length > 0) {
+      contentCount += content[type].length
+    }
+  }
+  return contentCount
 }

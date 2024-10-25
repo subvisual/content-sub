@@ -14,9 +14,9 @@
 .contentGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 1fr);
-  margin: 0 auto;
-  padding-left: 40px;
-  padding-right: 40px;
+  margin: auto;
+  padding: 16px;
+  gap: 16px;
 }
 
 .contentCard {
