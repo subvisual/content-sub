@@ -97,6 +97,8 @@ export interface Media {
 export interface Category {
   id: string;
   title: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
   parent?: (string | null) | Category;
   breadcrumbs?:
     | {
