@@ -1,49 +1,59 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 
 import styles from "./styles.module.css";
+import { getChapters, sanitizeAndAddChapters } from "@/app/_utilities/sanitizeAndAddChapters";
 
-export default function BlogpostChapters() {
+export default function BlogpostChapters({ content_html }: { content_html: string }): JSX.Element {
   const [visibleChapter, setVisibleChapter] = useState("");
-  const [chapters, setChapters] = useState<string[]>([]);
-  // TODO: Fix chapter navigator
-  useEffect(() => {
-    const extractHeadings = () => {
-      // Query all headings in the DOM (e.g., h1, h2, h3...)
-      const chapterList: string[] = [];
-      const headings = Array.from(document.querySelectorAll("h1, h2, h3"));
-      headings.map(i => chapterList.push(i.innerHTML.trim()));
 
-      setChapters(chapterList);
-    };
+  const chapters = getChapters(content_html);
+useEffect(() => {
+  const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
 
-    extractHeadings();
+  const observer = new IntersectionObserver((entries) => {
+    let visibleId = "";
 
+    entries.forEach((entry) => {
+      if (entry.isIntersecting || entry.boundingClientRect.bottom < 0) {
+        visibleId = entry.target.id;
+      }
+    });
 
-  }, []);
+    setVisibleChapter(visibleId);
+  }, {
+    root: null,
+    threshold: 0.5,
+  });
+
+  headings.forEach((heading) => observer.observe(heading));
+
+  return () => {
+    headings.forEach((heading) => observer.unobserve(heading));
+  };
+}, [chapters]);
 
 
   return (
     <div className={styles.container}>
-      {/*{<pre>{JSON.stringify(chapters, null, 2)}</pre>}*/}
       <div className={styles.navbar}>
         <p className={`outline ${styles.title}`}>CHAPTER</p>
         <ul>
           {chapters.map((chapter, i) => (
-            // <a key={i} href={`#${chapter.id}`}>
-            <li
-              style={{
-                borderColor:
-                  visibleChapter === chapter
-                    ? "var(--sub-purple-400)"
-                    : "var(--soft-white-100)",
-              }}
-              key={i}
-            >
-              {chapter}
-            </li>
-            // </a>
+            <a key={i} href={`#${chapter.id}`}>
+              <li
+                style={{
+                  borderColor:
+                    visibleChapter === chapter.id
+                      ? "var(--sub-purple-400)"
+                      : "var(--soft-white-100)",
+                }}
+                key={i}
+              >
+                {chapter.title}
+              </li>
+            </a>
           ))}
         </ul>
       </div>

@@ -43,8 +43,11 @@ export default async function BlogpostPage({ params: paramsPromise }) {
       </div>
 
       <div className={styles.contentContainer}>
-        {/*   Left column: Navigation*/}
-        <BlogpostChapters />
+
+        {/*   Left column: Navigation
+        Given Payload types where content_html can be null Typescript throws an error
+        @ts-expect-error */}
+        <BlogpostChapters content_html={blogpost.content_html} />
 
         {/*   Middle column: Content block*/}
         <BlogpostContent blogpost={blogpost} />
