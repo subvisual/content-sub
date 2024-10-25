@@ -37,7 +37,8 @@ export default function ContentCard({ contentType, content, rounded }: ContentSu
     "--dynamic-border": rounded ? "45px" : "",
   };
 
-  // todo: convert to a collection item property
+  // Given Payload type structure an error is expected as content_html only exists in Blogposts
+  // @ts-expect-error
   const readTime = contentType === 'Blogposts' ? estimateReadTime(content.content_html) : ''
 
   return (
