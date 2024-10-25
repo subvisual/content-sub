@@ -1,4 +1,4 @@
-import { fetchContentFromAuthor } from '@/app/_utilities/contentFetchers'
+import { fetchContentFromAuthorOrCategory } from '@/app/_utilities/contentFetchers'
 import AuthorContentGrid from '../../../_blocks/AuthorContentGrid'
 import { Subscribe } from '../../../_blocks/Subscribe'
 import AuthorSummary from '../../../_components/AuthorSummary'
@@ -22,7 +22,11 @@ const headerStyle = {
 export default async function ContributorPage({ params: paramsPromise }) {
   const { slug } = await paramsPromise
   const author = await fetchContentBySlug({ slug: slug, type: 'authors' })
-  const contentFromAuthor = await fetchContentFromAuthor(author)
+
+  // Given payload typing structure an error is expected as we're passing multiple possible types
+  // to a function that only accepts 2 (Authors | Categories).
+  // @ts-expect-error
+  const contentFromAuthor = await fetchContentFromAuthorOrCategory({ type: 'authors', target: author })
 
   return (
     <div>

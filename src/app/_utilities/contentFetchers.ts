@@ -1,6 +1,6 @@
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
-import type { Author, Blogpost, CaseStudy, Config, Media, Podcast, TalksAndRoundtable } from "@/payload-types";
+import type { Author, Blogpost, CaseStudy, Category, Config, Media, Podcast, TalksAndRoundtable } from "@/payload-types";
 import { notFound } from "next/navigation";
 import { CollectionSlug, getPayload } from "payload";
 import { draftMode } from "next/headers";
@@ -28,13 +28,13 @@ async function fetcher({ collection, limit = 10, depth = 1, draft = false, overr
   });
 }
 
-export async function fetchContentBySlug({ slug, type, depth }: { slug: string, type: CollectionSlug, depth?: number })   {
+export async function fetchContentBySlug({ slug, type, depth }: { slug: string, type: CollectionSlug, depth?: number }) {
 
   if (!slug || !type) {
     throw new Error("Must input slug and/or type.");
   }
 
-  const { isEnabled: draft } = await draftMode()
+  const { isEnabled: draft } = await draftMode();
 
   const query = { slug: { equals: slug } };
 
@@ -54,9 +54,16 @@ export async function fetchContentBySlug({ slug, type, depth }: { slug: string, 
 }
 
 
-export async function fetchContentFromAuthor(author) {
+export async function fetchContentFromAuthorOrCategory({ type, target }: { type: string, target: Author | Category }) {
+  let query = {}
 
-  const query = { authors: { in: author.id } };
+  if (type === "author") {
+    query = { authors: { in: target.id } };
+  }
+
+  if (type === "category") {
+    query = { categories: { in: target.id } };
+  }
 
   const blogposts = await fetcher({
     collection: "blogposts",
