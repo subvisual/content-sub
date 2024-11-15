@@ -31,7 +31,14 @@
 
 @media(min-width: 1024px) {
   .contentGrid {
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    max-height: 1200px;
+    overflow: scroll;
+  }
+
+  .contentGridColumn {
+    background-clip: padding-box;
+
   }
 
   .contentGridContainer {

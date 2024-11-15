@@ -7,6 +7,7 @@ import { ContentTypeArrays } from "../../_interfaces/ContentTypeArrays";
 import { filterContent } from "../../_utilities/filterContent";
 import ContentNavBar from "./NavBar";
 import styles from "./styles.module.css";
+import Masonry from "react-masonry-css";
 
 const colorMap = {
   All: "var(--dark-rock-800)",
@@ -32,18 +33,28 @@ export default function HubContentGrid({ content }) {
 
   const filteredContent = filterContent({ articles: content, filter: activeButton });
 
+  const breakpointColumns = {
+    default: 4,
+    1280: 3,
+    1024: 2,
+    720: 1,
+  }
 
   return (
     <div>
       <ContentNavBar activeButton={activeButton} onActiveButtonChange={handleActiveButtonChange} />
       <div className={styles.contentGridContainer} style={dynamicStyles}>
-        <div className={styles.contentGrid}>
+        <Masonry
+          breakpointCols={breakpointColumns}
+          className={styles.contentGrid}
+          columnClassName={styles.contentGridColumn}
+        >
           {filteredContent.map((article, i) => (
             <div className={styles.contentCard}>
               <ContentCard contentType={article.contentType} content={article.content} rounded={false} />
             </div>
           ))}
-        </div>
+        </Masonry>
       </div>
     </div>
   );

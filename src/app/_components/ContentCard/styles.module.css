@@ -1,8 +1,19 @@
 .contentCard {
+  display: flex;
   padding: 30px 20px;
-  height: min-content;
   border: 1px solid var(--dark-rock-800);
   border-radius: var(--dynamic-border);
+  gap: 20px;
+}
+
+.contentCard p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-height: 1.2em;
+  max-height: calc(1.2em * 3);
+  text-overflow: ellipsis;
 }
 
 .contentMetaContainer {
@@ -12,6 +23,7 @@
 }
 
 .contentMetaContainer h6 {
+  margin-bottom: 10px;
   text-decoration: none;
   transition: text-decoration 0.3s ease;
 }
@@ -34,8 +46,9 @@
 
 .imageContainer {
   position: relative;
-  width: 280px;
-  height: 280px;
+  max-width: 280px;
+  max-height: 280px;
+  aspect-ratio: 1 / 1;
   margin: auto;
 }
 
